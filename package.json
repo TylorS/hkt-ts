@@ -1,0 +1,40 @@
+{
+  "name": "typed-lib-starter",
+  "version": "1.0.0",
+  "description": "Library Starter",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "typings": "esm/index.d.ts",
+  "main:ts": "source/index.ts",
+  "devDependencies": {
+    "husky": "^3.0.4",
+    "lint-staged": "^9.2.3",
+    "ts-node": "^8.3.0",
+    "tslib": "^1.10.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-no-circular-imports": "^0.7.0",
+    "tslint": "^5.19.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.5.3"
+  },
+  "scripts": {
+    "build:cjs": "tsc -p ./tsconfig.json --module commonjs --outDir cjs",
+    "build:esm": "tsc -p ./tsconfig.json --outDir esm",
+    "build": "npm run build:cjs && npm run build:esm",
+    "lint": "tslint -p tsconfig.json --fix",
+    "test": "typed-test && npm run lint",
+    "preversion": "npm test",
+    "postversion": "npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TylorS/typed-lib-starter.git"
+  },
+  "author": "Tylor Steinberger <tlsteinberger167@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TylorS/typed-lib-starter/issues"
+  },
+  "homepage": "https://github.com/TylorS/typed-lib-starter#readme"
+}
