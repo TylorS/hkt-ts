@@ -59,7 +59,9 @@ export namespace TypeParams {
     N.NumberOf<L.LastIndex<A>>
   >
 
-  type _DropLastFromList<A extends L.List, N extends string, LastIndex extends string> = N extends 1
+  type _DropLastFromList<A extends L.List, N extends string, LastIndex extends string> = N extends 0
+    ? A
+    : N extends 1
     ? L.Pop<A>
     : L.Remove<A, N.Minus<LastIndex, N>, LastIndex>
 }
