@@ -1,4 +1,5 @@
 import { PossibleValues, Type, Types } from '../Hkts'
+import { TypeParams } from '../TypeParams'
 import { Apply } from './Apply'
 
 /**
@@ -9,5 +10,5 @@ import { Apply } from './Apply'
  * Interchange: A.ap(u, A.of(y)) ≡ A.ap(A.of(f => f(y)), u)
  */
 export interface Applicative<T extends Types> extends Apply<T> {
-  readonly of: <A extends PossibleValues>(...values: A) => Type<T, A>
+  readonly of: <A extends PossibleValues>(value: TypeParams.First<A>) => Type<T, A>
 }
