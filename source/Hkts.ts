@@ -6,19 +6,19 @@ import { U } from 'ts-toolbelt'
  * @example
  */
 // @ts-ignore - Allow compiling with unused type-param
-export interface Hkts<Values extends ReadonlyArray<any>> {}
+export interface Hkts<Params extends ReadonlyArray<any>> {}
 
 /**
  * Type-level map, used to extract values from instances to apply transformations or just
  * to retrieve the information. User's should extend this interface to register their custom types.
  */
 // @ts-ignore - Allow compiling with unused type-param
-export interface HktValues<T> {}
+export interface HktTypeParams<T> {}
 
 /**
  * Union of all type names as defined in Hkts & HktValues
  */
-export type Types = keyof Hkts<ReadonlyArray<any>> & keyof HktValues<any>
+export type Types = keyof Hkts<ReadonlyArray<any>> & keyof HktTypeParams<any>
 
 /**
  * Helper for creating types by use of their Type name, and a tuple of values to use.
@@ -28,8 +28,8 @@ export type Types = keyof Hkts<ReadonlyArray<any>> & keyof HktValues<any>
  */
 export type Type<
   T extends Types = Types,
-  Values extends ReadonlyArray<any> = ReadonlyArray<any>
-> = Hkts<Values>[T]
+  Params extends ReadonlyArray<any> = ReadonlyArray<any>
+> = Hkts<Params>[T]
 
 /**
  * Lookup the name of Hkt by Type. In the event of there being multiple matches
