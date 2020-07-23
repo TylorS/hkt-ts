@@ -28,14 +28,14 @@ export type Either<A, B> = Left<A> | Right<B>
 // The URI must match in both type-level maps to work correctly.
 declare module "hkt-ts" {
   // Setup how to pass new type-parameters to a Type, looked up by the given URI.
-  export interface Hkts<Values> {
+  export interface Hkts<Params> {
     // TypeParams.First, TypeParams.Second,..., TypeParams.Fifth, are helpers for extracting
     // type parameters from Values working from right-to-left.
-    [URI]: Either<TypeParams.Second<Values>, TypeParams.First<Values>>
+    [URI]: Either<TypeParams.Second<Params>, TypeParams.First<Params>>
   }
   
   // Setup how to extract a Tuple of type-parameters from a registered Type, looked up by the given URI.
-  export interface HktValues<T> {
+  export interface HktTypeParams<T> {
     // Wrapping in a tuple helps to avoid returning an invalid union e.g. [A, unknown] | [unknown, B]
     [URI]: [T] extends [Either<infer A, infer B>] ? [A, B] : never
   }
@@ -50,12 +50,23 @@ import { PossibleValues, Type, Types, TypeParams } from 'hkt-ts'
 
 // All type-classes should use an a `extends Types` clause to ensure it's working with
 // registered types.
+import { Type, Types } from '../Hkts'
+import { TypeParams } from '../TypeParams'
+
 export interface Functor<T extends Types> {
-  // Adding the Type to any methods type-parameters will help with inference
-  // PossibleValues is a helpful placeholder for supporting Types with up to 5 type-parameters.
-  map: <A, B, F extends Type<T, [...PossibleValues, A]>>(f: (a: A) => b, functor: F) => 
-    Type<T, [...TypeParams.DropLast<F, 1>, B]> 
-    // TypeParams.DropLast (and TypeParams.Drop!) is another helper for creating type-classes. It retrieves the type-paramaters
-    // for a registered Type, and pops off up to 5 of the last values from the tuple.
+  readonly map: {
+    // Depending on the length of type-parameters, create the signature you'd expect or want
+    1: <A, B>(f: (a: A) => B, functor: Type<T, [A]>) => Type<T, [B]>
+    2: <A, B, C>(f: (a: A) => B, functor: Type<T, [C, A]>) => Type<T, [C, B]>
+    3: <A, B, C, D>(f: (a: A) => B, functor: Type<T, [C, D, A]>) => Type<T, [C, D, B]>
+    4: <A, B, C, D, E>(f: (a: A) => B, functor: Type<T, [C, D, E, A]>) => Type<T, [C, D, E, B]>
+    5: <A, B, C, D, E, F>(
+      f: (a: A) => B,
+      functor: Type<T, [C, D, E, F, A]>,
+    ) => Type<T, [C, D, E, F, B]>
+  // Gets the number of type-params associated with a particular type T, and matches it to the appropriate signature
+  }[TypeParams.Length<T>] 
 }
 ```
+
+For examples take a look within [source/type-classes](./source/type-classes)!
