@@ -13,17 +13,12 @@ export interface Hkts<Values extends ReadonlyArray<any>> {}
  * to retrieve the information. User's should extend this interface to register their custom types.
  */
 // @ts-ignore - Allow compiling with unused type-param
-export interface HktValues<T> extends Record<PropertyKey, PossibleValues> {}
+export interface HktValues<T> {}
 
 /**
  * Union of all type names as defined in Hkts & HktValues
  */
 export type Types = keyof Hkts<ReadonlyArray<any>> & keyof HktValues<any>
-
-/**
- * Helper for type-classes to use a placeholder type-params
- */
-export type PossibleValues = [any?, any?, any?, any?, any?]
 
 /**
  * Helper for creating types by use of their Type name, and a tuple of values to use.

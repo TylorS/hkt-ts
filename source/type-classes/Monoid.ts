@@ -1,4 +1,5 @@
-import { PossibleValues, Type, Types } from '../Hkts'
+import { Type, Types } from '../Hkts'
+import { TypeParams } from '../TypeParams'
 import { Semigroup } from './Semigroup'
 
 /**
@@ -8,5 +9,11 @@ import { Semigroup } from './Semigroup'
  * Left identity: M.concat(M.empty(), a) ≡ a
  */
 export interface Monoid<T extends Types> extends Semigroup<T> {
-  readonly empty: <A extends PossibleValues>() => Type<T, A>
+  readonly empty: {
+    1: <A>() => Type<T, [A]>
+    2: <A, B>() => Type<T, [A, B]>
+    3: <A, B, C>() => Type<T, [A, B, C]>
+    4: <A, B, C, D>() => Type<T, [A, B, C, D]>
+    5: <A, B, C, D, E>() => Type<T, [A, B, C, D, E]>
+  }[TypeParams.Length<T>]
 }

@@ -1,4 +1,4 @@
-import { PossibleValues, Type, Types } from '../Hkts'
+import { Type, Types } from '../Hkts'
 import { TypeParams } from '../TypeParams'
 import { Functor } from './Functor'
 
@@ -9,9 +9,26 @@ import { Functor } from './Functor'
  * Composition: P.promap(x => f(g(x)), x => h(i(x)), a) ≡ P.promap(g, h, P.promap(f, i, a))
  */
 export interface Profunctor<T extends Types> extends Functor<T> {
-  readonly promap: <A, B, C, D, F extends Type<T, [...PossibleValues, B, C]>>(
-    f: (a: A) => B,
-    g: (c: C) => D,
-    profunctor: F,
-  ) => Type<T, [...TypeParams.DropLast<F, 2>, A, D]>
+  readonly promap: {
+    2: <A, B, C, D>(
+      ab: (a: A) => B,
+      cd: (c: C) => D,
+      profunctor: Type<T, [B, C]>,
+    ) => Type<T, [A, D]>
+    3: <A, B, C, D, E>(
+      ab: (a: A) => B,
+      cd: (c: C) => D,
+      profunctor: Type<T, [E, B, C]>,
+    ) => Type<T, [E, A, D]>
+    4: <A, B, C, D, E, F>(
+      ab: (a: A) => B,
+      cd: (c: C) => D,
+      profunctor: Type<T, [E, F, B, C]>,
+    ) => Type<T, [E, F, A, D]>
+    5: <A, B, C, D, E, F, G>(
+      ab: (a: A) => B,
+      cd: (c: C) => D,
+      profunctor: Type<T, [E, F, G, B, C]>,
+    ) => Type<T, [E, F, G, A, D]>
+  }[TypeParams.Length<T>]
 }

@@ -1,4 +1,4 @@
-import { PossibleValues, Type, Types } from '../Hkts'
+import { Type, Types } from '../Hkts'
 import { Setoid } from './Setoid'
 
 /**
@@ -9,5 +9,5 @@ import { Setoid } from './Setoid'
  * Transitivity: if Ord.lte(a, b) and Ord.lte(b, c), then Ord.lte(a, c)
  */
 export interface Ord<T extends Types> extends Setoid<T> {
-  readonly lte: <A extends Type<T, PossibleValues>>(a: A, b: A) => boolean
+  readonly lte: <A extends Type<T>>(a: A, b: A) => boolean
 }

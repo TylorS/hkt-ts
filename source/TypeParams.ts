@@ -1,5 +1,5 @@
 import { L, N } from 'ts-toolbelt'
-import { HktValues, Type, TypeToName } from './Hkts'
+import { HktValues, Type, Types, TypeToName } from './Hkts'
 
 /**
  * Helpers for working with Type Parameters
@@ -12,7 +12,7 @@ export namespace TypeParams {
    */
   export type Of<A extends Type> = CastArray<HktValues<A>[TypeToName<A>]>
 
-  type CastArray<A> = A extends L.List ? A : []
+  type CastArray<A> = A extends ReadonlyArray<any> ? A : []
 
   /**
    * Extract the first type-param from Values of Hkts
@@ -53,4 +53,6 @@ export namespace TypeParams {
     4: L.Pop<L.Pop<L.Pop<L.Pop<Of<A>>>>>
     5: L.Pop<L.Pop<L.Pop<L.Pop<L.Pop<Of<A>>>>>>
   }[N extends unknown ? N : never]
+
+  export type Length<T extends Types> = L.Length<Of<Type<T, ReadonlyArray<any>>>>
 }

@@ -1,4 +1,5 @@
-import { PossibleValues, Type, Types } from '../Hkts'
+import { Type, Types } from '../Hkts'
+import { TypeParams } from '../TypeParams'
 
 /**
  * @name Filterable
@@ -8,8 +9,17 @@ import { PossibleValues, Type, Types } from '../Hkts'
  * Annihilation: F.filter(x => false, a) ≡ F.filter(x => false, b)
  */
 export interface Filterable<T extends Types> {
-  readonly filter: <A, F extends Type<T, [...PossibleValues, A]>>(
-    predicate: (a: A) => boolean,
-    f: F,
-  ) => F
+  readonly filter: {
+    1: <A>(predicate: (a: A) => boolean, filterable: Type<T, [A]>) => Type<T, [A]>
+    2: <A, B>(predicate: (a: A) => boolean, filterable: Type<T, [B, A]>) => Type<T, [B, A]>
+    3: <A, B, C>(predicate: (a: A) => boolean, filterable: Type<T, [B, C, A]>) => Type<T, [B, C, A]>
+    4: <A, B, C, D>(
+      predicate: (a: A) => boolean,
+      filterable: Type<T, [B, C, D, A]>,
+    ) => Type<T, [B, C, D, A]>
+    5: <A, B, C, D, E>(
+      predicate: (a: A) => boolean,
+      filterable: Type<T, [B, C, D, E, A]>,
+    ) => Type<T, [B, C, D, E, A]>
+  }[TypeParams.Length<T>]
 }

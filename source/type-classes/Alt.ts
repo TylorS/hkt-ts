@@ -1,4 +1,4 @@
-import { PossibleValues, Type, Types } from '../Hkts'
+import { Type, Types } from '../Hkts'
 import { Functor } from './Functor'
 
 /**
@@ -8,8 +8,5 @@ import { Functor } from './Functor'
  * Distributivity: A.map(f, A.alt(a, b)) ≡ A.alt(A.map(f, a), A.map(f, b))
  */
 export interface Alt<T extends Types> extends Functor<T> {
-  readonly alt: <A extends Type<T, PossibleValues>, B extends Type<T, PossibleValues>>(
-    a: A,
-    b: B,
-  ) => A | B
+  readonly alt: <A extends Type<T>, B extends Type<T>>(a: A, b: B) => A | B
 }

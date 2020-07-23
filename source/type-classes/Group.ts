@@ -1,4 +1,4 @@
-import { PossibleValues, Type, Types } from '../Hkts'
+import { Type, Types } from '../Hkts'
 import { Monoid } from './Monoid'
 
 /**
@@ -8,5 +8,5 @@ import { Monoid } from './Monoid'
  * Left inverse: G.concat(G.invert(a), a) ≡ G.empty()
  */
 export interface Group<T extends Types> extends Monoid<T> {
-  readonly invert: <A extends Type<T, PossibleValues>>(a: A) => A
+  readonly invert: <A extends Type<T>>(a: A) => A
 }

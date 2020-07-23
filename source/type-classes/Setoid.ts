@@ -1,4 +1,4 @@
-import { PossibleValues, Type, Types } from '../Hkts'
+import { Type, Types } from '../Hkts'
 
 /**
  * @name Setoid
@@ -8,5 +8,5 @@ import { PossibleValues, Type, Types } from '../Hkts'
  * Transitivity: if Setoid.equals(a, b) and Setoid.equals(b, c), then Setoid.equals(a, c)
  */
 export interface Setoid<T extends Types> {
-  readonly equals: <A extends Type<T, PossibleValues>>(a: A, b: A) => boolean
+  readonly equals: <A extends Type<T>>(a: A, b: A) => boolean
 }

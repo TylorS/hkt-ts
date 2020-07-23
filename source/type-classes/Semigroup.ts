@@ -1,4 +1,4 @@
-import { PossibleValues, Type, Types } from '../Hkts'
+import { Type, Types } from '../Hkts'
 
 /**
  * @name Semigroup
@@ -6,5 +6,5 @@ import { PossibleValues, Type, Types } from '../Hkts'
  * Associativity: Semigroup.concat(Semigroup.concat(a, b), c) ≡ Semigroup.concat(a, Semigroup.concat(b, c))
  */
 export interface Semigroup<T extends Types> {
-  readonly concat: <A extends Type<T, PossibleValues>>(a: A, b: A) => A
+  readonly concat: <A extends Type<T>>(a: A, b: A) => A
 }
