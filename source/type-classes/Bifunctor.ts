@@ -13,6 +13,5 @@ export interface Bifunctor<T extends Types> extends Functor<T> {
     f: (a: A) => B,
     g: (c: C) => D,
     bifunctor: BF,
-    // @ts-ignore - we like this instantation of types, but TS thinks it might be too deep
   ) => Type<T, [...TypeParams.DropLast<BF, 2>, B, D]>
 }

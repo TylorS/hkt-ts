@@ -1,5 +1,5 @@
 import { L, N } from 'ts-toolbelt'
-import { HktValues, PossibleValues, Type, Types, TypeToName } from './Hkts'
+import { HktValues, Type, TypeToName } from './Hkts'
 
 /**
  * Helpers for working with Type Parameters
@@ -10,7 +10,7 @@ export namespace TypeParams {
    * @example
    * TypeParams.Of<Either<A, B>> === [A, B]
    */
-  export type Of<A extends Type<Types, PossibleValues>> = CastArray<HktValues<A>[TypeToName<A>]>
+  export type Of<A extends Type> = CastArray<HktValues<A>[TypeToName<A>]>
 
   type CastArray<A> = A extends L.List ? A : []
 
@@ -21,47 +21,36 @@ export namespace TypeParams {
   /**
    * Extract the second type-param from Values of Hkts
    */
-  export type Second<A> = A extends L.List ? L.Last<DropLastFromList<A, '1'>> : never
+  export type Second<A> = A extends L.List ? L.Last<L.Pop<A>> : never
   /**
    * Extract the third type-param from Values of Hkts
    */
-  export type Third<A> = A extends L.List ? L.Last<DropLastFromList<A, '2'>> : never
+  export type Third<A> = A extends L.List ? L.Last<L.Pop<L.Pop<A>>> : never
   /**
    * Extract the fourth type-param from Values of Hkts
    */
-  export type Fourth<A> = A extends L.List ? L.Last<DropLastFromList<A, '3'>> : never
+  export type Fourth<A> = A extends L.List ? L.Last<L.Pop<L.Pop<L.Pop<A>>>> : never
   /**
    * Extract the fifth type-param from Values of Hkts
    */
-  export type Fifth<A> = A extends L.List ? L.Last<DropLastFromList<A, '4'>> : never
+  export type Fifth<A> = A extends L.List ? L.Last<L.Pop<L.Pop<L.Pop<L.Pop<A>>>>> : never
 
   /**
    * Retrieve the type-parameters of a given Type while dropping off a given amount from the start.
    * Useful for creating type-classes.
    */
-  export type Drop<A extends Type<Types, PossibleValues>, N extends 0 | 1 | 2 | 3 | 4 | 5> = L.Drop<
-    Of<A>,
-    N.NumberOf<N>
-  >
+  export type Drop<A extends Type, N extends 0 | 1 | 2 | 3 | 4 | 5> = L.Drop<Of<A>, N.NumberOf<N>>
 
   /**
    * Retrieve the type-parameters of a given Type while dropping off a given amount from the end.
    * Useful for creating type-classes.
    */
-  export type DropLast<
-    A extends Type<Types, PossibleValues>,
-    N extends 0 | 1 | 2 | 3 | 4 | 5
-  > = DropLastFromList<Of<A>, N.NumberOf<N>>
-
-  type DropLastFromList<A extends L.List, N extends string> = _DropLastFromList<
-    A,
-    N.Minus<N, '1'>,
-    N.NumberOf<L.LastIndex<A>>
-  >
-
-  type _DropLastFromList<A extends L.List, N extends string, LastIndex extends string> = N extends 0
-    ? A
-    : N extends 1
-    ? L.Pop<A>
-    : L.Remove<A, N.Minus<LastIndex, N>, LastIndex>
+  export type DropLast<A extends Type, N extends 0 | 1 | 2 | 3 | 4 | 5> = {
+    0: Of<A>
+    1: L.Pop<Of<A>>
+    2: L.Pop<L.Pop<Of<A>>>
+    3: L.Pop<L.Pop<L.Pop<Of<A>>>>
+    4: L.Pop<L.Pop<L.Pop<L.Pop<Of<A>>>>>
+    5: L.Pop<L.Pop<L.Pop<L.Pop<L.Pop<Of<A>>>>>>
+  }[N extends unknown ? N : never]
 }
