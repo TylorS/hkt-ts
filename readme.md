@@ -5,7 +5,7 @@ It requires writing 0 overloads for your functions, and does not need to modify 
 This means the use of HKTs for your libraries can be opt-in, delivered by an external package, and 
 potentially from the community!
 
-## Installation (NOT YET !!)
+## Installation
 
 ```sh
 # NPM
