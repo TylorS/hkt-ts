@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 import { Semigroupoid } from './Semigroupoid'
 
 /**
@@ -8,7 +8,7 @@ import { Semigroupoid } from './Semigroupoid'
  * Left identity: M.compose(M.id(), a) ≡ a
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Category<T extends Types = any> extends Semigroupoid<T> {
+export interface Category<T extends Uris = any> extends Semigroupoid<T> {
   readonly URI: T
   readonly id: {
     2: <A>() => Type<T, [A, A]>

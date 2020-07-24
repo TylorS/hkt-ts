@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 
 /**
  * @name ChainRec
@@ -7,7 +7,7 @@ import { Type, TypeParams, Types } from '../'
  * Stack usage of C.chainRec(f, i) must be at most a constant multiple of the stack usage of f itself.
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface ChainRec<T extends Types = any> {
+export interface ChainRec<T extends Uris = any> {
   readonly URI: T
   readonly chainRec: {
     1: <A, B>(

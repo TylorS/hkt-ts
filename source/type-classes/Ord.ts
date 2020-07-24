@@ -1,4 +1,4 @@
-import { Type, Types } from '../'
+import { Type, Uris } from '../'
 import { Setoid } from './Setoid'
 
 /**
@@ -9,7 +9,7 @@ import { Setoid } from './Setoid'
  * Transitivity: if Ord.lte(a, b) and Ord.lte(b, c), then Ord.lte(a, c)
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Ord<T extends Types = any> extends Setoid<T> {
+export interface Ord<T extends Uris = any> extends Setoid<T> {
   readonly URI: T
   readonly lte: <A extends Type<T>>(a: A, b: A) => boolean
 }

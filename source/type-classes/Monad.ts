@@ -1,4 +1,4 @@
-import { Types } from '../'
+import { Uris } from '../'
 import { Applicative } from './Applicative'
 import { Chain } from './Chain'
 
@@ -9,6 +9,6 @@ import { Chain } from './Chain'
  * Right identity: M.chain(M.of, u) ≡ u
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Monad<T extends Types = any> extends Applicative<T>, Chain<T> {
+export interface Monad<T extends Uris = any> extends Applicative<T>, Chain<T> {
   readonly URI: T
 }

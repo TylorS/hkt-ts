@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 
 /**
  * @name Semigroupoid
@@ -6,7 +6,7 @@ import { Type, TypeParams, Types } from '../'
  * Associativity: S.compose(S.compose(a, b), c) ≡ S.compose(a, S.compose(b, c))
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Semigroupoid<T extends Types = any> {
+export interface Semigroupoid<T extends Uris = any> {
   readonly URI: T
   readonly compose: {
     2: <A, B, C>(ab: Type<T, [A, B]>, bc: Type<T, [B, C]>) => Type<T, [A, C]>

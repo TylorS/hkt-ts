@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 import { Functor } from './Functor'
 
 /**
@@ -7,7 +7,7 @@ import { Functor } from './Functor'
  * Associativity: E.extend(f, E.extend(g, w)) ≡ E.extend(_w => f(E.extend(g, _w)), w)
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Extend<T extends Types = any> extends Functor<T> {
+export interface Extend<T extends Uris = any> extends Functor<T> {
   readonly URI: T
   readonly extend: {
     1: <A, B>(f: (a: Type<T, [A]>) => B, extend: Type<T, [A]>) => Type<T, [B]>

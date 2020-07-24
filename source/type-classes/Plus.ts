@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 
 /**
  * @name Plus
@@ -8,7 +8,7 @@ import { Type, TypeParams, Types } from '../'
  * Annihilation: P.map(f, P.zero()) ≡ P.zero()
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Plus<T extends Types = any> {
+export interface Plus<T extends Uris = any> {
   readonly URI: T
   readonly zero: {
     1: <A>() => Type<T, [A]>

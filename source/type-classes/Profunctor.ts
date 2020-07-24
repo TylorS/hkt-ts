@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 import { Functor } from './Functor'
 
 /**
@@ -8,7 +8,7 @@ import { Functor } from './Functor'
  * Composition: P.promap(x => f(g(x)), x => h(i(x)), a) ≡ P.promap(g, h, P.promap(f, i, a))
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Profunctor<T extends Types = any> extends Functor<T> {
+export interface Profunctor<T extends Uris = any> extends Functor<T> {
   readonly URI: T
   readonly promap: {
     2: <A, B, C, D>(

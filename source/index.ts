@@ -18,7 +18,7 @@ export interface HktTypeParams<T> {}
 /**
  * Union of all type names as defined in Hkts & HktValues
  */
-export type Types = keyof Hkts<ReadonlyArray<any>> & keyof HktTypeParams<any>
+export type Uris = keyof Hkts<ReadonlyArray<any>> & keyof HktTypeParams<any>
 
 /**
  * Helper for creating types by use of their Type name, and a tuple of values to use.
@@ -27,7 +27,7 @@ export type Types = keyof Hkts<ReadonlyArray<any>> & keyof HktTypeParams<any>
  * Type<'Either', [Error, number]> === Either<Error, number>
  */
 export type Type<
-  T extends Types = Types,
+  T extends Uris = Uris,
   Params extends ReadonlyArray<any> = ReadonlyArray<any>
 > = Hkts<Params>[T]
 
@@ -37,17 +37,27 @@ export type Type<
  * @example
  * TypeToName<Either<any, any>> === 'Either'
  */
-export type TypeToUri<A> = TypeCastToTypes<
+export type TypeToUri<A> = __HasMoreOneMatch<A> extends true ? __RetrieveLast<A> : __FastCheck<A>
+
+// More comprehensive check + will choose last registered URI if multiple
+type __RetrieveLast<A> = TypeCastToTypes<
   U.Last<
     {
-      [T in Types]: Type<T> extends A ? T : never
-    }[Types]
+      [T in Uris]: Type<T> extends A ? (A extends Type<T> ? T : never) : never
+    }[Uris]
   >
 >
 
+// Simple check for when there's just 1 match
+type __FastCheck<A> = {
+  [T in Uris]: Type<T> extends A ? T : never
+}[Uris]
+
+type __HasMoreOneMatch<A> = L.Length<U.ListOf<__FastCheck<A>>> extends 0 | 1 ? false : true
+
 export type UriOf<A> = A extends { readonly URI: infer R } ? R : never
 
-type TypeCastToTypes<A> = A extends Types ? A : never
+type TypeCastToTypes<A> = A extends Uris ? A : never
 
 /**
  * Helpers for working with Type Parameters
@@ -102,7 +112,7 @@ export namespace TypeParams {
     5: L.Pop<L.Pop<L.Pop<L.Pop<L.Pop<Of<A>>>>>>
   }[N extends unknown ? N : never]
 
-  export type Length<T extends Types> = L.Length<Of<Type<T>>>
+  export type Length<T extends Uris> = L.Length<Of<Type<T>>>
 }
 
 export * from './type-classes'

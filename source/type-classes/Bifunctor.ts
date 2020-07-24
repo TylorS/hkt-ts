@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 import { Functor } from './Functor'
 
 /**
@@ -8,7 +8,7 @@ import { Functor } from './Functor'
  * Composition: B.bimap(x => f(g(x)), x => h(i(x)), a) ≡ B.bimap(f, h, B.bimap(g, i, a))
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Bifunctor<T extends Types = any> extends Functor<T> {
+export interface Bifunctor<T extends Uris = any> extends Functor<T> {
   readonly URI: T
   readonly bimap: {
     2: <A, B, C, D>(f: (a: A) => B, g: (c: C) => D, bifunctor: Type<T, [A, C]>) => Type<T, [B, D]>

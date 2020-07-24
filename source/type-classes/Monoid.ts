@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 import { Semigroup } from './Semigroup'
 
 /**
@@ -8,7 +8,7 @@ import { Semigroup } from './Semigroup'
  * Left identity: M.concat(M.empty(), a) ≡ a
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Monoid<T extends Types = any> extends Semigroup<T> {
+export interface Monoid<T extends Uris = any> extends Semigroup<T> {
   readonly URI: T
   readonly empty: {
     1: <A>() => Type<T, [A]>

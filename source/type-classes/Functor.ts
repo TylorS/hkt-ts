@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 
 /**
  * @name Functor
@@ -7,7 +7,7 @@ import { Type, TypeParams, Types } from '../'
  * Composition: F.map(x => f(g(x)), a) ≡ F.map(f, F.map(g, a))
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Functor<T extends Types = any> {
+export interface Functor<T extends Uris = any> {
   readonly URI: T
   readonly map: {
     1: <A, B>(f: (a: A) => B, functor: Type<T, [A]>) => Type<T, [B]>

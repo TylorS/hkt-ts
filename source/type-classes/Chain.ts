@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 import { Apply } from './Apply'
 
 /**
@@ -7,7 +7,7 @@ import { Apply } from './Apply'
  * Associativity: M.chain(g, M.chain(f, u)) ≡ M.chain(x => M.chain(g, f(x)), u)
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Chain<T extends Types = any> extends Apply<T> {
+export interface Chain<T extends Uris = any> extends Apply<T> {
   readonly URI: T
   readonly chain: {
     1: <A, B>(f: (a: A) => Type<T, [B]>, t: Type<T, [A]>) => Type<T, [B]>

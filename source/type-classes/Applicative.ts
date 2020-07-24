@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 import { Apply } from './Apply'
 
 /**
@@ -9,7 +9,7 @@ import { Apply } from './Apply'
  * Interchange: A.ap(u, A.of(y)) ≡ A.ap(A.of(f => f(y)), u)
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Applicative<T extends Types = any> extends Apply<T> {
+export interface Applicative<T extends Uris = any> extends Apply<T> {
   readonly URI: T
   readonly of: {
     1: <A>(value: A) => Type<T, [A]>

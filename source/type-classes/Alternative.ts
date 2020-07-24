@@ -1,4 +1,4 @@
-import { Types } from '../'
+import { Uris } from '../'
 import { Applicative } from './Applicative'
 import { Plus } from './Plus'
 
@@ -9,6 +9,6 @@ import { Plus } from './Plus'
  * Annihilation: A.ap(A.zero(), a) ≡ A.zero()
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Alternative<T extends Types = any> extends Applicative<T>, Plus<T> {
+export interface Alternative<T extends Uris = any> extends Applicative<T>, Plus<T> {
   readonly URI: T
 }

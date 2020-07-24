@@ -1,4 +1,4 @@
-import { Type, Types } from '../'
+import { Type, Uris } from '../'
 
 /**
  * @name Setoid
@@ -8,7 +8,7 @@ import { Type, Types } from '../'
  * Transitivity: if Setoid.equals(a, b) and Setoid.equals(b, c), then Setoid.equals(a, c)
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Setoid<T extends Types = any> {
+export interface Setoid<T extends Uris = any> {
   readonly URI: T
   readonly equals: <A extends Type<T>>(a: A, b: A) => boolean
 }

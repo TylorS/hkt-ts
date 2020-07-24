@@ -19,9 +19,9 @@
     "typescript": "^3.9.7"
   },
   "scripts": {
-    "build:cjs": "tsc -p ./tsconfig.json --module commonjs --outDir cjs",
-    "build:esm": "tsc -p ./tsconfig.json --outDir esm",
-    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "rm -rf cjs && tsc -p ./tsconfig.json --module commonjs --outDir cjs",
+    "build:esm": "rm -rf esm && tsc -p ./tsconfig.json --outDir esm",
+    "build": "npm run build:esm && npm run build:cjs",
     "lint": "tslint -p tsconfig.json --fix",
     "test": "npm run lint",
     "preversion": "npm test",

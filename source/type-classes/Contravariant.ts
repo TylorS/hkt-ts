@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 
 /**
  * @name Contravariant
@@ -7,7 +7,7 @@ import { Type, TypeParams, Types } from '../'
  * Composition: F.contramap(x => f(g(x)), a) ≡ F.contramap(g, F.contramap(f, a))
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Contravariant<T extends Types = any> {
+export interface Contravariant<T extends Uris = any> {
   readonly URI: T
   readonly contramap: {
     1: <A, B>(f: (a: A) => B, type: Type<T, [A]>) => Type<T, [B]>

@@ -1,4 +1,4 @@
-import { Type, TypeParams, Types } from '../'
+import { Type, TypeParams, Uris } from '../'
 
 /**
  * @name Foldable
@@ -6,7 +6,7 @@ import { Type, TypeParams, Types } from '../'
  * F.reduce ≡ (f, x, u) => F.reduce((acc, y) => acc.concat([y]), [], u).reduce(f, x)
  */
 // @ts-expect-error Types is 'never' until extended externally
-export interface Foldable<T extends Types = any> {
+export interface Foldable<T extends Uris = any> {
   readonly URI: T
   readonly reduce: {
     1: <A, B>(f: (a: A, b: B) => A, seed: A, foldable: Type<T, [B]>) => A
