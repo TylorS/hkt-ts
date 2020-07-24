@@ -1,4 +1,4 @@
-import { L, N, U } from 'ts-toolbelt'
+import { L, N } from 'ts-toolbelt'
 
 /**
  * Type-level map, used to apply values to specific data structures. User's should
@@ -37,15 +37,9 @@ export type Type<
  * @example
  * TypeToName<Either<any, any>> === 'Either'
  */
-export type TypeToName<A> = CastToTypeName<
-  U.Last<
-    {
-      [T in Types]: Type<T, ReadonlyArray<any>> extends A ? T : never
-    }[Types]
-  >
->
-
-type CastToTypeName<A> = A extends Types ? A : never
+export type TypeToName<A> = {
+  [T in Types]: Type<T> extends A ? (A extends Type<T> ? T : never) : never
+}[Types]
 
 /**
  * Helpers for working with Type Parameters
