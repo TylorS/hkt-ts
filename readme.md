@@ -5,6 +5,9 @@ It requires writing 0 overloads for your functions, and does not need to modify 
 This means the use of HKTs for your libraries can be opt-in, delivered by an external package, and 
 potentially from the community!
 
+The type-classes that are provided are primarily designed based on [Static Land](https://github.com/fantasyland/static-land).
+Adding additional type-classes is within scope of this project, but it is a goal to avoid any specific data-structures like Maybe or Either. It'd be preferred to push those concerns out to community-based packages.
+
 ## Installation
 
 ```sh
@@ -18,9 +21,9 @@ yarn install hkt-ts
 ## How to register a new HKT
 
 ```typescript
-import { TypeParams } from 'hkt-ts'
+import { Functor, TypeParams } from 'hkt-ts'
 
-export const URI = Symbol.for('Either') // Could be string | number | symbol
+export const EitherUri = 'Either' // Must be a constant string
 export type Left<A> = { left: true, value: A }
 export type Right<A> = { left: false, value: A}
 export type Either<A, B> = Left<A> | Right<B>
@@ -31,14 +34,19 @@ declare module "hkt-ts" {
   export interface Hkts<Params> {
     // TypeParams.First, TypeParams.Second,..., TypeParams.Fifth, are helpers for extracting
     // type parameters from Values working from right-to-left.
-    [URI]: Either<TypeParams.Second<Params>, TypeParams.First<Params>>
+    [EitherUri]: Either<TypeParams.Second<Params>, TypeParams.First<Params>>
   }
   
   // Setup how to extract a Tuple of type-parameters from a registered Type, looked up by the given URI.
   export interface HktTypeParams<T> {
     // Wrapping in a tuple helps to avoid returning an invalid union e.g. [A, unknown] | [unknown, B]
-    [URI]: [T] extends [Either<infer A, infer B>] ? [A, B] : never
+    [EitherUri]: [T] extends [Either<infer A, infer B>] ? [A, B] : never
   }
+}
+
+// Create a functor instance
+export const either: Functor<EitherUri> = {
+  map: <A, B, C>(f: (a: A) => B, either: Either<C, A>) => Either<C, B>
 }
 
 ```
