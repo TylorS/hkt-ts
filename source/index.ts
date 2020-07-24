@@ -37,7 +37,7 @@ export type Type<
  * @example
  * TypeToName<Either<any, any>> === 'Either'
  */
-export type TypeToName<A> = TypeCastToTypes<
+export type TypeToUri<A> = TypeCastToTypes<
   U.Last<
     {
       [T in Types]: Type<T> extends A ? T : never
@@ -45,7 +45,7 @@ export type TypeToName<A> = TypeCastToTypes<
   >
 >
 
-export type TypeClassInstanceName<A> = A extends { readonly URI: infer R } ? R : never
+export type UriOf<A> = A extends { readonly URI: infer R } ? R : never
 
 type TypeCastToTypes<A> = A extends Types ? A : never
 
@@ -58,7 +58,7 @@ export namespace TypeParams {
    * @example
    * TypeParams.Of<Either<A, B>> === [A, B]
    */
-  export type Of<A extends Type> = CastArray<HktTypeParams<A>[TypeToName<A>]>
+  export type Of<A extends Type> = CastArray<HktTypeParams<A>[TypeToUri<A>]>
 
   type CastArray<A> = A extends ReadonlyArray<any> ? A : []
 
