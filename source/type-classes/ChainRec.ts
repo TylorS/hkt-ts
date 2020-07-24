@@ -31,7 +31,25 @@ export type Next<A> = {
   readonly value: A
 }
 
+export namespace Next {
+  export const of = <A>(value: A): Next<A> => ({ done: false, value })
+}
+
 export type Done<A> = {
   readonly done: true
   readonly value: A
+}
+
+export namespace Done {
+  export const of = <A>(value: A): Done<A> => ({ done: true, value })
+}
+
+export function tailRecursion<A, B>(value: A, f: (value: A) => Next<A> | Done<B>): B {
+  let result = f(value)
+
+  while (!result.done) {
+    result = f(result.value)
+  }
+
+  return result.value
 }
