@@ -1,5 +1,4 @@
-import { Type, Types } from '../Hkts'
-import { TypeParams } from '../TypeParams'
+import { Type, TypeParams, Types } from '../'
 
 /**
  * @name Functor

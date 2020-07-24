@@ -1,4 +1,4 @@
-import { Type, Types } from '../Hkts'
+import { Type, Types } from '../'
 import { Setoid } from './Setoid'
 
 /**

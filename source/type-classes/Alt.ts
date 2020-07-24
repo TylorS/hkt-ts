@@ -1,4 +1,4 @@
-import { Type, Types } from '../Hkts'
+import { Type, Types } from '../'
 import { Functor } from './Functor'
 
 /**

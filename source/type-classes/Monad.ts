@@ -1,4 +1,4 @@
-import { Types } from '../Hkts'
+import { Types } from '../'
 import { Applicative } from './Applicative'
 import { Chain } from './Chain'
 
