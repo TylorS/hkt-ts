@@ -1,7 +1,16 @@
 import { Type, TypeParams, Types } from '../'
 import { Applicative } from './Applicative'
 
-export interface Traversable<T extends Types> {
+/**
+ * @name Traversable
+ * @laws
+ * Naturality: f(T.traverse(A, x => x, u)) ≡ T.traverse(B, f, u) for any f such that B.map(g, f(a)) ≡ f(A.map(g, a))
+ * Identity: T.traverse(F, F.of, u) ≡ F.of(u) for any Applicative F
+ * Composition: T.traverse(Compose(A, B))(x => x, u) ≡ A.map(v => T.traverse(B)(x => x, v), T.traverse(A)(x => x, u)) for Compose defined bellow and for any Applicatives A and B
+ */
+// @ts-expect-error Types is 'never' until extended externally
+export interface Traversable<T extends Types = any> {
+  readonly URI: T
   readonly traverse: {
     1: <U extends Types>(applicative: Applicative<U>) => Traverse1<T, U>
     2: <U extends Types>(applicative: Applicative<U>) => Traverse2<T, U>

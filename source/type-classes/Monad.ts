@@ -8,4 +8,7 @@ import { Chain } from './Chain'
  * Left identity: M.chain(f, M.of(a)) ≡ f(a)
  * Right identity: M.chain(M.of, u) ≡ u
  */
-export interface Monad<T extends Types> extends Applicative<T>, Chain<T> {}
+// @ts-expect-error Types is 'never' until extended externally
+export interface Monad<T extends Types = any> extends Applicative<T>, Chain<T> {
+  readonly URI: T
+}

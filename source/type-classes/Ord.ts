@@ -8,6 +8,8 @@ import { Setoid } from './Setoid'
  * Antisymmetry: if Ord.lte(a, b) and Ord.lte(b, a), then Ord.equals(a, b)
  * Transitivity: if Ord.lte(a, b) and Ord.lte(b, c), then Ord.lte(a, c)
  */
-export interface Ord<T extends Types> extends Setoid<T> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Ord<T extends Types = any> extends Setoid<T> {
+  readonly URI: T
   readonly lte: <A extends Type<T>>(a: A, b: A) => boolean
 }

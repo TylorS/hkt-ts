@@ -5,7 +5,9 @@ import { Type, TypeParams, Types } from '../'
  * @laws
  * Associativity: S.compose(S.compose(a, b), c) ≡ S.compose(a, S.compose(b, c))
  */
-export interface Semigroupoid<T extends Types> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Semigroupoid<T extends Types = any> {
+  readonly URI: T
   readonly compose: {
     2: <A, B, C>(ab: Type<T, [A, B]>, bc: Type<T, [B, C]>) => Type<T, [A, C]>
     3: <A, B, C, D>(ab: Type<T, [A, B, C]>, bc: Type<T, [A, C, D]>) => Type<T, [A, B, D]>

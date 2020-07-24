@@ -5,7 +5,9 @@ import { Type, TypeParams, Types } from '../'
  * @laws
  * F.reduce ≡ (f, x, u) => F.reduce((acc, y) => acc.concat([y]), [], u).reduce(f, x)
  */
-export interface Foldable<T extends Types> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Foldable<T extends Types = any> {
+  readonly URI: T
   readonly reduce: {
     1: <A, B>(f: (a: A, b: B) => A, seed: A, foldable: Type<T, [B]>) => A
     2: <A, B, C>(f: (a: A, b: B) => A, seed: A, foldable: Type<T, [C, B]>) => A

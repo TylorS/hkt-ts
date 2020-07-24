@@ -6,7 +6,9 @@ import { Type, TypeParams, Types } from '../'
  * Identity: F.contramap(x => x, a) ≡ a
  * Composition: F.contramap(x => f(g(x)), a) ≡ F.contramap(g, F.contramap(f, a))
  */
-export interface Contravariant<T extends Types> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Contravariant<T extends Types = any> {
+  readonly URI: T
   readonly contramap: {
     1: <A, B>(f: (a: A) => B, type: Type<T, [A]>) => Type<T, [B]>
     2: <A, B, C>(f: (a: A) => B, type: Type<T, [C, A]>) => Type<T, [C, B]>

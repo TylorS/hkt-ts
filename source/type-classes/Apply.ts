@@ -6,7 +6,9 @@ import { Functor } from './Functor'
  * @laws
  * Composition: A.ap(A.ap(A.map(f => g => x => f(g(x)), a), u), v) ≡ A.ap(a, A.ap(u, v))
  */
-export interface Apply<T extends Types> extends Functor<T> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Apply<T extends Types = any> extends Functor<T> {
+  readonly URI: T
   readonly ap: {
     1: <A, B>(fn: Type<T, [(a: A) => B]>, value: Type<T, [A]>) => Type<T, [B]>
     2: <C, A, B>(fn: Type<T, [C, (a: A) => B]>, value: Type<T, [C, A]>) => Type<T, [C, B]>

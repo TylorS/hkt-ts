@@ -7,7 +7,9 @@ import { Type, TypeParams, Types } from '../'
  * Left identity: P.alt(P.zero(), a) ≡ a
  * Annihilation: P.map(f, P.zero()) ≡ P.zero()
  */
-export interface Plus<T extends Types> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Plus<T extends Types = any> {
+  readonly URI: T
   readonly zero: {
     1: <A>() => Type<T, [A]>
     2: <A, B>() => Type<T, [A, B]>

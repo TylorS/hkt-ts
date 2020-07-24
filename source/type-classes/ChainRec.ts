@@ -1,6 +1,14 @@
 import { Type, TypeParams, Types } from '../'
 
-export interface ChainRec<T extends Types> {
+/**
+ * @name ChainRec
+ * @laws
+ * Equivalence: C.chainRec((next, done, v) => p(v) ? C.map(done, d(v)) : C.map(next, n(v)), i) ≡ (function step(v) { return p(v) ? d(v) : C.chain(step, n(v)) }(i))
+ * Stack usage of C.chainRec(f, i) must be at most a constant multiple of the stack usage of f itself.
+ */
+// @ts-expect-error Types is 'never' until extended externally
+export interface ChainRec<T extends Types = any> {
+  readonly URI: T
   readonly chainRec: {
     1: <A, B>(
       f: (next: (a: A) => Next<A>, done: (b: B) => Done<B>, a: A) => Type<T, [Next<A> | Done<B>]>,

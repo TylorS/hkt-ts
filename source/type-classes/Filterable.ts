@@ -7,7 +7,9 @@ import { Type, TypeParams, Types } from '../'
  * Identity: F.filter(x => true, a) ≡ a
  * Annihilation: F.filter(x => false, a) ≡ F.filter(x => false, b)
  */
-export interface Filterable<T extends Types> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Filterable<T extends Types = any> {
+  readonly URI: T
   readonly filter: {
     1: <A>(predicate: (a: A) => boolean, filterable: Type<T, [A]>) => Type<T, [A]>
     2: <A, B>(predicate: (a: A) => boolean, filterable: Type<T, [B, A]>) => Type<T, [B, A]>

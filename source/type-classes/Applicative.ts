@@ -8,7 +8,9 @@ import { Apply } from './Apply'
  * Homomorphism: A.ap(A.of(f), A.of(x)) ≡ A.of(f(x))
  * Interchange: A.ap(u, A.of(y)) ≡ A.ap(A.of(f => f(y)), u)
  */
-export interface Applicative<T extends Types> extends Apply<T> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Applicative<T extends Types = any> extends Apply<T> {
+  readonly URI: T
   readonly of: {
     1: <A>(value: A) => Type<T, [A]>
     2: <A, B>(value: B) => Type<T, [A, B]>

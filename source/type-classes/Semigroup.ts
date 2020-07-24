@@ -5,6 +5,8 @@ import { Type, Types } from '../'
  * @laws
  * Associativity: Semigroup.concat(Semigroup.concat(a, b), c) ≡ Semigroup.concat(a, Semigroup.concat(b, c))
  */
-export interface Semigroup<T extends Types> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Semigroup<T extends Types = any> {
+  readonly URI: T
   readonly concat: <A extends Type<T>>(a: A, b: A) => A
 }

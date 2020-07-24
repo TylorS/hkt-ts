@@ -6,7 +6,9 @@ import { Functor } from './Functor'
  * @laws
  * Associativity: E.extend(f, E.extend(g, w)) ≡ E.extend(_w => f(E.extend(g, _w)), w)
  */
-export interface Extend<T extends Types> extends Functor<T> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Extend<T extends Types = any> extends Functor<T> {
+  readonly URI: T
   readonly extend: {
     1: <A, B>(f: (a: Type<T, [A]>) => B, extend: Type<T, [A]>) => Type<T, [B]>
     2: <A, B, C>(f: (a: Type<T, [A, B]>) => C, extend: Type<T, [A, B]>) => Type<T, [A, C]>

@@ -7,7 +7,9 @@ import { Semigroupoid } from './Semigroupoid'
  * Right identity: M.compose(a, M.id()) ≡ a
  * Left identity: M.compose(M.id(), a) ≡ a
  */
-export interface Category<T extends Types> extends Semigroupoid<T> {
+// @ts-expect-error Types is 'never' until extended externally
+export interface Category<T extends Types = any> extends Semigroupoid<T> {
+  readonly URI: T
   readonly id: {
     2: <A>() => Type<T, [A, A]>
     3: <A, B>() => Type<T, [A, B, B]>

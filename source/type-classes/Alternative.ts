@@ -8,4 +8,7 @@ import { Plus } from './Plus'
  * Distributivity: A.ap(A.alt(a, b), c) ≡ A.alt(A.ap(a, c), A.ap(b, c))
  * Annihilation: A.ap(A.zero(), a) ≡ A.zero()
  */
-export interface Alternative<T extends Types> extends Applicative<T>, Plus<T> {}
+// @ts-expect-error Types is 'never' until extended externally
+export interface Alternative<T extends Types = any> extends Applicative<T>, Plus<T> {
+  readonly URI: T
+}
