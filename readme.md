@@ -46,13 +46,10 @@ declare module "hkt-ts" {
 ## How to create a new type-class
 
 ```typescript
-import { PossibleValues, Type, Types, TypeParams } from 'hkt-ts'
+import { Type, TypeParams, Types } from 'hkt-ts'
 
 // All type-classes should use an a `extends Types` clause to ensure it's working with
 // registered types.
-import { Type, Types } from '../Hkts'
-import { TypeParams } from '../TypeParams'
-
 export interface Functor<T extends Types> {
   readonly map: {
     // Depending on the length of type-parameters, create the signature you'd expect or want
