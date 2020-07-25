@@ -6,7 +6,7 @@ import { Type, TypeParams, Uris } from '../'
  * Identity: F.map(x => x, a) ≡ a
  * Composition: F.map(x => f(g(x)), a) ≡ F.map(f, F.map(g, a))
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Functor<T extends Uris = any> {
   readonly URI: T
   readonly map: {

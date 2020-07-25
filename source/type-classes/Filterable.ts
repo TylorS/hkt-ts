@@ -7,7 +7,7 @@ import { Type, TypeParams, Uris } from '../'
  * Identity: F.filter(x => true, a) ≡ a
  * Annihilation: F.filter(x => false, a) ≡ F.filter(x => false, b)
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Filterable<T extends Uris = any> {
   readonly URI: T
   readonly filter: {

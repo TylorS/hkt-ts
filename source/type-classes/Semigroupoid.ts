@@ -5,7 +5,7 @@ import { Type, TypeParams, Uris } from '../'
  * @laws
  * Associativity: S.compose(S.compose(a, b), c) ≡ S.compose(a, S.compose(b, c))
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Semigroupoid<T extends Uris = any> {
   readonly URI: T
   readonly compose: {

@@ -5,7 +5,7 @@ import { Type, TypeParams, Uris } from '../'
  * @laws
  * F.reduce ≡ (f, x, u) => F.reduce((acc, y) => acc.concat([y]), [], u).reduce(f, x)
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Foldable<T extends Uris = any> {
   readonly URI: T
   readonly reduce: {

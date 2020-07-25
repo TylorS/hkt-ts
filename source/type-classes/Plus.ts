@@ -7,7 +7,7 @@ import { Type, TypeParams, Uris } from '../'
  * Left identity: P.alt(P.zero(), a) ≡ a
  * Annihilation: P.map(f, P.zero()) ≡ P.zero()
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Plus<T extends Uris = any> {
   readonly URI: T
   readonly zero: {

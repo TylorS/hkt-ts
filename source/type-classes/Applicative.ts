@@ -8,7 +8,7 @@ import { Apply } from './Apply'
  * Homomorphism: A.ap(A.of(f), A.of(x)) ≡ A.of(f(x))
  * Interchange: A.ap(u, A.of(y)) ≡ A.ap(A.of(f => f(y)), u)
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Applicative<T extends Uris = any> extends Apply<T> {
   readonly URI: T
   readonly of: {

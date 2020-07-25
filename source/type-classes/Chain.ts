@@ -6,7 +6,7 @@ import { Apply } from './Apply'
  * @laws
  * Associativity: M.chain(g, M.chain(f, u)) ≡ M.chain(x => M.chain(g, f(x)), u)
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Chain<T extends Uris = any> extends Apply<T> {
   readonly URI: T
   readonly chain: {

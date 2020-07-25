@@ -7,7 +7,7 @@ import { Semigroupoid } from './Semigroupoid'
  * Right identity: M.compose(a, M.id()) ≡ a
  * Left identity: M.compose(M.id(), a) ≡ a
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Category<T extends Uris = any> extends Semigroupoid<T> {
   readonly URI: T
   readonly id: {

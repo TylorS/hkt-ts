@@ -8,7 +8,7 @@ import { Applicative } from './Applicative'
  * Identity: T.traverse(F, F.of, u) ≡ F.of(u) for any Applicative F
  * Composition: T.traverse(Compose(A, B))(x => x, u) ≡ A.map(v => T.traverse(B)(x => x, v), T.traverse(A)(x => x, u)) for Compose defined bellow and for any Applicatives A and B
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Traversable<T extends Uris = any> {
   readonly URI: T
   readonly traverse: {

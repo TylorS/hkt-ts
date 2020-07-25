@@ -6,7 +6,7 @@ import { Type, TypeParams, Uris } from '../'
  * Equivalence: C.chainRec((next, done, v) => p(v) ? C.map(done, d(v)) : C.map(next, n(v)), i) ≡ (function step(v) { return p(v) ? d(v) : C.chain(step, n(v)) }(i))
  * Stack usage of C.chainRec(f, i) must be at most a constant multiple of the stack usage of f itself.
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface ChainRec<T extends Uris = any> {
   readonly URI: T
   readonly chainRec: {

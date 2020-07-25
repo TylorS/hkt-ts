@@ -7,7 +7,7 @@ import { Functor } from './Functor'
  * Identity: P.promap(x => x, x => x, a) ≡ a
  * Composition: P.promap(x => f(g(x)), x => h(i(x)), a) ≡ P.promap(g, h, P.promap(f, i, a))
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Profunctor<T extends Uris = any> extends Functor<T> {
   readonly URI: T
   readonly promap: {

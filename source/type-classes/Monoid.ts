@@ -7,7 +7,7 @@ import { Semigroup } from './Semigroup'
  * Right identity: M.concat(a, M.empty()) ≡ a
  * Left identity: M.concat(M.empty(), a) ≡ a
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Monoid<T extends Uris = any> extends Semigroup<T> {
   readonly URI: T
   readonly empty: {

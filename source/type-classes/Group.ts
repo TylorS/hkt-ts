@@ -7,7 +7,7 @@ import { Monoid } from './Monoid'
  * Right inverse: G.concat(a, G.invert(a)) ≡ G.empty()
  * Left inverse: G.concat(G.invert(a), a) ≡ G.empty()
  */
-// @ts-expect-error Types is 'never' until extended externally
+// @ts-expect-error Uris is 'never' until extended externally
 export interface Group<T extends Uris = any> extends Monoid<T> {
   readonly URI: T
   readonly invert: <A extends Type<T>>(a: A) => A
