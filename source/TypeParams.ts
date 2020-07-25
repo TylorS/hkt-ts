@@ -54,9 +54,8 @@ export namespace TypeParams {
     5: L.Pop<L.Pop<L.Pop<L.Pop<L.Pop<Of<A>>>>>>
   }[N extends unknown ? N : never]
 
+  /**
+   * Retrieve the length of type-params for a given type
+   */
   export type Length<T extends Uris> = L.Length<Of<Type<T>>>
-
-  export type IsLength<A extends ReadonlyArray<any>, N extends number> = L.Length<A> extends N
-    ? true
-    : false
 }

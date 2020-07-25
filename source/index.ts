@@ -60,9 +60,9 @@ export type SignatureOverride<
   R
 > = T extends keyof HktSignatureOverride
   ? K extends keyof HktSignatureOverride[T]
-    ? __IsUnion<HktSignatureOverride[T][K]> extends true
-      ? R
-      : HktSignatureOverride[T][K]
+    ? __IsUnion<HktSignatureOverride[T][K]> extends false
+      ? HktSignatureOverride[T][K]
+      : R
     : R
   : R
 
