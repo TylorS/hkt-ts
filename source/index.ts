@@ -16,6 +16,11 @@ export interface Hkts<Params extends ReadonlyArray<any>> {}
 export interface HktTypeParams<T> {}
 
 /**
+ * Type-level map, used to register more specific variants of type-class signatures
+ */
+export interface HktTypeDefinitions {}
+
+/**
  * Union of all type names as defined in Hkts & HktValues
  */
 export type Uris = keyof Hkts<ReadonlyArray<any>> & keyof HktTypeParams<any>
@@ -55,9 +60,25 @@ type __FastCheck<A> = {
 
 type __HasMoreOneMatch<A> = L.Length<U.ListOf<__FastCheck<A>>> extends 0 | 1 ? false : true
 
+/**
+ * Retrieve the URI from a given instance
+ */
 export type UriOf<A> = A extends { readonly URI: infer R } ? R : never
 
 type TypeCastToTypes<A> = A extends Uris ? A : never
+
+/**
+ * Helper for defining custom type instances
+ */
+export type TypeDefinition<
+  T extends Uris,
+  K extends PropertyKey,
+  R
+> = T extends keyof HktTypeDefinitions
+  ? K extends keyof HktTypeDefinitions[T]
+    ? HktTypeDefinitions[T][K]
+    : R
+  : R
 
 /**
  * Helpers for working with Type Parameters
@@ -113,6 +134,10 @@ export namespace TypeParams {
   }[N extends unknown ? N : never]
 
   export type Length<T extends Uris> = L.Length<Of<Type<T>>>
+
+  export type IsLength<A extends ReadonlyArray<any>, N extends number> = L.Length<A> extends N
+    ? true
+    : false
 }
 
 export * from './type-classes'

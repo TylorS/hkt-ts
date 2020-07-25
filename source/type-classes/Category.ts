@@ -1,5 +1,5 @@
-import { Type, TypeParams, Uris } from '../'
-import { Semigroupoid } from './Semigroupoid'
+import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { Semigroupoid, SemigroupoidOptions, SemigroupoidOptionsDefault } from './Semigroupoid'
 
 /**
  * @name Category
@@ -7,13 +7,28 @@ import { Semigroupoid } from './Semigroupoid'
  * Right identity: M.compose(a, M.id()) ≡ a
  * Left identity: M.compose(M.id(), a) ≡ a
  */
-// @ts-expect-error Uris is 'never' until extended externally
-export interface Category<T extends Uris = any> extends Semigroupoid<T> {
+export interface Category<
+  // @ts-expect-error Uris is 'never' until extended externally
+  T extends Uris = any,
+  Options extends CategoryOptions = CategoryOptionsDefault
+> extends Semigroupoid<T, Options> {
   readonly URI: T
-  readonly id: {
-    2: <A>() => Type<T, [A, A]>
-    3: <A, B>() => Type<T, [A, B, B]>
-    4: <A, B, C>() => Type<T, [A, B, C, C]>
-    5: <A, B, C, D>() => Type<T, [A, B, C, D, D]>
-  }[TypeParams.Length<T>]
+  readonly id: TypeDefinition<
+    T,
+    Options['id'],
+    {
+      2: <A>() => Type<T, [A, A]>
+      3: <A, B>() => Type<T, [A, B, B]>
+      4: <A, B, C>() => Type<T, [A, B, C, C]>
+      5: <A, B, C, D>() => Type<T, [A, B, C, D, D]>
+    }[TypeParams.Length<T>]
+  >
+}
+
+export type CategoryOptions = SemigroupoidOptions & {
+  readonly id: string
+}
+
+export type CategoryOptionsDefault = SemigroupoidOptionsDefault & {
+  readonly id: 'id'
 }

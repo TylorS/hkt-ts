@@ -1,4 +1,4 @@
-import { Type, TypeParams, Uris } from '../'
+import { Type, TypeDefinition, TypeParams, Uris } from '../'
 
 /**
  * @name Filterable
@@ -7,20 +7,38 @@ import { Type, TypeParams, Uris } from '../'
  * Identity: F.filter(x => true, a) ≡ a
  * Annihilation: F.filter(x => false, a) ≡ F.filter(x => false, b)
  */
-// @ts-expect-error Uris is 'never' until extended externally
-export interface Filterable<T extends Uris = any> {
+export interface Filterable<
+  // @ts-expect-error Uris is 'never' until extended externally
+  T extends Uris = any,
+  Options extends FilterableOptions = FilterableOptionsDefault
+> {
   readonly URI: T
-  readonly filter: {
-    1: <A>(predicate: (a: A) => boolean, filterable: Type<T, [A]>) => Type<T, [A]>
-    2: <A, B>(predicate: (a: A) => boolean, filterable: Type<T, [B, A]>) => Type<T, [B, A]>
-    3: <A, B, C>(predicate: (a: A) => boolean, filterable: Type<T, [B, C, A]>) => Type<T, [B, C, A]>
-    4: <A, B, C, D>(
-      predicate: (a: A) => boolean,
-      filterable: Type<T, [B, C, D, A]>,
-    ) => Type<T, [B, C, D, A]>
-    5: <A, B, C, D, E>(
-      predicate: (a: A) => boolean,
-      filterable: Type<T, [B, C, D, E, A]>,
-    ) => Type<T, [B, C, D, E, A]>
-  }[TypeParams.Length<T>]
+  readonly filter: TypeDefinition<
+    T,
+    Options['filter'],
+    {
+      1: <A>(predicate: (a: A) => boolean, filterable: Type<T, [A]>) => Type<T, [A]>
+      2: <A, B>(predicate: (a: A) => boolean, filterable: Type<T, [B, A]>) => Type<T, [B, A]>
+      3: <A, B, C>(
+        predicate: (a: A) => boolean,
+        filterable: Type<T, [B, C, A]>,
+      ) => Type<T, [B, C, A]>
+      4: <A, B, C, D>(
+        predicate: (a: A) => boolean,
+        filterable: Type<T, [B, C, D, A]>,
+      ) => Type<T, [B, C, D, A]>
+      5: <A, B, C, D, E>(
+        predicate: (a: A) => boolean,
+        filterable: Type<T, [B, C, D, E, A]>,
+      ) => Type<T, [B, C, D, E, A]>
+    }[TypeParams.Length<T>]
+  >
+}
+
+export type FilterableOptions = {
+  readonly filter: string
+}
+
+export type FilterableOptionsDefault = {
+  readonly filter: 'filter'
 }

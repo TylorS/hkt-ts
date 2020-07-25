@@ -1,6 +1,6 @@
 import { Uris } from '../'
-import { Applicative } from './Applicative'
-import { Plus } from './Plus'
+import { Applicative, ApplicativeOptions, ApplicativeOptionsDefault } from './Applicative'
+import { Plus, PlusOptions, PlusOptionsDefault } from './Plus'
 
 /**
  * @name Alternative
@@ -8,7 +8,13 @@ import { Plus } from './Plus'
  * Distributivity: A.ap(A.alt(a, b), c) ≡ A.alt(A.ap(a, c), A.ap(b, c))
  * Annihilation: A.ap(A.zero(), a) ≡ A.zero()
  */
-// @ts-expect-error Uris is 'never' until extended externally
-export interface Alternative<T extends Uris = any> extends Applicative<T>, Plus<T> {
+export interface Alternative<
+  // @ts-expect-error Uris is 'never' until extended externally
+  T extends Uris = any,
+  Options extends AlternativeOptions = AlternativeOptionsDefault
+> extends Applicative<T, Options>, Plus<T, Options> {
   readonly URI: T
 }
+
+export type AlternativeOptions = ApplicativeOptions & PlusOptions
+export type AlternativeOptionsDefault = ApplicativeOptionsDefault & PlusOptionsDefault

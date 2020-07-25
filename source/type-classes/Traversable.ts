@@ -1,4 +1,4 @@
-import { Type, TypeParams, Uris } from '../'
+import { Type, TypeDefinition, TypeParams, Uris } from '../'
 import { Applicative } from './Applicative'
 
 /**
@@ -8,16 +8,31 @@ import { Applicative } from './Applicative'
  * Identity: T.traverse(F, F.of, u) ≡ F.of(u) for any Applicative F
  * Composition: T.traverse(Compose(A, B))(x => x, u) ≡ A.map(v => T.traverse(B)(x => x, v), T.traverse(A)(x => x, u)) for Compose defined bellow and for any Applicatives A and B
  */
-// @ts-expect-error Uris is 'never' until extended externally
-export interface Traversable<T extends Uris = any> {
+export interface Traversable<
+  // @ts-expect-error Uris is 'never' until extended externally
+  T extends Uris = any,
+  Options extends TraversableOptions = TraversableOptionsDefault
+> {
   readonly URI: T
-  readonly traverse: {
-    1: <U extends Uris>(applicative: Applicative<U>) => Traverse1<T, U>
-    2: <U extends Uris>(applicative: Applicative<U>) => Traverse2<T, U>
-    3: <U extends Uris>(applicative: Applicative<U>) => Traverse3<T, U>
-    4: <U extends Uris>(applicative: Applicative<U>) => Traverse4<T, U>
-    5: <U extends Uris>(applicative: Applicative<U>) => Traverse5<T, U>
-  }[TypeParams.Length<T>]
+  readonly traverse: TypeDefinition<
+    T,
+    Options['traverse'],
+    {
+      1: <U extends Uris>(applicative: Applicative<U>) => Traverse1<T, U>
+      2: <U extends Uris>(applicative: Applicative<U>) => Traverse2<T, U>
+      3: <U extends Uris>(applicative: Applicative<U>) => Traverse3<T, U>
+      4: <U extends Uris>(applicative: Applicative<U>) => Traverse4<T, U>
+      5: <U extends Uris>(applicative: Applicative<U>) => Traverse5<T, U>
+    }[TypeParams.Length<T>]
+  >
+}
+
+export type TraversableOptions = {
+  readonly traverse: string
+}
+
+export type TraversableOptionsDefault = {
+  readonly traverse: 'traverse'
 }
 
 type Traverse1<T extends Uris, U extends Uris> = {

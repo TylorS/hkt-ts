@@ -1,4 +1,4 @@
-import { Type, Uris } from '../'
+import { Type, TypeDefinition, Uris } from '../'
 
 /**
  * @name Setoid
@@ -7,8 +7,19 @@ import { Type, Uris } from '../'
  * Symmetry: Setoid.equals(a, b) === Setoid.equals(b, a)
  * Transitivity: if Setoid.equals(a, b) and Setoid.equals(b, c), then Setoid.equals(a, c)
  */
-// @ts-expect-error Uris is 'never' until extended externally
-export interface Setoid<T extends Uris = any> {
+export interface Setoid<
+  // @ts-expect-error Uris is 'never' until extended externally
+  T extends Uris = any,
+  Options extends SetoidOptions = SetoidOptionsDefault
+> {
   readonly URI: T
-  readonly equals: <A extends Type<T>>(a: A, b: A) => boolean
+  readonly equals: TypeDefinition<T, Options['equals'], <A extends Type<T>>(a: A, b: A) => boolean>
+}
+
+export type SetoidOptions = {
+  readonly equals: string
+}
+
+export type SetoidOptionsDefault = {
+  readonly equals: 'equals'
 }

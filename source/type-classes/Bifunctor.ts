@@ -1,5 +1,5 @@
-import { Type, TypeParams, Uris } from '../'
-import { Functor } from './Functor'
+import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
 
 /**
  * @name Bifunctor
@@ -7,25 +7,40 @@ import { Functor } from './Functor'
  * Identity: B.bimap(x => x, x => x, a) ≡ a
  * Composition: B.bimap(x => f(g(x)), x => h(i(x)), a) ≡ B.bimap(f, h, B.bimap(g, i, a))
  */
-// @ts-expect-error Uris is 'never' until extended externally
-export interface Bifunctor<T extends Uris = any> extends Functor<T> {
+export interface Bifunctor<
+  // @ts-expect-error Uris is 'never' until extended externally
+  T extends Uris = any,
+  Options extends BifunctorOptions = BifunctorOptionsDefault
+> extends Functor<T, Options> {
   readonly URI: T
-  readonly bimap: {
-    2: <A, B, C, D>(f: (a: A) => B, g: (c: C) => D, bifunctor: Type<T, [A, C]>) => Type<T, [B, D]>
-    3: <A, B, C, D, E>(
-      f: (a: A) => B,
-      g: (c: C) => D,
-      bifunctor: Type<T, [E, A, C]>,
-    ) => Type<T, [E, B, D]>
-    4: <A, B, C, D, E, F>(
-      f: (a: A) => B,
-      g: (c: C) => D,
-      bifunctor: Type<T, [E, F, A, C]>,
-    ) => Type<T, [E, F, B, D]>
-    5: <A, B, C, D, E, F, G>(
-      f: (a: A) => B,
-      g: (c: C) => D,
-      bifunctor: Type<T, [E, F, G, A, C]>,
-    ) => Type<T, [E, F, G, B, D]>
-  }[TypeParams.Length<T>]
+  readonly bimap: TypeDefinition<
+    T,
+    Options['bimap'],
+    {
+      2: <A, B, C, D>(f: (a: A) => B, g: (c: C) => D, bifunctor: Type<T, [A, C]>) => Type<T, [B, D]>
+      3: <A, B, C, D, E>(
+        f: (a: A) => B,
+        g: (c: C) => D,
+        bifunctor: Type<T, [E, A, C]>,
+      ) => Type<T, [E, B, D]>
+      4: <A, B, C, D, E, F>(
+        f: (a: A) => B,
+        g: (c: C) => D,
+        bifunctor: Type<T, [E, F, A, C]>,
+      ) => Type<T, [E, F, B, D]>
+      5: <A, B, C, D, E, F, G>(
+        f: (a: A) => B,
+        g: (c: C) => D,
+        bifunctor: Type<T, [E, F, G, A, C]>,
+      ) => Type<T, [E, F, G, B, D]>
+    }[TypeParams.Length<T>]
+  >
+}
+
+export type BifunctorOptions = FunctorOptions & {
+  readonly bimap: string
+}
+
+export type BifunctorOptionsDefault = FunctorOptionsDefault & {
+  readonly bimap: 'bimap'
 }
