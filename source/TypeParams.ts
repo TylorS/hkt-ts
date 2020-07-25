@@ -10,7 +10,7 @@ export namespace TypeParams {
    * @example
    * TypeParams.Of<Either<A, B>> === [A, B]
    */
-  export type Of<A extends Type> = CastArray<HktTypeParams<A>[TypeToUri<A>]>
+  export type Of<A extends Type, Uri extends Uris = TypeToUri<A>> = CastArray<HktTypeParams<A>[Uri]>
 
   type CastArray<A> = A extends ReadonlyArray<any> ? A : []
 
@@ -39,23 +39,33 @@ export namespace TypeParams {
    * Retrieve the type-parameters of a given Type while dropping off a given amount from the start.
    * Useful for creating type-classes.
    */
-  export type Drop<A extends Type, N extends 0 | 1 | 2 | 3 | 4 | 5> = L.Drop<Of<A>, N.NumberOf<N>>
+  export type Drop<
+    A extends Type,
+    N extends 0 | 1 | 2 | 3 | 4 | 5,
+    Uri extends Uris = TypeToUri<A>
+  > = L.Drop<Of<A, Uri>, N.NumberOf<N>>
 
   /**
    * Retrieve the type-parameters of a given Type while dropping off a given amount from the end.
    * Useful for creating type-classes.
    */
-  export type DropLast<A extends Type, N extends 0 | 1 | 2 | 3 | 4 | 5> = {
-    0: Of<A>
-    1: L.Pop<Of<A>>
-    2: L.Pop<L.Pop<Of<A>>>
-    3: L.Pop<L.Pop<L.Pop<Of<A>>>>
-    4: L.Pop<L.Pop<L.Pop<L.Pop<Of<A>>>>>
-    5: L.Pop<L.Pop<L.Pop<L.Pop<L.Pop<Of<A>>>>>>
+  export type DropLast<
+    A extends Type,
+    N extends 0 | 1 | 2 | 3 | 4 | 5,
+    Uri extends Uris = TypeToUri<A>
+  > = {
+    0: Of<A, Uri>
+    1: L.Pop<Of<A, Uri>>
+    2: L.Pop<L.Pop<Of<A, Uri>>>
+    3: L.Pop<L.Pop<L.Pop<Of<A, Uri>>>>
+    4: L.Pop<L.Pop<L.Pop<L.Pop<Of<A, Uri>>>>>
+    5: L.Pop<L.Pop<L.Pop<L.Pop<L.Pop<Of<A, Uri>>>>>>
   }[N extends unknown ? N : never]
 
   /**
    * Retrieve the length of type-params for a given type
    */
-  export type Length<T extends Uris> = L.Length<Of<Type<T>>>
+  export type Length<T extends Uris> = __TypeCastToNumber<Of<Type<T>, T>['length']>
+
+  type __TypeCastToNumber<A> = A extends 1 | 2 | 3 | 4 | 5 ? A : never
 }
