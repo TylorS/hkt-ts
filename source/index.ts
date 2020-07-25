@@ -76,9 +76,13 @@ export type SignatureOverride<
   R
 > = T extends keyof HktSignatureOverride
   ? K extends keyof HktSignatureOverride[T]
-    ? HktSignatureOverride[T][K]
+    ? IsUnion<HktSignatureOverride[T][K]> extends true
+      ? R
+      : HktSignatureOverride[T][K]
     : R
   : R
+
+type IsUnion<A> = U.Last<A> extends A ? (A extends U.Last<A> ? false : true) : true
 
 /**
  * Helpers for working with Type Parameters
