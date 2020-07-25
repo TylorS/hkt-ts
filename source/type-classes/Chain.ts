@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Apply, ApplyOptions, ApplyOptionsDefault } from './Apply'
 
 /**
@@ -10,7 +10,7 @@ import { Apply, ApplyOptions, ApplyOptionsDefault } from './Apply'
 export interface Chain<T extends Uris = any, Options extends ChainOptions = ChainOptionsDefault>
   extends Apply<T, Options> {
   readonly URI: T
-  readonly chain: TypeDefinition<
+  readonly chain: SignatureOverride<
     T,
     Options['chain'],
     {

@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
 
 /**
@@ -13,7 +13,7 @@ export interface Bifunctor<
   Options extends BifunctorOptions = BifunctorOptionsDefault
 > extends Functor<T, Options> {
   readonly URI: T
-  readonly bimap: TypeDefinition<
+  readonly bimap: SignatureOverride<
     T,
     Options['bimap'],
     {

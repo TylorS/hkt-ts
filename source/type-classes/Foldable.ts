@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 
 /**
  * @name Foldable
@@ -11,7 +11,7 @@ export interface Foldable<
   Options extends FoldableOptions = FoldableOptionsDefault
 > {
   readonly URI: T
-  readonly reduce: TypeDefinition<
+  readonly reduce: SignatureOverride<
     T,
     Options['reduce'],
     {

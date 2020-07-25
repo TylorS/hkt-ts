@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
 
 /**
@@ -10,7 +10,7 @@ import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
 export interface Apply<T extends Uris = any, Options extends ApplyOptions = ApplyOptionsDefault>
   extends Functor<T, ApplyOptions> {
   readonly URI: T
-  readonly ap: TypeDefinition<
+  readonly ap: SignatureOverride<
     T,
     Options['ap'],
     {

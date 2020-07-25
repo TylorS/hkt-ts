@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Extend, ExtendOptions, ExtendOptionsDefault } from './Extend'
 
 /**
@@ -13,7 +13,7 @@ export interface Comonad<
   Options extends ComonadOptions = ComonadOptionsDefault
 > extends Extend<T, Options> {
   readonly URI: T
-  readonly extract: TypeDefinition<
+  readonly extract: SignatureOverride<
     T,
     Options['extract'],
     <A extends Type<T>>(comonad: A) => TypeParams.First<TypeParams.Of<A>>

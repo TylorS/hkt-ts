@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Semigroupoid, SemigroupoidOptions, SemigroupoidOptionsDefault } from './Semigroupoid'
 
 /**
@@ -13,7 +13,7 @@ export interface Category<
   Options extends CategoryOptions = CategoryOptionsDefault
 > extends Semigroupoid<T, Options> {
   readonly URI: T
-  readonly id: TypeDefinition<
+  readonly id: SignatureOverride<
     T,
     Options['id'],
     {

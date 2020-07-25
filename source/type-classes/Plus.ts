@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 
 /**
  * @name Plus
@@ -10,7 +10,7 @@ import { Type, TypeDefinition, TypeParams, Uris } from '../'
 // @ts-expect-error Uris is 'never' until extended externally
 export interface Plus<T extends Uris = any, Options extends PlusOptions = PlusOptionsDefault> {
   readonly URI: T
-  readonly zero: TypeDefinition<
+  readonly zero: SignatureOverride<
     T,
     Options['zero'],
     {

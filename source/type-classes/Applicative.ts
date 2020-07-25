@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Apply, ApplyOptions, ApplyOptionsDefault } from './Apply'
 
 /**
@@ -14,7 +14,7 @@ export interface Applicative<
   B extends ApplicativeOptions = ApplicativeOptionsDefault
 > extends Apply<T, B> {
   readonly URI: T
-  readonly of: TypeDefinition<
+  readonly of: SignatureOverride<
     T,
     B['of'],
     {

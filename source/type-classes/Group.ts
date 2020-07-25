@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
 import { Monoid, MonoidOptions, MonoidOptionsDefault } from './Monoid'
 
 /**
@@ -11,7 +11,7 @@ import { Monoid, MonoidOptions, MonoidOptionsDefault } from './Monoid'
 export interface Group<T extends Uris = any, Options extends GroupOptions = GroupOptionsDefault>
   extends Monoid<T, Options> {
   readonly URI: T
-  readonly invert: TypeDefinition<T, Options['invert'], <A extends Type<T>>(a: A) => A>
+  readonly invert: SignatureOverride<T, Options['invert'], <A extends Type<T>>(a: A) => A>
 }
 
 export type GroupOptions = MonoidOptions & {

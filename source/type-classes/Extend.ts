@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Functor } from './Functor'
 
 /**
@@ -10,7 +10,7 @@ import { Functor } from './Functor'
 export interface Extend<T extends Uris = any, Options extends ExtendOptions = ExtendOptionsDefault>
   extends Functor<T> {
   readonly URI: T
-  readonly extend: TypeDefinition<
+  readonly extend: SignatureOverride<
     T,
     Options['extend'],
     {

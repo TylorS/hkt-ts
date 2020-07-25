@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 
 /**
  * @name Contravariant
@@ -12,7 +12,7 @@ export interface Contravariant<
   Options extends ContravariantOptions = ContravariantOptionsDefault
 > {
   readonly URI: T
-  readonly contramap: TypeDefinition<
+  readonly contramap: SignatureOverride<
     T,
     Options['contramap'],
     {

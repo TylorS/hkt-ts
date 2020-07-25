@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 
 /**
  * @name ChainRec
@@ -12,7 +12,7 @@ export interface ChainRec<
   Options extends ChainRecOptions = ChainRecOptionsDefault
 > {
   readonly URI: T
-  readonly chainRec: TypeDefinition<
+  readonly chainRec: SignatureOverride<
     T,
     Options['chainRec'],
     {

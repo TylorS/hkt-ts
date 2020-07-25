@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
 import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
 
 /**
@@ -11,7 +11,7 @@ import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
 export interface Alt<T extends Uris = any, Options extends AltOptions = AltOptionsDefault>
   extends Functor<T, Options> {
   readonly URI: T
-  readonly alt: TypeDefinition<T, Options['alt'], <A extends Type<T>>(a: A, b: A) => A>
+  readonly alt: SignatureOverride<T, Options['alt'], <A extends Type<T>>(a: A, b: A) => A>
 }
 
 export type AltOptions = FunctorOptions & {

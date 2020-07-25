@@ -18,7 +18,7 @@ export interface HktTypeParams<T> {}
 /**
  * Type-level map, used to register more specific variants of type-class signatures
  */
-export interface HktTypeDefinitions {}
+export interface HktSignatureOverride {}
 
 /**
  * Union of all type names as defined in Hkts & HktValues
@@ -70,13 +70,13 @@ type TypeCastToTypes<A> = A extends Uris ? A : never
 /**
  * Helper for defining custom type instances
  */
-export type TypeDefinition<
+export type SignatureOverride<
   T extends Uris,
   K extends PropertyKey,
   R
-> = T extends keyof HktTypeDefinitions
-  ? K extends keyof HktTypeDefinitions[T]
-    ? HktTypeDefinitions[T][K]
+> = T extends keyof HktSignatureOverride
+  ? K extends keyof HktSignatureOverride[T]
+    ? HktSignatureOverride[T][K]
     : R
   : R
 

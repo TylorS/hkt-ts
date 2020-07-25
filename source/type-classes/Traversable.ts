@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Applicative } from './Applicative'
 
 /**
@@ -14,7 +14,7 @@ export interface Traversable<
   Options extends TraversableOptions = TraversableOptionsDefault
 > {
   readonly URI: T
-  readonly traverse: TypeDefinition<
+  readonly traverse: SignatureOverride<
     T,
     Options['traverse'],
     {

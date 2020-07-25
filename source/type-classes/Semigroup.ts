@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
 
 /**
  * @name Semigroup
@@ -11,7 +11,7 @@ export interface Semigroup<
   Options extends SemigroupOptions = SemigroupOptionsDefault
 > {
   readonly URI: T
-  readonly concat: TypeDefinition<T, Options['concat'], <A extends Type<T>>(a: A, b: A) => A>
+  readonly concat: SignatureOverride<T, Options['concat'], <A extends Type<T>>(a: A, b: A) => A>
 }
 
 export type SemigroupOptions = {

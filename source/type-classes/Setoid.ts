@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
 
 /**
  * @name Setoid
@@ -13,7 +13,11 @@ export interface Setoid<
   Options extends SetoidOptions = SetoidOptionsDefault
 > {
   readonly URI: T
-  readonly equals: TypeDefinition<T, Options['equals'], <A extends Type<T>>(a: A, b: A) => boolean>
+  readonly equals: SignatureOverride<
+    T,
+    Options['equals'],
+    <A extends Type<T>>(a: A, b: A) => boolean
+  >
 }
 
 export type SetoidOptions = {

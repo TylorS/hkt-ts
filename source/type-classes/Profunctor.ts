@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
 
 /**
@@ -13,7 +13,7 @@ export interface Profunctor<
   Options extends ProfunctorOptions = ProfunctorOptionsDefault
 > extends Functor<T, Options> {
   readonly URI: T
-  readonly promap: TypeDefinition<
+  readonly promap: SignatureOverride<
     T,
     Options['promap'],
     {

@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 import { Semigroup, SemigroupOptions, SemigroupOptionsDefault } from './Semigroup'
 
 /**
@@ -11,7 +11,7 @@ import { Semigroup, SemigroupOptions, SemigroupOptionsDefault } from './Semigrou
 export interface Monoid<T extends Uris = any, Options extends MonoidOptions = MonoidOptionsDefault>
   extends Semigroup<T, Options> {
   readonly URI: T
-  readonly empty: TypeDefinition<
+  readonly empty: SignatureOverride<
     T,
     Options['empty'],
     {

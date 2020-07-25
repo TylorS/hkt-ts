@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 
 /**
  * @name Filterable
@@ -13,7 +13,7 @@ export interface Filterable<
   Options extends FilterableOptions = FilterableOptionsDefault
 > {
   readonly URI: T
-  readonly filter: TypeDefinition<
+  readonly filter: SignatureOverride<
     T,
     Options['filter'],
     {

@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 
 /**
  * @name Functor
@@ -12,7 +12,7 @@ export interface Functor<
   Options extends FunctorOptions = FunctorOptionsDefault
 > {
   readonly URI: T
-  readonly map: TypeDefinition<
+  readonly map: SignatureOverride<
     T,
     Options['map'],
     {

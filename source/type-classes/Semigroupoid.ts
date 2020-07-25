@@ -1,4 +1,4 @@
-import { Type, TypeDefinition, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, Uris } from '../'
 
 /**
  * @name Semigroupoid
@@ -11,7 +11,7 @@ export interface Semigroupoid<
   Options extends SemigroupoidOptions = SemigroupoidOptionsDefault
 > {
   readonly URI: T
-  readonly compose: TypeDefinition<
+  readonly compose: SignatureOverride<
     T,
     Options['compose'],
     {
