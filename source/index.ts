@@ -82,7 +82,7 @@ export type SignatureOverride<
     : R
   : R
 
-type IsUnion<A> = U.Last<A> extends A ? (A extends U.Last<A> ? false : true) : true
+type IsUnion<A> = L.Length<U.ListOf<A>> extends 0 | 1 ? false : true
 
 /**
  * Helpers for working with Type Parameters
