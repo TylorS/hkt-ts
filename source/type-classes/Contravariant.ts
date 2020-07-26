@@ -16,14 +16,14 @@ export interface Contravariant<
     T,
     Options['contramap'],
     {
-      1: <A, B>(f: (a: A) => B, type: Type<T, [A]>) => Type<T, [B]>
-      2: <A, B, C>(f: (a: A) => B, type: Type<T, [C, A]>) => Type<T, [C, B]>
-      3: <A, B, C, D>(f: (a: A) => B, type: Type<T, [C, D, A]>) => Type<T, [C, D, B]>
-      4: <A, B, C, D, E>(f: (a: A) => B, type: Type<T, [C, D, E, A]>) => Type<T, [C, D, E, B]>
+      1: <A, B>(f: (a: A) => B, type: Type<T, [B]>) => Type<T, [A]>
+      2: <A, B, C>(f: (a: A) => B, type: Type<T, [C, B]>) => Type<T, [C, A]>
+      3: <A, B, C, D>(f: (a: A) => B, type: Type<T, [C, D, B]>) => Type<T, [C, D, A]>
+      4: <A, B, C, D, E>(f: (a: A) => B, type: Type<T, [C, D, E, B]>) => Type<T, [C, D, E, A]>
       5: <A, B, C, D, E, F>(
         f: (a: A) => B,
-        type: Type<T, [C, D, E, F, A]>,
-      ) => Type<T, [C, D, E, F, B]>
+        type: Type<T, [C, D, E, F, B]>,
+      ) => Type<T, [C, D, E, F, A]>
     }[TypeParams.Length<T>]
   >
 }
