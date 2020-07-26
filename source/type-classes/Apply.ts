@@ -9,7 +9,7 @@ import { Functor, FunctorOptions } from './Functor'
  */
 // @ts-expect-error Uris is 'never' until extended externally
 export interface Apply<T extends Uris = any, Options extends ApplyOptions = ApplyOptions>
-  extends Functor<T, ApplyOptions> {
+  extends Functor<T, Options> {
   readonly URI: T
   readonly ap: SignatureOverride<
     T,

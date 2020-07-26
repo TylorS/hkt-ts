@@ -11,12 +11,12 @@ import { Apply, ApplyOptions } from './Apply'
 export interface Applicative<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  B extends ApplicativeOptions = ApplicativeOptions
-> extends Apply<T, B> {
+  Options extends ApplicativeOptions = ApplicativeOptions
+> extends Apply<T, Options> {
   readonly URI: T
   readonly of: SignatureOverride<
     T,
-    B['of'],
+    Options['of'],
     {
       1: <A>(value: A) => Type<T, [A]>
       2: <A, B>(value: B) => Type<T, [A, B]>
