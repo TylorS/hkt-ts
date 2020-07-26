@@ -49,16 +49,12 @@ export type TypeToUri<A> = __HasMultipleMatches<A> extends true
 /**
  * Retrieve the URI from a given instance
  */
-export type UriOf<A> = A extends { readonly URI: infer R } ? R : never
+export type UriOf<A> = __TypeCastToUris<A extends { readonly URI: infer R } ? R : never>
 
 /**
  * Helper for defining custom type instances
  */
-export type SignatureOverride<
-  T extends Uris,
-  K extends PropertyKey,
-  R
-> = T extends keyof HktSignatureOverride
+export type SignatureOverride<T extends Uris, K, R> = T extends keyof HktSignatureOverride
   ? K extends keyof HktSignatureOverride[T]
     ? __IsUnion<HktSignatureOverride[T][K]> extends false
       ? HktSignatureOverride[T][K]
@@ -79,7 +75,7 @@ type __FastTypeToUri<A> = {
 }[Uris]
 
 // More comprehensive check + will choose last registered URI if multiple
-type __RetrieveLastUri<A> = __TypeCastToTypes<
+type __RetrieveLastUri<A> = __TypeCastToUris<
   U.Last<
     {
       [T in Uris]: Type<T> extends A ? (A extends Type<T> ? T : never) : never
@@ -87,6 +83,6 @@ type __RetrieveLastUri<A> = __TypeCastToTypes<
   >
 >
 
-type __TypeCastToTypes<A> = A extends Uris ? A : never
+type __TypeCastToUris<A> = A extends Uris ? A : never
 
 type __IsUnion<A> = L.Length<U.ListOf<A>> extends 0 | 1 ? false : true

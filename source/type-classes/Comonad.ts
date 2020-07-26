@@ -1,5 +1,5 @@
 import { SignatureOverride, Type, TypeParams, Uris } from '../'
-import { Extend, ExtendOptions, ExtendOptionsDefault } from './Extend'
+import { Extend, ExtendOptions } from './Extend'
 
 /**
  * @name Comonad
@@ -10,7 +10,7 @@ import { Extend, ExtendOptions, ExtendOptionsDefault } from './Extend'
 export interface Comonad<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends ComonadOptions = ComonadOptionsDefault
+  Options extends ComonadOptions = ComonadOptions
 > extends Extend<T, Options> {
   readonly URI: T
   readonly extract: SignatureOverride<
@@ -21,9 +21,5 @@ export interface Comonad<
 }
 
 export type ComonadOptions = ExtendOptions & {
-  readonly extract: string
-}
-
-export type ComonadOptionsDefault = ExtendOptionsDefault & {
-  readonly extract: 'extract'
+  readonly extract?: string
 }

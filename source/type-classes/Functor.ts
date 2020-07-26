@@ -1,4 +1,5 @@
 import { SignatureOverride, Type, TypeParams, Uris } from '../'
+import { CommonOptions } from '../common'
 
 /**
  * @name Functor
@@ -9,7 +10,7 @@ import { SignatureOverride, Type, TypeParams, Uris } from '../'
 export interface Functor<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends FunctorOptions = FunctorOptionsDefault
+  Options extends FunctorOptions = FunctorOptions
 > {
   readonly URI: T
   readonly map: SignatureOverride<
@@ -28,10 +29,6 @@ export interface Functor<
   >
 }
 
-export type FunctorOptions = {
-  readonly map: string
-}
-
-export type FunctorOptionsDefault = {
-  readonly map: 'map'
+export type FunctorOptions = CommonOptions & {
+  readonly map?: string
 }

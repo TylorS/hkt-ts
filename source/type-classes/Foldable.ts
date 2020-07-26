@@ -1,4 +1,5 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
+import { CommonOptions, GetLength } from '../common'
 
 /**
  * @name Foldable
@@ -8,7 +9,7 @@ import { SignatureOverride, Type, TypeParams, Uris } from '../'
 export interface Foldable<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends FoldableOptions = FoldableOptionsDefault
+  Options extends FoldableOptions = FoldableOptions
 > {
   readonly URI: T
   readonly reduce: SignatureOverride<
@@ -20,14 +21,10 @@ export interface Foldable<
       3: <A, B, C, D>(f: (a: A, b: B) => A, seed: A, foldable: Type<T, [C, D, B]>) => A
       4: <A, B, C, D, E>(f: (a: A, b: B) => A, seed: A, foldable: Type<T, [C, D, E, B]>) => A
       5: <A, B, C, D, E, F>(f: (a: A, b: B) => A, seed: A, foldable: Type<T, [C, D, E, F, B]>) => A
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
-export type FoldableOptions = {
-  readonly reduce: string
-}
-
-export type FoldableOptionsDefault = {
-  readonly reduce: 'reduce'
+export type FoldableOptions = CommonOptions & {
+  readonly reduce?: string
 }

@@ -1,4 +1,5 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, TypeParams, UriOf, Uris } from '../'
+import { CommonOptions, GetLength } from '../common'
 import { Applicative } from './Applicative'
 
 /**
@@ -11,46 +12,42 @@ import { Applicative } from './Applicative'
 export interface Traversable<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends TraversableOptions = TraversableOptionsDefault
+  Options extends TraversableOptions = TraversableOptions
 > {
   readonly URI: T
   readonly traverse: SignatureOverride<
     T,
     Options['traverse'],
     {
-      1: <U extends Uris>(applicative: Applicative<U>) => Traverse1<T, U>
-      2: <U extends Uris>(applicative: Applicative<U>) => Traverse2<T, U>
-      3: <U extends Uris>(applicative: Applicative<U>) => Traverse3<T, U>
-      4: <U extends Uris>(applicative: Applicative<U>) => Traverse4<T, U>
-      5: <U extends Uris>(applicative: Applicative<U>) => Traverse5<T, U>
-    }[TypeParams.Length<T>]
+      1: <A extends Applicative>(applicative: A) => Traverse1<T, UriOf<A>>
+      2: <A extends Applicative>(applicative: A) => Traverse2<T, UriOf<A>>
+      3: <A extends Applicative>(applicative: A) => Traverse3<T, UriOf<A>>
+      4: <A extends Applicative>(applicative: A) => Traverse4<T, UriOf<A>>
+      5: <A extends Applicative>(applicative: A) => Traverse5<T, UriOf<A>>
+    }[GetLength<Options, T>]
   >
 }
 
-export type TraversableOptions = {
+export type TraversableOptions = CommonOptions & {
   readonly traverse: string
 }
 
-export type TraversableOptionsDefault = {
-  readonly traverse: 'traverse'
-}
-
 type Traverse1<T extends Uris, U extends Uris> = {
-  1: <A, B>(f: (a: A) => Type<U, [B]>, t: Type<T, [A]>) => Type<U, [Type<U, [B]>]>
-  2: <A, B, C>(f: (a: A) => Type<U, [B, C]>, t: Type<T, [A]>) => Type<U, [Type<U, [B, C]>]>
-  3: <A, B, C, D>(f: (a: A) => Type<U, [B, C, D]>, t: Type<T, [A]>) => Type<U, [Type<U, [B, C, D]>]>
+  1: <A, B>(f: (a: A) => Type<U, [B]>, t: Type<T, [A]>) => Type<U, [Type<T, [B]>]>
+  2: <A, B, C>(f: (a: A) => Type<U, [B, C]>, t: Type<T, [A]>) => Type<U, [B, Type<T, [C]>]>
+  3: <A, B, C, D>(f: (a: A) => Type<U, [B, C, D]>, t: Type<T, [A]>) => Type<U, [B, C, Type<T, [D]>]>
   4: <A, B, C, D, E>(
     f: (a: A) => Type<U, [B, C, D, E]>,
     t: Type<T, [A]>,
-  ) => Type<U, [Type<U, [B, C, D, E]>]>
+  ) => Type<U, [B, C, D, Type<T, [E]>]>
   5: <A, B, C, D, E, F>(
     f: (a: A) => Type<U, [B, C, D, E, F]>,
     t: Type<T, [A]>,
-  ) => Type<U, [Type<U, [B, C, D, E, F]>]>
+  ) => Type<U, [B, C, D, E, Type<T, [F]>]>
 }[TypeParams.Length<U>]
 
 type Traverse2<T extends Uris, U extends Uris> = {
-  1: <A, B, C>(f: (a: A) => Type<U, [B]>, t: Type<T, [C, A]>) => Type<U, [Type<T, [C, B]>]>
+  1: <A, B, C>(f: (a: A) => Type<U, [B]>, t: Type<T, [C, A]>) => Type<U, [Type<T, [C, A]>]>
   2: <A, B, C, D>(f: (a: A) => Type<U, [B, C]>, t: Type<T, [D, A]>) => Type<U, [B, Type<T, [D, C]>]>
   3: <A, B, C, D, E>(
     f: (a: A) => Type<U, [B, C, D]>,
@@ -59,15 +56,15 @@ type Traverse2<T extends Uris, U extends Uris> = {
   4: <A, B, C, D, E, F>(
     f: (a: A) => Type<U, [B, C, D, E]>,
     t: Type<T, [F, A]>,
-  ) => Type<U, [B, C, E, Type<T, [F, E]>]>
+  ) => Type<U, [B, C, D, Type<T, [F, E]>]>
   5: <A, B, C, D, E, F, G>(
     f: (a: A) => Type<U, [B, C, D, E, F]>,
     t: Type<T, [G, A]>,
-  ) => Type<U, [B, C, E, F, Type<T, [G, F]>]>
+  ) => Type<U, [B, C, D, E, Type<T, [G, F]>]>
 }[TypeParams.Length<U>]
 
 type Traverse3<T extends Uris, U extends Uris> = {
-  1: <A, B, C, D>(f: (a: A) => Type<U, [B]>, t: Type<T, [C, D, A]>) => Type<U, [Type<T, [C, D, B]>]>
+  1: <A, B, C, D>(f: (a: A) => Type<U, [B]>, t: Type<T, [C, D, A]>) => Type<U, [Type<T, [C, D, A]>]>
   2: <A, B, C, D, E>(
     f: (a: A) => Type<U, [B, C]>,
     t: Type<T, [D, E, A]>,
@@ -90,7 +87,7 @@ type Traverse4<T extends Uris, U extends Uris> = {
   1: <A, B, C, D, E>(
     f: (a: A) => Type<U, [B]>,
     t: Type<T, [C, D, E, A]>,
-  ) => Type<U, [Type<T, [C, D, E, B]>]>
+  ) => Type<U, [Type<T, [C, D, E, A]>]>
   2: <A, B, C, D, E, F>(
     f: (a: A) => Type<U, [B, C]>,
     t: Type<T, [D, E, F, A]>,
@@ -113,7 +110,7 @@ type Traverse5<T extends Uris, U extends Uris> = {
   1: <A, B, C, D, E, F>(
     f: (a: A) => Type<U, [B]>,
     t: Type<T, [C, D, E, F, A]>,
-  ) => Type<U, [Type<T, [C, D, E, F, B]>]>
+  ) => Type<U, [Type<T, [C, D, E, F, A]>]>
   2: <A, B, C, D, E, F, G>(
     f: (a: A) => Type<U, [B, C]>,
     t: Type<T, [D, E, F, G, A]>,

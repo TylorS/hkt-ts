@@ -1,4 +1,5 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
+import { CommonOptions, GetLength } from '../common'
 
 /**
  * @name ChainRec
@@ -9,7 +10,7 @@ import { SignatureOverride, Type, TypeParams, Uris } from '../'
 export interface ChainRec<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends ChainRecOptions = ChainRecOptionsDefault
+  Options extends ChainRecOptions = ChainRecOptions
 > {
   readonly URI: T
   readonly chainRec: SignatureOverride<
@@ -52,16 +53,12 @@ export interface ChainRec<
         ) => Type<T, [C, D, E, F, Next<A> | Done<B>]>,
         a: A,
       ) => Type<T, [C, D, E, F, B]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
-export type ChainRecOptions = {
-  readonly chainRec: string
-}
-
-export type ChainRecOptionsDefault = {
-  readonly chainRec: 'chainRec'
+export type ChainRecOptions = CommonOptions & {
+  readonly chainRec?: string
 }
 
 export type Next<A> = {

@@ -1,4 +1,5 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
+import { CommonOptions, GetLength } from '../common'
 import { Functor } from './Functor'
 
 /**
@@ -6,9 +7,11 @@ import { Functor } from './Functor'
  * @laws
  * Associativity: E.extend(f, E.extend(g, w)) ≡ E.extend(_w => f(E.extend(g, _w)), w)
  */
-// @ts-expect-error Uris is 'never' until extended externally
-export interface Extend<T extends Uris = any, Options extends ExtendOptions = ExtendOptionsDefault>
-  extends Functor<T> {
+export interface Extend<
+  // @ts-expect-error Uris is 'never' until extended externally
+  T extends Uris = any,
+  Options extends ExtendOptions = ExtendOptions
+> extends Functor<T> {
   readonly URI: T
   readonly extend: SignatureOverride<
     T,
@@ -28,14 +31,10 @@ export interface Extend<T extends Uris = any, Options extends ExtendOptions = Ex
         f: (a: Type<T, [A, B, C, D, E]>) => F,
         extend: Type<T, [A, B, C, D, E]>,
       ) => Type<T, [A, B, C, D, F]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
-export type ExtendOptions = {
-  readonly extend: string
-}
-
-export type ExtendOptionsDefault = {
-  readonly extend: 'extend'
+export type ExtendOptions = CommonOptions & {
+  readonly extend?: string
 }

@@ -1,5 +1,5 @@
 import { SignatureOverride, Type, Uris } from '../'
-import { Setoid, SetoidOptions, SetoidOptionsDefault } from './Setoid'
+import { Setoid, SetoidOptions } from './Setoid'
 
 /**
  * @name Ord
@@ -9,16 +9,12 @@ import { Setoid, SetoidOptions, SetoidOptionsDefault } from './Setoid'
  * Transitivity: if Ord.lte(a, b) and Ord.lte(b, c), then Ord.lte(a, c)
  */
 // @ts-expect-error Uris is 'never' until extended externally
-export interface Ord<T extends Uris = any, Options extends OrdOptions = OrdOptionsDefault>
+export interface Ord<T extends Uris = any, Options extends OrdOptions = OrdOptions>
   extends Setoid<T, Options> {
   readonly URI: T
   readonly lte: SignatureOverride<T, Options['lte'], <A extends Type<T>>(a: A, b: A) => boolean>
 }
 
 export type OrdOptions = SetoidOptions & {
-  readonly lte: string
-}
-
-export type OrdOptionsDefault = SetoidOptionsDefault & {
-  readonly lte: string
+  readonly lte?: string
 }

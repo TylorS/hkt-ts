@@ -1,5 +1,5 @@
 import { SignatureOverride, Type, TypeParams, Uris } from '../'
-import { Apply, ApplyOptions, ApplyOptionsDefault } from './Apply'
+import { Apply, ApplyOptions } from './Apply'
 
 /**
  * @name Applicative
@@ -11,7 +11,7 @@ import { Apply, ApplyOptions, ApplyOptionsDefault } from './Apply'
 export interface Applicative<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  B extends ApplicativeOptions = ApplicativeOptionsDefault
+  B extends ApplicativeOptions = ApplicativeOptions
 > extends Apply<T, B> {
   readonly URI: T
   readonly of: SignatureOverride<
@@ -28,7 +28,5 @@ export interface Applicative<
 }
 
 export type ApplicativeOptions = ApplyOptions & {
-  readonly of: string
+  readonly of?: string
 }
-
-export type ApplicativeOptionsDefault = ApplyOptionsDefault & { of: 'of' }

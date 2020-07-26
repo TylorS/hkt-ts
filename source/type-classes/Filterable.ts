@@ -1,4 +1,5 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
+import { CommonOptions, GetLength } from '../common'
 
 /**
  * @name Filterable
@@ -10,7 +11,7 @@ import { SignatureOverride, Type, TypeParams, Uris } from '../'
 export interface Filterable<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends FilterableOptions = FilterableOptionsDefault
+  Options extends FilterableOptions = FilterableOptions
 > {
   readonly URI: T
   readonly filter: SignatureOverride<
@@ -31,14 +32,10 @@ export interface Filterable<
         predicate: (a: A) => boolean,
         filterable: Type<T, [B, C, D, E, A]>,
       ) => Type<T, [B, C, D, E, A]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
-export type FilterableOptions = {
-  readonly filter: string
-}
-
-export type FilterableOptionsDefault = {
-  readonly filter: 'filter'
+export type FilterableOptions = CommonOptions & {
+  readonly filter?: string
 }

@@ -1,5 +1,6 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
-import { Semigroupoid, SemigroupoidOptions, SemigroupoidOptionsDefault } from './Semigroupoid'
+import { SignatureOverride, Type, Uris } from '../'
+import { GetLength } from '../common'
+import { Semigroupoid, SemigroupoidOptions } from './Semigroupoid'
 
 /**
  * @name Category
@@ -10,7 +11,7 @@ import { Semigroupoid, SemigroupoidOptions, SemigroupoidOptionsDefault } from '.
 export interface Category<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends CategoryOptions = CategoryOptionsDefault
+  Options extends CategoryOptions = CategoryOptions
 > extends Semigroupoid<T, Options> {
   readonly URI: T
   readonly id: SignatureOverride<
@@ -21,14 +22,10 @@ export interface Category<
       3: <A, B>() => Type<T, [A, B, B]>
       4: <A, B, C>() => Type<T, [A, B, C, C]>
       5: <A, B, C, D>() => Type<T, [A, B, C, D, D]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
 export type CategoryOptions = SemigroupoidOptions & {
-  readonly id: string
-}
-
-export type CategoryOptionsDefault = SemigroupoidOptionsDefault & {
-  readonly id: 'id'
+  readonly id?: string
 }

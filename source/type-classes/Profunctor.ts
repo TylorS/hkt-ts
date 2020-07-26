@@ -1,5 +1,6 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
-import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
+import { SignatureOverride, Type, Uris } from '../'
+import { GetLength } from '../common'
+import { Functor, FunctorOptions } from './Functor'
 
 /**
  * @name Profunctor
@@ -10,7 +11,7 @@ import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
 export interface Profunctor<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends ProfunctorOptions = ProfunctorOptionsDefault
+  Options extends ProfunctorOptions = ProfunctorOptions
 > extends Functor<T, Options> {
   readonly URI: T
   readonly promap: SignatureOverride<
@@ -37,14 +38,10 @@ export interface Profunctor<
         cd: (c: C) => D,
         profunctor: Type<T, [E, F, G, B, C]>,
       ) => Type<T, [E, F, G, A, D]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
 export type ProfunctorOptions = FunctorOptions & {
-  readonly promap: string
-}
-
-export type ProfunctorOptionsDefault = FunctorOptionsDefault & {
-  readonly promap: 'promap'
+  readonly promap?: string
 }

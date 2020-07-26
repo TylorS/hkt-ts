@@ -1,4 +1,5 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
+import { CommonOptions, GetLength } from '../common'
 
 /**
  * @name Semigroupoid
@@ -8,7 +9,7 @@ import { SignatureOverride, Type, TypeParams, Uris } from '../'
 export interface Semigroupoid<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends SemigroupoidOptions = SemigroupoidOptionsDefault
+  Options extends SemigroupoidOptions = SemigroupoidOptions
 > {
   readonly URI: T
   readonly compose: SignatureOverride<
@@ -25,14 +26,10 @@ export interface Semigroupoid<
         ab: Type<T, [A, B, C, D, E]>,
         bc: Type<T, [A, B, C, E, F]>,
       ) => Type<T, [A, B, C, D, F]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
-export type SemigroupoidOptions = {
-  readonly compose: string
-}
-
-export type SemigroupoidOptionsDefault = {
-  readonly compose: 'compose'
+export type SemigroupoidOptions = CommonOptions & {
+  readonly compose?: string
 }

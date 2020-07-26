@@ -1,4 +1,5 @@
 import { SignatureOverride, Type, Uris } from '../'
+import { CommonOptions } from '../common'
 
 /**
  * @name Setoid
@@ -10,7 +11,7 @@ import { SignatureOverride, Type, Uris } from '../'
 export interface Setoid<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends SetoidOptions = SetoidOptionsDefault
+  Options extends SetoidOptions = SetoidOptions
 > {
   readonly URI: T
   readonly equals: SignatureOverride<
@@ -20,10 +21,6 @@ export interface Setoid<
   >
 }
 
-export type SetoidOptions = {
-  readonly equals: string
-}
-
-export type SetoidOptionsDefault = {
-  readonly equals: 'equals'
+export type SetoidOptions = CommonOptions & {
+  readonly equals?: string
 }

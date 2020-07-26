@@ -1,6 +1,6 @@
 import { Uris } from '../'
-import { Applicative, ApplicativeOptions, ApplicativeOptionsDefault } from './Applicative'
-import { Plus, PlusOptions, PlusOptionsDefault } from './Plus'
+import { Applicative, ApplicativeOptions } from './Applicative'
+import { Plus, PlusOptions } from './Plus'
 
 /**
  * @name Alternative
@@ -11,10 +11,9 @@ import { Plus, PlusOptions, PlusOptionsDefault } from './Plus'
 export interface Alternative<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends AlternativeOptions = AlternativeOptionsDefault
+  Options extends AlternativeOptions = AlternativeOptions
 > extends Applicative<T, Options>, Plus<T, Options> {
   readonly URI: T
 }
 
 export type AlternativeOptions = ApplicativeOptions & PlusOptions
-export type AlternativeOptionsDefault = ApplicativeOptionsDefault & PlusOptionsDefault

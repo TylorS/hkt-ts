@@ -1,4 +1,5 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
+import { CommonOptions, GetLength } from '../common'
 
 /**
  * @name Contravariant
@@ -9,7 +10,7 @@ import { SignatureOverride, Type, TypeParams, Uris } from '../'
 export interface Contravariant<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends ContravariantOptions = ContravariantOptionsDefault
+  Options extends ContravariantOptions = ContravariantOptions
 > {
   readonly URI: T
   readonly contramap: SignatureOverride<
@@ -24,14 +25,10 @@ export interface Contravariant<
         f: (a: A) => B,
         type: Type<T, [C, D, E, F, B]>,
       ) => Type<T, [C, D, E, F, A]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
-export type ContravariantOptions = {
-  readonly contramap: string
-}
-
-export type ContravariantOptionsDefault = {
-  readonly contramap: 'contramap'
+export type ContravariantOptions = CommonOptions & {
+  readonly contramap?: string
 }

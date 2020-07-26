@@ -1,5 +1,6 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
-import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
+import { SignatureOverride, Type, Uris } from '../'
+import { GetLength } from '../common'
+import { Functor, FunctorOptions } from './Functor'
 
 /**
  * @name Bifunctor
@@ -10,7 +11,7 @@ import { Functor, FunctorOptions, FunctorOptionsDefault } from './Functor'
 export interface Bifunctor<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends BifunctorOptions = BifunctorOptionsDefault
+  Options extends BifunctorOptions = BifunctorOptions
 > extends Functor<T, Options> {
   readonly URI: T
   readonly bimap: SignatureOverride<
@@ -33,14 +34,10 @@ export interface Bifunctor<
         g: (c: C) => D,
         bifunctor: Type<T, [E, F, G, A, C]>,
       ) => Type<T, [E, F, G, B, D]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
 export type BifunctorOptions = FunctorOptions & {
-  readonly bimap: string
-}
-
-export type BifunctorOptionsDefault = FunctorOptionsDefault & {
-  readonly bimap: 'bimap'
+  readonly bimap?: string
 }

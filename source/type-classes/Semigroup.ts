@@ -1,4 +1,5 @@
 import { SignatureOverride, Type, Uris } from '../'
+import { CommonOptions } from '../common'
 
 /**
  * @name Semigroup
@@ -8,16 +9,12 @@ import { SignatureOverride, Type, Uris } from '../'
 export interface Semigroup<
   // @ts-expect-error Uris is 'never' until extended externally
   T extends Uris = any,
-  Options extends SemigroupOptions = SemigroupOptionsDefault
+  Options extends SemigroupOptions = SemigroupOptions
 > {
   readonly URI: T
   readonly concat: SignatureOverride<T, Options['concat'], <A extends Type<T>>(a: A, b: A) => A>
 }
 
-export type SemigroupOptions = {
-  readonly concat: string
-}
-
-export type SemigroupOptionsDefault = {
-  readonly concat: 'concat'
+export type SemigroupOptions = CommonOptions & {
+  readonly concat?: string
 }

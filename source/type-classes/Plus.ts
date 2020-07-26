@@ -1,4 +1,5 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
+import { SignatureOverride, Type, Uris } from '../'
+import { CommonOptions, GetLength } from '../common'
 
 /**
  * @name Plus
@@ -8,7 +9,7 @@ import { SignatureOverride, Type, TypeParams, Uris } from '../'
  * Annihilation: P.map(f, P.zero()) ≡ P.zero()
  */
 // @ts-expect-error Uris is 'never' until extended externally
-export interface Plus<T extends Uris = any, Options extends PlusOptions = PlusOptionsDefault> {
+export interface Plus<T extends Uris = any, Options extends PlusOptions = PlusOptions> {
   readonly URI: T
   readonly zero: SignatureOverride<
     T,
@@ -19,14 +20,10 @@ export interface Plus<T extends Uris = any, Options extends PlusOptions = PlusOp
       3: <A, B, C>() => Type<T, [A, B, C]>
       4: <A, B, C, D>() => Type<T, [A, B, C, D]>
       5: <A, B, C, D, E>() => Type<T, [A, B, C, D, E]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
-export type PlusOptions = {
-  readonly zero: string
-}
-
-export type PlusOptionsDefault = {
-  readonly zero: 'zero'
+export type PlusOptions = CommonOptions & {
+  readonly zero?: string
 }

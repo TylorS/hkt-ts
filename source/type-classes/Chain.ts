@@ -1,5 +1,6 @@
-import { SignatureOverride, Type, TypeParams, Uris } from '../'
-import { Apply, ApplyOptions, ApplyOptionsDefault } from './Apply'
+import { SignatureOverride, Type, Uris } from '../'
+import { GetLength } from '../common'
+import { Apply, ApplyOptions } from './Apply'
 
 /**
  * @name Chain
@@ -7,7 +8,7 @@ import { Apply, ApplyOptions, ApplyOptionsDefault } from './Apply'
  * Associativity: M.chain(g, M.chain(f, u)) ≡ M.chain(x => M.chain(g, f(x)), u)
  */
 // @ts-expect-error Uris is 'never' until extended externally
-export interface Chain<T extends Uris = any, Options extends ChainOptions = ChainOptionsDefault>
+export interface Chain<T extends Uris = any, Options extends ChainOptions = ChainOptions>
   extends Apply<T, Options> {
   readonly URI: T
   readonly chain: SignatureOverride<
@@ -25,14 +26,10 @@ export interface Chain<T extends Uris = any, Options extends ChainOptions = Chai
         f: (a: A) => Type<T, [B, C, D, E, F]>,
         t: Type<T, [B, C, D, E, A]>,
       ) => Type<T, [B, C, D, E, F]>
-    }[TypeParams.Length<T>]
+    }[GetLength<Options, T>]
   >
 }
 
 export type ChainOptions = ApplyOptions & {
-  readonly chain: string
-}
-
-export type ChainOptionsDefault = ApplyOptionsDefault & {
-  readonly chain: 'chain'
+  readonly chain?: string
 }
