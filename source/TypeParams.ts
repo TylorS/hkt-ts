@@ -67,5 +67,5 @@ export namespace TypeParams {
    */
   export type Length<T extends Uris> = __TypeCastToNumber<Of<Type<T>, T>['length']>
 
-  type __TypeCastToNumber<A> = A extends 1 | 2 | 3 | 4 | 5 ? A : never
+  type __TypeCastToNumber<A> = A extends 0 | 1 | 2 | 3 | 4 | 5 ? A : never
 }
