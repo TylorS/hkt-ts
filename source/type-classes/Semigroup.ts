@@ -1,5 +1,5 @@
 import { SignatureOverride, Type, Uris } from '../'
-import { CommonOptions } from '../common'
+import { CommonOptions, GetLength } from '../common'
 
 /**
  * @name Semigroup
@@ -12,7 +12,13 @@ export interface Semigroup<
   Options extends SemigroupOptions = SemigroupOptions
 > {
   readonly URI: T
-  readonly concat: SignatureOverride<T, Options['concat'], <A extends Type<T>>(a: A, b: A) => A>
+  readonly concat: SignatureOverride<
+    T,
+    Options['concat'],
+    GetLength<Options, T> extends 0
+      ? (a: Type<T>, b: Type<T>) => Type<T>
+      : <A extends Type<T>>(a: A, b: A) => A
+  >
 }
 
 export type SemigroupOptions = CommonOptions & {

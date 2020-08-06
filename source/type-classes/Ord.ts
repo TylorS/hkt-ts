@@ -1,4 +1,5 @@
 import { SignatureOverride, Type, Uris } from '../'
+import { GetLength } from '../common'
 import { Setoid, SetoidOptions } from './Setoid'
 
 /**
@@ -12,7 +13,13 @@ import { Setoid, SetoidOptions } from './Setoid'
 export interface Ord<T extends Uris = any, Options extends OrdOptions = OrdOptions>
   extends Setoid<T, Options> {
   readonly URI: T
-  readonly lte: SignatureOverride<T, Options['lte'], <A extends Type<T>>(a: A, b: A) => boolean>
+  readonly lte: SignatureOverride<
+    T,
+    Options['lte'],
+    GetLength<Options, T> extends 0
+      ? (a: Type<T>, b: Type<T>) => boolean
+      : <A extends Type<T>>(a: A, b: A) => boolean
+  >
 }
 
 export type OrdOptions = SetoidOptions & {

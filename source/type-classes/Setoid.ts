@@ -1,5 +1,5 @@
 import { SignatureOverride, Type, Uris } from '../'
-import { CommonOptions } from '../common'
+import { CommonOptions, GetLength } from '../common'
 
 /**
  * @name Setoid
@@ -17,7 +17,9 @@ export interface Setoid<
   readonly equals: SignatureOverride<
     T,
     Options['equals'],
-    <A extends Type<T>>(a: A, b: A) => boolean
+    GetLength<Options, T> extends 0
+      ? (a: Type<T>, b: Type<T>) => boolean
+      : <A extends Type<T>>(a: A, b: A) => boolean
   >
 }
 

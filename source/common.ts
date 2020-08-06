@@ -12,6 +12,6 @@ export type GetLength<A extends CommonOptions, U extends Uris> = __TypeCastToNum
   A['length'] extends unknown ? TypeParams.Length<U> : A['length']
 >
 
-type __TypeCastToNumber<A> = A extends 1 | 2 | 3 | 4 | 5 ? A : never
+type __TypeCastToNumber<A> = A extends 0 | 1 | 2 | 3 | 4 | 5 ? A : never
 
 export type PossibleValues = Partial<readonly [any, any, any, any, any, any, any, any, any, any]>

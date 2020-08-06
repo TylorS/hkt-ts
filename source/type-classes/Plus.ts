@@ -15,6 +15,7 @@ export interface Plus<T extends Uris = any, Options extends PlusOptions = PlusOp
     T,
     Options['zero'],
     {
+      0: () => Type<T>
       1: <A>() => Type<T, [A]>
       2: <A, B>() => Type<T, [A, B]>
       3: <A, B, C>() => Type<T, [A, B, C]>

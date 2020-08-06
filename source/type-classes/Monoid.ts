@@ -18,6 +18,7 @@ export interface Monoid<
     T,
     Options['empty'],
     {
+      0: () => Type<T>
       1: <A>() => Type<T, [A]>
       2: <A, B>() => Type<T, [A, B]>
       3: <A, B, C>() => Type<T, [A, B, C]>
