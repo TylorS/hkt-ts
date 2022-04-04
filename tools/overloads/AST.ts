@@ -169,7 +169,7 @@ export class Static extends ast('Static') {
   }
 
   labeled(label: string) {
-    return new Labeled(label, this)
+    return new Labeled(label, new Static(this.type.split('extends')[0]))
   }
 }
 

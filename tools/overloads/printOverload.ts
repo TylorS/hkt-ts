@@ -162,7 +162,7 @@ function printKindParam(kindParam: KindParam, context: Context, printStatic: boo
     case FunctionSignature.tag:
       return printFunctionSignature(kindParam, context, printStatic, false)
     default:
-      return printTypeParam(kindParam, context, true)
+      return printTypeParam(kindParam, context, printStatic)
   }
 }
 

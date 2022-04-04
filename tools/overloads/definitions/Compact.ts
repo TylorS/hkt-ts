@@ -6,7 +6,7 @@ export const node = interface_('Compact', [
   fnLabeled_(
     'compact',
     [placeholder, aTypeParam],
-    [kind_([new Static(`Option<A>`)]).labeled('kind')],
+    [kind_([new Static(`Maybe<A>`)]).labeled('kind')],
     kind_([aTypeParam]),
   ),
 ])

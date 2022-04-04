@@ -6,7 +6,7 @@ import { aTypeParam, bTypeParam, fn_, hkt, kind_, placeholder } from './common'
 export const node = fn_(
   'flap',
   [hkt],
-  [Covariant.toTypeClass(hkt).labeled('C"')],
+  [Covariant.toTypeClass(hkt).labeled('C')],
   fn_(
     '',
     [aTypeParam],

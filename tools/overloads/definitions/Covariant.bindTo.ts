@@ -8,7 +8,7 @@ export const nameTypeParam = new Static('N extends string')
 export const node = fn_(
   'bindTo',
   [hkt],
-  [Covariant.toTypeClass(hkt).labeled('C"')],
+  [Covariant.toTypeClass(hkt).labeled('C')],
   fn_(
     '',
     [nameTypeParam],
