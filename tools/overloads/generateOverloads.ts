@@ -2,7 +2,6 @@
 import * as S from '../../src/Sync'
 
 import {
-  CurriedPlacholder,
   Dynamic,
   FunctionParam,
   FunctionSignature,
@@ -116,10 +115,6 @@ export function generateTypeParams(
           output.push(...generateHktPlaceholders(p, context, false))
           break
         }
-        case CurriedPlacholder.tag: {
-          output.push(...generateCurriedPlacholders(p, context))
-          break
-        }
         case HKTParam.tag: {
           output.push(yield* generateHKTParam(p, context))
           break
@@ -161,27 +156,6 @@ export function generateHktPlaceholders(p: HKTPlaceholder, context: Context, pri
       !printStatic && p.useDefaults ? `${base} = ${p.type.name}['defaults'][Params.${name}]` : base
 
     return new Static(withExtension)
-  })
-
-  return placholders
-}
-
-// TODO: Make this actually work - how to represent needed information in Context ?
-export function generateCurriedPlacholders(p: CurriedPlacholder, context: Context) {
-  const length = context.lengths.get(p.type.id)!
-  const existing = findExistingParams(context, p.type.id)
-  const position = context.positions.get(p.type.id)!
-  const multiple = context.lengths.size > 1
-
-  if (length === 0) {
-    return []
-  }
-
-  const params = hktParamNames.slice(existing, length).reverse()
-  const placholders = Array.from({ length: length - existing }, (_, i) => {
-    const name = params[i]
-
-    return new Static(multiple ? `${name}${position}` : name)
   })
 
   return placholders
@@ -343,7 +317,6 @@ function generateTypeName(node: Interface | TypeAlias, context: Context): string
   return `${node.name}${generatePostfix(findHKTParams(node.typeParams), context)}`
 }
 
-// TODO: Generate curried type names
 function generatePostfix(hktParams: readonly HKTParam[], context: Context) {
   return hktParams
     .map((p) => `${context.lengths.get(p.id) === 0 ? '' : context.lengths.get(p.id) ?? ''}`)

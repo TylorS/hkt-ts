@@ -19,9 +19,6 @@ import {
 } from './AST'
 import { findHKTParams } from './findHKTParams'
 
-// TODO: Keep track of position of Existing Params
-// TODO: Keep track of remaining args for each HKT
-// TODO: Keep track of curried args for each HKT
 export interface Context {
   readonly tag: ParentNode['tag']
   readonly lengths: Map<symbol, number>
@@ -177,7 +174,6 @@ function identity<A>(value: A): A {
 
 function defaultVisitors(): Visitors {
   return {
-    CurriedPlacholder: identity,
     Dynamic: identity,
     FunctionSignature: identity,
     HKTParam: identity,

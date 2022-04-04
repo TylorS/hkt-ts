@@ -19,3 +19,5 @@ export const node = new Interface(
     ).labeled('compose'),
   ],
 )
+
+export const AssociativeCompose = node

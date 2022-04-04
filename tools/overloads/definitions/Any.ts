@@ -16,3 +16,5 @@ export const node = new Interface(
     ).labeled('any'),
   ],
 )
+
+export const Any = node

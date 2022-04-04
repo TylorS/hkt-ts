@@ -4,7 +4,7 @@ export type AST = FunctionParam | KindParam | ParentNode | TypeParam
 
 export type ParentNode = FunctionSignature | Interface | TypeAlias
 
-export type TypeParam = CurriedPlacholder | Dynamic | HKTParam | HKTPlaceholder | Static | Typeclass
+export type TypeParam = Dynamic | HKTParam | HKTPlaceholder | Static | Typeclass
 
 export type KindParam =
   | Dynamic
@@ -79,10 +79,6 @@ export class HKTParam extends ast('HKTParam') {
     return new HKTPlaceholder(this, useDefaults)
   }
 
-  get curriedPlaceholder() {
-    return new CurriedPlacholder(this)
-  }
-
   toTypeclass(name: string) {
     return new Typeclass(name, this)
   }
@@ -94,12 +90,6 @@ export class HKTParam extends ast('HKTParam') {
 
 export class HKTPlaceholder extends ast('HKTPlaceholder') {
   constructor(readonly type: HKTParam, readonly useDefaults: boolean = false) {
-    super()
-  }
-}
-
-export class CurriedPlacholder extends ast('CurriedPlacholder') {
-  constructor(readonly type: HKTParam) {
     super()
   }
 }

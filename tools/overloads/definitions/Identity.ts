@@ -14,3 +14,5 @@ export const node = new Interface(
     ).labeled('id'),
   ],
 )
+
+export const Identity = node

@@ -1,10 +1,18 @@
 import { Dynamic, FunctionSignature, Interface, Kind } from '../AST'
 
-import { aTypeParam, bTypeParam, cTypeParam, dTypeParam, hkt, placeholder } from './common'
+import {
+  aTypeParam,
+  bTypeParam,
+  cTypeParam,
+  curriedPlaceholder,
+  dTypeParam,
+  hkt,
+  placeholder,
+} from './common'
 
 export const node = new Interface(
   'Bivariant',
-  [hkt],
+  [hkt, curriedPlaceholder],
   [
     new FunctionSignature(
       '',

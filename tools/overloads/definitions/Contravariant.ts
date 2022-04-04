@@ -23,3 +23,5 @@ export const node = new Interface(
     ).labeled('contramap'),
   ],
 )
+
+export const Contravariant = node

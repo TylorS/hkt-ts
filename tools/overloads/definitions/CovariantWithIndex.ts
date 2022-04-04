@@ -26,3 +26,5 @@ export const node = new Interface(
     ).labeled('mapWithIndex'),
   ],
 )
+
+export const CovariantWithIndex = node
