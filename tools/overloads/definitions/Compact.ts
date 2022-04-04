@@ -1,18 +1,14 @@
-import { FunctionSignature, Interface, Kind, Static } from '../AST'
+import { Static } from '../AST'
 
-import { aTypeParam, hkt, placeholder } from './common'
+import { aTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common'
 
-export const node = new Interface(
-  'Compact',
-  [hkt],
-  [
-    new FunctionSignature(
-      '',
-      [placeholder, aTypeParam],
-      [new Kind(hkt, [placeholder, new Static(`Option<A>`)]).labeled('kind')],
-      new Kind(hkt, [placeholder, aTypeParam]),
-    ).labeled('comapct'),
-  ],
-)
+export const node = interface_('Compact', [
+  fnLabeled_(
+    'compact',
+    [placeholder, aTypeParam],
+    [kind_([new Static(`Option<A>`)]).labeled('kind')],
+    kind_([aTypeParam]),
+  ),
+])
 
 export const Compact = node

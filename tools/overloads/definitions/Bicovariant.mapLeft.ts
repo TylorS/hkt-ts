@@ -1,21 +1,28 @@
-import { FunctionSignature, Kind } from '../AST'
-
 import { Bicovariant } from './Bicovariant'
-import { aTypeParam, bTypeParam, cTypeParam, hkt, placeholder } from './common'
+import {
+  aTypeParam,
+  bTypeParam,
+  cTypeParam,
+  fnLabeled_,
+  fn_,
+  hkt,
+  kind_,
+  placeholder,
+} from './common'
 
-export const node = new FunctionSignature(
+export const node = fn_(
   'mapLeft',
   [hkt],
   [Bicovariant.toTypeClass(hkt).labeled('B')],
-  new FunctionSignature(
+  fn_(
     '',
     [aTypeParam, bTypeParam],
-    [new FunctionSignature('f', [], [aTypeParam.labeled('a')], bTypeParam).labeled('f')],
-    new FunctionSignature(
+    [fnLabeled_('f', [], [aTypeParam.labeled('a')], bTypeParam)],
+    fn_(
       '',
       [placeholder, cTypeParam],
-      [new Kind(hkt, [placeholder, aTypeParam, cTypeParam]).labeled('kind')],
-      new Kind(hkt, [placeholder, bTypeParam, cTypeParam]),
+      [kind_([aTypeParam, cTypeParam]).labeled('kind')],
+      kind_([bTypeParam, cTypeParam]),
     ),
   ),
 )

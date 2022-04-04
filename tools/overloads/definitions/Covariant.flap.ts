@@ -1,21 +1,21 @@
-import { FunctionSignature, Kind, Static } from '../AST'
+import { Static } from '../AST'
 
 import { Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, hkt, placeholder } from './common'
+import { aTypeParam, bTypeParam, fn_, hkt, kind_, placeholder } from './common'
 
-export const node = new FunctionSignature(
+export const node = fn_(
   'flap',
   [hkt],
   [Covariant.toTypeClass(hkt).labeled('C"')],
-  new FunctionSignature(
+  fn_(
     '',
     [aTypeParam],
     [new Static('A').labeled('a')],
-    new FunctionSignature(
+    fn_(
       '',
       [placeholder, bTypeParam],
-      [new Kind(hkt, [placeholder, new Static(`(a: A) => B`)]).labeled('kind')],
-      new Kind(hkt, [placeholder, bTypeParam]),
+      [kind_([new Static(`(a: A) => B`)]).labeled('kind')],
+      kind_([bTypeParam]),
     ),
   ),
 )

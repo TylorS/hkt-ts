@@ -1,27 +1,14 @@
-import { Dynamic, FunctionSignature, Interface, Kind } from '../AST'
+import { Dynamic } from '../AST'
 
-import { aTypeParam, bTypeParam, hkt, placeholder } from './common'
+import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common'
 
-export const node = new Interface(
-  'Contravariant',
-  [hkt],
-  [
-    new FunctionSignature(
-      '',
-      [bTypeParam, aTypeParam],
-      [
-        new Dynamic([bTypeParam, aTypeParam] as const, ([a, b]) => `Unary<${a}, ${b}>`).labeled(
-          'f',
-        ),
-      ],
-      new FunctionSignature(
-        '',
-        [placeholder],
-        [new Kind(hkt, [placeholder, aTypeParam]).labeled('kind')],
-        new Kind(hkt, [placeholder, bTypeParam]),
-      ),
-    ).labeled('contramap'),
-  ],
-)
+export const node = interface_('Contravariant', [
+  fnLabeled_(
+    'contramap',
+    [bTypeParam, aTypeParam],
+    [new Dynamic([bTypeParam, aTypeParam] as const, ([a, b]) => `Unary<${a}, ${b}>`).labeled('f')],
+    fn_('', [placeholder], [kind_([aTypeParam]).labeled('kind')], kind_([bTypeParam])),
+  ),
+])
 
 export const Contravariant = node

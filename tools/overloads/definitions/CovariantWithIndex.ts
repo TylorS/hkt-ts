@@ -1,6 +1,6 @@
-import { Dynamic, FunctionSignature, Interface, Kind, Static } from '../AST'
+import { Dynamic, FunctionSignature, Interface, Static } from '../AST'
 
-import { aTypeParam, bTypeParam, hkt, placeholder } from './common'
+import { aTypeParam, bTypeParam, fnLabeled_, hkt, kind_, placeholder } from './common'
 
 export const kTypeParam = new Static('K')
 
@@ -8,8 +8,8 @@ export const node = new Interface(
   'CovariantWithIndex',
   [hkt, kTypeParam],
   [
-    new FunctionSignature(
-      '',
+    fnLabeled_(
+      'mapWithIndex',
       [aTypeParam, bTypeParam],
       [
         new Dynamic(
@@ -20,10 +20,10 @@ export const node = new Interface(
       new FunctionSignature(
         '',
         [placeholder],
-        [new Kind(hkt, [placeholder, aTypeParam]).labeled('kind')],
-        new Kind(hkt, [placeholder, bTypeParam]),
+        [kind_([aTypeParam]).labeled('kind')],
+        kind_([bTypeParam]),
       ),
-    ).labeled('mapWithIndex'),
+    ),
   ],
 )
 

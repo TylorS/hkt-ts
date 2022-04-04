@@ -1,9 +1,9 @@
-import { Kind, Static, TypeAlias } from '../AST'
+import { Static, TypeAlias } from '../AST'
 
-import { aTypeParam, bTypeParam, hkt, placeholder } from './common'
+import { aTypeParam, bTypeParam, hkt, kind_, placeholder } from './common'
 
 export const node = new TypeAlias(
   'EitherT',
   [hkt, placeholder, aTypeParam, bTypeParam],
-  new Kind(hkt, [placeholder, new Static(`Either<A, B>`)]),
+  kind_([new Static(`Either<A, B>`)]),
 )

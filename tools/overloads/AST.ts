@@ -61,7 +61,7 @@ export class FunctionSignature extends ast('FunctionSignature') {
     super()
   }
 
-  labeled(label: string) {
+  labeled(label: string = this.name) {
     return new Labeled(label, this)
   }
 }

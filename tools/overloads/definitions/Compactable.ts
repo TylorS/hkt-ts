@@ -1,9 +1,7 @@
-import { Interface } from '../AST'
-
 import { Compact } from './Compact'
 import { Separate } from './Separate'
-import { hkt } from './common'
+import { interface_ } from './common'
 
-export const node = new Interface('Compactable', [hkt], [], [Compact, Separate])
+export const node = interface_('Compactable', [], [Compact, Separate])
 
 export const Compactable = node

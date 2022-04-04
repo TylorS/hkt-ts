@@ -1,30 +1,32 @@
-import { Dynamic, FunctionSignature, Interface, Kind } from '../AST'
+import { Dynamic } from '../AST'
 
-import { aTypeParam, bTypeParam, cTypeParam, dTypeParam, hkt, placeholder } from './common'
+import {
+  aTypeParam,
+  bTypeParam,
+  cTypeParam,
+  dTypeParam,
+  fnLabeled_,
+  fn_,
+  interface_,
+  kind_,
+  placeholder,
+} from './common'
 
-export const Bicovariant = new Interface(
-  'Bicovariant',
-  [hkt],
-  [
-    new FunctionSignature(
+export const Bicovariant = interface_('Bicovariant', [
+  fnLabeled_(
+    'bimap',
+    [aTypeParam, bTypeParam, cTypeParam, dTypeParam],
+    [
+      new Dynamic([aTypeParam, bTypeParam] as const, ([a, b]) => `Unary<${a}, ${b}>`).labeled('f'),
+      new Dynamic([cTypeParam, dTypeParam] as const, ([a, b]) => `Unary<${a}, ${b}>`).labeled('g'),
+    ],
+    fn_(
       '',
-      [aTypeParam, bTypeParam, cTypeParam, dTypeParam],
-      [
-        new Dynamic([aTypeParam, bTypeParam] as const, ([a, b]) => `Unary<${a}, ${b}>`).labeled(
-          'f',
-        ),
-        new Dynamic([cTypeParam, dTypeParam] as const, ([a, b]) => `Unary<${a}, ${b}>`).labeled(
-          'g',
-        ),
-      ],
-      new FunctionSignature(
-        '',
-        [placeholder],
-        [new Kind(hkt, [placeholder, aTypeParam, cTypeParam]).labeled('kind')],
-        new Kind(hkt, [placeholder, bTypeParam, dTypeParam]),
-      ),
-    ).labeled('bimap'),
-  ],
-)
+      [placeholder],
+      [kind_([aTypeParam, cTypeParam]).labeled('kind')],
+      kind_([bTypeParam, dTypeParam]),
+    ),
+  ),
+])
 
 export const node = Bicovariant

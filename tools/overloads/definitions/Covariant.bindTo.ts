@@ -1,23 +1,23 @@
-import { FunctionSignature, Kind, ObjectNode, Static } from '../AST'
+import { ObjectNode, Static } from '../AST'
 
 import { Covariant } from './Covariant'
-import { aTypeParam, hkt, placeholder } from './common'
+import { aTypeParam, fn_, hkt, kind_, placeholder } from './common'
 
 export const nameTypeParam = new Static('N extends string')
 
-export const node = new FunctionSignature(
+export const node = fn_(
   'bindTo',
   [hkt],
   [Covariant.toTypeClass(hkt).labeled('C"')],
-  new FunctionSignature(
+  fn_(
     '',
     [nameTypeParam],
     [nameTypeParam.labeled('name')],
-    new FunctionSignature(
+    fn_(
       '',
       [placeholder, aTypeParam],
-      [new Kind(hkt, [placeholder, aTypeParam]).labeled('kind')],
-      new Kind(hkt, [placeholder, new ObjectNode([new Static('A').labeled(`[K in N]`)])]),
+      [kind_([aTypeParam]).labeled('kind')],
+      kind_([new ObjectNode([new Static('A').labeled(`[K in N]`)])]),
     ),
   ),
 )

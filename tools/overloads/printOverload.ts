@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
-  CurriedPlacholder,
   Dynamic,
   FunctionParam,
   FunctionSignature,
@@ -115,7 +114,6 @@ export function printTypeParam(p: TypeParam, context: Context, printStatic: bool
     case HKTParam.tag:
       return printStatic ? p.name : `${p.name} extends HKT${p.size < 2 ? '' : `${p.size}`}`
     case HKTPlaceholder.tag:
-    case CurriedPlacholder.tag:
       return '' // Should be replaced in generateOverloads with Array<StaticTypeParam>
     case Typeclass.tag: {
       const baseName = `${p.name}${p.type.size === 0 ? '' : p.type.size}`

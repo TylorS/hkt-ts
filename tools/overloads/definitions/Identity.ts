@@ -1,18 +1,7 @@
-import { FunctionSignature, Interface, Kind } from '../AST'
+import { aTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common'
 
-import { aTypeParam, hkt, placeholder } from './common'
-
-export const node = new Interface(
-  'Identity',
-  [hkt],
-  [
-    new FunctionSignature(
-      '',
-      [aTypeParam, placeholder],
-      [],
-      new Kind(hkt, [placeholder, aTypeParam]),
-    ).labeled('id'),
-  ],
-)
+export const node = interface_('Identity', [
+  fnLabeled_('id', [aTypeParam, placeholder], [], kind_([aTypeParam])),
+])
 
 export const Identity = node

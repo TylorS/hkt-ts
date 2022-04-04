@@ -1,23 +1,22 @@
-import { FunctionSignature, Interface, Kind, Tuple } from '../AST'
+import { Kind, Tuple } from '../AST'
 
-import { node as Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, hkt, placeholder } from './common'
+import { Covariant } from './Covariant'
+import { aTypeParam, bTypeParam, fnLabeled_, fn_, hkt, interface_, placeholder } from './common'
 
-export const AssociativeBoth = new Interface(
+export const AssociativeBoth = interface_(
   'AssociativeBoth',
-  [hkt],
   [
-    new FunctionSignature(
-      '',
+    fnLabeled_(
+      'both',
       [placeholder, bTypeParam],
       [new Kind(hkt, [placeholder, bTypeParam]).labeled('second')],
-      new FunctionSignature(
+      fn_(
         '',
         [aTypeParam],
         [new Kind(hkt, [placeholder, aTypeParam]).labeled('first')],
         new Kind(hkt, [placeholder, new Tuple([aTypeParam, bTypeParam])]),
       ),
-    ).labeled('both'),
+    ),
   ],
   [Covariant],
 )

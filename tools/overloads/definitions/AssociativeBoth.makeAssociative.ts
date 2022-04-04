@@ -1,19 +1,16 @@
-import { Dynamic, FunctionSignature, Kind } from '../AST'
+import { Dynamic } from '../AST'
 
 import { AssociativeBoth } from './AssociativeBoth'
-import { aTypeParam, hkt, placeholderWithDefaults } from './common'
+import { aTypeParam, fn_, hkt, kindWithDefaults_, placeholderWithDefaults } from './common'
 
-export const node = new FunctionSignature(
+export const node = fn_(
   'makeAssociative',
   [hkt],
   [AssociativeBoth.toTypeClass(hkt).labeled('AB')],
-  new FunctionSignature(
+  fn_(
     '',
     [aTypeParam, placeholderWithDefaults],
     [new Dynamic([aTypeParam], ([a]) => `Associative<${a}>`).labeled('A')],
-    new Dynamic(
-      [new Kind(hkt, [placeholderWithDefaults, aTypeParam])],
-      (params) => `Associative<${params.join(', ')}>`,
-    ),
+    new Dynamic([kindWithDefaults_([aTypeParam])], (params) => `Associative<${params.join(', ')}>`),
   ),
 )

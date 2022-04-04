@@ -1,26 +1,18 @@
-import { Dynamic, FunctionSignature, Interface, Kind, Tuple } from '../AST'
+import { Dynamic, Tuple } from '../AST'
 
-import { aTypeParam, bTypeParam, hkt, placeholder } from './common'
+import { aTypeParam, bTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common'
 
-export const node = new Interface(
-  'Separate',
-  [hkt],
-  [
-    new FunctionSignature(
-      '',
-      [placeholder, aTypeParam, bTypeParam],
-      [
-        new Kind(hkt, [
-          placeholder,
-          new Dynamic([aTypeParam, bTypeParam], ([A, B]) => `Either<${A}, ${B}>`),
-        ]).labeled('kind'),
-      ],
-      new Tuple([
-        new Kind(hkt, [placeholder, aTypeParam]),
-        new Kind(hkt, [placeholder, bTypeParam]),
-      ]),
-    ).labeled('separate'),
-  ],
-)
+export const node = interface_('Separate', [
+  fnLabeled_(
+    'separate',
+    [placeholder, aTypeParam, bTypeParam],
+    [
+      kind_([new Dynamic([aTypeParam, bTypeParam], ([A, B]) => `Either<${A}, ${B}>`)]).labeled(
+        'kind',
+      ),
+    ],
+    new Tuple([kind_([aTypeParam]), kind_([bTypeParam])]),
+  ),
+])
 
 export const Separate = node

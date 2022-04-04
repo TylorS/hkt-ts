@@ -1,20 +1,9 @@
-import { FunctionSignature, Interface, Kind, Static } from '../AST'
+import { Static } from '../AST'
 
-import { hkt, placeholder } from './common'
+import { fnLabeled_, interface_, kind_, placeholder } from './common'
 
 export const unknownParam = new Static(`unknown`)
 
-export const node = new Interface(
-  'Any',
-  [hkt],
-  [
-    new FunctionSignature(
-      '',
-      [placeholder],
-      [],
-      new Kind(hkt, [placeholder, unknownParam]),
-    ).labeled('any'),
-  ],
-)
+export const node = interface_('Any', [fnLabeled_('any', [placeholder], [], kind_([unknownParam]))])
 
 export const Any = node

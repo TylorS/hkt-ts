@@ -1,9 +1,9 @@
-import { Kind, Static, TypeAlias } from '../AST'
+import { Static, TypeAlias } from '../AST'
 
-import { aTypeParam, hkt, placeholder } from './common'
+import { aTypeParam, hkt, kind_, placeholder } from './common'
 
 export const node = new TypeAlias(
   'OptionT',
   [hkt, placeholder, aTypeParam],
-  new Kind(hkt, [placeholder, new Static(`Option<A>`)]),
+  kind_([new Static(`Option<A>`)]),
 )

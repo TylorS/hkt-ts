@@ -1,23 +1,26 @@
-import { FunctionSignature, Interface, Kind } from '../AST'
+import {
+  aTypeParam,
+  bTypeParam,
+  cTypeParam,
+  fnLabeled_,
+  fn_,
+  interface_,
+  kind_,
+  placeholder,
+} from './common'
 
-import { aTypeParam, bTypeParam, cTypeParam, hkt, placeholder } from './common'
-
-export const node = new Interface(
-  'AssociativeCompose',
-  [hkt],
-  [
-    new FunctionSignature(
+export const node = interface_('AssociativeCompose', [
+  fnLabeled_(
+    'compose',
+    [placeholder, bTypeParam, cTypeParam],
+    [kind_([bTypeParam, cTypeParam]).labeled('second')],
+    fn_(
       '',
-      [placeholder, bTypeParam, cTypeParam],
-      [new Kind(hkt, [placeholder, bTypeParam, cTypeParam]).labeled('second')],
-      new FunctionSignature(
-        '',
-        [aTypeParam],
-        [new Kind(hkt, [placeholder, aTypeParam, bTypeParam]).labeled('first')],
-        new Kind(hkt, [placeholder, aTypeParam, cTypeParam]),
-      ),
-    ).labeled('compose'),
-  ],
-)
+      [aTypeParam],
+      [kind_([aTypeParam, bTypeParam]).labeled('first')],
+      kind_([aTypeParam, bTypeParam]),
+    ),
+  ),
+])
 
 export const AssociativeCompose = node
