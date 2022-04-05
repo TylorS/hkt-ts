@@ -1,6 +1,6 @@
 import { aTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common'
 
-export const IdentityFlatten = interface_('IdentityFlatten', [
+export const Flatten = interface_('Flatten', [
   fnLabeled_(
     'flatten',
     [placeholder, aTypeParam],
@@ -9,4 +9,4 @@ export const IdentityFlatten = interface_('IdentityFlatten', [
   ),
 ])
 
-export const node = IdentityFlatten
+export const node = Flatten

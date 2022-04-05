@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 export enum Params {
   Z = 'Z',
   Y = 'Y',
@@ -23,7 +24,7 @@ export const E = Params.E
 export const A = Params.A
 
 export interface HKT {
-  readonly type: unknown
+  readonly tag: unknown
   readonly [A]: unknown
   readonly defaults: {
     readonly [A]: unknown
@@ -95,25 +96,25 @@ export interface HKT10 extends HKT9 {
 
 export type Kind<T extends HKT, A> = (T & {
   readonly [A]: A
-})['type']
+})['tag']
 
 export type Kind2<T extends HKT2, E, A> = (T & {
   readonly [E]: E
   readonly [A]: A
-})['type']
+})['tag']
 
 export type Kind3<T extends HKT3, R, E, A> = (T & {
   readonly [R]: R
   readonly [E]: E
   readonly [A]: A
-})['type']
+})['tag']
 
 export type Kind4<T extends HKT4, S, R, E, A> = (T & {
   readonly [S]: S
   readonly [R]: R
   readonly [E]: E
   readonly [A]: A
-})['type']
+})['tag']
 
 export type Kind5<T extends HKT5, U, S, R, E, A> = (T & {
   readonly [U]: U
@@ -121,7 +122,7 @@ export type Kind5<T extends HKT5, U, S, R, E, A> = (T & {
   readonly [R]: R
   readonly [E]: E
   readonly [A]: A
-})['type']
+})['tag']
 
 export type Kind6<T extends HKT5, V, U, S, R, E, A> = (T & {
   readonly [V]: V
@@ -130,7 +131,7 @@ export type Kind6<T extends HKT5, V, U, S, R, E, A> = (T & {
   readonly [R]: R
   readonly [E]: E
   readonly [A]: A
-})['type']
+})['tag']
 
 export type Kind7<T extends HKT5, W, V, U, S, R, E, A> = (T & {
   readonly [W]: W
@@ -140,7 +141,7 @@ export type Kind7<T extends HKT5, W, V, U, S, R, E, A> = (T & {
   readonly [R]: R
   readonly [E]: E
   readonly [A]: A
-})['type']
+})['tag']
 
 export type Kind8<T extends HKT5, X, W, V, U, S, R, E, A> = (T & {
   readonly [X]: X
@@ -151,7 +152,7 @@ export type Kind8<T extends HKT5, X, W, V, U, S, R, E, A> = (T & {
   readonly [R]: R
   readonly [E]: E
   readonly [A]: A
-})['type']
+})['tag']
 
 export type Kind9<T extends HKT5, Y, X, W, V, U, S, R, E, A> = (T & {
   readonly [Y]: Y
@@ -163,7 +164,7 @@ export type Kind9<T extends HKT5, Y, X, W, V, U, S, R, E, A> = (T & {
   readonly [R]: R
   readonly [E]: E
   readonly [A]: A
-})['type']
+})['tag']
 
 export type Kind10<T extends HKT5, Z, Y, X, W, V, U, S, R, E, A> = (T & {
   readonly [Z]: Z
@@ -176,9 +177,9 @@ export type Kind10<T extends HKT5, Z, Y, X, W, V, U, S, R, E, A> = (T & {
   readonly [R]: R
   readonly [E]: E
   readonly [A]: A
-})['type']
+})['tag']
 
-export type TypeOf<T> = 'type' extends keyof T ? T['type'] : T
+export type TypeOf<T> = 'tag' extends keyof T ? T['tag'] : T
 
 export type ParamOf<H extends HKT, T, P extends Params> = {
   readonly [Z]: H extends HKT10

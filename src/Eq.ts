@@ -52,9 +52,9 @@ export const makeSemigroup = <A>(): Associative<Eq<A>> => ({
 
 export const sum =
   <A extends Readonly<Record<PropertyKey, any>>>() =>
-  <T extends keyof A>(type: T) =>
+  <T extends keyof A>(tag: T) =>
   (eqs: SumEqs<A, T>): Eq<A> => ({
-    equals: (a, b) => (a[type] === b[type] ? (eqs as any)[type](a, b) : false),
+    equals: (a, b) => (a[tag] === b[tag] ? (eqs as any)[tag](a, b) : false),
   })
 
 export type SumEqs<A extends Readonly<Record<PropertyKey, any>>, T extends keyof A> = {

@@ -7,12 +7,12 @@ export type Either<E, A> = Left<E> | Right<A>
 /**
  * Determine if an Either<E, A> is a Left<E>
  */
-export const isLeft = <A, B>(either: Either<A, B>): either is Left<A> => either.type === 'Left'
+export const isLeft = <A, B>(either: Either<A, B>): either is Left<A> => either.tag === 'Left'
 
 /**
  * Determine if an Either<E, A> is a Right<A>
  */
-export const isRight = <A, B>(either: Either<A, B>): either is Right<B> => either.type === 'Right'
+export const isRight = <A, B>(either: Either<A, B>): either is Right<B> => either.tag === 'Right'
 
 /**
  * Type-level helper for extracting the Left value from an Either
@@ -28,7 +28,7 @@ export type RightOf<A> = [A] extends [Either<any, infer R>] ? R : never
  * Abstraction for the "Left" of an Either. Usually used to represent errors.
  */
 export interface Left<E> {
-  readonly type: 'Left'
+  readonly tag: 'Left'
   readonly value: E
 }
 
@@ -36,12 +36,12 @@ export interface Left<E> {
  * Construct a Left instance.
  */
 export const Left = <E>(value: E): Left<E> => ({
-  type: 'Left',
+  tag: 'Left',
   value,
 })
 
 export interface Right<A> {
-  readonly type: 'Right'
+  readonly tag: 'Right'
   readonly value: A
 }
 
@@ -49,6 +49,6 @@ export interface Right<A> {
  * Construct a Right value.
  */
 export const Right = <A>(value: A): Right<A> => ({
-  type: 'Right',
+  tag: 'Right',
   value,
 })

@@ -1,3 +1,4 @@
+import * as Gen from './Gen'
 import * as F from './function'
 
 /**
@@ -5,40 +6,25 @@ import * as F from './function'
  * making it easier to use language features with IO such as
  * while-loops, for-loops, and stack-safe recursion.
  */
-export interface Sync<A> {
-  readonly type: 'Sync'
-  readonly [Symbol.iterator]: () => Generator<SyncInstruction<any>, A>
-}
+export interface Sync<A> extends Gen.Gen<SyncInstruction<any>, A> {}
 
 export interface SyncInstruction<A> {
-  readonly type: 'Sync'
+  readonly tag: 'Sync'
   readonly lazy: F.Lazy<A>
 }
 
 export type OutputOf<T> = [T] extends [Sync<infer R>] ? R : never
 
-export const Sync = <A>(f: () => Generator<SyncInstruction<any>, A>): Sync<A> => ({
-  type: 'Sync',
-  [Symbol.iterator]: f,
-})
+export const Sync = Gen.Gen as <A>(f: () => Generator<SyncInstruction<any>, A>) => Sync<A>
 
 export const fromLazy = <A>(lazy: F.Lazy<A>): Sync<A> =>
   Sync(function* () {
-    return (yield { type: 'Sync', lazy }) as A
+    return (yield { tag: 'Sync', lazy }) as A
   })
 
 export const of = F.flow(F.constant, fromLazy)
 
-export const run = <A>(sync: Sync<A>): A => {
-  const generator = sync[Symbol.iterator]()
-  let result = generator.next()
-
-  while (!result.done) {
-    result = generator.next(result.value.lazy())
-  }
-
-  return result.value
-}
+export const run = <A>(sync: Sync<A>): A => F.pipe(sync, runWith, Gen.iterator).next().value
 
 export function forEach<A, B>(f: (value: A, index: number) => Sync<B>) {
   return (items: ReadonlyArray<A>): Sync<ReadonlyArray<B>> => {
@@ -76,4 +62,27 @@ export function ap<A>(value: Sync<A>) {
 
       return f(a)
     })
+}
+
+export function* runWith<G extends Gen.Gen<{ readonly tag: string }, any>>(
+  g: G,
+): Gen.Gen<Exclude<Gen.YieldOf<G>, SyncInstruction<any>>, Gen.ReturnOf<G>> {
+  const i = Gen.iterator(g)
+  let result = i.next()
+
+  while (!result.done) {
+    const instr = result.value
+
+    switch (instr.tag) {
+      case 'Sync': {
+        result = i.next((instr as SyncInstruction<any>).lazy())
+        break
+      }
+      default: {
+        result = i.next(yield instr as any)
+      }
+    }
+  }
+
+  return result.value
 }
