@@ -78,7 +78,7 @@ export class DisposableQueue implements Disposable {
   }
 
   add = (d: Disposable): Disposable => {
-    if (this.#isDisposed) {
+    if (this.#isDisposed || d === None) {
       return d
     }
 
