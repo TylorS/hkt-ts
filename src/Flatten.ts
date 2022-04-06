@@ -1,4 +1,17 @@
 import {
+  Covariant,
+  Covariant1,
+  Covariant10,
+  Covariant2,
+  Covariant3,
+  Covariant4,
+  Covariant5,
+  Covariant6,
+  Covariant7,
+  Covariant8,
+  Covariant9,
+} from './Covariant'
+import {
   HKT,
   HKT10,
   HKT2,
@@ -21,59 +34,59 @@ import {
   Kind9,
 } from './HKT'
 
-export interface Flatten<T extends HKT> {
+export interface Flatten<T extends HKT> extends Covariant<T> {
   readonly flatten: <A>(kind: Kind<T, Kind<T, A>>) => Kind<T, A>
 }
 
-export interface Flatten1<T extends HKT> {
+export interface Flatten1<T extends HKT> extends Covariant1<T> {
   readonly flatten: <A>(kind: Kind<T, Kind<T, A>>) => Kind<T, A>
 }
 
-export interface Flatten2<T extends HKT2> {
+export interface Flatten2<T extends HKT2> extends Covariant2<T> {
   readonly flatten: <E, A>(kind: Kind2<T, E, Kind2<T, E, A>>) => Kind2<T, E, A>
 }
 
-export interface Flatten3<T extends HKT3> {
+export interface Flatten3<T extends HKT3> extends Covariant3<T> {
   readonly flatten: <R, E, A>(kind: Kind3<T, R, E, Kind3<T, R, E, A>>) => Kind3<T, R, E, A>
 }
 
-export interface Flatten4<T extends HKT4> {
+export interface Flatten4<T extends HKT4> extends Covariant4<T> {
   readonly flatten: <S, R, E, A>(
     kind: Kind4<T, S, R, E, Kind4<T, S, R, E, A>>,
   ) => Kind4<T, S, R, E, A>
 }
 
-export interface Flatten5<T extends HKT5> {
+export interface Flatten5<T extends HKT5> extends Covariant5<T> {
   readonly flatten: <U, S, R, E, A>(
     kind: Kind5<T, U, S, R, E, Kind5<T, U, S, R, E, A>>,
   ) => Kind5<T, U, S, R, E, A>
 }
 
-export interface Flatten6<T extends HKT6> {
+export interface Flatten6<T extends HKT6> extends Covariant6<T> {
   readonly flatten: <V, U, S, R, E, A>(
     kind: Kind6<T, V, U, S, R, E, Kind6<T, V, U, S, R, E, A>>,
   ) => Kind6<T, V, U, S, R, E, A>
 }
 
-export interface Flatten7<T extends HKT7> {
+export interface Flatten7<T extends HKT7> extends Covariant7<T> {
   readonly flatten: <W, V, U, S, R, E, A>(
     kind: Kind7<T, W, V, U, S, R, E, Kind7<T, W, V, U, S, R, E, A>>,
   ) => Kind7<T, W, V, U, S, R, E, A>
 }
 
-export interface Flatten8<T extends HKT8> {
+export interface Flatten8<T extends HKT8> extends Covariant8<T> {
   readonly flatten: <X, W, V, U, S, R, E, A>(
     kind: Kind8<T, X, W, V, U, S, R, E, Kind8<T, X, W, V, U, S, R, E, A>>,
   ) => Kind8<T, X, W, V, U, S, R, E, A>
 }
 
-export interface Flatten9<T extends HKT9> {
+export interface Flatten9<T extends HKT9> extends Covariant9<T> {
   readonly flatten: <Y, X, W, V, U, S, R, E, A>(
     kind: Kind9<T, Y, X, W, V, U, S, R, E, Kind9<T, Y, X, W, V, U, S, R, E, A>>,
   ) => Kind9<T, Y, X, W, V, U, S, R, E, A>
 }
 
-export interface Flatten10<T extends HKT10> {
+export interface Flatten10<T extends HKT10> extends Covariant10<T> {
   readonly flatten: <Z, Y, X, W, V, U, S, R, E, A>(
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, Kind10<T, Z, Y, X, W, V, U, S, R, E, A>>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, A>
