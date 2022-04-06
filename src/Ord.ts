@@ -1,6 +1,6 @@
 import type { Associative } from './Associative'
 import type { Eq } from './Eq'
-import type { Monoid } from './Monoid'
+import type { AssociativeIdentity } from './AssociativeIdentity'
 import { constant } from './function'
 
 export interface Ord<A> {
@@ -57,7 +57,7 @@ export const makeAssociative = <A = never>(): Associative<Ord<A>> => ({
     }),
 })
 
-export const makeMonoid = <A = never>(): Monoid<Ord<A>> => ({
+export const makeAssociativeIdentity = <A = never>(): AssociativeIdentity<Ord<A>> => ({
   concat: makeAssociative<A>().concat,
   id: Static,
 })

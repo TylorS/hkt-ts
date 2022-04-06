@@ -1,4 +1,4 @@
 import { Inverse } from './Inverse'
-import { Monoid } from './Monoid'
+import { AssociativeIdentity } from './AssociativeIdentity'
 
-export interface Group<A> extends Monoid<A>, Inverse<A> {}
+export interface Group<A> extends AssociativeIdentity<A>, Inverse<A> {}

@@ -2,7 +2,7 @@ import * as Associative from './Associative'
 import { Debug } from './Debug'
 import { Eq, fromEquals } from './Eq'
 import { Just, Maybe, Nothing } from './Maybe'
-import { Ord, makeMonoid } from './Ord'
+import { Ord, makeAssociativeIdentity } from './Ord'
 import { identity, pipe } from './function'
 
 /**
@@ -265,7 +265,7 @@ export const sortBy = <B>(
   ords: ReadonlyArray<Ord<B>>,
 ): (<A extends B>(as: NonEmptyArray<A>) => NonEmptyArray<A>) => {
   if (isNonEmpty(ords)) {
-    const M = makeMonoid<B>()
+    const M = makeAssociativeIdentity<B>()
 
     return sort(ords.reduce(M.concat, M.id))
   }
