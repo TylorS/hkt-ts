@@ -1,7 +1,7 @@
 import * as C from './Concat'
 import * as Ord from './Ord'
 
-// Semigroup represents a concatenation that MUST be associatve.
+// Associative represents a concatenation that MUST be associatve.
 export type Associative<A> = C.Concat<A>
 
 export const constant = <A>(value: A): Associative<A> => ({
@@ -18,22 +18,24 @@ export const max = <A>(O: Ord.Ord<A>): Associative<A> => ({
 
 export const reverse: <A>(S: Associative<A>) => Associative<A> = C.reverse
 
-export const struct = <A>(semigroups: { readonly [K in keyof A]: Associative<A[K]> }): Associative<{
+export const struct = <A>(associatives: {
+  readonly [K in keyof A]: Associative<A[K]>
+}): Associative<{
   readonly [K in keyof A]: A[K]
 }> => ({
   concat: (first, second) => {
     const r: A = {} as any
-    for (const k in semigroups) {
-      r[k] = semigroups[k].concat(first[k], second[k])
+    for (const k in associatives) {
+      r[k] = associatives[k].concat(first[k], second[k])
     }
     return r
   },
 })
 
 export const tuple = <A extends ReadonlyArray<unknown>>(
-  ...semigroups: { readonly [K in keyof A]: Associative<A[K]> }
+  ...associatives: { readonly [K in keyof A]: Associative<A[K]> }
 ): Associative<Readonly<A>> => ({
-  concat: (first, second) => semigroups.map((s, i) => s.concat(first[i], second[i])) as any,
+  concat: (first, second) => associatives.map((s, i) => s.concat(first[i], second[i])) as any,
 })
 
 export const intercalate =

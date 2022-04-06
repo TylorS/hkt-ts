@@ -46,7 +46,7 @@ export const contramap =
   (eq: Eq<A>): Eq<B> =>
     fromEquals((a, b) => eq.equals(f(a), f(b)))
 
-export const makeSemigroup = <A>(): Associative<Eq<A>> => ({
+export const makeAssociative = <A>(): Associative<Eq<A>> => ({
   concat: (x, y) => fromEquals((a, b) => x.equals(a, b) && y.equals(a, b)),
 })
 
