@@ -170,6 +170,8 @@ export function generateHktPlaceholders(p: HKTPlaceholder, context: Context, pri
   const position = context.positions.get(p.type.id)!
   const multiple = context.lengths.size > 1
 
+  console.log(existing)
+
   if (!length || length === 0) {
     return []
   }
