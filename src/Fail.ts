@@ -27,7 +27,7 @@ export function runWith<G extends Eff.Eff>(
   return Eff.returnHandler(
     'Fail',
     g,
-    (instr, exit) => exit(Left(instr.input)),
+    (instr, exit) => Eff.fromLazy(() => exit(Left(instr.input))),
     (a) => Eff.of(Right(a)),
   )
 }
