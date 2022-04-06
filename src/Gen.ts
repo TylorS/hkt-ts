@@ -1,8 +1,12 @@
-export interface Gen<Y extends { readonly tag: string }, R, N = unknown> {
+export interface Gen<
+  Y extends { readonly tag: unknown } = { readonly tag: unknown },
+  R = any,
+  N = unknown,
+> {
   readonly [Symbol.iterator]: () => Generator<Y, R, N>
 }
 
-export function Gen<Y extends { readonly tag: string }, R, N>(
+export function Gen<Y extends { readonly tag: unknown }, R, N>(
   f: () => Generator<Y, R, N>,
 ): Gen<Y, R, N> {
   return {
@@ -24,7 +28,7 @@ export type NextOf<T> = [T] extends [Gen<never, any, infer N>]
   ? N
   : never
 
-export function iterator<Y extends { readonly tag: string }, R, N>(
+export function iterator<Y extends { readonly tag: unknown }, R, N>(
   gen: Gen<Y, R, N>,
 ): Generator<Y, R, N> {
   return gen[Symbol.iterator]()

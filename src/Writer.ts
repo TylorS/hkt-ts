@@ -46,33 +46,35 @@ export function run<W, A>(writer: Writer<W, A>): WriterTuple<W, A> {
 }
 
 export function runWith<W>() {
-  return function* <G extends Gen.Gen<{ readonly tag: string }, any>>(
+  return function <G extends Gen.Gen>(
     writer: G,
   ): Gen.Gen<Exclude<Gen.YieldOf<G>, WriterInstruction<W>>, WriterTuple<W, Gen.ReturnOf<G>>> {
-    const i = Gen.iterator(writer)
-    const logs: Array<W> = []
-    let result = i.next()
+    return Gen.Gen(function* () {
+      const i = Gen.iterator(writer)
+      const logs: Array<W> = []
+      let result = i.next()
 
-    while (!result.done) {
-      const instr = result.value
+      while (!result.done) {
+        const instr = result.value
 
-      switch (instr.tag) {
-        case 'Writer/Write': {
-          logs.push((instr as Write<W>).log)
-          result = i.next(undefined)
-          break
-        }
-        case 'Writer/GetLogs': {
-          result = i.next(logs)
+        switch (instr.tag) {
+          case 'Writer/Write': {
+            logs.push((instr as Write<W>).log)
+            result = i.next(undefined)
+            break
+          }
+          case 'Writer/GetLogs': {
+            result = i.next(logs)
 
-          break
-        }
-        default: {
-          result = i.next(yield instr as any)
+            break
+          }
+          default: {
+            result = i.next(yield instr as any)
+          }
         }
       }
-    }
 
-    return [logs, result.value] as const
+      return [logs, result.value] as const
+    })
   }
 }

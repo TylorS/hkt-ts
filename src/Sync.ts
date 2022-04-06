@@ -64,7 +64,7 @@ export function ap<A>(value: Sync<A>) {
     })
 }
 
-export function* runWith<G extends Gen.Gen<{ readonly tag: string }, any>>(
+export function* runWith<G extends Gen.Gen>(
   g: G,
 ): Gen.Gen<Exclude<Gen.YieldOf<G>, SyncInstruction<any>>, Gen.ReturnOf<G>> {
   const i = Gen.iterator(g)

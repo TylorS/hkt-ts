@@ -24,7 +24,7 @@ export function run<S, R>(initial: S, resources: R) {
 }
 
 export function runWith<S, R>(initial: S, resources: R) {
-  return <G extends Gen.Gen<{ readonly tag: string }, any>>(pure: G) =>
+  return <G extends Gen.Gen>(pure: G) =>
     pipe(
       pure,
       Fail.runWith<Fail.FailureOf<G>>(),

@@ -55,37 +55,39 @@ export function run<S>(initial: S) {
 }
 
 export function runWith<S>(initial: S) {
-  return function* <G extends Gen.Gen<{ readonly tag: string }, any>>(
+  return function <G extends Gen.Gen>(
     g: G,
   ): Gen.Gen<
     Exclude<Gen.YieldOf<G>, StateInstruction<S, any>>,
     readonly [updated: S, computed: Gen.ReturnOf<G>]
   > {
-    const i = Gen.iterator(g)
-    let result = i.next()
-    let current = initial
+    return Gen.Gen(function* () {
+      const i = Gen.iterator(g)
+      let result = i.next()
+      let current = initial
 
-    while (!result.done) {
-      const instr = result.value
+      while (!result.done) {
+        const instr = result.value
 
-      switch (instr.tag) {
-        case 'State/Modify': {
-          const [s, a] = (instr as Modify<S, any>).modify(current)
+        switch (instr.tag) {
+          case 'State/Modify': {
+            const [s, a] = (instr as Modify<S, any>).modify(current)
 
-          current = s
-          result = i.next(a)
-          break
-        }
-        case 'State/Get': {
-          result = i.next(current)
-          break
-        }
-        default: {
-          result = i.next(yield instr as any)
+            current = s
+            result = i.next(a)
+            break
+          }
+          case 'State/Get': {
+            result = i.next(current)
+            break
+          }
+          default: {
+            result = i.next(yield instr as any)
+          }
         }
       }
-    }
 
-    return [current, result.value]
+      return [current, result.value]
+    })
   }
 }

@@ -43,26 +43,28 @@ export function run<R>(resources: R) {
 }
 
 export function runWith<R>(resources: R) {
-  return function* <G extends Gen.Gen<{ readonly tag: string }, any>>(
+  return function <G extends Gen.Gen>(
     g: G,
   ): Gen.Gen<Exclude<Gen.YieldOf<G>, ReaderInstruction<R, any>>, Gen.ReturnOf<G>> {
-    const i = Gen.iterator(g)
-    let result = i.next()
+    return Gen.Gen(function* () {
+      const i = Gen.iterator(g)
+      let result = i.next()
 
-    while (!result.done) {
-      const instr = result.value
+      while (!result.done) {
+        const instr = result.value
 
-      switch (instr.tag) {
-        case 'Asks': {
-          result = i.next((instr as ReaderInstruction<R, any>).asks(resources))
-          break
-        }
-        default: {
-          result = i.next(yield instr as any)
+        switch (instr.tag) {
+          case 'Asks': {
+            result = i.next((instr as ReaderInstruction<R, any>).asks(resources))
+            break
+          }
+          default: {
+            result = i.next(yield instr as any)
+          }
         }
       }
-    }
 
-    return result.value
+      return result.value
+    })
   }
 }

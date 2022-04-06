@@ -1,4 +1,4 @@
-import { Either, Left, Right } from './Either'
+import { Either, Left, Right, isLeft } from './Either'
 import * as Gen from './Gen'
 import { Include } from './common'
 import { pipe } from './function'
@@ -29,22 +29,34 @@ export function run<E, A>(fail: Fail<E, A>) {
 }
 
 export function runWith<E>() {
-  return function* <G extends Gen.Gen<{ readonly tag: string } | FailInstruction<E>, any>>(
+  return function <G extends Gen.Gen>(
     g: G,
   ): Gen.Gen<Exclude<Gen.YieldOf<G>, FailInstruction<E>>, Either<E, Gen.ReturnOf<G>>> {
-    const i = Gen.iterator(g)
-    let result = i.next()
+    return Gen.Gen(function* () {
+      const i = Gen.iterator(g)
+      let result = i.next()
 
-    while (!result.done) {
-      const instr = result.value
+      while (!result.done) {
+        const instr = result.value
 
-      if (instr.tag === 'Fail') {
-        return Left((instr as FailInstruction<any>).error)
-      } else {
-        result = i.next(yield instr as any)
+        if (instr.tag === 'Fail') {
+          return Left((instr as FailInstruction<any>).error)
+        } else {
+          result = i.next(yield instr as any)
+        }
       }
+
+      return Right(result.value)
+    })
+  }
+}
+
+export function fromEither<E, A>(either: Either<E, A>): Fail<E, A> {
+  return Fail(function* () {
+    if (isLeft(either)) {
+      return yield* fail(either.value)
     }
 
-    return Right(result.value)
-  }
+    return either.value
+  })
 }
