@@ -1,9 +1,16 @@
-import { Interface } from '../AST'
-
 import { node as AssociativeCompose } from './AssociativeCompose'
-import { node as Identity } from './Identity'
-import { hkt } from './common'
+import {
+  aTypeParam,
+  fnLabeled_,
+  interface_,
+  kindWithDefaults_,
+  placeholderWithDefaults,
+} from './common'
 
-export const node = new Interface('Category', [hkt], [], [Identity, AssociativeCompose])
+export const node = interface_(
+  'Category',
+  [fnLabeled_('id', [aTypeParam, placeholderWithDefaults], [], kindWithDefaults_([aTypeParam]))],
+  [AssociativeCompose],
+)
 
 export const Category = node

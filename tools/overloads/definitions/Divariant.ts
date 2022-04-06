@@ -12,7 +12,7 @@ import {
   placeholder,
 } from './common'
 
-export const node = interface_('Bivariant', [
+export const node = interface_('Divariant', [
   fnLabeled_(
     'dimap',
     [aTypeParam, bTypeParam, cTypeParam, dTypeParam],

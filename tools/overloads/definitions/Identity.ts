@@ -1,7 +1,7 @@
-import { aTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common'
+import { Interface } from '../AST'
 
-export const node = interface_('Identity', [
-  fnLabeled_('id', [aTypeParam, placeholder], [], kind_([aTypeParam])),
-])
+import { aTypeParam } from './common'
+
+export const node = new Interface('Identity', [aTypeParam], [aTypeParam.labeled('id')])
 
 export const Identity = node

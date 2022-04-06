@@ -20,56 +20,56 @@ import {
 } from './HKT'
 import { Unary } from './function'
 
-export interface Bivariant<T extends HKT2> {
+export interface Divariant<T extends HKT2> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
   ) => (kind: Kind2<T, B, C>) => Kind2<T, A, D>
 }
 
-export interface Bivariant2<T extends HKT2> {
+export interface Divariant2<T extends HKT2> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
   ) => (kind: Kind2<T, B, C>) => Kind2<T, A, D>
 }
 
-export interface Bivariant3<T extends HKT3> {
+export interface Divariant3<T extends HKT3> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
   ) => <R>(kind: Kind3<T, R, B, C>) => Kind3<T, R, A, D>
 }
 
-export interface Bivariant4<T extends HKT4> {
+export interface Divariant4<T extends HKT4> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
   ) => <S, R>(kind: Kind4<T, S, R, B, C>) => Kind4<T, S, R, A, D>
 }
 
-export interface Bivariant5<T extends HKT5> {
+export interface Divariant5<T extends HKT5> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
   ) => <U, S, R>(kind: Kind5<T, U, S, R, B, C>) => Kind5<T, U, S, R, A, D>
 }
 
-export interface Bivariant6<T extends HKT6> {
+export interface Divariant6<T extends HKT6> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
   ) => <V, U, S, R>(kind: Kind6<T, V, U, S, R, B, C>) => Kind6<T, V, U, S, R, A, D>
 }
 
-export interface Bivariant7<T extends HKT7> {
+export interface Divariant7<T extends HKT7> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
   ) => <W, V, U, S, R>(kind: Kind7<T, W, V, U, S, R, B, C>) => Kind7<T, W, V, U, S, R, A, D>
 }
 
-export interface Bivariant8<T extends HKT8> {
+export interface Divariant8<T extends HKT8> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
@@ -78,7 +78,7 @@ export interface Bivariant8<T extends HKT8> {
   ) => Kind8<T, X, W, V, U, S, R, A, D>
 }
 
-export interface Bivariant9<T extends HKT9> {
+export interface Divariant9<T extends HKT9> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
@@ -87,7 +87,7 @@ export interface Bivariant9<T extends HKT9> {
   ) => Kind9<T, Y, X, W, V, U, S, R, A, D>
 }
 
-export interface Bivariant10<T extends HKT10> {
+export interface Divariant10<T extends HKT10> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,

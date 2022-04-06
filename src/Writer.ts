@@ -1,80 +1,58 @@
-import * as Gen from './Gen'
+import * as Eff from './Eff'
 import { Include } from './common'
-import { pipe } from './function'
 
-export interface Writer<W, A> extends Gen.Gen<WriterInstruction<W>, A> {}
+export interface Writer<W, A> extends Eff.Eff<WriterInstruction<W>, A> {}
 
-export const Writer = Gen.Gen as <G extends Generator<WriterInstruction<any>, any>>(
+export const Writer = Eff.Eff as <G extends Generator<WriterInstruction<any>, any>>(
   f: () => G,
-) => Writer<LogOf<G>, Gen.ReturnOf<G>>
+) => Writer<LogOf<G>, Eff.ReturnOf<G>>
 
-export type LogOf<T> = [Include<Gen.YieldOf<T>, WriterInstruction<any>>] extends [
+export type LogOf<T> = [Include<Eff.YieldOf<T>, WriterInstruction<any>>] extends [
   WriterInstruction<infer L>,
 ]
   ? L
   : never
 
-export type OutputOf<T> = Gen.ReturnOf<T>
+export type OutputOf<T> = Eff.ReturnOf<T>
 
-export type WriterInstruction<W> = Write<W> | Get
+export type WriterInstruction<W> = Write<W> | Get<W>
 
-export interface Write<W> {
-  readonly tag: 'Writer/Write'
-  readonly log: W
-}
+export class Write<W> extends Eff.instr('Writer/Write')<W, void> {}
 
 export function write<W>(log: W): Writer<W, void> {
-  return Writer(function* () {
-    yield { tag: 'Writer/Write', log }
-  })
+  return new Write(log)
 }
 
-export interface Get {
-  readonly tag: 'Writer/GetLogs'
-}
+export class Get<W> extends Eff.instr('Writer/GetLogs')<void, ReadonlyArray<W>> {}
 
 export function get<W>(): Writer<W, ReadonlyArray<W>> {
-  return Writer(function* () {
-    return (yield { tag: 'Writer/GetLogs' }) as ReadonlyArray<W>
-  }) as Writer<W, ReadonlyArray<W>>
+  return new Get()
 }
 
 export type WriterTuple<W, A> = readonly [logs: ReadonlyArray<W>, computed: A]
 
-export function run<W, A>(writer: Writer<W, A>): WriterTuple<W, A> {
-  return pipe(writer, runWith<W>(), Gen.iterator).next().value
-}
+export function runWith<Y extends Eff.AnyTagged, R>(
+  writer: Eff.Eff<Y, R>,
+): Eff.Eff<
+  Exclude<Y, WriterInstruction<LogOf<typeof writer>>>,
+  WriterTuple<LogOf<typeof writer>, Eff.ReturnOf<typeof writer>>
+> {
+  return Eff.handleWith(writer, function* (stepper) {
+    const logs: Array<LogOf<typeof writer>> = []
 
-export function runWith<W>() {
-  return function <G extends Gen.Gen>(
-    writer: G,
-  ): Gen.Gen<Exclude<Gen.YieldOf<G>, WriterInstruction<W>>, WriterTuple<W, Gen.ReturnOf<G>>> {
-    return Gen.Gen(function* () {
-      const i = Gen.iterator(writer)
-      const logs: Array<W> = []
-      let result = i.next()
+    return yield* Eff.withInstructions(
+      stepper,
+      (y) => y.tag === Write.tag || y.tag === Get.tag,
+      (y) => {
+        if (y.tag === Write.tag) {
+          logs.push(y.input)
 
-      while (!result.done) {
-        const instr = result.value
-
-        switch (instr.tag) {
-          case 'Writer/Write': {
-            logs.push((instr as Write<W>).log)
-            result = i.next(undefined)
-            break
-          }
-          case 'Writer/GetLogs': {
-            result = i.next(logs)
-
-            break
-          }
-          default: {
-            result = i.next(yield instr as any)
-          }
+          return undefined
         }
-      }
 
-      return [logs, result.value] as const
-    })
-  }
+        return logs
+      },
+      (r) => [logs, r] as const,
+    )
+  })
 }

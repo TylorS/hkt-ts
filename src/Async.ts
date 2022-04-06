@@ -1,12 +1,12 @@
 import { Disposable, DisposableQueue, withRemove } from './Disposable'
-import * as Gen from './Gen'
+import * as Eff from './Eff'
 import { pipe } from './function'
 
 /**
  * Async is a data-type for asynchronously acquiring some value once, with
  * the possiblity of being canceled.
  */
-export interface Async<A> extends Gen.Gen<AsyncInstruction<any>, A> {}
+export interface Async<A> extends Eff.Eff<AsyncInstruction<any>, A> {}
 
 export interface AsyncInstruction<A> {
   readonly tag: 'Async'
@@ -17,7 +17,7 @@ export interface AsyncCallback<A> {
   (cb: (value: A) => void): Disposable
 }
 
-export const Async = Gen.Gen as <A>(f: () => Generator<AsyncInstruction<any>, A>) => Async<A>
+export const Async = Eff.Eff as <A>(f: () => Generator<AsyncInstruction<any>, A>) => Async<A>
 
 /**
  * Constructor your own Async Instance
@@ -51,7 +51,7 @@ function once<A>(async: (cb: (value: A) => void) => Disposable) {
 
 export function interpret<A>(async: Async<A>): AsyncCallback<A> {
   return (cb) => {
-    const generator = Gen.iterator(async)
+    const generator = Eff.iterator(async)
     const disposable = new DisposableQueue()
 
     interpretAsync(generator, generator.next(), cb, disposable)

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import * as Eff from '../../src/Eff'
 import * as S from '../../src/Sync'
 
 import {
@@ -24,8 +25,15 @@ import { hktParamNames } from './common'
 import { findHKTParams } from './findHKTParams'
 import { findPossibilities } from './findPossibilities'
 
+const emptyContext = (node: ParentNode): Context => ({
+  tag: node.tag,
+  lengths: new Map(),
+  positions: new Map(),
+  existing: new Map(),
+})
+
 export function generateOverloads(ast: ParentNode) {
-  return S.run(generateOverloadsSafe(ast))
+  return Eff.run(S.runWith(generateOverloadsSafe(ast)))
 }
 
 export function generateOverloadsSafe(
@@ -55,6 +63,12 @@ export function generateFunctionSignatureOverloads(signature: FunctionSignature)
       output.push([yield* generateFunctionSignature(signature, context), context])
     }
 
+    if (possiblilties.length === 0) {
+      const context: Context = emptyContext(signature)
+
+      output.push([yield* generateFunctionSignature(signature, context), context])
+    }
+
     return output
   })
 }
@@ -71,6 +85,12 @@ export function generateInterfaceOverloads(node: Interface) {
       output.push([yield* generateInterface(node, context), context])
     }
 
+    if (possiblilties.length === 0) {
+      const context: Context = emptyContext(node)
+
+      output.push([yield* generateInterface(node, context), context])
+    }
+
     return output
   })
 }
@@ -83,6 +103,12 @@ export function generateTypeAliasOverloads(node: TypeAlias) {
 
     for (const possiblilty of possiblilties) {
       const context = buildContext(node, possiblilty)
+
+      output.push([yield* generateTypeAlias(node, context), context])
+    }
+
+    if (possiblilties.length === 0) {
+      const context: Context = emptyContext(node)
 
       output.push([yield* generateTypeAlias(node, context), context])
     }
