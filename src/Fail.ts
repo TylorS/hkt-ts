@@ -24,8 +24,7 @@ export function runWith<G extends Eff.Eff>(
   Exclude<Eff.YieldOf<G>, FailInstruction<FailureOf<G>>>,
   Either<FailureOf<G>, Eff.ReturnOf<G>>
 > {
-  return Eff.returnHandler(
-    'Fail',
+  return FailInstruction.returnHandler(
     g,
     (instr, exit) => Eff.fromLazy(() => exit(Left(instr.input))),
     (a) => Eff.of(Right(a)),

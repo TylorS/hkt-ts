@@ -76,6 +76,13 @@ export const instr = <T extends string>(tag: T) =>
       initialize: () => S,
       f: (state: S, y: EffInstruction<T, I, O>) => Eff<Y2, readonly [S, unknown]>,
     ) => stateHandler(tag, initialize, f)
+
+    static returnHandler = <E extends Eff, I, O, Y2 extends AnyTagged, Y3 extends AnyTagged, R2>(
+      eff: E,
+      f: (y: EffInstruction<T, I, O>, exit: (r: R2) => never) => Eff<Y2>,
+      onReturn: (r: ReturnOf<E>) => Eff<Y3, R2>,
+    ): Eff<Exclude<YieldOf<E> | Y2 | Y3, EffInstruction<T, I, O>>, R2> =>
+      returnHandler(tag, eff, f, onReturn)
   }
 
 export type Extract<E, Y> = Include<YieldOf<E>, Y>

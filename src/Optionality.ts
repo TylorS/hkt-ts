@@ -18,8 +18,7 @@ export const Just = flow(Maybe.Just, fromMaybe)
 export function runWith<G extends Eff.Eff>(
   g: G,
 ): Eff.Eff<Exclude<Eff.YieldOf<G>, OptionalityInstruction<any>>, Maybe.Maybe<Eff.ReturnOf<G>>> {
-  return Eff.returnHandler(
-    'Optionality',
+  return OptionalityInstruction.returnHandler(
     g,
     (instr, exit) =>
       Eff.fromLazy(() => {
