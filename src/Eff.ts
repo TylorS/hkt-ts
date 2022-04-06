@@ -120,8 +120,10 @@ export const returnHandler = <
   Eff(function* () {
     const i = iterator(eff)
     let result = i.next()
-    let value: Maybe<R2> = Nothing
-    const exit = (r: R2) => (value = Just(r))
+    let value = Nothing as Maybe<R2>
+    const exit = (r: R2) => {
+      value = Just(r)
+    }
 
     while (!result.done && isNothing(value)) {
       const instr = result.value
@@ -139,9 +141,9 @@ export const returnHandler = <
       }
     }
 
-    return isJust(value)
-      ? (value as Just<R2>).value
-      : yield* onReturn((result as IteratorReturnResult<ReturnOf<E>>).value)
+    return isNothing(value)
+      ? yield* onReturn((result as IteratorReturnResult<ReturnOf<E>>).value)
+      : value.value
   })
 
 export const stateHandler =
