@@ -1,4 +1,5 @@
 import * as Eff from './Eff'
+import { Lazy } from './function'
 
 export interface State<S, A> extends Eff.Eff<Modify<S, any>, A> {}
 
@@ -28,9 +29,8 @@ export function get<S>(): State<S, S> {
 
 export type StateTuple<S, A> = readonly [updated: S, computed: A]
 
-export function runWith<S>(initial: S) {
-  return Modify.stateHandler(
-    (): S => initial,
-    (current: S, instr: Modify<S, any>) => Eff.fromLazy(() => instr.input(current)),
+export function runWith<S>(initial: Lazy<S>) {
+  return Modify.stateHandler(initial, (current: S, instr: Modify<S, any>) =>
+    Eff.fromLazy(() => instr.input(current)),
   )
 }
