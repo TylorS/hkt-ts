@@ -64,8 +64,6 @@ export function buildContextFromInterface(
   const positions = new Map<symbol, number>(hkts.map((hkt, i) => [hkt.id, i + 1] as const))
   const existing = findExistingParameters(node)
 
-  console.log(existing)
-
   return {
     tag: node.tag,
     lengths,
