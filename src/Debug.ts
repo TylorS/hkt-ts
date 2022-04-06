@@ -28,7 +28,6 @@ export const tuple = <A extends ReadonlyArray<unknown>>(
 
 export const sum =
   <A extends Readonly<Record<PropertyKey, any>>>() =>
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   <T extends keyof A>(tag: T) =>
   (eqs: SumDebugs<A, T>): Debug<A> => ({
     debug: (a) => (eqs as any)[a[tag]].debug(a),
