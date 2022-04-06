@@ -1,9 +1,9 @@
 import type { Associative } from './Associative'
-import type { Eq } from './Eq'
 import type { AssociativeIdentity } from './AssociativeIdentity'
+import type { Eq } from './Eq'
 import { constant } from './function'
 
-export interface Ord<A> {
+export interface Ord<A> extends Eq<A> {
   readonly compare: (first: A, second: A) => Ordering
 }
 
@@ -13,13 +13,8 @@ export type Ordering = -1 | 0 | 1
 
 export function fromCompare<A>(compare: Ord<A>['compare']): Ord<A> {
   return {
+    equals: (a, b) => compare(a, b) === 0,
     compare,
-  }
-}
-
-export function makeEq<A>(O: Ord<A>): Eq<A> {
-  return {
-    equals: (a, b) => O.compare(a, b) === 0,
   }
 }
 
