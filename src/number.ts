@@ -2,6 +2,8 @@ import { Associative } from './Associative'
 import { AssociativeIdentity } from './AssociativeIdentity'
 import * as B from './Bounded'
 import { Branded } from './Branded'
+import * as Commutative from './Commutative'
+import { CommutativeIdentity } from './CommutativeIdentity'
 import { Concat } from './Concat'
 import * as D from './Debug'
 import * as E from './Eq'
@@ -51,12 +53,22 @@ export const AssociativeSum: Associative<number> = {
   concat: (first, second) => first + second,
 }
 
+export const CommutativeSum: Commutative.Commutative<number> = {
+  ...AssociativeSum,
+  commute: AssociativeSum.concat,
+}
+
 export const AssociativeProduct: Associative<number> = {
   concat: (first, second) => first * second,
 }
 
 export const AssociativeIdentitySum: AssociativeIdentity<number> = {
-  concat: AssociativeSum.concat,
+  ...AssociativeSum,
+  id: 0,
+}
+
+export const CommutativeIdentitySum: CommutativeIdentity<number> = {
+  ...CommutativeSum,
   id: 0,
 }
 
