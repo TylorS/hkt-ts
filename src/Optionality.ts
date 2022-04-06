@@ -21,13 +21,14 @@ export function runWith<G extends Eff.Eff>(
   return Eff.returnHandler(
     'Optionality',
     g,
-    (instr, exit) => {
-      if (Maybe.isNothing(instr.input)) {
-        return exit(Maybe.Nothing)
-      }
+    (instr, exit) =>
+      Eff.fromLazy(() => {
+        if (Maybe.isNothing(instr.input)) {
+          return exit(Maybe.Nothing)
+        }
 
-      return instr.input.value
-    },
+        return instr.input.value
+      }),
     (a) => Eff.of(Maybe.Just(a)),
   )
 }
