@@ -2,5 +2,5 @@
   "extends": "./tsconfig.base.json",
   "include": [
     "src"
-, "tools/overloads/definitions/IdentityBoth.ts"  ]
+, "tools/overloads/definitions/IdentityBoth.ts", "tools/overloads/definitions/Zero.ts"  ]
 }
