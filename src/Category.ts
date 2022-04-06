@@ -1,5 +1,4 @@
 import {
-  AssociativeCompose,
   AssociativeCompose10,
   AssociativeCompose2,
   AssociativeCompose3,
@@ -32,25 +31,26 @@ import {
   Params,
 } from './HKT'
 
-export interface Category<T extends HKT2> extends AssociativeCompose<T> {
-  readonly id: <A, E = T['defaults'][Params.E]>() => Kind2<T, E, A>
+export interface Category<T extends HKT2> extends AssociativeCompose2<T> {
+  readonly id: <A>() => Kind2<T, A, A>
 }
 
 export interface Category2<T extends HKT2> extends AssociativeCompose2<T> {
-  readonly id: <A, E = T['defaults'][Params.E]>() => Kind2<T, E, A>
+  readonly id: <A>() => Kind2<T, A, A>
 }
 
 export interface Category3<T extends HKT3> extends AssociativeCompose3<T> {
-  readonly id: <A, R = T['defaults'][Params.R], E = T['defaults'][Params.E]>() => Kind3<T, R, E, A>
+  readonly id: <A, R = T['defaults'][Params.R]>() => Kind3<T, R, A, A>
 }
 
 export interface Category4<T extends HKT4> extends AssociativeCompose4<T> {
-  readonly id: <
+  readonly id: <A, S = T['defaults'][Params.S], R = T['defaults'][Params.R]>() => Kind4<
+    T,
+    S,
+    R,
     A,
-    S = T['defaults'][Params.S],
-    R = T['defaults'][Params.R],
-    E = T['defaults'][Params.E],
-  >() => Kind4<T, S, R, E, A>
+    A
+  >
 }
 
 export interface Category5<T extends HKT5> extends AssociativeCompose5<T> {
@@ -59,8 +59,7 @@ export interface Category5<T extends HKT5> extends AssociativeCompose5<T> {
     U = T['defaults'][Params.U],
     S = T['defaults'][Params.S],
     R = T['defaults'][Params.R],
-    E = T['defaults'][Params.E],
-  >() => Kind5<T, U, S, R, E, A>
+  >() => Kind5<T, U, S, R, A, A>
 }
 
 export interface Category6<T extends HKT6> extends AssociativeCompose6<T> {
@@ -70,8 +69,7 @@ export interface Category6<T extends HKT6> extends AssociativeCompose6<T> {
     U = T['defaults'][Params.U],
     S = T['defaults'][Params.S],
     R = T['defaults'][Params.R],
-    E = T['defaults'][Params.E],
-  >() => Kind6<T, V, U, S, R, E, A>
+  >() => Kind6<T, V, U, S, R, A, A>
 }
 
 export interface Category7<T extends HKT7> extends AssociativeCompose7<T> {
@@ -82,8 +80,7 @@ export interface Category7<T extends HKT7> extends AssociativeCompose7<T> {
     U = T['defaults'][Params.U],
     S = T['defaults'][Params.S],
     R = T['defaults'][Params.R],
-    E = T['defaults'][Params.E],
-  >() => Kind7<T, W, V, U, S, R, E, A>
+  >() => Kind7<T, W, V, U, S, R, A, A>
 }
 
 export interface Category8<T extends HKT8> extends AssociativeCompose8<T> {
@@ -95,8 +92,7 @@ export interface Category8<T extends HKT8> extends AssociativeCompose8<T> {
     U = T['defaults'][Params.U],
     S = T['defaults'][Params.S],
     R = T['defaults'][Params.R],
-    E = T['defaults'][Params.E],
-  >() => Kind8<T, X, W, V, U, S, R, E, A>
+  >() => Kind8<T, X, W, V, U, S, R, A, A>
 }
 
 export interface Category9<T extends HKT9> extends AssociativeCompose9<T> {
@@ -109,8 +105,7 @@ export interface Category9<T extends HKT9> extends AssociativeCompose9<T> {
     U = T['defaults'][Params.U],
     S = T['defaults'][Params.S],
     R = T['defaults'][Params.R],
-    E = T['defaults'][Params.E],
-  >() => Kind9<T, Y, X, W, V, U, S, R, E, A>
+  >() => Kind9<T, Y, X, W, V, U, S, R, A, A>
 }
 
 export interface Category10<T extends HKT10> extends AssociativeCompose10<T> {
@@ -124,6 +119,5 @@ export interface Category10<T extends HKT10> extends AssociativeCompose10<T> {
     U = T['defaults'][Params.U],
     S = T['defaults'][Params.S],
     R = T['defaults'][Params.R],
-    E = T['defaults'][Params.E],
-  >() => Kind10<T, Z, Y, X, W, V, U, S, R, E, A>
+  >() => Kind10<T, Z, Y, X, W, V, U, S, R, A, A>
 }

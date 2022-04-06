@@ -9,7 +9,14 @@ import {
 
 export const node = interface_(
   'Category',
-  [fnLabeled_('id', [aTypeParam, placeholderWithDefaults], [], kindWithDefaults_([aTypeParam]))],
+  [
+    fnLabeled_(
+      'id',
+      [aTypeParam, placeholderWithDefaults],
+      [],
+      kindWithDefaults_([aTypeParam, aTypeParam]),
+    ),
+  ],
   [AssociativeCompose],
 )
 

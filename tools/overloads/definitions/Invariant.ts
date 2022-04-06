@@ -14,4 +14,4 @@ export const node = interface_('Invariant', [
   ),
 ])
 
-export const Covariant = node
+export const Invariant = node

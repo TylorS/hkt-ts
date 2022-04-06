@@ -1,5 +1,6 @@
 import type { Associative } from './Associative'
 import type { Eq } from './Eq'
+import type { Monoid } from './Monoid'
 import { constant } from './function'
 
 export interface Ord<A> {
@@ -47,13 +48,18 @@ export const contramap =
   (ord: Ord<B>): Ord<A> =>
     fromCompare((first, second) => ord.compare(f(first), f(second)))
 
-export const makeSemigroup = <A = never>(): Associative<Ord<A>> => ({
+export const makeAssociative = <A = never>(): Associative<Ord<A>> => ({
   concat: (first, second) =>
     fromCompare((a1, a2) => {
       const ox = first.compare(a1, a2)
 
       return ox !== 0 ? ox : second.compare(a1, a2)
     }),
+})
+
+export const makeMonoid = <A = never>(): Monoid<Ord<A>> => ({
+  concat: makeAssociative<A>().concat,
+  id: Static,
 })
 
 export const lt =
