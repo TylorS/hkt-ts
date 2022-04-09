@@ -3,18 +3,24 @@ import { join } from 'path'
 import { format } from 'prettier'
 import yargs from 'yargs'
 
+import { Eff, Sync, pipe } from '../../src'
+
 import { FunctionSignature, Interface } from './AST'
-import { generateOverloads } from './generateOverloads'
-import { printOverload } from './printOverload'
+import { generateOverloadsSafe } from './generateOverloads'
+import { printOverloadSafe } from './printOverload'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettierConfig = require('../../.prettierrc.js')
 
-const program = yargs(process.argv, process.cwd()).option('definition', {
-  alias: 'd',
-  type: 'string',
-  require: true,
-})
+const program = yargs(process.argv, process.cwd())
+  .option('definition', {
+    alias: 'd',
+    type: 'string',
+    require: true,
+  })
+  .option('noImports', {
+    type: 'boolean',
+  })
 
 const HKT_IMPORTS = `import {
   HKT,
@@ -41,7 +47,7 @@ const HKT_IMPORTS = `import {
 } from './HKT'`
 
 async function main() {
-  const { definition } = await program.argv
+  const { definition, noImports } = await program.argv
   const filePath = join(
     __dirname,
     'definitions',
@@ -51,13 +57,21 @@ async function main() {
   const { node } = require(filePath) as { node: FunctionSignature | Interface }
 
   console.log('Generating overloads...')
-  const overloads = generateOverloads(node)
-  const source =
-    HKT_IMPORTS +
-    '\n\n' +
-    overloads.map(([overload, context]) => printOverload(overload, context)).join('\n\n')
 
-  const output = format(source, prettierConfig) + '\n'
+  const main = Eff.Eff(function* () {
+    const overloads = yield* generateOverloadsSafe(node)
+    const printed = yield* pipe(
+      overloads,
+      Sync.forEach(([overload, context]) => printOverloadSafe(overload, context)),
+    )
+
+    const source = (noImports ? '' : HKT_IMPORTS + '\n\n') + printed.join('\n\n')
+
+    return source
+  })
+
+  const input = pipe(main, Sync.runWith, Eff.run)
+  const output = format(input, prettierConfig) + '\n'
 
   console.log(output + '\n')
 

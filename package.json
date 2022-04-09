@@ -8,13 +8,14 @@
   "typings": "esm/index.d.ts",
   "main:ts": "src/index.ts",
   "devDependencies": {
+    "@types/mocha": "^9.1.0",
     "@types/node": "^17.0.23",
     "@types/yargs": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "clipboardy": "2.3.0",
     "concurrently": "^6.5.1",
-    "esbuild": "^0.14.28",
+    "esbuild": "^0.14.34",
     "esbuild-register": "^3.3.2",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
@@ -28,13 +29,14 @@
     "prettier": "^2.6.1",
     "ts-node": "^10.7.0",
     "tslib": "^2.3.1",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "yargs": "^17.4.0"
   },
   "scripts": {
     "build:cjs": "rm -rf cjs && tsc -p ./tsconfig.json --module commonjs --outDir cjs",
     "build:esm": "rm -rf esm && tsc -p ./tsconfig.json --outDir esm",
     "build": "concurrently npm:build:esm npm:build:cjs",
-    "generate-overload": "ts-node -T -r tsconfig-paths/register ./tools/overloads/cli.ts",
+    "generate-overload": "node -r esbuild-register ./tools/overloads/cli.ts",
     "eslint": "eslint --ext .ts,.js,.json,.yaml --fix",
     "mocha": "mocha -r esbuild-register 'src/**/*.test.ts'",
     "test": "concurrenctly npm:eslint npm:mocha",

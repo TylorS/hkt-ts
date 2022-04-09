@@ -102,7 +102,7 @@ export function handler<T extends string, Y1 extends Tagged<T, any>, Y2 extends 
         if (instr.tag === tag) {
           result = i.next(yield* f(result.value as Y1))
         } else {
-          result = i.next((yield instr as any) as any)
+          result = i.next((yield instr as any) as Exclude<Y | Y2, Y1>)
         }
       }
 

@@ -66,13 +66,14 @@ export class FunctionSignature extends ast('FunctionSignature') {
   }
 }
 
-export class HKTParam extends ast('HKTParam') {
-  constructor(readonly name: string, readonly size = 0) {
-    super()
-  }
+export class HKTParam {
+  static tag = 'HKTParam' as const
+  readonly tag = 'HKTParam' as const
+
+  constructor(readonly id: symbol, readonly name: string, readonly size = 0) {}
 
   setSize(size: number) {
-    return new HKTParam(this.name, size)
+    return new HKTParam(this.id, this.name, size)
   }
 
   toPlaceholder(useDefaults = false) {

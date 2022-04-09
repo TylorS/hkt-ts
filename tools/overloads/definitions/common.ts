@@ -10,7 +10,7 @@ import {
   TypeParam,
 } from '../AST'
 
-export const hkt = new HKTParam('T')
+export const hkt = new HKTParam(Symbol('T'), 'T')
 export const placeholder = hkt.toPlaceholder()
 export const placeholderWithDefaults = hkt.toPlaceholder(true)
 

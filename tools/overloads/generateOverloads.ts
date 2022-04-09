@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { pipe } from '../../src'
 import * as Eff from '../../src/Eff'
 import * as S from '../../src/Sync'
 
@@ -20,26 +21,25 @@ import {
   TypeParam,
   Typeclass,
 } from './AST'
-import { Context, buildContext } from './Context'
+import { Context, buildContext, findPossibilities, mergeContexts } from './Context'
 import { hktParamNames } from './common'
 import { findHKTParams } from './findHKTParams'
-import { findPossibilities } from './findPossibilities'
 
 const emptyContext = (node: ParentNode): Context => ({
-  tag: node.tag,
+  parent: node,
   lengths: new Map(),
   positions: new Map(),
   existing: new Map(),
 })
 
 export function generateOverloads(ast: ParentNode) {
-  return Eff.run(S.runWith(generateOverloadsSafe(ast)))
+  return pipe(ast, generateOverloadsSafe, S.runWith, Eff.run)
 }
 
 export function generateOverloadsSafe(
-  ast: ParentNode,
+  ast: ParentNode | Labeled<ParentNode>,
 ): S.Sync<ReadonlyArray<readonly [ParentNode, Context]>> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     switch (ast.tag) {
       case FunctionSignature.tag:
         return (yield* generateFunctionSignatureOverloads(ast)).reverse()
@@ -47,24 +47,30 @@ export function generateOverloadsSafe(
         return yield* generateInterfaceOverloads(ast)
       case TypeAlias.tag:
         return yield* generateTypeAliasOverloads(ast)
+      case Labeled.tag:
+        return yield* generateOverloadsSafe(ast.param)
     }
   })
 }
 
-export function generateFunctionSignatureOverloads(signature: FunctionSignature) {
+export function generateFunctionSignatureOverloads(
+  signature: FunctionSignature,
+  initialContext?: Context,
+) {
   const possiblilties = findPossibilities(signature)
 
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const output: Array<readonly [FunctionSignature, Context]> = []
 
     for (const possiblilty of possiblilties) {
-      const context = buildContext(signature, possiblilty)
+      const built = buildContext(signature, possiblilty)
+      const context = initialContext ? mergeContexts(initialContext, built) : built
 
       output.push([yield* generateFunctionSignature(signature, context), context])
     }
 
     if (possiblilties.length === 0) {
-      const context: Context = emptyContext(signature)
+      const context: Context = initialContext ?? emptyContext(signature)
 
       output.push([yield* generateFunctionSignature(signature, context), context])
     }
@@ -76,7 +82,7 @@ export function generateFunctionSignatureOverloads(signature: FunctionSignature)
 export function generateInterfaceOverloads(node: Interface) {
   const possiblilties = findPossibilities(node)
 
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const output: Array<readonly [Interface, Context]> = []
 
     for (const possiblilty of possiblilties) {
@@ -98,7 +104,7 @@ export function generateInterfaceOverloads(node: Interface) {
 export function generateTypeAliasOverloads(node: TypeAlias) {
   const possiblilties = findPossibilities(node)
 
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const output: Array<readonly [TypeAlias, Context]> = []
 
     for (const possiblilty of possiblilties) {
@@ -118,7 +124,9 @@ export function generateTypeAliasOverloads(node: TypeAlias) {
 }
 
 export function generateFunctionSignature(signature: FunctionSignature, context: Context) {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
+    context = { parent: signature, ...context }
+
     return new FunctionSignature(
       signature.name,
       yield* generateTypeParams(signature.typeParams, context),
@@ -132,32 +140,11 @@ export function generateTypeParams(
   params: readonly TypeParam[],
   context: Context,
 ): S.Sync<readonly TypeParam[]> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const output: TypeParam[] = []
 
     for (const p of params) {
-      switch (p.tag) {
-        case HKTPlaceholder.tag: {
-          output.push(...generateHktPlaceholders(p, context, false))
-          break
-        }
-        case HKTParam.tag: {
-          output.push(yield* generateHKTParam(p, context))
-          break
-        }
-        case Typeclass.tag: {
-          output.push(yield* generateTypeclass(p, context))
-          break
-        }
-        case Dynamic.tag: {
-          output.push(yield* generateDynamic(p, context))
-          break
-        }
-        case Static.tag: {
-          output.push(p)
-          break
-        }
-      }
+      output.push(...((yield* generateKindParam(p, context)) as TypeParam[]))
     }
 
     return output
@@ -165,15 +152,15 @@ export function generateTypeParams(
 }
 
 export function generateHktPlaceholders(p: HKTPlaceholder, context: Context, printStatic: boolean) {
-  const length = context.lengths.get(p.type.id)!
-  const existing = findExistingParams(context, p.type.id)
-  const position = context.positions.get(p.type.id)!
-  const multiple = context.lengths.size > 1
+  const length = context.lengths.get(p.type.id)
 
-  if (!length || length === 0) {
-    return []
+  if (length === undefined) {
+    return [p]
   }
 
+  const existing = findExistingParams(context, p.type.id)
+  const position = context.positions.get(p.type.id)!
+  const multiple = context.existing.size > 1
   const params = hktParamNames.slice(existing, length).reverse()
   const placholders = Array.from({ length: length - existing }, (_, i) => {
     const name = params[i]
@@ -194,37 +181,36 @@ function findExistingParams(context: Context, id: symbol): number {
     return 0
   }
 
-  // TODO: Check if multiple values should be here
   return params.length
 }
 
 export function generateHKTParam(p: HKTParam, context: Context): S.Sync<HKTParam> {
   // eslint-disable-next-line require-yield
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     return p.setSize(context.lengths.get(p.id) ?? 0)
   })
 }
 
 export function generateTypeclass(p: Typeclass, context: Context): S.Sync<Typeclass> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     return p.setType(yield* generateHKTParam(p.type, context))
   })
 }
 
 export function generateDynamic(p: Dynamic, context: Context): S.Sync<Dynamic> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     return new Dynamic(yield* generateKindParams(p.params, context), p.template)
   })
 }
 
 export function generateKind(kind: Kind, context: Context): S.Sync<Kind> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     return new Kind(kind.type, yield* generateKindParams(kind.kindParams, context))
   })
 }
 
 export function generateKindParams(params: readonly KindParam[], context: Context) {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const output: KindParam[] = []
 
     for (const p of params) {
@@ -239,7 +225,7 @@ export function generateKindParam(
   param: KindParam,
   context: Context,
 ): S.Sync<readonly KindParam[]> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     switch (param.tag) {
       case 'Dynamic': {
         return [yield* generateDynamic(param, context)]
@@ -273,19 +259,19 @@ export function generateKindParam(
 }
 
 export function generateTuple(tuple: Tuple, context: Context): S.Sync<Tuple> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     return new Tuple(yield* generateKindParams(tuple.members, context))
   })
 }
 
 export function generateObjectNode(node: ObjectNode, context: Context): S.Sync<ObjectNode> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     return node.setProperties(yield* generateLabeledKindParams(node.properties, context))
   })
 }
 
 export function generateKindReturn(kind: Kind, context: Context): S.Sync<Kind> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const params = yield* generateKindParams(kind.kindParams, context)
 
     return kind.setParams(params)
@@ -296,7 +282,7 @@ export function generateFunctionParams(
   params: readonly FunctionParam[],
   context: Context,
 ): S.Sync<readonly FunctionParam[]> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const output: FunctionParam[] = []
 
     for (const p of params) {
@@ -311,7 +297,7 @@ export function generateFunctionParam(
   param: FunctionParam,
   context: Context,
 ): S.Sync<readonly FunctionParam[]> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const kindParams = yield* generateKindParam(param.param, context)
 
     return kindParams.map((p) => param.setKind(p))
@@ -319,7 +305,7 @@ export function generateFunctionParam(
 }
 
 export function generateInterface(node: Interface, context: Context): S.Sync<Interface> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const extensions: Array<Interface | KindParam> = []
 
     for (const e of node.extensions) {
@@ -340,17 +326,19 @@ export function generateInterface(node: Interface, context: Context): S.Sync<Int
 }
 
 function generateTypeName(node: Interface | TypeAlias, context: Context): string {
-  return `${node.name}${generatePostfix(findHKTParams(node.typeParams), context)}`
+  return `${node.name}${generatePostfix(findHKTParams(node), context)}`
 }
 
 function generatePostfix(hktParams: readonly HKTParam[], context: Context) {
   return hktParams
-    .map((p) => `${context.lengths.get(p.id) === 0 ? '' : context.lengths.get(p.id) ?? ''}`)
+    .map((p) => {
+      return `${context.lengths.get(p.id) === 0 ? '' : context.lengths.get(p.id) ?? ''}`
+    })
     .join('')
 }
 
 export function generateTypeAlias(node: TypeAlias, context: Context): S.Sync<TypeAlias> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     return {
       ...node,
       name: generateTypeName(node, context),
@@ -364,7 +352,7 @@ export function generateLabeledKindParams<P extends ReadonlyArray<Labeled<KindPa
   labels: P,
   context: Context,
 ): S.Sync<ReadonlyArray<Labeled<KindParam>>> {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const output = []
 
     for (const label of labels) {
@@ -379,7 +367,7 @@ export function generateLabeledKindParam<P extends KindParam>(
   labeled: Labeled<P>,
   context: Context,
 ) {
-  return S.Sync(function* () {
+  return Eff.Eff(function* () {
     const params = yield* generateKindParam(labeled.param, context)
 
     return params.map((p) => labeled.setKind(p))
