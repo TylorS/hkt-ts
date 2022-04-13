@@ -4,9 +4,16 @@ export type AST = FunctionParam | KindParam | ParentNode | TypeParam
 
 export type ParentNode = FunctionSignature | Interface | TypeAlias
 
-export type TypeParam = Dynamic | HKTParam | HKTPlaceholder | Static | Typeclass
+export type TypeParam =
+  | Dynamic
+  | HKTParam
+  | HKTPlaceholder
+  | Static
+  | Typeclass
+  | Labeled<KindParam>
 
 export type KindParam =
+  | ArrayNode
   | Dynamic
   | FunctionSignature
   | HKTParam
@@ -90,8 +97,16 @@ export class HKTParam {
 }
 
 export class HKTPlaceholder extends ast('HKTPlaceholder') {
-  constructor(readonly type: HKTParam, readonly useDefaults: boolean = false) {
+  constructor(
+    readonly type: HKTParam,
+    readonly useDefaults: boolean = false,
+    readonly extractFrom: string | null = null,
+  ) {
     super()
+  }
+
+  extract(param: string) {
+    return new HKTPlaceholder(this.type, this.useDefaults, param)
   }
 }
 
@@ -147,6 +162,20 @@ export class Tuple extends ast('Tuple') {
 
   labeled(label: string) {
     return new Labeled(label, this)
+  }
+}
+
+export class ArrayNode extends ast('Array') {
+  constructor(readonly member: KindParam, readonly isNonEmpty = false) {
+    super()
+  }
+
+  labeled(label: string) {
+    return new Labeled(label, this)
+  }
+
+  nonEmpty() {
+    return new ArrayNode(this.member, true)
   }
 }
 

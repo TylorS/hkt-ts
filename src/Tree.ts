@@ -55,7 +55,7 @@ function bimapSafe<P1, P2, C1, C2>(
   g: (child: C1) => Sync.Sync<C2>,
 ) {
   return (tree: Tree<P1, C1>): Sync.Sync<Tree<P2, C2>> =>
-    Sync.Sync(function* () {
+    Eff.Eff(function* () {
       if (tree.type === 'Leaf') {
         return leaf(yield* g(tree.value))
       }
@@ -127,7 +127,7 @@ export const reduce =
 export const reduceSafe =
   <A, B>(b: B, f: (b: B, a: A) => Sync.Sync<B>) =>
   <P>(fa: Tree<P, A>): Sync.Sync<B> =>
-    Sync.Sync(function* () {
+    Eff.Eff(function* () {
       if (fa.type === 'Leaf') {
         return yield* f(b, fa.value)
       }
@@ -164,7 +164,7 @@ export const reduceRight =
 export const reduceRightSafe =
   <A, B>(b: B, f: (a: A, b: B) => Sync.Sync<B>) =>
   <P>(fa: Tree<P, A>): Sync.Sync<B> =>
-    Sync.Sync(function* () {
+    Eff.Eff(function* () {
       if (fa.type === 'Leaf') {
         return yield* f(fa.value, b)
       }

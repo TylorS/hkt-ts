@@ -1,15 +1,8 @@
 import * as Eff from './Eff'
-import { Include } from './common'
 
 export interface Writer<W, A> extends Eff.Eff<WriterInstruction<W>, A> {}
 
-export const Writer = Eff.Eff as <G extends Generator<WriterInstruction<any>, any>>(
-  f: () => G,
-) => Writer<LogOf<G>, Eff.ReturnOf<G>>
-
-export type LogOf<T> = [Include<Eff.YieldOf<T>, WriterInstruction<any>>] extends [
-  WriterInstruction<infer L>,
-]
+export type LogOf<T> = [Eff.Extract<T, WriterInstruction<any>>] extends [WriterInstruction<infer L>]
   ? L
   : never
 

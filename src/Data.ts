@@ -1,4 +1,5 @@
 import * as M from './Maybe'
+import * as Progress from './Progress'
 import { flow, identity, pipe } from './function'
 
 export type Data<A> = NoData | Pending | Refreshing<A> | Replete<A>
@@ -20,7 +21,7 @@ export const NoData: NoData = {
 
 export interface Pending {
   readonly tag: 'Pending'
-  readonly progress: M.Maybe<Progress>
+  readonly progress: M.Maybe<Progress.Progress>
 }
 
 export const Pending: Pending = {
@@ -28,20 +29,20 @@ export const Pending: Pending = {
   progress: M.Nothing,
 }
 
-export const fromProgress = (progress: Progress): Pending => ({
+export const fromProgress = (progress: Progress.Progress): Pending => ({
   tag: 'Pending',
   progress: M.Just(progress),
 })
 
 export interface Refreshing<A> {
   readonly tag: 'Refreshing'
-  readonly progress: M.Maybe<Progress>
+  readonly progress: M.Maybe<Progress.Progress>
   readonly value: A
 }
 
 export const Refreshing = <A>(
   value: A,
-  progress: M.Maybe<Progress> = M.Nothing,
+  progress: M.Maybe<Progress.Progress> = M.Nothing,
 ): Refreshing<A> => ({
   tag: 'Refreshing',
   progress,
@@ -58,21 +59,11 @@ export const Replete = <A>(value: A): Replete<A> => ({
   value,
 })
 
-export interface Progress {
-  readonly loaded: number
-  readonly total: M.Maybe<number>
-}
-
-export const Progress = (loaded: number, total: M.Maybe<number> = M.Nothing): Progress => ({
-  loaded,
-  total,
-})
-
 export const match =
   <A, B, C, D, E>(
     onNoData: () => A,
-    onPending: (progress: M.Maybe<Progress>) => B,
-    onRefreshing: (value: C, progress: M.Maybe<Progress>) => D,
+    onPending: (progress: M.Maybe<Progress.Progress>) => B,
+    onRefreshing: (value: C, progress: M.Maybe<Progress.Progress>) => D,
     onReplete: (value: C) => E,
   ) =>
   (data: Data<C>): A | B | D | E => {
@@ -97,7 +88,7 @@ export const map = <A, B>(f: (a: A) => B): ((data: Data<A>) => Data<B>) =>
   )
 
 export const mapWithProgress = <A, B>(
-  f: (a: A, progress: M.Maybe<Progress>) => B,
+  f: (a: A, progress: M.Maybe<Progress.Progress>) => B,
 ): ((data: Data<A>) => Data<B>) =>
   match(
     () => NoData,
@@ -115,7 +106,7 @@ export const flatMap = <A, B>(f: (a: A) => Data<B>): ((data: Data<A>) => Data<B>
   )
 
 export const flatMapWithProgress = <A, B>(
-  f: (a: A, progress: M.Maybe<Progress>) => Data<B>,
+  f: (a: A, progress: M.Maybe<Progress.Progress>) => Data<B>,
 ): ((data: Data<A>) => Data<B>) =>
   match(
     () => NoData,
@@ -176,7 +167,8 @@ export const toOption: <A>(data: Data<A>) => M.Maybe<A> = match(
   M.Just,
 )
 
-// Internal
+const { concat: concatProgress } = M.makeAssociative(Progress.Associative)
+
 function combine<A extends readonly any[], B>(
   first: Data<A>,
   second: Data<B>,
@@ -188,7 +180,7 @@ function combine<A extends readonly any[], B>(
         second,
         flatMapWithProgress((b, progressB) =>
           pipe(
-            combineProgress(progressA, progressB),
+            concatProgress(progressA, progressB),
             M.match(
               () => Replete([...a, b]),
               (progress) => Refreshing([...a, b], M.Just(progress)),
@@ -196,35 +188,6 @@ function combine<A extends readonly any[], B>(
           ),
         ),
       ),
-    ),
-  )
-}
-
-function combineProgress(first: M.Maybe<Progress>, second: M.Maybe<Progress>): M.Maybe<Progress> {
-  return pipe(
-    first,
-    M.match(
-      () => second,
-      (f) =>
-        pipe(
-          second,
-          M.match(
-            () => M.Just(f),
-            (g) =>
-              M.Just({
-                loaded: f.loaded + g.loaded,
-                total: pipe(
-                  f.total,
-                  M.flatMap((ft) =>
-                    pipe(
-                      g.total,
-                      M.map((gt) => ft + gt),
-                    ),
-                  ),
-                ),
-              }),
-          ),
-        ),
     ),
   )
 }

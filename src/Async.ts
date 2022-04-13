@@ -1,4 +1,4 @@
-import { Disposable, DisposableQueue, withRemove } from './Disposable'
+import { Async, Disposable, DisposableQueue, disposeAll, withRemove } from './Disposable'
 import * as Eff from './Eff'
 import { pipe } from './function'
 
@@ -17,13 +17,11 @@ export interface AsyncCallback<A> {
   (cb: (value: A) => void): Disposable
 }
 
-export const Async = Eff.Eff as <A>(f: () => Generator<AsyncInstruction<any>, A>) => Async<A>
-
 /**
  * Constructor your own Async Instance
  */
 export const fromCallback = <A>(cb: AsyncCallback<A>): Async<A> =>
-  Async(function* () {
+  Eff.Eff(function* () {
     return (yield { tag: 'Async', cb: once(cb) }) as A
   })
 
@@ -88,3 +86,27 @@ function interpretAsync<A>(
 export function run<A>(cb: (value: A) => void) {
   return (async: Async<A>): Disposable => interpret(async)(cb)
 }
+
+export function zip_<A, B>(a: Async<A>, b: Async<B>): Async<readonly [A, B]> {
+  return fromCallback((cb) => {
+    const output = Array(2) as [A?, B?]
+    let remaining = 2
+
+    const complete =
+      <I extends 0 | 1>(index: I) =>
+      (value: I extends 0 ? A : B) => {
+        output[index] = value as any
+
+        if (--remaining === 0) {
+          cb(output as any)
+        }
+      }
+
+    return disposeAll([interpret(a)(complete(0)), interpret(b)(complete(1))])
+  })
+}
+
+export const zip =
+  <B>(second: Async<B>) =>
+  <A>(first: Async<A>): Async<readonly [A, B]> =>
+    zip_(first, second)

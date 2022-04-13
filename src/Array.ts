@@ -742,7 +742,7 @@ export const rights = <E, A>(as: ReadonlyArray<Either<E, A>>): ReadonlyArray<A> 
   for (let i = 0; i < as.length; i++) {
     const a = as[i]
     if (isRight(a)) {
-      r.push(a.value)
+      r.push(a.right)
     }
   }
   return r
@@ -763,7 +763,7 @@ export const lefts = <E, A>(as: ReadonlyArray<Either<E, A>>): ReadonlyArray<E> =
   for (let i = 0; i < as.length; i++) {
     const a = as[i]
     if (isLeft(a)) {
-      r.push(a.value)
+      r.push(a.left)
     }
   }
   return r
@@ -1432,9 +1432,9 @@ export const chainRecDepthFirst =
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const e = todo.shift()!
       if (isLeft(e)) {
-        todo.unshift(...f(e.value))
+        todo.unshift(...f(e.left))
       } else {
-        out.push(e.value)
+        out.push(e.right)
       }
     }
 
@@ -1450,9 +1450,9 @@ export const chainRecBreadthFirst =
 
     function go(e: Either<A, B>): void {
       if (isLeft(e)) {
-        f(e.value).forEach((v) => todo.push(v))
+        f(e.left).forEach((v) => todo.push(v))
       } else {
-        out.push(e.value)
+        out.push(e.right)
       }
     }
 

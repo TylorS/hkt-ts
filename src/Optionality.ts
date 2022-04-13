@@ -6,10 +6,6 @@ export interface Optionality<A> extends Eff.Eff<OptionalityInstruction<any>, A> 
 
 export class OptionalityInstruction<A> extends Eff.instr('Optionality')<Maybe.Maybe<A>, A> {}
 
-export const Optionality = Eff.Eff as <G extends Generator<OptionalityInstruction<any>, any>>(
-  f: () => G,
-) => Optionality<Eff.ReturnOf<G>>
-
 export const fromMaybe = <A>(maybe: Maybe.Maybe<A>) => new OptionalityInstruction(maybe)
 
 export const Nothing: Optionality<never> = fromMaybe<never>(Maybe.Nothing)

@@ -1,8 +1,8 @@
-import * as C from './Concat'
+import * as A from './Concat'
 import * as Ord from './Ord'
 
 // Associative represents a concatenation that MUST be associatve.
-export type Associative<A> = C.Concat<A>
+export type Associative<A> = A.Concat<A>
 
 export const constant = <A>(value: A): Associative<A> => ({
   concat: () => value,
@@ -16,7 +16,7 @@ export const max = <A>(O: Ord.Ord<A>): Associative<A> => ({
   concat: Ord.max(O),
 })
 
-export const reverse: <A>(S: Associative<A>) => Associative<A> = C.reverse
+export const reverse: <A>(S: Associative<A>) => Associative<A> = A.reverse
 
 export const struct = <A>(associatives: {
   readonly [K in keyof A]: Associative<A[K]>
@@ -45,8 +45,8 @@ export const intercalate =
   })
 
 export const concatAll: <A>(M: Associative<A>) => (startWith: A) => (as: readonly A[]) => A =
-  C.concatAll
+  A.concatAll
 
-export const First: Associative<any> = C.First
+export const First: Associative<any> = A.First
 
-export const Second: Associative<any> = C.Second
+export const Second: Associative<any> = A.Second

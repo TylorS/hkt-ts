@@ -42,9 +42,9 @@ export const match =
   (these: These<E, A>): R1 | R2 | R3 => {
     switch (these.tag) {
       case 'Left':
-        return onLeft(these.value)
+        return onLeft(these.left)
       case 'Right':
-        return onRight(these.value)
+        return onRight(these.right)
       case 'Both':
         return onBoth(these.left, these.right)
     }

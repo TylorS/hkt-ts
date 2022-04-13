@@ -1,3 +1,5 @@
+import { Include } from './common'
+
 export interface Debug<A> {
   readonly debug: (a: A) => string
 }
@@ -40,7 +42,6 @@ export type SumDebugs<A extends Readonly<Record<PropertyKey, any>>, T extends ke
 type KeysOf<A, T extends keyof A> = A[T] extends PropertyKey ? A[T] : never
 
 type FindType<A, T extends keyof A, K> = Include<A, { readonly [_ in T]: K }>
-type Include<T, A> = T extends A ? T : never
 
 export const lazy = <A>(f: () => Debug<A>): Debug<A> => {
   let s: Debug<A>

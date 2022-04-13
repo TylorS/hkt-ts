@@ -4,6 +4,13 @@
  */
 import { M } from 'ts-toolbelt'
 
+import * as Associative from './Associative'
+import { Bounded } from './Bounded'
+import * as Commutative from './Commutative'
+import { Concat } from './Concat'
+import { Eq } from './Eq'
+import { Identity } from './Identity'
+import { Ord } from './Ord'
 import { unsafeCoerce } from './function'
 
 export const BRAND = Symbol('@hkt-ts/Brand')
@@ -34,10 +41,29 @@ export type Combine<T, U> = Branded<ValueOf<T> & ValueOf<U>, BrandOf<T> & BrandO
 /**
  * @category Constructor
  */
-export const Branded =
-  <A extends Branded<any, any>>() =>
-  <E extends ValueOf<A>>(e: E): Branded<E, BrandOf<A>> =>
-    unsafeCoerce(e)
+export const Branded = <A extends Branded<any, any>>() => {
+  const constructor_ = <E extends ValueOf<A>>(e: E): Branded<E, BrandOf<A>> => unsafeCoerce(e)
+
+  constructor_.makeEq = (A: Eq<ValueOf<A>>): Eq<A> => unsafeCoerce(A)
+
+  constructor_.makeOrd = (A: Ord<ValueOf<A>>): Ord<A> => unsafeCoerce(A)
+
+  constructor_.makeBounded = (A: Bounded<ValueOf<A>>): Bounded<A> => unsafeCoerce(A)
+
+  constructor_.makeIdentity = (A: Identity<ValueOf<A>>): Identity<A> => unsafeCoerce(A)
+
+  constructor_.makeConcat = (A: Concat<ValueOf<A>>): Concat<A> => unsafeCoerce(A)
+
+  constructor_.makeAssociative = (
+    A: Associative.Associative<ValueOf<A>>,
+  ): Associative.Associative<A> => unsafeCoerce(A)
+
+  constructor_.makeCommutative = (
+    A: Commutative.Commutative<ValueOf<A>>,
+  ): Commutative.Commutative<A> => unsafeCoerce(A)
+
+  return constructor_
+}
 
 export const brand: <A extends Branded<any, any>>(value: ValueOf<A>) => A = unsafeCoerce
 

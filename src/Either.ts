@@ -1,3 +1,7 @@
+import * as AB from './AssociativeBoth'
+import { Covariant2 } from './Covariant'
+import * as F from './Flatten'
+import { HKT2, Params, Variance } from './HKT'
 import type { Maybe } from './Maybe'
 import type * as NEA from './NonEmptyArray'
 import { Lazy, pipe } from './function'
@@ -33,7 +37,7 @@ export type RightOf<A> = [A] extends [Either<any, infer R>] ? R : never
  */
 export interface Left<E> {
   readonly tag: 'Left'
-  readonly value: E
+  readonly left: E
 }
 
 /**
@@ -41,12 +45,12 @@ export interface Left<E> {
  */
 export const Left = <E>(value: E): Left<E> => ({
   tag: 'Left',
-  value,
+  left: value,
 })
 
 export interface Right<A> {
   readonly tag: 'Right'
-  readonly value: A
+  readonly right: A
 }
 
 /**
@@ -54,7 +58,7 @@ export interface Right<A> {
  */
 export const Right = <A>(value: A): Right<A> => ({
   tag: 'Right',
-  value,
+  right: value,
 })
 
 /**
@@ -65,7 +69,7 @@ export const Right = <A>(value: A): Right<A> => ({
 export const flatMap =
   <A, E1, B>(f: (value: A) => Either<E1, B>) =>
   <E2>(either: Either<E2, A>): Either<E1 | E2, B> =>
-    isLeft(either) ? either : f(either.value)
+    isLeft(either) ? either : f(either.right)
 
 /**
  * Converts an Option<A> into an Either<E, A>
@@ -81,7 +85,7 @@ export function fromMaybe<E>(f: () => E) {
 export const getOrElse =
   <A>(f: () => A) =>
   <E, B>(either: Either<E, B>): A | B =>
-    isLeft(either) ? f() : either.value
+    isLeft(either) ? f() : either.right
 
 /**
  * Apply a function to the Right-hand value of an Either. If the Either is a Left,
@@ -90,7 +94,7 @@ export const getOrElse =
 export const map =
   <A, B>(f: (value: A) => B) =>
   <E>(either: Either<E, A>): Either<E, B> =>
-    isLeft(either) ? either : Right(f(either.value))
+    isLeft(either) ? either : Right(f(either.right))
 
 /**
  * Apply a function to the Left-hand value of an Either. If the Either is a Right,
@@ -99,7 +103,7 @@ export const map =
 export const mapLeft =
   <E1, E2>(f: (value: E1) => E2) =>
   <A>(either: Either<E1, A>): Either<E2, A> =>
-    isLeft(either) ? Left(f(either.value)) : either
+    isLeft(either) ? Left(f(either.left)) : either
 
 /**
  * Pattern match on the 2 cases of an Either using functions.
@@ -107,7 +111,7 @@ export const mapLeft =
 export const match =
   <E, B, A, C>(onLeft: (value: E) => B, onRight: (value: A) => C) =>
   (either: Either<E, A>): B | C =>
-    isLeft(either) ? onLeft(either.value) : onRight(either.value)
+    isLeft(either) ? onLeft(either.left) : onRight(either.right)
 
 /**
  * Combinator for sequencing another Either after its Failure, or Left, of
@@ -118,7 +122,7 @@ export const orElse =
   <E1, E2, B>(f: (value: E1) => Either<E2, B>) =>
   <A>(either: Either<E1, A>): Either<E1 | E2, A | B> => {
     if (isLeft(either)) {
-      return f(either.value)
+      return f(either.left)
     }
 
     return either
@@ -167,14 +171,14 @@ export const struct = <A extends Readonly<Record<string, Either<any, any>>>>(
 
   if (lefts.length > 0) {
     return pipe(
-      lefts.map((l) => l[1].value),
+      lefts.map((l) => l[1].left),
       Left,
     ) as any
   }
 
   const rights = entries
     .filter((e): e is [string, Right<RightOf<A[keyof A]>>] => isRight(e[1]))
-    .map(([k, v]) => [k, v.value] as const)
+    .map(([k, v]) => [k, v.right] as const)
 
   return Right(Object.fromEntries(rights) as { readonly [K in keyof A]: RightOf<A[K]> })
 }
@@ -204,39 +208,43 @@ export const tryCatchF =
     }
   }
 
+export interface EitherHKT extends HKT2 {
+  readonly type: Either<this[Params.E], this[Params.A]>
+  readonly defaults: {
+    readonly [Params.E]: Variance.Covariant<any>
+    readonly [Params.A]: Variance.Invariant<unknown>
+  }
+}
+
+export const Covariant: Covariant2<EitherHKT> = {
+  map,
+}
+
+export const flatten: <E, E2, A>(kind: Either<E, Either<E2, A>>) => Either<E | E2, A> = (either) =>
+  isLeft(either) ? either : either.right
+
+export const Flatten: F.Flatten2<EitherHKT> = {
+  map,
+  flatten,
+}
+
+export const AssociativeBoth = F.makeAssociativeBoth(Flatten)
+
 /**
  * Construct a Either that will output a homogenous Record given the
- * input of a Record of Eithers. All failures, or Lefts, will be collected into
- * a NonEmptyArray.
+ * input of a Tuple of Eithers.
  * @example
  * ```typescript
  * import * as E from 'hkt-ts/Either'
- * import { NonEmptyArray } from 'hkt-ts/NonEmptyArray'
  * import { pipe } from 'hkt-ts/function'
  *
  * declare const eitherA: E.Either<'a', string>
  * declare const eitherB: E.Either<'b', number>
  *
- * const example: E.Either<NonEmptyArray<'a' | 'b'>, [string, number]> = E.tuple(
+ * const example: E.Either<'a' | 'b', readonly [string, number]> = E.tuple(
  *   eitherA,
  *   eitherB,
  * })
  * ```
  */
-export const tuple = <A extends ReadonlyArray<Either<any, any>>>(
-  ...eithers: A
-): Either<NEA.NonEmptyArray<LeftOf<A[number]>>, { readonly [K in keyof A]: RightOf<A[K]> }> => {
-  const values = Object.values(eithers)
-  const lefts = values.filter(isLeft)
-
-  if (lefts.length > 0) {
-    return pipe(
-      lefts.map((l) => l.value),
-      Left,
-    ) as any
-  }
-
-  const rights = values.filter(isRight).map((l) => l.value)
-
-  return Right(rights as unknown as { readonly [K in keyof A]: RightOf<A[K]> })
-}
+export const tuple = AB.tuple(AssociativeBoth)

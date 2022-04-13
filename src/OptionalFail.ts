@@ -8,10 +8,6 @@ import { Include } from './common'
 
 export interface OptionalFail<E, A> extends Eff.Eff<OptionalFailInstruction<E>, A> {}
 
-export const OptionalFail = Eff.Eff as <E, A>(
-  f: () => Generator<OptionalFailInstruction<E>, A>,
-) => OptionalFail<E, A>
-
 export type OptionalFailureOf<T> = [Include<Eff.YieldOf<T>, OptionalFailInstruction<any>>] extends [
   OptionalFailInstruction<infer E>,
 ]

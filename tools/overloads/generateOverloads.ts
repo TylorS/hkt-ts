@@ -4,6 +4,7 @@ import * as Eff from '../../src/Eff'
 import * as S from '../../src/Sync'
 
 import {
+  ArrayNode,
   Dynamic,
   FunctionParam,
   FunctionSignature,
@@ -144,7 +145,11 @@ export function generateTypeParams(
     const output: TypeParam[] = []
 
     for (const p of params) {
-      output.push(...((yield* generateKindParam(p, context)) as TypeParam[]))
+      if (p.tag === 'Labeled') {
+        output.push(...(yield* generateLabeledKindParam(p, context)))
+      } else {
+        output.push(...((yield* generateKindParam(p, context)) as TypeParam[]))
+      }
     }
 
     return output
@@ -162,8 +167,13 @@ export function generateHktPlaceholders(p: HKTPlaceholder, context: Context, pri
   const position = context.positions.get(p.type.id)!
   const multiple = context.existing.size > 1
   const params = hktParamNames.slice(existing, length).reverse()
-  const placholders = Array.from({ length: length - existing }, (_, i) => {
+  const placeholders = Array.from({ length: length - existing }, (_, i) => {
     const name = params[i]
+
+    if (p.extractFrom) {
+      return new Static(`ParamOf<${p.type.name}, ${p.extractFrom}, Params.${name}>`)
+    }
+
     const base = multiple ? `${name}${position}` : name
     const withExtension =
       !printStatic && p.useDefaults ? `${base} = ${p.type.name}['defaults'][Params.${name}]` : base
@@ -171,7 +181,7 @@ export function generateHktPlaceholders(p: HKTPlaceholder, context: Context, pri
     return new Static(withExtension)
   })
 
-  return placholders
+  return placeholders
 }
 
 function findExistingParams(context: Context, id: symbol): number {
@@ -227,6 +237,14 @@ export function generateKindParam(
 ): S.Sync<readonly KindParam[]> {
   return Eff.Eff(function* () {
     switch (param.tag) {
+      case 'Array': {
+        const isNonEmpty = param.isNonEmpty
+
+        return yield* pipe(
+          yield* generateKindParam(param.member, context),
+          S.forEach((param) => S.of(new ArrayNode(param, isNonEmpty))),
+        )
+      }
       case 'Dynamic': {
         return [yield* generateDynamic(param, context)]
       }

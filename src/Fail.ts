@@ -1,14 +1,9 @@
 import * as Eff from './Eff'
 import { Either, Left, Right, isLeft } from './Either'
-import { Include } from './common'
 
 export interface Fail<E, A> extends Eff.Eff<FailInstruction<E>, A> {}
 
-export const Fail = Eff.Eff as <E, A>(f: () => Generator<FailInstruction<E>, A>) => Fail<E, A>
-
-export type FailureOf<T> = [Include<Eff.YieldOf<T>, FailInstruction<any>>] extends [
-  FailInstruction<infer E>,
-]
+export type FailureOf<T> = [Eff.Extract<T, FailInstruction<any>>] extends [FailInstruction<infer E>]
   ? E
   : never
 
@@ -32,11 +27,11 @@ export function runWith<G extends Eff.Eff>(
 }
 
 export function fromEither<E, A>(either: Either<E, A>): Fail<E, A> {
-  return Fail(function* () {
+  return Eff.Eff(function* () {
     if (isLeft(either)) {
-      return yield* fail(either.value)
+      return yield* fail(either.left)
     }
 
-    return either.value
+    return either.right
   })
 }

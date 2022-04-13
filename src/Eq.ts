@@ -1,6 +1,7 @@
 import fastDeepEqual from 'fast-deep-equal'
 
 import { Associative } from './Associative'
+import { Include } from './common'
 import { constFalse, constTrue } from './function'
 
 export const fromEquals = <A>(equals: Eq<A>['equals']): Eq<A> => ({
@@ -64,7 +65,6 @@ export type SumEqs<A extends Readonly<Record<PropertyKey, any>>, T extends keyof
 type KeysOf<A, T extends keyof A> = A[T] extends PropertyKey ? A[T] : never
 
 type FindType<A, T extends keyof A, K> = Include<A, { readonly [_ in T]: K }>
-type Include<T, A> = T extends A ? T : never
 
 export const lazy = <A>(f: () => Eq<A>): Eq<A> => {
   let eq: Eq<A>

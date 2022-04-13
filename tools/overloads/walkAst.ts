@@ -42,6 +42,7 @@ function identity<A>(value: A): A {
 
 export function defaultVisitors(): Visitors {
   return {
+    Array: identity,
     Dynamic: identity,
     FunctionSignature: identity,
     HKTParam: identity,
@@ -62,7 +63,7 @@ export function walkAst(node: AST, visitors: Visitors) {
 }
 
 function walkAstSafe(node: AST, visitors: Visitors): Sync.Sync<void> {
-  const run = Sync.Sync(function* () {
+  const run = Eff.Eff(function* () {
     switch (node.tag) {
       case Interface.tag: {
         yield* Sync.fromLazy(() => visitors.Interface(node))

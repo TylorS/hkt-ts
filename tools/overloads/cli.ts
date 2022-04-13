@@ -44,6 +44,7 @@ const HKT_IMPORTS = `import {
   Kind9,
   Kind10,
   Params,
+  DefaultOf,
 } from './HKT'`
 
 async function main() {

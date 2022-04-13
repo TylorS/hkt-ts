@@ -1,4 +1,5 @@
-import * as Either from './Either'
+import { Associative } from './Associative'
+import type * as Either from './Either'
 import { Predicate } from './Predicate'
 import type { Refinement } from './Refinement'
 import { constant, flow, identity, pipe } from './function'
@@ -71,10 +72,7 @@ export function filter<A>(predicate: Predicate<A>) {
 }
 
 export function fromEither<E, A>(either: Either.Either<E, A>): Maybe<A> {
-  return pipe(
-    either,
-    Either.match(() => Nothing, Just),
-  )
+  return either.tag === 'Left' ? Nothing : Just(either.right)
 }
 
 export function fromNullable<A>(value: A | undefined | null | void): Maybe<A> {
@@ -190,3 +188,7 @@ export const tuple = <A extends ReadonlyArray<Maybe<any>>>(
 
   return Just(tuple as unknown as { readonly [K in keyof A]: OutputOf<A[K]> })
 }
+
+export const makeAssociative = <A>(A: Associative<A>): Associative<Maybe<A>> => ({
+  concat: (f, s) => (isJust(f) && isJust(s) ? Just(A.concat(f.value, s.value)) : Nothing),
+})

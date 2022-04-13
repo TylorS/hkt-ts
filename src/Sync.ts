@@ -12,15 +12,13 @@ export class SyncInstruction<A> extends Eff.instr('Sync')<F.Lazy<A>, A> {}
 
 export type OutputOf<T> = [T] extends [Sync<infer R>] ? R : never
 
-export const Sync = Eff.Eff as <A>(f: () => Generator<SyncInstruction<any>, A>) => Sync<A>
-
 export const fromLazy = <A>(lazy: F.Lazy<A>): Sync<A> => new SyncInstruction(lazy)
 
 export const of = F.flow(F.constant, fromLazy)
 
 export function forEach<A, B>(f: (value: A, index: number) => Sync<B>) {
   return (items: ReadonlyArray<A>): Sync<ReadonlyArray<B>> => {
-    return Sync(function* () {
+    return Eff.Eff(function* () {
       const output: B[] = []
 
       for (let i = 0; i < items.length; ++i) {
@@ -34,21 +32,21 @@ export function forEach<A, B>(f: (value: A, index: number) => Sync<B>) {
 
 export function map<A, B>(f: (a: A) => B) {
   return (sync: Sync<A>): Sync<B> =>
-    Sync(function* () {
+    Eff.Eff(function* () {
       return f(yield* sync)
     })
 }
 
 export function flatMap<A, B>(f: (a: A) => Sync<B>) {
   return (sync: Sync<A>): Sync<B> =>
-    Sync(function* () {
+    Eff.Eff(function* () {
       return yield* f(yield* sync)
     })
 }
 
 export function ap<A>(value: Sync<A>) {
   return <B>(fn: Sync<(a: A) => B>): Sync<B> =>
-    Sync(function* () {
+    Eff.Eff(function* () {
       const a = yield* value
       const f = yield* fn
 

@@ -2,7 +2,7 @@ import { Cast } from 'ts-toolbelt/out/Any/Cast'
 
 import { Just, Maybe, Nothing, isJust, isNothing } from './Maybe'
 import { Include } from './common'
-import { Lazy } from './function'
+import { Lazy, Unary, identity, pipe } from './function'
 
 /**
  * Eff is a lightweight abstraction which preserves referential transparency of
@@ -11,18 +11,6 @@ import { Lazy } from './function'
 export interface Eff<Y extends AnyTagged = AnyTagged, R = any> {
   readonly [Symbol.iterator]: () => Generator<Y, R>
 }
-
-export const of = <A>(value: A) =>
-  // eslint-disable-next-line require-yield
-  Eff(function* () {
-    return value
-  })
-
-export const fromLazy = <A>(lazy: Lazy<A>) =>
-  // eslint-disable-next-line require-yield
-  Eff(function* () {
-    return lazy()
-  })
 
 export type AnyTagged = { readonly tag: string }
 
@@ -38,6 +26,35 @@ export function Eff<Y extends AnyTagged, R>(f: () => Generator<Y, R>): Eff<Y, R>
     [Symbol.iterator]: f,
   }
 }
+
+export const of = <A>(value: A) =>
+  // eslint-disable-next-line require-yield
+  Eff(function* () {
+    return value
+  })
+
+export const fromLazy = <A>(lazy: Lazy<A>) =>
+  // eslint-disable-next-line require-yield
+  Eff(function* () {
+    return lazy()
+  })
+
+export function map<A, B>(f: Unary<A, B>) {
+  return <Y extends AnyTagged>(eff: Eff<Y, A>): Eff<Y, B> =>
+    Eff(function* () {
+      return f(yield* eff)
+    })
+}
+
+export function flatMap<A, Y2 extends AnyTagged, B>(f: Unary<A, Eff<Y2, B>>) {
+  return <Y extends AnyTagged>(eff: Eff<Y, A>): Eff<Y | Y2, B> =>
+    Eff(function* () {
+      return yield* f(yield* eff)
+    })
+}
+
+export const flatten = <Y1 extends AnyTagged, Y2 extends AnyTagged, A>(eff: Eff<Y1, Eff<Y2, A>>) =>
+  pipe(eff, flatMap(identity))
 
 export type YieldOf<T> = [T] extends [Eff<infer Y, any>] ? Y : never
 

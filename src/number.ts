@@ -1,4 +1,4 @@
-import { Associative } from './Associative'
+import { Associative as N } from './Associative'
 import { AssociativeIdentity } from './AssociativeIdentity'
 import * as B from './Bounded'
 import { Branded } from './Branded'
@@ -8,6 +8,7 @@ import { Concat } from './Concat'
 import * as D from './Debug'
 import * as E from './Eq'
 import * as G from './Group'
+import { Identity } from './Identity'
 import * as I from './Inverse'
 import { Match } from './Match'
 import { Just, Nothing } from './Maybe'
@@ -34,7 +35,7 @@ export const parseFloat: Match<string, number> = (s) => {
   return isFinite(n) && !isNan(n) ? Just(n) : Nothing
 }
 
-export const Eq: E.Eq<number> = E.fromEquals((a, b) => a === b)
+export const Eq: E.Eq<number> = E.Strict
 
 export const Ord: O.Ord<number> = {
   ...Eq,
@@ -49,8 +50,24 @@ export const ConcatSub: Concat<number> = {
   concat: (first, second) => first - second,
 }
 
-export const AssociativeSum: Associative<number> = {
+export const ConcatDiv: Concat<number> = {
+  concat: (first, second) => first / second,
+}
+
+export const IdentitySum: Identity<number> = {
+  id: 0,
+}
+
+export const IdentityProduct: Identity<number> = {
+  id: 1,
+}
+
+export const AssociativeSum: N<number> = {
   concat: (first, second) => first + second,
+}
+
+export const AssociativeProduct: N<number> = {
+  concat: (first, second) => first * second,
 }
 
 export const CommutativeSum: Commutative.Commutative<number> = {
@@ -58,23 +75,29 @@ export const CommutativeSum: Commutative.Commutative<number> = {
   commute: AssociativeSum.concat,
 }
 
-export const AssociativeProduct: Associative<number> = {
-  concat: (first, second) => first * second,
+export const CommutativeProduct: Commutative.Commutative<number> = {
+  ...AssociativeProduct,
+  commute: AssociativeProduct.concat,
 }
 
 export const AssociativeIdentitySum: AssociativeIdentity<number> = {
   ...AssociativeSum,
-  id: 0,
+  ...IdentitySum,
 }
 
 export const CommutativeIdentitySum: CommutativeIdentity<number> = {
   ...CommutativeSum,
-  id: 0,
+  ...IdentitySum,
 }
 
 export const AssociativeIdentityProduct: AssociativeIdentity<number> = {
-  concat: AssociativeProduct.concat,
-  id: 1,
+  ...AssociativeProduct,
+  ...IdentityProduct,
+}
+
+export const CommutativeIdentityProduct: CommutativeIdentity<number> = {
+  ...CommutativeProduct,
+  ...IdentityProduct,
 }
 
 export const Bounded: B.Bounded<number> = {
@@ -95,6 +118,7 @@ export const Group: G.Group<number> = {
 // Number types
 export type Integer = Branded<number, { readonly Integer: unique symbol }>
 export const Integer = Branded<Integer>()
+
 export type Float = Branded<number, { readonly Float: unique symbol }>
 export const Float = Branded<Float>()
 

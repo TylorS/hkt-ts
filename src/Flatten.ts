@@ -1,4 +1,17 @@
 import {
+  AssociativeBoth,
+  AssociativeBoth1,
+  AssociativeBoth10,
+  AssociativeBoth2,
+  AssociativeBoth3,
+  AssociativeBoth4,
+  AssociativeBoth5,
+  AssociativeBoth6,
+  AssociativeBoth7,
+  AssociativeBoth8,
+  AssociativeBoth9,
+} from './AssociativeBoth'
+import {
   Covariant,
   Covariant1,
   Covariant10,
@@ -33,6 +46,7 @@ import {
   Kind8,
   Kind9,
 } from './HKT'
+import { pipe } from './function'
 
 export interface Flatten<T extends HKT> extends Covariant<T> {
   readonly flatten: <A>(kind: Kind<T, Kind<T, A>>) => Kind<T, A>
@@ -90,4 +104,43 @@ export interface Flatten10<T extends HKT10> extends Covariant10<T> {
   readonly flatten: <Z, Y, X, W, V, U, S, R, E, A>(
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, Kind10<T, Z, Y, X, W, V, U, S, R, E, A>>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, A>
+}
+
+export function makeAssociativeBoth<T extends HKT10>(F: Flatten10<T>): AssociativeBoth10<T>
+
+export function makeAssociativeBoth<T extends HKT9>(F: Flatten9<T>): AssociativeBoth9<T>
+
+export function makeAssociativeBoth<T extends HKT8>(F: Flatten8<T>): AssociativeBoth8<T>
+
+export function makeAssociativeBoth<T extends HKT7>(F: Flatten7<T>): AssociativeBoth7<T>
+
+export function makeAssociativeBoth<T extends HKT6>(F: Flatten6<T>): AssociativeBoth6<T>
+
+export function makeAssociativeBoth<T extends HKT5>(F: Flatten5<T>): AssociativeBoth5<T>
+
+export function makeAssociativeBoth<T extends HKT4>(F: Flatten4<T>): AssociativeBoth4<T>
+
+export function makeAssociativeBoth<T extends HKT3>(F: Flatten3<T>): AssociativeBoth3<T>
+
+export function makeAssociativeBoth<T extends HKT2>(F: Flatten2<T>): AssociativeBoth2<T>
+
+export function makeAssociativeBoth<T extends HKT>(F: Flatten1<T>): AssociativeBoth1<T>
+
+export function makeAssociativeBoth<T extends HKT>(F: Flatten<T>): AssociativeBoth<T>
+
+export function makeAssociativeBoth<T extends HKT>(F: Flatten<T>): AssociativeBoth<T> {
+  return {
+    map: F.map,
+    both: (second) => (first) =>
+      pipe(
+        first,
+        F.map((a) =>
+          pipe(
+            second,
+            F.map((b) => [a, b] as const),
+          ),
+        ),
+        F.flatten,
+      ),
+  }
 }
