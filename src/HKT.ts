@@ -369,9 +369,9 @@ export type ParamOf<H extends HKT, T, P extends Params> = {
   }[LengthOf<H>]
 }[P]
 
-export type DefaultOf<H extends HKT, P extends Params> = DefaultForVariance<
-  P extends keyof H['defaults'] ? H['defaults'][P] : never
->
+export type DefaultOf<H extends HKT, P extends Params> = P extends keyof H['defaults']
+  ? DefaultForVariance<H['defaults'][P]>
+  : unknown
 
 export type DefaultForVariance<V> = [V] extends [Variance.Contravariant<infer R>]
   ? Equals<R, unknown> extends 1

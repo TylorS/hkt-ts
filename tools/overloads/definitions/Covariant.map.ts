@@ -3,8 +3,8 @@ import { Dynamic, FunctionSignature, HKTParam, Kind } from '../AST'
 import { Covariant } from './Covariant'
 import { aTypeParam, bTypeParam } from './common'
 
-export const hktF = new HKTParam('F')
-export const hktG = new HKTParam('G')
+export const hktF = new HKTParam(Symbol('F'), 'F')
+export const hktG = new HKTParam(Symbol('G'), 'G')
 export const placeholderF = hktF.toPlaceholder()
 export const placeholderG = hktG.toPlaceholder()
 

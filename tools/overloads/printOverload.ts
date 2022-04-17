@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Eff, pipe } from '../../src'
-import { Params } from '../../src/HKT'
 import * as Sync from '../../src/Sync'
 
 import {
@@ -11,6 +10,7 @@ import {
   HKTParam,
   HKTPlaceholder,
   Interface,
+  IntersectionNode,
   Kind,
   KindParam,
   Labeled,
@@ -21,6 +21,7 @@ import {
   TypeAlias,
   TypeParam,
   Typeclass,
+  UnionNode,
 } from './AST'
 import { Context } from './Context'
 import { findHKTParams } from './findHKTParams'
@@ -31,7 +32,14 @@ type PrintContext = {
   contextStack: CurrentContext[]
 }
 
-type CurrentContext = 'TypeParam' | 'Property' | 'FunctionParam' | 'Return' | 'Extension'
+type CurrentContext =
+  | 'TypeParam'
+  | 'Property'
+  | 'FunctionParam'
+  | 'Return'
+  | 'Extension'
+  | 'Kind'
+  | 'Array'
 
 export class PrintContextManager {
   context: PrintContext
@@ -76,6 +84,10 @@ export class PrintContextManager {
     return !!this.context.parentNodes.find((x) => x.tag === Interface.tag)
   }
 
+  isWithinFunction(): boolean {
+    return !!this.context.parentNodes.find((x) => x.tag === FunctionSignature.tag)
+  }
+
   isWithinTypeAlias(): boolean {
     return !!this.context.parentNodes.find((x) => x.tag === TypeAlias.tag)
   }
@@ -94,6 +106,14 @@ export class PrintContextManager {
 
   isWithinTypeParam(): boolean {
     return !!this.context.contextStack.find((x) => x === 'TypeParam')
+  }
+
+  isWithinKind(): boolean {
+    return !!this.context.contextStack.find((x) => x === 'Kind')
+  }
+
+  isWithinArray(): boolean {
+    return !!this.context.contextStack.find((x) => x === 'Array')
   }
 
   shouldPrintFunctionName(): boolean {
@@ -360,15 +380,8 @@ export function printTypeParam(
         return manager.isWithinTypeParam() ? baseName : `${baseName}<${p.type.name}>`
       })
     }
-    case Static.tag: {
-      return Sync.fromLazy(() => {
-        if (manager.isWithinReturn()) {
-          return p.type.split('extends')[0]
-        }
-
-        return p.type
-      })
-    }
+    case Static.tag:
+      return printStatic(p, manager)
     case Dynamic.tag: {
       return Eff.Eff(function* () {
         const printed = yield* pipe(
@@ -398,18 +411,14 @@ export function printKind(
   manager: PrintContextManager,
 ): Sync.Sync<string> {
   return Eff.Eff(function* () {
+    manager.addContext('Kind')
+
     const length = context.lengths.get(kind.type.id)
     const printed = yield* pipe(
       kind.kindParams,
-      Sync.forEach((p, i) =>
+      Sync.forEach((p) =>
         Eff.Eff(function* () {
           const printed = yield* printKindParam(p, context, manager)
-          const shouldUseDefaults =
-            manager.isWithinTypeParam() && length - i > context.existing.get(kind.type.id).length
-
-          if (shouldUseDefaults) {
-            return `DefaultOf<${kind.type.name}, Params.${printed}>`
-          }
 
           return printed
         }),
@@ -419,6 +428,8 @@ export function printKind(
     const prefix = `Kind${length < 2 ? '' : length}<${kind.type.name}`
     const params = printed.length > 0 ? `, ${printed.join(', ')}` : ''
     const postfix = `>`
+
+    manager.popContext()
 
     return `${prefix}${params}${postfix}`
   })
@@ -439,9 +450,25 @@ function printKindParam(
     case ObjectNode.tag:
       return printObjectNode(kindParam, context, manager)
     case Static.tag:
-      return Sync.of(kindParam.type)
+      return printStatic(kindParam, manager)
     case FunctionSignature.tag:
       return printFunctionSignature(kindParam, context, manager)
+    case IntersectionNode.tag:
+      return Eff.Eff(function* () {
+        return `${yield* printKindParam(
+          kindParam.left,
+          context,
+          manager,
+        )} & ${yield* printKindParam(kindParam.right, context, manager)}`
+      })
+    case UnionNode.tag:
+      return Eff.Eff(function* () {
+        return `${yield* printKindParam(
+          kindParam.left,
+          context,
+          manager,
+        )} | ${yield* printKindParam(kindParam.right, context, manager)}`
+      })
     default:
       return printTypeParam(kindParam, context, manager)
   }
@@ -468,7 +495,11 @@ function printArray(
   manager: PrintContextManager,
 ): Sync.Sync<string> {
   return Eff.Eff(function* () {
+    manager.addContext('Array')
+
     const printed = yield* printKindParam(array.member, context, manager)
+
+    manager.popContext()
 
     return `${array.isNonEmpty ? `NonEmpty` : `Readonly`}Array<${printed}>`
   })
@@ -490,7 +521,52 @@ function printObjectNode(
     manager.popContext()
 
     return `{
-    ${printed.join('\n')}
+    ${printed.join('\n  ')}
 }`
   })
+}
+
+function printStatic(node: Static, manager: PrintContextManager) {
+  return Sync.fromLazy(() => {
+    const hasDefaultValue = node.type.includes('=')
+    const hasExtension = node.type.includes('extends')
+
+    // Allow printing default values inside of non-function returning kinds
+    if (hasDefaultValue && (!manager.isWithinFunction() || manager.isWithinArray())) {
+      return trimType(node.type, ['name', 'extension'])
+    }
+
+    if (hasExtension && !manager.isWithinTypeParam()) {
+      return trimType(node.type, ['extension', 'default'])
+    }
+
+    if ((hasExtension || hasDefaultValue) && manager.isWithinKind()) {
+      return trimType(node.type, ['default', 'extension'])
+    }
+
+    return node.type
+  })
+}
+
+function trimType(type: string, trim: ReadonlyArray<'name' | 'extension' | 'default'>) {
+  // Fast path for getting only the default value
+  if (trim.length === 2 && trim.includes('name') && trim.includes('extension')) {
+    return type.split('=')[1].trim()
+  }
+
+  if (trim.includes('default')) {
+    type = type.split('=')[0].trim()
+  }
+
+  if (trim.includes('extension')) {
+    type = type.split('extends')[0].trim()
+  }
+
+  if (trim.includes('name')) {
+    const name = type.split('extends')[0].split('=')[0].trim()
+
+    type = type.replace(new RegExp(`${name}\\s+`), '')
+  }
+
+  return type
 }

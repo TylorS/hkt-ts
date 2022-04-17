@@ -1,5 +1,7 @@
-import { HKTParam, Kind, Typeclass } from '../AST'
+import { HKTParam, IntersectionNode, Kind } from '../AST'
 
+import { Covariant } from './Covariant'
+import { IdentityBoth } from './IdentityBoth'
 import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common'
 
 const hkt2 = new HKTParam(Symbol('T2'), 'T2')
@@ -11,7 +13,11 @@ export const ForEach = interface_(
     fnLabeled_(
       'forEach',
       [hkt2],
-      [new Typeclass('Applicative', hkt2).labeled('A')],
+      [
+        new IntersectionNode(IdentityBoth.toTypeClass(hkt2), Covariant.toTypeClass(hkt2)).labeled(
+          'IB',
+        ),
+      ],
       fn_(
         '',
         [aTypeParam, hkt2Placeholder, bTypeParam],

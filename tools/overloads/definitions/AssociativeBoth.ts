@@ -1,6 +1,5 @@
 import { Tuple } from '../AST'
 
-import { Covariant } from './Covariant'
 import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common'
 
 export const AssociativeBoth = interface_(
@@ -18,7 +17,7 @@ export const AssociativeBoth = interface_(
       ),
     ),
   ],
-  [Covariant],
+  [],
 )
 
 export const node = AssociativeBoth

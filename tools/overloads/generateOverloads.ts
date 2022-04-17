@@ -11,6 +11,7 @@ import {
   HKTParam,
   HKTPlaceholder,
   Interface,
+  IntersectionNode,
   Kind,
   KindParam,
   Labeled,
@@ -21,6 +22,7 @@ import {
   TypeAlias,
   TypeParam,
   Typeclass,
+  UnionNode,
 } from './AST'
 import { Context, buildContext, findPossibilities, mergeContexts } from './Context'
 import { hktParamNames } from './common'
@@ -156,7 +158,7 @@ export function generateTypeParams(
   })
 }
 
-export function generateHktPlaceholders(p: HKTPlaceholder, context: Context, printStatic: boolean) {
+export function generateHktPlaceholders(p: HKTPlaceholder, context: Context) {
   const length = context.lengths.get(p.type.id)
 
   if (length === undefined) {
@@ -175,8 +177,9 @@ export function generateHktPlaceholders(p: HKTPlaceholder, context: Context, pri
     }
 
     const base = multiple ? `${name}${position}` : name
-    const withExtension =
-      !printStatic && p.useDefaults ? `${base} = ${p.type.name}['defaults'][Params.${name}]` : base
+    const withExtension = p.useDefaults
+      ? `${base} = DefaultOf<${p.type.name}, Params.${name}>`
+      : base
 
     return new Static(withExtension)
   })
@@ -255,7 +258,7 @@ export function generateKindParam(
         return [yield* generateHKTParam(param, context)]
       }
       case 'HKTPlaceholder': {
-        return generateHktPlaceholders(param, context, true)
+        return generateHktPlaceholders(param, context)
       }
       case 'Kind': {
         return [yield* generateKind(param, context)]
@@ -271,6 +274,18 @@ export function generateKindParam(
       }
       case 'Typeclass': {
         return [yield* generateTypeclass(param, context)]
+      }
+      case 'Intersection': {
+        const l = yield* generateKindParam(param.left, context)
+        const r = yield* generateKindParam(param.right, context)
+
+        return l.flatMap((lv) => r.map((rv) => new IntersectionNode(lv, rv)))
+      }
+      case 'Union': {
+        const l = yield* generateKindParam(param.left, context)
+        const r = yield* generateKindParam(param.right, context)
+
+        return l.flatMap((lv) => r.map((rv) => new UnionNode(lv, rv)))
       }
     }
   })

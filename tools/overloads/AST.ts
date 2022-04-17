@@ -23,6 +23,8 @@ export type KindParam =
   | Static
   | Tuple
   | Typeclass
+  | IntersectionNode
+  | UnionNode
 
 export type FunctionParam = Labeled<KindParam>
 
@@ -176,6 +178,26 @@ export class ArrayNode extends ast('Array') {
 
   nonEmpty() {
     return new ArrayNode(this.member, true)
+  }
+}
+
+export class IntersectionNode extends ast('Intersection') {
+  constructor(readonly left: KindParam, readonly right: KindParam) {
+    super()
+  }
+
+  labeled(label: string) {
+    return new Labeled(label, this)
+  }
+}
+
+export class UnionNode extends ast('Union') {
+  constructor(readonly left: KindParam, readonly right: KindParam) {
+    super()
+  }
+
+  labeled(label: string) {
+    return new Labeled(label, this)
   }
 }
 

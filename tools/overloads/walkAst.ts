@@ -1,7 +1,7 @@
 import { A, U } from 'ts-toolbelt'
 
 import { Eff } from '../../src'
-import * as Sync from '../../src/Sync'
+import * as Sync from '../../src/effects/Sync'
 import { pipe } from '../../src/function'
 
 import {
@@ -55,6 +55,8 @@ export function defaultVisitors(): Visitors {
     Tuple: identity,
     TypeAlias: identity,
     Typeclass: identity,
+    Intersection: identity,
+    Union: identity,
   }
 }
 
