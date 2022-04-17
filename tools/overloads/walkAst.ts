@@ -1,7 +1,6 @@
 import { A, U } from 'ts-toolbelt'
 
 import { Eff } from '../../src'
-import * as Sync from '../../src/effects/Sync'
 import { pipe } from '../../src/function'
 
 import {
@@ -61,14 +60,14 @@ export function defaultVisitors(): Visitors {
 }
 
 export function walkAst(node: AST, visitors: Visitors) {
-  return pipe(walkAstSafe(node, visitors), Sync.runWith, Eff.run)
+  return pipe(walkAstSafe(node, visitors), Eff.run)
 }
 
-function walkAstSafe(node: AST, visitors: Visitors): Sync.Sync<void> {
+function walkAstSafe(node: AST, visitors: Visitors): Eff.Eff<never, void> {
   const run = Eff.Eff(function* () {
     switch (node.tag) {
       case Interface.tag: {
-        yield* Sync.fromLazy(() => visitors.Interface(node))
+        yield* Eff.fromLazy(() => visitors.Interface(node))
 
         for (const param of node.typeParams) {
           yield* walkAstSafe(param, visitors)
@@ -85,7 +84,7 @@ function walkAstSafe(node: AST, visitors: Visitors): Sync.Sync<void> {
         break
       }
       case FunctionSignature.tag: {
-        yield* Sync.fromLazy(() => visitors.FunctionSignature(node))
+        yield* Eff.fromLazy(() => visitors.FunctionSignature(node))
 
         for (const param of node.typeParams) {
           yield* walkAstSafe(param, visitors)
@@ -100,11 +99,11 @@ function walkAstSafe(node: AST, visitors: Visitors): Sync.Sync<void> {
         break
       }
       case HKTParam.tag:
-        return yield* Sync.fromLazy(() => visitors.HKTParam(node))
+        return yield* Eff.fromLazy(() => visitors.HKTParam(node))
       case HKTPlaceholder.tag:
-        return yield* Sync.fromLazy(() => visitors.HKTPlaceholder(node))
+        return yield* Eff.fromLazy(() => visitors.HKTPlaceholder(node))
       case Kind.tag: {
-        yield* Sync.fromLazy(() => visitors.Kind(node))
+        yield* Eff.fromLazy(() => visitors.Kind(node))
 
         for (const param of node.kindParams) {
           yield* walkAstSafe(param, visitors)
@@ -113,14 +112,14 @@ function walkAstSafe(node: AST, visitors: Visitors): Sync.Sync<void> {
         break
       }
       case Labeled.tag: {
-        yield* Sync.fromLazy(() => visitors.Labeled(node))
+        yield* Eff.fromLazy(() => visitors.Labeled(node))
 
         return yield* walkAstSafe(node.param, visitors)
       }
       case Static.tag:
-        return yield* Sync.fromLazy(() => visitors.Static(node))
+        return yield* Eff.fromLazy(() => visitors.Static(node))
       case Dynamic.tag: {
-        yield* Sync.fromLazy(() => visitors.Dynamic(node))
+        yield* Eff.fromLazy(() => visitors.Dynamic(node))
 
         for (const param of node.params) {
           yield* walkAstSafe(param, visitors)
@@ -129,7 +128,7 @@ function walkAstSafe(node: AST, visitors: Visitors): Sync.Sync<void> {
         break
       }
       case Tuple.tag: {
-        yield* Sync.fromLazy(() => visitors.Tuple(node))
+        yield* Eff.fromLazy(() => visitors.Tuple(node))
 
         for (const param of node.members) {
           yield* walkAstSafe(param, visitors)
@@ -138,7 +137,7 @@ function walkAstSafe(node: AST, visitors: Visitors): Sync.Sync<void> {
         break
       }
       case ObjectNode.tag: {
-        yield* Sync.fromLazy(() => visitors.Object(node))
+        yield* Eff.fromLazy(() => visitors.Object(node))
 
         for (const param of node.properties) {
           yield* walkAstSafe(param, visitors)
@@ -147,7 +146,7 @@ function walkAstSafe(node: AST, visitors: Visitors): Sync.Sync<void> {
         break
       }
       case TypeAlias.tag: {
-        yield* Sync.fromLazy(() => visitors.TypeAlias(node))
+        yield* Eff.fromLazy(() => visitors.TypeAlias(node))
 
         for (const param of node.typeParams) {
           yield* walkAstSafe(param, visitors)
@@ -156,7 +155,7 @@ function walkAstSafe(node: AST, visitors: Visitors): Sync.Sync<void> {
         return yield* walkAstSafe(node.signature, visitors)
       }
       case Typeclass.tag:
-        return yield* Sync.fromLazy(() => visitors.Typeclass(node))
+        return yield* Eff.fromLazy(() => visitors.Typeclass(node))
     }
   })
 

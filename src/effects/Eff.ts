@@ -59,6 +59,16 @@ export function flatMap<A, Y2 extends AnyTagged, B>(f: Unary<A, Eff<Y2, B>>) {
 export const flatten = <Y1 extends AnyTagged, Y2 extends AnyTagged, A>(eff: Eff<Y1, Eff<Y2, A>>) =>
   pipe(eff, flatMap(identity))
 
+export const forEach = <A, Y extends AnyTagged, B>(f: (a: A) => Eff<Y, B>) => (iterable: Iterable<A>): Eff<Y, ReadonlyArray<B>> => Eff(function* () {
+  const output: B[] = []
+
+  for (const a of iterable) {
+    output.push(yield* f(a))
+  }
+
+  return output
+})
+
 export const lazy = <Y extends AnyTagged, A>(f: () => Eff<Y, A>): Eff<Y, A> => ({
   [Symbol.iterator]: () => f()[Symbol.iterator](),
 })
@@ -76,6 +86,7 @@ export function run<R>(eff: Eff<never, R>): R {
   return iterator(eff).next().value
 }
 
+/* #region Instructions + Handlers */
 export interface EffInstruction<T extends string, I, O> {
   readonly tag: T
   readonly input: I
@@ -267,6 +278,8 @@ export function* withInstructions<Y, R, Y2, Y3 extends AnyTagged, Y4 extends Any
 
   return yield* onReturn(stepper.value)
 }
+
+/* #endregion */
 
 export const memoize =
   <A extends ReadonlyArray<any>>(E: Eq<A>) =>

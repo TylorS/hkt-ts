@@ -4,7 +4,6 @@ import { Debug } from '../typeclasses/concrete/Debug'
 import * as Eff from '../effects/Eff'
 import * as Eq from '../typeclasses/concrete/Eq'
 import { drawTree } from './RoseTree'
-import * as Sync from '../effects/Sync'
 import { identity, pipe } from '../function/function'
 import { Associative } from '../typeclasses/concrete/Associative'
 
@@ -42,20 +41,19 @@ export function bimap<P1, P2, C1, C2>(f: (parent: P1) => P2, g: (child: C1) => C
     pipe(
       tree,
       bimapSafe(
-        (a) => Sync.fromLazy(() => f(a)),
-        (b) => Sync.fromLazy(() => g(b)),
+        (a) => Eff.fromLazy(() => f(a)),
+        (b) => Eff.fromLazy(() => g(b)),
       ),
-      Sync.runWith,
       Eff.run,
     )
 }
 
 // Stack-safe bimaps
 function bimapSafe<P1, P2, C1, C2>(
-  f: (parent: P1) => Sync.Sync<P2>,
-  g: (child: C1) => Sync.Sync<C2>,
+  f: (parent: P1) => Eff.Eff<never, P2>,
+  g: (child: C1) => Eff.Eff<never, C2>,
 ) {
-  return (tree: Tree<P1, C1>): Sync.Sync<Tree<P2, C2>> =>
+  return (tree: Tree<P1, C1>): Eff.Eff<never, Tree<P2, C2>> =>
     Eff.Eff(function* () {
       if (tree.type === 'Leaf') {
         return leaf(yield* g(tree.value))
@@ -63,7 +61,7 @@ function bimapSafe<P1, P2, C1, C2>(
 
       const forest = yield* pipe(
         tree.forest,
-        Sync.forEach((t) => pipe(t, bimapSafe(f, g))),
+        Eff.forEach((t) => pipe(t, bimapSafe(f, g))),
       )
 
       return parent(yield* f(tree.value), forest)
@@ -120,14 +118,13 @@ export const reduce =
   <P>(fa: Tree<P, A>): B =>
     pipe(
       fa,
-      reduceSafe(b, (b, a) => Sync.fromLazy(() => f(b, a))),
-      Sync.runWith,
+      reduceSafe(b, (b, a) => Eff.fromLazy(() => f(b, a))),
       Eff.run,
     )
 
 export const reduceSafe =
-  <A, B>(b: B, f: (b: B, a: A) => Sync.Sync<B>) =>
-  <P>(fa: Tree<P, A>): Sync.Sync<B> =>
+  <A, B>(b: B, f: (b: B, a: A) => Eff.Eff<never, B>) =>
+  <P>(fa: Tree<P, A>): Eff.Eff<never, B> =>
     Eff.Eff(function* () {
       if (fa.type === 'Leaf') {
         return yield* f(b, fa.value)
@@ -157,14 +154,13 @@ export const reduceRight =
   <P>(fa: Tree<P, A>): B =>
     pipe(
       fa,
-      reduceRightSafe(b, (a, b) => Sync.fromLazy(() => f(a, b))),
-      Sync.runWith,
+      reduceRightSafe(b, (a, b) => Eff.fromLazy(() => f(a, b))),
       Eff.run,
     )
 
 export const reduceRightSafe =
-  <A, B>(b: B, f: (a: A, b: B) => Sync.Sync<B>) =>
-  <P>(fa: Tree<P, A>): Sync.Sync<B> =>
+  <A, B>(b: B, f: (a: A, b: B) => Eff.Eff<never, B>) =>
+  <P>(fa: Tree<P, A>): Eff.Eff<never, B> =>
     Eff.Eff(function* () {
       if (fa.type === 'Leaf') {
         return yield* f(fa.value, b)
