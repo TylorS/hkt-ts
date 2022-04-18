@@ -6,12 +6,9 @@ import { pipe } from '../function/function'
  * Async is a data-type for asynchronously acquiring some value once, with
  * the possiblity of being canceled.
  */
-export interface Async<A> extends Eff.Eff<AsyncInstruction<any>, A> {}
+export interface Async<A> extends Eff.Eff<AsyncInstruction<any>, A> { }
 
-export interface AsyncInstruction<A> {
-  readonly tag: 'Async'
-  readonly cb: AsyncCallback<A>
-}
+export class AsyncInstruction<A> extends Eff.instr('Async')<AsyncCallback<A>, A> { }
 
 export interface AsyncCallback<A> {
   (cb: (value: A) => void): Disposable
@@ -20,10 +17,7 @@ export interface AsyncCallback<A> {
 /**
  * Constructor your own Async Instance
  */
-export const fromCallback = <A>(cb: AsyncCallback<A>): Async<A> =>
-  Eff.Eff(function* () {
-    return (yield { tag: 'Async', cb: once(cb) }) as A
-  })
+export const fromCallback = <A>(cb: AsyncCallback<A>): Async<A> => new AsyncInstruction(once(cb))
 
 /**
  * Type-level helper for extracting the Type returned by a given Async instance.
@@ -71,7 +65,7 @@ function interpretAsync<A>(
   return pipe(
     disposable,
     withRemove((remove) =>
-      result.value.cb((a) => {
+      result.value.input((a) => {
         remove()
 
         return interpretAsync(generator, generator.next(a), cb, disposable)
