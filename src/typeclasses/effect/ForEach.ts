@@ -1,17 +1,4 @@
 import {
-  Covariant,
-  Covariant1,
-  Covariant10,
-  Covariant2,
-  Covariant3,
-  Covariant4,
-  Covariant5,
-  Covariant6,
-  Covariant7,
-  Covariant8,
-  Covariant9,
-} from './Covariant'
-import {
   HKT,
   HKT10,
   HKT2,
@@ -33,6 +20,20 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
+
+import {
+  Covariant,
+  Covariant1,
+  Covariant10,
+  Covariant2,
+  Covariant3,
+  Covariant4,
+  Covariant5,
+  Covariant6,
+  Covariant7,
+  Covariant8,
+  Covariant9,
+} from './Covariant'
 import {
   IdentityBoth,
   IdentityBoth1,
