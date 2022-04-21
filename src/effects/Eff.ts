@@ -1,11 +1,10 @@
 import { Cast } from 'ts-toolbelt/out/Any/Cast'
 
-import { Eq } from '../typeclasses/concrete/Eq'
 import { Include } from '../common'
-import { Lazy, Unary, identity, pipe } from '../function/function'
-
 import { lookup } from '../data/Map'
 import { Just, Maybe, Nothing, isJust, isNothing } from '../data/Maybe'
+import { Lazy, Unary, identity, pipe } from '../function/function'
+import { Eq } from '../typeclasses/concrete/Eq'
 
 /**
  * Eff is a lightweight abstraction which preserves referential transparency of
@@ -59,15 +58,18 @@ export function flatMap<A, Y2 extends AnyTagged, B>(f: Unary<A, Eff<Y2, B>>) {
 export const flatten = <Y1 extends AnyTagged, Y2 extends AnyTagged, A>(eff: Eff<Y1, Eff<Y2, A>>) =>
   pipe(eff, flatMap(identity))
 
-export const forEach = <A, Y extends AnyTagged, B>(f: (a: A) => Eff<Y, B>) => (iterable: Iterable<A>): Eff<Y, ReadonlyArray<B>> => Eff(function* () {
-  const output: B[] = []
+export const forEach =
+  <A, Y extends AnyTagged, B>(f: (a: A) => Eff<Y, B>) =>
+  (iterable: Iterable<A>): Eff<Y, ReadonlyArray<B>> =>
+    Eff(function* () {
+      const output: B[] = []
 
-  for (const a of iterable) {
-    output.push(yield* f(a))
-  }
+      for (const a of iterable) {
+        output.push(yield* f(a))
+      }
 
-  return output
-})
+      return output
+    })
 
 export const lazy = <Y extends AnyTagged, A>(f: () => Eff<Y, A>): Eff<Y, A> => ({
   [Symbol.iterator]: () => f()[Symbol.iterator](),

@@ -1,13 +1,14 @@
-import { Associative } from '../typeclasses/concrete/Associative'
-import { Identity } from '../typeclasses/concrete/Identity'
-import { Concat } from '../typeclasses/concrete/Concat'
-import { Debug } from '../typeclasses/concrete/Debug'
-import { Eq, fromEquals } from '../typeclasses/concrete/Eq'
-import * as M from './Maybe'
-import { Ord } from '../typeclasses/concrete/Ord'
 import { Predicate } from '../function/Predicate'
 import { Refinement } from '../function/Refinement'
 import { flow, pipe } from '../function/function'
+import { Associative } from '../typeclasses/concrete/Associative'
+import { Concat } from '../typeclasses/concrete/Concat'
+import { Debug } from '../typeclasses/concrete/Debug'
+import { Eq, fromEquals } from '../typeclasses/concrete/Eq'
+import { Identity } from '../typeclasses/concrete/Identity'
+import { Ord } from '../typeclasses/concrete/Ord'
+
+import * as M from './Maybe'
 
 import Maybe = M.Maybe
 
@@ -511,7 +512,9 @@ export const reduceWithIndex = <K>(
 
 export const foldMapWithIndex = <K>(
   O: Ord<K>,
-): (<M>(M: Associative<M> & Identity<M>) => <A>(f: (k: K, a: A) => M) => (m: ReadonlyMap<K, A>) => M) => {
+): (<M>(
+  M: Associative<M> & Identity<M>,
+) => <A>(f: (k: K, a: A) => M) => (m: ReadonlyMap<K, A>) => M) => {
   const keysO = keys(O)
 
   return (M) => (f) => (m) => {

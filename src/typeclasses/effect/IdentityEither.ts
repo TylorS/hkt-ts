@@ -1,3 +1,5 @@
+import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../../HKT'
+
 import {
   AssociativeEither,
   AssociativeEither1,
@@ -24,7 +26,6 @@ import {
   Bottom8,
   Bottom9,
 } from './Bottom'
-import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../../HKT'
 
 export interface IdentityEither<T extends HKT> extends AssociativeEither<T>, Bottom<T> {}
 

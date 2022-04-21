@@ -1,17 +1,18 @@
+import { Match } from '../function/Match'
+import * as R from '../function/Refinement'
+import { pipe } from '../function/function'
 import * as Associative from '../typeclasses/concrete/Associative'
-import * as B from '../typeclasses/effect/Bounded'
-import { Branded } from './Branded'
 import * as Commutative from '../typeclasses/concrete/Commutative'
 import { Concat } from '../typeclasses/concrete/Concat'
 import * as D from '../typeclasses/concrete/Debug'
 import * as E from '../typeclasses/concrete/Eq'
 import { Identity } from '../typeclasses/concrete/Identity'
 import * as I from '../typeclasses/concrete/Inverse'
-import { Match } from '../function/Match'
-import { Just, Nothing } from './Maybe'
 import * as O from '../typeclasses/concrete/Ord'
-import * as R from '../function/Refinement'
-import { pipe } from '../function/function'
+import * as B from '../typeclasses/effect/Bounded'
+
+import { Branded } from './Branded'
+import { Just, Nothing } from './Maybe'
 
 export const isNumber: R.Refinement<unknown, number> = (x: unknown): x is number =>
   typeof x === 'number'
@@ -51,20 +52,22 @@ export const ConcatDiv: Concat<number> = {
   concat: (first, second) => first / second,
 }
 
-export const IdentitySum: Identity<number> = {
-  id: 0,
-}
-
-export const IdentityProduct: Identity<number> = {
-  id: 1,
-}
-
 export const AssociativeSum: Associative.Associative<number> = {
   concat: (first, second) => first + second,
 }
 
 export const AssociativeProduct: Associative.Associative<number> = {
   concat: (first, second) => first * second,
+}
+
+export const IdentitySum: Identity<number> = {
+  ...AssociativeSum,
+  id: 0,
+}
+
+export const IdentityProduct: Identity<number> = {
+  ...AssociativeProduct,
+  id: 1,
 }
 
 export const CommutativeSum: Commutative.Commutative<number> = AssociativeSum
@@ -82,22 +85,22 @@ export const Inverse: I.Inverse<number> = {
 }
 
 // Number types
-export type Integer = Branded<number, { readonly Integer: unique symbol }>
+export type Integer = Branded<{ readonly Integer: unique symbol }, number>
 export const Integer = Branded<Integer>()
 
-export type Float = Branded<number, { readonly Float: unique symbol }>
+export type Float = Branded<{ readonly Float: unique symbol }, number>
 export const Float = Branded<Float>()
 
 // Number base categories
-export type Negative = Branded<number, { readonly Negative: unique symbol }>
+export type Negative = Branded<{ readonly Negative: unique symbol }, number>
 export const Negative = Branded<Negative>()
-export type NonNegative = Branded<number, { readonly NonNegative: unique symbol }>
+export type NonNegative = Branded<{ readonly NonNegative: unique symbol }, number>
 export const NonNegative = Branded<NonNegative>()
-export type NonPositive = Branded<number, { readonly NonPositive: unique symbol }>
+export type NonPositive = Branded<{ readonly NonPositive: unique symbol }, number>
 export const NonPositive = Branded<NonPositive>()
-export type NonZero = Branded<number, { readonly NonZero: unique symbol }>
+export type NonZero = Branded<{ readonly NonZero: unique symbol }, number>
 export const NonZero = Branded<NonZero>()
-export type Positive = Branded<number, { readonly Positive: unique symbol }>
+export type Positive = Branded<{ readonly Positive: unique symbol }, number>
 export const Positive = Branded<Positive>()
 
 // Base category refinements

@@ -1,10 +1,11 @@
+import { HKT2, Params, Variance } from '../HKT'
+import { Lazy, identity, pipe } from '../function/function'
 import * as AB from '../typeclasses/effect/AssociativeBoth'
 import * as F from '../typeclasses/effect/AssociativeFlatten'
 import { Covariant2 } from '../typeclasses/effect/Covariant'
-import { HKT2, Params, Variance } from '../HKT'
+
 import type { Maybe } from './Maybe'
 import type * as NEA from './NonEmptyArray'
-import { Lazy, identity, pipe } from '../function/function'
 
 /**
  * A common disriminated union to represent the outcome of 2 separate
@@ -226,7 +227,6 @@ export const flatten: <E, E2, A>(kind: Either<E, Either<E2, A>>) => Either<E | E
   isLeft(either) ? either : either.right
 
 export const Flatten: F.AssociativeFlatten2<EitherHKT> = {
-  map,
   flatten,
 }
 

@@ -1,3 +1,5 @@
+import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../../HKT'
+
 import {
   Compact,
   Compact1,
@@ -11,7 +13,6 @@ import {
   Compact8,
   Compact9,
 } from './Compact'
-import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../../HKT'
 import {
   Separate,
   Separate1,

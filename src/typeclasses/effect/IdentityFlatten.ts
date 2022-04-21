@@ -1,3 +1,5 @@
+import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../../HKT'
+
 import {
   AssociativeFlatten,
   AssociativeFlatten1,
@@ -11,7 +13,6 @@ import {
   AssociativeFlatten8,
   AssociativeFlatten9,
 } from './AssociativeFlatten'
-import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../../HKT'
 import { Top, Top1, Top10, Top2, Top3, Top4, Top5, Top6, Top7, Top8, Top9 } from './Top'
 
 export interface IdentityFlatten<T extends HKT> extends AssociativeFlatten<T>, Top<T> {}

@@ -1,8 +1,8 @@
+import { identity, pipe } from '../function/function'
 import * as Associative from '../typeclasses/concrete/Associative'
 import { Debug } from '../typeclasses/concrete/Debug'
 import { Eq, fromEquals } from '../typeclasses/concrete/Eq'
 import * as Ord from '../typeclasses/concrete/Ord'
-import { identity, pipe } from '../function/function'
 
 import { Just, Maybe, Nothing } from './Maybe'
 

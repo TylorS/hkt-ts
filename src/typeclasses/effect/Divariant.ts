@@ -18,7 +18,7 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { Unary } from '../../function'
+import { Unary } from '../../function/function'
 
 export interface Divariant<T extends HKT2> {
   readonly dimap: <A, B, C, D>(

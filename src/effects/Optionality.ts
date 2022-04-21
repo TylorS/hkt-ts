@@ -1,6 +1,7 @@
-import * as Eff from './Eff'
 import * as Maybe from '../data/Maybe'
-import { flow } from '../function'
+import { flow } from '../function/function'
+
+import * as Eff from './Eff'
 
 export interface Optionality<A> extends Eff.Eff<OptionalityInstruction<any>, A> {}
 

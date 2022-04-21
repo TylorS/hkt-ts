@@ -1,17 +1,4 @@
 import {
-  Covariant,
-  Covariant1,
-  Covariant10,
-  Covariant2,
-  Covariant3,
-  Covariant4,
-  Covariant5,
-  Covariant6,
-  Covariant7,
-  Covariant8,
-  Covariant9,
-} from './Covariant'
-import {
   DefaultOf,
   HKT,
   HKT10,
@@ -35,7 +22,21 @@ import {
   Kind9,
   Params,
 } from '../../HKT'
-import { Lazy, constant } from '../../function'
+import { Lazy, constant } from '../../function/function'
+
+import {
+  Covariant,
+  Covariant1,
+  Covariant10,
+  Covariant2,
+  Covariant3,
+  Covariant4,
+  Covariant5,
+  Covariant6,
+  Covariant7,
+  Covariant8,
+  Covariant9,
+} from './Covariant'
 
 export interface Top<T extends HKT> {
   readonly top: Kind<T, unknown>

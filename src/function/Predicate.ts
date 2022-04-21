@@ -1,5 +1,6 @@
 import { Associative } from '../typeclasses/concrete/Associative'
 import { Identity } from '../typeclasses/concrete/Identity'
+
 import { constFalse, flow, pipe } from './function'
 
 export interface Predicate<A> {
@@ -28,6 +29,7 @@ export const makeAssociativeAny = <A = never>(): Associative<Predicate<A>> => ({
 })
 
 export const makeIdentityAny = <A = never>(): Identity<Predicate<A>> => ({
+  ...makeAssociativeAny<A>(),
   id: constFalse,
 })
 
@@ -36,6 +38,7 @@ export const makeAssociativeAll = <A = never>(): Associative<Predicate<A>> => ({
 })
 
 export const makeIdentityAll = <A = never>(): Identity<Predicate<A>> => ({
+  ...makeAssociativeAll<A>(),
   id: constFalse,
 })
 

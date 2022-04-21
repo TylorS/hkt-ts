@@ -20,7 +20,7 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { Unary, constant, flow } from '../../function'
+import { Unary, constant, flow } from '../../function/function'
 
 /* #region Typeclass */
 export interface Covariant<T extends HKT> {

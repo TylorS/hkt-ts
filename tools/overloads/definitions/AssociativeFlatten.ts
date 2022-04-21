@@ -1,4 +1,3 @@
-import { Covariant } from './Covariant'
 import { aTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common'
 
 export const AssociativeFlatten = interface_(
@@ -11,7 +10,7 @@ export const AssociativeFlatten = interface_(
       kind_([aTypeParam]),
     ),
   ],
-  [Covariant],
+  [],
 )
 
 export const node = AssociativeFlatten

@@ -1,7 +1,8 @@
+import { constant } from '../../function/function'
+import type { Identity } from '../../typeclasses/concrete/Identity'
+
 import type { Associative } from './Associative'
 import type { Eq } from './Eq'
-import { constant } from '../../function'
-import type { Identity } from '../../typeclasses/concrete/Identity'
 
 export interface Ord<A> extends Eq<A> {
   readonly compare: (first: A, second: A) => Ordering
@@ -53,6 +54,7 @@ export const makeAssociative = <A = never>(): Associative<Ord<A>> => ({
 })
 
 export const makeIdentity = <A = never>(): Identity<Ord<A>> => ({
+  ...makeAssociative<A>(),
   id: Static,
 })
 

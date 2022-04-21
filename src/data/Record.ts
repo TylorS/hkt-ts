@@ -1,9 +1,10 @@
-import { sort } from './Array'
+import { pipe } from '../function/function'
 import { Debug } from '../typeclasses/concrete/Debug'
 import { Eq } from '../typeclasses/concrete/Eq'
-import { Just, Maybe, Nothing, isNothing } from './Maybe'
 import { Ord, tuple } from '../typeclasses/concrete/Ord'
-import { pipe } from '../function/function'
+
+import { sort } from './Array'
+import { Just, Maybe, Nothing, isNothing } from './Maybe'
 
 export type ReadonlyRecord<K extends string, T> = { readonly [_ in K]: T }
 

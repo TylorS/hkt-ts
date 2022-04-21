@@ -1,10 +1,11 @@
-import { Associative } from '../typeclasses/concrete/Associative'
-import * as Eff from './Eff'
+import { Include } from '../common'
 import { Left, Right } from '../data/Either'
-import { FailInstruction } from './Fail'
 import { isNonEmpty } from '../data/NonEmptyArray'
 import { Both, These } from '../data/These'
-import { Include } from '../common'
+import { Associative } from '../typeclasses/concrete/Associative'
+
+import * as Eff from './Eff'
+import { FailInstruction } from './Fail'
 
 export interface OptionalFail<E, A> extends Eff.Eff<OptionalFailInstruction<E>, A> {}
 

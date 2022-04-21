@@ -1,5 +1,6 @@
-import * as Eff from './Eff'
 import { Either, Left, Right, isLeft } from '../data/Either'
+
+import * as Eff from './Eff'
 
 export interface Fail<E, A> extends Eff.Eff<FailInstruction<E>, A> {}
 

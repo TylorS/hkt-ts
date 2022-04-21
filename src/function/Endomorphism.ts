@@ -12,5 +12,6 @@ export const makeAssociative = <A = never>(): Associative<Endomorphism<A>> => ({
 })
 
 export const makeIdentity = <A = never>(): Identity<Endomorphism<A>> => ({
+  ...makeAssociative<A>(),
   id: identity,
 })

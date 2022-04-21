@@ -37,7 +37,7 @@
     "build:esm": "rm -rf esm && tsc -p ./tsconfig.json --outDir esm",
     "build": "concurrently npm:build:esm npm:build:cjs",
     "generate-overload": "node -r esbuild-register ./tools/overloads/cli.ts",
-    "eslint": "eslint --ext .ts,.js,.json,.yaml --fix",
+    "eslint": "eslint --ext .ts,.js,.json,.yaml --fix src",
     "mocha": "mocha -r esbuild-register 'src/**/*.test.ts'",
     "test": "concurrenctly npm:eslint npm:mocha",
     "preversion": "npm test",

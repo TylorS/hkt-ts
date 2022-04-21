@@ -4,14 +4,18 @@
  */
 import { M } from 'ts-toolbelt'
 
+import { Constrain, HKT2, Params, Variance } from '../HKT'
+import { unsafeCoerce } from '../function/function'
 import * as Associative from '../typeclasses/concrete/Associative'
-import { Bounded } from '../typeclasses/effect/Bounded'
 import * as Commutative from '../typeclasses/concrete/Commutative'
 import { Concat } from '../typeclasses/concrete/Concat'
 import { Eq } from '../typeclasses/concrete/Eq'
 import { Identity } from '../typeclasses/concrete/Identity'
 import { Ord } from '../typeclasses/concrete/Ord'
-import { unsafeCoerce } from '../function/function'
+import { AssociativeBoth2 } from '../typeclasses/effect/AssociativeBoth'
+import { Bounded } from '../typeclasses/effect/Bounded'
+import { Covariant2 } from '../typeclasses/effect/Covariant'
+import { Top2 } from '../typeclasses/effect/Top'
 
 export const BRAND = Symbol('@hkt-ts/Brand')
 export type BRAND = typeof BRAND
@@ -22,21 +26,22 @@ export type Brand<T> = { readonly [BRAND]: (brand: T) => void }
  * @category Type-level
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type BrandOf<A> = [A] extends [Branded<infer _, infer Brand>] ? Brand : unknown
+export type BrandOf<A> = [A] extends [Branded<infer Brand, infer _>] ? Brand : unknown
+
 /**
  * @category Type-level
  */
-export type ValueOf<A> = A extends Branded<infer R, BrandOf<A>> ? R : never
+export type ValueOf<A> = A extends Branded<BrandOf<A>, infer R> ? R : never
 
 /**
  * @category Model
  */
-export type Branded<T, B> = T & Brand<B>
+export type Branded<B, T> = T & Brand<B>
 
 /**
  * @category Type-level
  */
-export type Combine<T, U> = Branded<ValueOf<T> & ValueOf<U>, BrandOf<T> & BrandOf<U>>
+export type Combine<T, U> = Branded<BrandOf<T> & BrandOf<U>, ValueOf<T> & ValueOf<U>>
 
 /**
  * @category Constructor
@@ -67,6 +72,8 @@ export const Branded = <A extends Branded<any, any>>() => {
 
 export const brand: <A extends Branded<any, any>>(value: ValueOf<A>) => A = unsafeCoerce
 
+export const unwrap: <A extends Branded<any, any>>(value: A) => ValueOf<A> = unsafeCoerce
+
 /**
  * Helper for removing all Branded values from a given type. Can be helpful for generating
  * an incoming type from a domain type.
@@ -76,3 +83,29 @@ export type StripBranded<A> = A extends M.Primitive | Date
   : {
       readonly [K in keyof A]: StripBranded<A[K]>
     }
+
+export interface BrandedHKT extends HKT2 {
+  readonly type: Branded<this[Params.E], this[Params.A]>
+}
+
+export const Covariant: Covariant2<BrandedHKT> = {
+  map: (f) => (k) => unsafeCoerce(f(k)),
+}
+
+export const AssociativeBoth: AssociativeBoth2<BrandedHKT> = {
+  both: (s) => (f) => unsafeCoerce([f, s] as const),
+}
+
+export const makeTop =
+  <BRAND>() =>
+  <B>(
+    value: B,
+  ): Top2<
+    Constrain<
+      Constrain<BrandedHKT, Params.A, Variance.Invariant<B>>,
+      Params.E,
+      Variance.Invariant<BRAND>
+    >
+  > => ({
+    top: unsafeCoerce(value),
+  })

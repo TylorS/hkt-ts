@@ -19,8 +19,6 @@ export function absurd<A>(): A {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ArgsOf<A> = A extends (...args: infer R) => any ? R : never
 
-export type Unary<A, B> = (a: A) => B
-
 export type Arity2<A, B, C> = (a: A, b: B) => C
 
 export type Arity3<A, B, C, D> = (a: A, b: B, c: C) => D
@@ -518,3 +516,6 @@ export function tupled<A>(a: A): readonly [A] {
 }
 
 export const unsafeCoerce: <A, B>(a: A) => B = identity as any
+
+import type { Unary } from './Unary'
+export type { Unary }

@@ -1,10 +1,10 @@
+import { Refinement } from '../function/Refinement'
+import { Lazy } from '../function/function'
 import { Associative } from '../typeclasses/concrete/Associative'
 import * as D from '../typeclasses/concrete/Debug'
 import * as E from '../typeclasses/concrete/Eq'
-import * as O from '../typeclasses/concrete/Ord'
-import { Refinement } from '../function/Refinement'
-import { Lazy } from '../function/function'
 import { Identity } from '../typeclasses/concrete/Identity'
+import * as O from '../typeclasses/concrete/Ord'
 
 export const isBoolean: Refinement<unknown, boolean> = (u: unknown): u is boolean =>
   typeof u === 'boolean'
@@ -61,6 +61,7 @@ export const AssociativeAny: Associative<boolean> = {
  * @category instances
  */
 export const All: Identity<boolean> = {
+  ...AssociativeAll,
   id: true,
 }
 
@@ -71,6 +72,7 @@ export const All: Identity<boolean> = {
  * @category instances
  */
 export const Any: Identity<boolean> = {
+  ...AssociativeAny,
   id: false,
 }
 

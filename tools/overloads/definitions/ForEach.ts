@@ -24,7 +24,7 @@ export const ForEach = interface_(
         [
           fnLabeled_(
             'f',
-            [hkt2Placeholder],
+            [],
             [aTypeParam.labeled('a')],
             new Kind(hkt2, [hkt2Placeholder, bTypeParam]),
           ),
@@ -33,12 +33,12 @@ export const ForEach = interface_(
           '',
           [placeholder],
           [kind_([aTypeParam]).labeled('kind')],
-          kind_([new Kind(hkt2, [hkt2Placeholder, bTypeParam])]),
+          new Kind(hkt2, [hkt2Placeholder, kind_([bTypeParam])]),
         ),
       ),
     ),
   ],
-  [],
+  [Covariant],
 )
 
 export const node = ForEach

@@ -18,7 +18,7 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { Unary, identity } from '../../function'
+import { Unary, identity } from '../../function/function'
 
 export interface Bicovariant<T extends HKT2> {
   readonly bimap: <A, B, C, D>(

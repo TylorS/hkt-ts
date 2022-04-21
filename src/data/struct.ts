@@ -1,7 +1,7 @@
 import { Cast } from 'ts-toolbelt/out/Any/Cast'
 
-import { Identity } from '../typeclasses/concrete/Identity'
 import { Associative } from '../typeclasses/concrete/Associative'
+import { Identity } from '../typeclasses/concrete/Identity'
 
 export type StructEntries = ReadonlyArray<readonly [PropertyKey, any]>
 
@@ -30,9 +30,10 @@ export const makeAssignAssociative = <A extends object = never>(): Associative<A
 
 export const empty: Readonly<Record<PropertyKey, never>> = Object.create(null)
 
-export const AssignIdentity: Identity<unknown> = {
+export const makeAssignIdentity = <A extends object = never>(): Identity<A> => ({
+  ...makeAssignAssociative<A>(),
   id: empty,
-}
+})
 
 /**
  * Creates a new object by recursively evolving a shallow copy of `a`, according to the `transformation` functions.

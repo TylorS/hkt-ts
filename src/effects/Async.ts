@@ -1,14 +1,15 @@
+import { pipe } from '../function/function'
+
 import { Async, Disposable, DisposableQueue, disposeAll, withRemove } from './Disposable'
 import * as Eff from './Eff'
-import { pipe } from '../function/function'
 
 /**
  * Async is a data-type for asynchronously acquiring some value once, with
  * the possiblity of being canceled.
  */
-export interface Async<A> extends Eff.Eff<AsyncInstruction<any>, A> { }
+export interface Async<A> extends Eff.Eff<AsyncInstruction<any>, A> {}
 
-export class AsyncInstruction<A> extends Eff.instr('Async')<AsyncCallback<A>, A> { }
+export class AsyncInstruction<A> extends Eff.instr('Async')<AsyncCallback<A>, A> {}
 
 export interface AsyncCallback<A> {
   (cb: (value: A) => void): Disposable

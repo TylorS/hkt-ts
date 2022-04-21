@@ -3,7 +3,7 @@ import { join } from 'path'
 import { format } from 'prettier'
 import yargs from 'yargs'
 
-import { Eff, Sync, pipe } from '../../src'
+import { Eff, pipe } from '../../src'
 
 import { FunctionSignature, Interface } from './AST'
 import { generateOverloadsSafe } from './generateOverloads'
@@ -63,7 +63,7 @@ async function main() {
     const overloads = yield* generateOverloadsSafe(node)
     const printed = yield* pipe(
       overloads,
-      Sync.forEach(([overload, context]) => printOverloadSafe(overload, context)),
+      Eff.forEach(([overload, context]) => printOverloadSafe(overload, context)),
     )
 
     const source = (noImports ? '' : HKT_IMPORTS + '\n\n') + printed.join('\n\n')
@@ -71,7 +71,7 @@ async function main() {
     return source
   })
 
-  const input = pipe(main, Sync.runWith, Eff.run)
+  const input = pipe(main, Eff.run)
   const output = format(input, prettierConfig) + '\n'
 
   console.log(output + '\n')

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Eff, pipe } from '../../src'
-import * as Sync from '../../src/Sync'
 
 import {
   ArrayNode,
@@ -140,14 +139,14 @@ export class PrintContextManager {
 }
 
 export function printOverload(node: ParentNode, context: Context): string {
-  return pipe(printOverloadSafe(node, context), Sync.runWith, Eff.run)
+  return pipe(printOverloadSafe(node, context), Eff.run)
 }
 
 export function printOverloadSafe(
   node: ParentNode,
   context: Context,
   manager: PrintContextManager = new PrintContextManager(),
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     switch (node.tag) {
       case FunctionSignature.tag:
@@ -164,7 +163,7 @@ export function printTypeAlias(
   node: TypeAlias,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     manager.addParentNode(node)
 
@@ -176,7 +175,7 @@ export function printTypeAlias(
 
     const printed = yield* pipe(
       node.typeParams,
-      Sync.forEach((p) => printTypeParam(p, context, manager)),
+      Eff.forEach((p) => printTypeParam(p, context, manager)),
     )
 
     const params = printed.join(', ')
@@ -192,7 +191,7 @@ export function printInterface(
   node: Interface,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     manager.addParentNode(node)
 
@@ -201,7 +200,7 @@ export function printInterface(
 
       const printed = yield* pipe(
         node.typeParams,
-        Sync.forEach((p) => printTypeParam(p, context, manager)),
+        Eff.forEach((p) => printTypeParam(p, context, manager)),
       )
 
       const s = `${node.name}${node.typeParams.length ? `<${printed.join(', ')}>` : ''}`
@@ -215,7 +214,7 @@ export function printInterface(
 
     const printedTypeParams = yield* pipe(
       node.typeParams,
-      Sync.forEach((p) => printTypeParam(p, context, manager)),
+      Eff.forEach((p) => printTypeParam(p, context, manager)),
     )
 
     const prefix = `export interface ${node.name}${
@@ -228,7 +227,7 @@ export function printInterface(
 
     const printedProperties = yield* pipe(
       node.properties,
-      Sync.forEach((p) => printLabeledKindParam(p, context, manager)),
+      Eff.forEach((p) => printLabeledKindParam(p, context, manager)),
     )
 
     const postfix = ` {
@@ -244,7 +243,7 @@ export function printInterface(
 
     const extensions = (yield* pipe(
       node.extensions,
-      Sync.forEach((i) =>
+      Eff.forEach((i) =>
         i.tag === Interface.tag
           ? printInterface(i, context, manager)
           : printKindParam(i, context, manager),
@@ -261,7 +260,7 @@ export function printLabeledKindParam(
   property: Labeled<KindParam>,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     if (manager.isWithinProperty()) {
       return `readonly ${property.label}: ${yield* printKindParam(
@@ -280,7 +279,7 @@ export function printFunctionSignature(
   context: Context,
   manager: PrintContextManager,
   recursive = false,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     manager.addParentNode(node)
 
@@ -306,7 +305,7 @@ export function printFunctionSignature(
       const printed = [
         ...(yield* pipe(
           overloads,
-          Sync.forEach(([p, c]) => {
+          Eff.forEach(([p, c]) => {
             return printFunctionSignature(p, c, manager.clone(), true)
           }),
         )),
@@ -320,7 +319,7 @@ export function printFunctionSignature(
 
       const printed = yield* pipe(
         node.typeParams,
-        Sync.forEach((p) => printTypeParam(p, context, manager)),
+        Eff.forEach((p) => printTypeParam(p, context, manager)),
       )
 
       s += '<'
@@ -336,7 +335,7 @@ export function printFunctionSignature(
 
       const printed = yield* pipe(
         node.functionParams,
-        Sync.forEach((p) => printFunctionParam(p, context, manager)),
+        Eff.forEach((p) => printFunctionParam(p, context, manager)),
       )
 
       s += printed.join(', ')
@@ -359,22 +358,22 @@ export function printTypeParam(
   p: TypeParam,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   switch (p.tag) {
     case Labeled.tag:
       return printLabeledKindParam(p, context, manager)
 
     case HKTParam.tag:
-      return Sync.fromLazy(() =>
+      return Eff.fromLazy(() =>
         manager.isWithinReturn() || manager.isWithinExtension()
           ? p.name
           : `${p.name} extends HKT${p.size < 2 ? '' : `${p.size}`}`,
       )
     case HKTPlaceholder.tag: {
-      return Sync.of('')
+      return Eff.of('')
     }
     case Typeclass.tag: {
-      return Sync.fromLazy(() => {
+      return Eff.fromLazy(() => {
         const baseName = `${p.name}${p.type.size === 0 ? '' : p.type.size}`
 
         return manager.isWithinTypeParam() ? baseName : `${baseName}<${p.type.name}>`
@@ -386,7 +385,7 @@ export function printTypeParam(
       return Eff.Eff(function* () {
         const printed = yield* pipe(
           p.params,
-          Sync.forEach((t) => printKindParam(t, context, manager)),
+          Eff.forEach((t) => printKindParam(t, context, manager)),
         )
 
         return p.template(printed, context)
@@ -399,7 +398,7 @@ export function printFunctionParam(
   p: FunctionParam,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     return `${p.label}: ${yield* printKindParam(p.param, context, manager)}`
   })
@@ -409,14 +408,14 @@ export function printKind(
   kind: Kind,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     manager.addContext('Kind')
 
     const length = context.lengths.get(kind.type.id)
     const printed = yield* pipe(
       kind.kindParams,
-      Sync.forEach((p) =>
+      Eff.forEach((p) =>
         Eff.Eff(function* () {
           const printed = yield* printKindParam(p, context, manager)
 
@@ -439,7 +438,7 @@ function printKindParam(
   kindParam: KindParam,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   switch (kindParam.tag) {
     case ArrayNode.tag:
       return printArray(kindParam, context, manager)
@@ -478,11 +477,11 @@ function printTuple(
   tuple: Tuple,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     const printed = yield* pipe(
       tuple.members,
-      Sync.forEach((p) => printKindParam(p, context, manager)),
+      Eff.forEach((p) => printKindParam(p, context, manager)),
     )
 
     return `readonly [${printed.join(', ')}]`
@@ -493,7 +492,7 @@ function printArray(
   array: ArrayNode,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     manager.addContext('Array')
 
@@ -509,13 +508,13 @@ function printObjectNode(
   node: ObjectNode,
   context: Context,
   manager: PrintContextManager,
-): Sync.Sync<string> {
+): Eff.Eff<never, string> {
   return Eff.Eff(function* () {
     manager.addContext('Property')
 
     const printed = yield* pipe(
       node.properties,
-      Sync.forEach((p) => printLabeledKindParam(p, context, manager)),
+      Eff.forEach((p) => printLabeledKindParam(p, context, manager)),
     )
 
     manager.popContext()
@@ -527,7 +526,7 @@ function printObjectNode(
 }
 
 function printStatic(node: Static, manager: PrintContextManager) {
-  return Sync.fromLazy(() => {
+  return Eff.fromLazy(() => {
     const hasDefaultValue = node.type.includes('=')
     const hasExtension = node.type.includes('extends')
 

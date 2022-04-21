@@ -1,11 +1,12 @@
-import * as A from './Array'
-import { Identity } from '../typeclasses/concrete/Identity'
-import { Debug } from '../typeclasses/concrete/Debug'
 import * as Eff from '../effects/Eff'
-import * as Eq from '../typeclasses/concrete/Eq'
-import { drawTree } from './RoseTree'
 import { identity, pipe } from '../function/function'
 import { Associative } from '../typeclasses/concrete/Associative'
+import { Debug } from '../typeclasses/concrete/Debug'
+import * as Eq from '../typeclasses/concrete/Eq'
+import { Identity } from '../typeclasses/concrete/Identity'
+
+import * as A from './Array'
+import { drawTree } from './RoseTree'
 
 export type Tree<Parent, Child> = ParentNode<Parent, Child> | LeafNode<Child>
 

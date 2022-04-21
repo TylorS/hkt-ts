@@ -1,7 +1,7 @@
-import { Associative } from '../typeclasses/concrete/Associative'
 import { Predicate } from '../function/Predicate'
 import type { Refinement } from '../function/Refinement'
 import { constant, flow, identity, pipe } from '../function/function'
+import { Associative } from '../typeclasses/concrete/Associative'
 
 import type * as Either from './Either'
 
@@ -191,5 +191,9 @@ export const tuple = <A extends ReadonlyArray<Maybe<any>>>(
 }
 
 export const makeAssociative = <A>(A: Associative<A>): Associative<Maybe<A>> => ({
+  concat: (f, s) => (isJust(f) && isJust(s) ? Just(A.concat(f.value, s.value)) : isJust(f) ? f : s),
+})
+
+export const makeFailFastAssociative = <A>(A: Associative<A>): Associative<Maybe<A>> => ({
   concat: (f, s) => (isJust(f) && isJust(s) ? Just(A.concat(f.value, s.value)) : Nothing),
 })

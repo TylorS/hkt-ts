@@ -24,7 +24,7 @@ import {
   Params,
 } from '../../HKT'
 import { NonEmptyArray } from '../../data/NonEmptyArray'
-import { pipe } from '../../function'
+import { pipe } from '../../function/function'
 
 import {
   AssociativeBoth,

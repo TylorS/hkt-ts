@@ -1,4 +1,4 @@
-import { Lazy, identity, second } from '../../function'
+import { Lazy, identity, second } from '../../function/function'
 
 // Concat represents a concatenation that does NOT have any associated laws.
 export interface Concat<A> {

@@ -1,6 +1,7 @@
 import * as A from '../typeclasses/concrete/Associative'
 import * as C from '../typeclasses/concrete/Commutative'
 import * as I from '../typeclasses/concrete/Identity'
+
 import * as M from './Maybe'
 import * as N from './number'
 
@@ -22,14 +23,14 @@ export function Progress(
 const NonNegativeFloatAssociativeSum = N.NonNegativeFloat.makeAssociative(N.AssociativeSum)
 const NonNegativeId = N.NonNegativeFloat.makeIdentity(N.IdentitySum).id
 
-export const Identity: I.Identity<Progress> = {
-  id: Progress(NonNegativeId, M.Just(NonNegativeId)),
-}
-
 export const Associative: A.Associative<Progress> = A.struct({
   loaded: NonNegativeFloatAssociativeSum,
   total: M.makeAssociative(NonNegativeFloatAssociativeSum),
 })
 
-export const Commutative: C.Commutative<Progress> = Associative
+export const Identity: I.Identity<Progress> = {
+  ...Associative,
+  id: Progress(NonNegativeId, M.Just(NonNegativeId)),
+}
 
+export const Commutative: C.Commutative<Progress> = Associative

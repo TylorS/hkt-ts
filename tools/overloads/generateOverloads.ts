@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { pipe } from '../../src'
-import * as Eff from '../../src/Eff'
-import * as S from '../../src/Sync'
+import * as Eff from '../../src/effects/Eff'
 
 import {
   ArrayNode,
@@ -36,12 +35,12 @@ const emptyContext = (node: ParentNode): Context => ({
 })
 
 export function generateOverloads(ast: ParentNode) {
-  return pipe(ast, generateOverloadsSafe, S.runWith, Eff.run)
+  return pipe(ast, generateOverloadsSafe, Eff.run)
 }
 
 export function generateOverloadsSafe(
   ast: ParentNode | Labeled<ParentNode>,
-): S.Sync<ReadonlyArray<readonly [ParentNode, Context]>> {
+): Eff.Eff<never, ReadonlyArray<readonly [ParentNode, Context]>> {
   return Eff.Eff(function* () {
     switch (ast.tag) {
       case FunctionSignature.tag:
@@ -142,7 +141,7 @@ export function generateFunctionSignature(signature: FunctionSignature, context:
 export function generateTypeParams(
   params: readonly TypeParam[],
   context: Context,
-): S.Sync<readonly TypeParam[]> {
+): Eff.Eff<never, readonly TypeParam[]> {
   return Eff.Eff(function* () {
     const output: TypeParam[] = []
 
@@ -197,26 +196,26 @@ function findExistingParams(context: Context, id: symbol): number {
   return params.length
 }
 
-export function generateHKTParam(p: HKTParam, context: Context): S.Sync<HKTParam> {
+export function generateHKTParam(p: HKTParam, context: Context): Eff.Eff<never, HKTParam> {
   // eslint-disable-next-line require-yield
   return Eff.Eff(function* () {
     return p.setSize(context.lengths.get(p.id) ?? 0)
   })
 }
 
-export function generateTypeclass(p: Typeclass, context: Context): S.Sync<Typeclass> {
+export function generateTypeclass(p: Typeclass, context: Context): Eff.Eff<never, Typeclass> {
   return Eff.Eff(function* () {
     return p.setType(yield* generateHKTParam(p.type, context))
   })
 }
 
-export function generateDynamic(p: Dynamic, context: Context): S.Sync<Dynamic> {
+export function generateDynamic(p: Dynamic, context: Context): Eff.Eff<never, Dynamic> {
   return Eff.Eff(function* () {
     return new Dynamic(yield* generateKindParams(p.params, context), p.template)
   })
 }
 
-export function generateKind(kind: Kind, context: Context): S.Sync<Kind> {
+export function generateKind(kind: Kind, context: Context): Eff.Eff<never, Kind> {
   return Eff.Eff(function* () {
     return new Kind(kind.type, yield* generateKindParams(kind.kindParams, context))
   })
@@ -237,15 +236,14 @@ export function generateKindParams(params: readonly KindParam[], context: Contex
 export function generateKindParam(
   param: KindParam,
   context: Context,
-): S.Sync<readonly KindParam[]> {
+): Eff.Eff<never, readonly KindParam[]> {
   return Eff.Eff(function* () {
     switch (param.tag) {
       case 'Array': {
         const isNonEmpty = param.isNonEmpty
 
-        return yield* pipe(
-          yield* generateKindParam(param.member, context),
-          S.forEach((param) => S.of(new ArrayNode(param, isNonEmpty))),
+        return pipe(yield* generateKindParam(param.member, context), (_) =>
+          _.map((param) => new ArrayNode(param, isNonEmpty)),
         )
       }
       case 'Dynamic': {
@@ -291,19 +289,19 @@ export function generateKindParam(
   })
 }
 
-export function generateTuple(tuple: Tuple, context: Context): S.Sync<Tuple> {
+export function generateTuple(tuple: Tuple, context: Context): Eff.Eff<never, Tuple> {
   return Eff.Eff(function* () {
     return new Tuple(yield* generateKindParams(tuple.members, context))
   })
 }
 
-export function generateObjectNode(node: ObjectNode, context: Context): S.Sync<ObjectNode> {
+export function generateObjectNode(node: ObjectNode, context: Context): Eff.Eff<never, ObjectNode> {
   return Eff.Eff(function* () {
     return node.setProperties(yield* generateLabeledKindParams(node.properties, context))
   })
 }
 
-export function generateKindReturn(kind: Kind, context: Context): S.Sync<Kind> {
+export function generateKindReturn(kind: Kind, context: Context): Eff.Eff<never, Kind> {
   return Eff.Eff(function* () {
     const params = yield* generateKindParams(kind.kindParams, context)
 
@@ -314,7 +312,7 @@ export function generateKindReturn(kind: Kind, context: Context): S.Sync<Kind> {
 export function generateFunctionParams(
   params: readonly FunctionParam[],
   context: Context,
-): S.Sync<readonly FunctionParam[]> {
+): Eff.Eff<never, readonly FunctionParam[]> {
   return Eff.Eff(function* () {
     const output: FunctionParam[] = []
 
@@ -329,7 +327,7 @@ export function generateFunctionParams(
 export function generateFunctionParam(
   param: FunctionParam,
   context: Context,
-): S.Sync<readonly FunctionParam[]> {
+): Eff.Eff<never, readonly FunctionParam[]> {
   return Eff.Eff(function* () {
     const kindParams = yield* generateKindParam(param.param, context)
 
@@ -337,7 +335,7 @@ export function generateFunctionParam(
   })
 }
 
-export function generateInterface(node: Interface, context: Context): S.Sync<Interface> {
+export function generateInterface(node: Interface, context: Context): Eff.Eff<never, Interface> {
   return Eff.Eff(function* () {
     const extensions: Array<Interface | KindParam> = []
 
@@ -370,7 +368,7 @@ function generatePostfix(hktParams: readonly HKTParam[], context: Context) {
     .join('')
 }
 
-export function generateTypeAlias(node: TypeAlias, context: Context): S.Sync<TypeAlias> {
+export function generateTypeAlias(node: TypeAlias, context: Context): Eff.Eff<never, TypeAlias> {
   return Eff.Eff(function* () {
     return {
       ...node,
@@ -384,7 +382,7 @@ export function generateTypeAlias(node: TypeAlias, context: Context): S.Sync<Typ
 export function generateLabeledKindParams<P extends ReadonlyArray<Labeled<KindParam>>>(
   labels: P,
   context: Context,
-): S.Sync<ReadonlyArray<Labeled<KindParam>>> {
+): Eff.Eff<never, ReadonlyArray<Labeled<KindParam>>> {
   return Eff.Eff(function* () {
     const output = []
 

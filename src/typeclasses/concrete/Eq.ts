@@ -1,7 +1,7 @@
 import fastDeepEqual from 'fast-deep-equal'
 
 import { Include } from '../../common'
-import { constFalse, constTrue } from '../../function'
+import { constFalse, constTrue } from '../../function/function'
 
 import { Associative } from './Associative'
 

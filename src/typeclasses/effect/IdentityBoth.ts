@@ -1,4 +1,31 @@
 import {
+  DefaultOf,
+  HKT,
+  HKT10,
+  HKT2,
+  HKT3,
+  HKT4,
+  HKT5,
+  HKT6,
+  HKT7,
+  HKT8,
+  HKT9,
+  Kind,
+  Kind10,
+  Kind2,
+  Kind3,
+  Kind4,
+  Kind5,
+  Kind6,
+  Kind7,
+  Kind8,
+  Kind9,
+  ParamOf,
+  Params,
+} from '../../HKT'
+import { pipe } from '../../function/function'
+
+import {
   AssociativeBoth,
   AssociativeBoth1,
   AssociativeBoth10,
@@ -25,31 +52,6 @@ import {
   Covariant9,
 } from './Covariant'
 import {
-  DefaultOf,
-  HKT,
-  HKT10,
-  HKT2,
-  HKT3,
-  HKT4,
-  HKT5,
-  HKT6,
-  HKT7,
-  HKT8,
-  HKT9,
-  Kind,
-  Kind10,
-  Kind2,
-  Kind3,
-  Kind4,
-  Kind5,
-  Kind6,
-  Kind7,
-  Kind8,
-  Kind9,
-  ParamOf,
-  Params,
-} from '../../HKT'
-import {
   Top,
   Top1,
   Top10,
@@ -63,7 +65,6 @@ import {
   Top9,
   makeFromValue,
 } from './Top'
-import { pipe } from '../../function'
 
 export interface IdentityBoth<T extends HKT> extends AssociativeBoth<T>, Top<T> {}
 

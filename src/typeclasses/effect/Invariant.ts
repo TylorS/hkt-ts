@@ -20,7 +20,7 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { Unary } from '../../function'
+import { Unary } from '../../function/function'
 
 export interface Invariant<T extends HKT> {
   readonly imap: <A, B>(f: Unary<A, B>, g: Unary<B, A>) => (kind: Kind<T, A>) => Kind<T, B>

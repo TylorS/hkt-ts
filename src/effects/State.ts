@@ -1,5 +1,6 @@
+import { Lazy } from '../function/function'
+
 import * as Eff from './Eff'
-import { Lazy } from '../function'
 
 export interface State<S, A> extends Eff.Eff<Modify<S, any>, A> {}
 

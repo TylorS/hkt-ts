@@ -20,7 +20,7 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { Unary } from '../../function'
+import { Unary } from '../../function/function'
 
 export interface Contravariant<T extends HKT> {
   readonly contramap: <B, A>(f: Unary<B, A>) => (kind: Kind<T, A>) => Kind<T, B>

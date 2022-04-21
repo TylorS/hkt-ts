@@ -1,16 +1,31 @@
-import { Associative } from '../typeclasses/concrete/Associative'
+import { HKT, Kind, Params } from '../HKT'
+import { Predicate } from '../function/Predicate'
+import { Refinement } from '../function/Refinement'
+import { Lazy, flow, identity, pipe } from '../function/function'
+import * as ASSOC from '../typeclasses/concrete/Associative'
 import { Concat } from '../typeclasses/concrete/Concat'
 import { Debug } from '../typeclasses/concrete/Debug'
-import { Either, isLeft, isRight } from './Either'
 import { Eq, fromEquals } from '../typeclasses/concrete/Eq'
 import { Identity } from '../typeclasses/concrete/Identity'
+import { Ord, fromCompare } from '../typeclasses/concrete/Ord'
+import { AssociativeBoth1 } from '../typeclasses/effect/AssociativeBoth'
+import { AssociativeEither1 } from '../typeclasses/effect/AssociativeEither'
+import { AssociativeFlatten1 } from '../typeclasses/effect/AssociativeFlatten'
+import { Bottom1 } from '../typeclasses/effect/Bottom'
+import { Compact1 } from '../typeclasses/effect/Compact'
+import { Compactable1 } from '../typeclasses/effect/Compactable'
+import * as C from '../typeclasses/effect/Covariant'
+import { ForEach1 } from '../typeclasses/effect/ForEach'
+import * as IB from '../typeclasses/effect/IdentityBoth'
+import { IdentityEither1 } from '../typeclasses/effect/IdentityEither'
+import { IdentityFlatten1 } from '../typeclasses/effect/IdentityFlatten'
+import { Separate1 } from '../typeclasses/effect/Separate'
+import { Top1 } from '../typeclasses/effect/Top'
+
+import { Either, Left, Right, isLeft, isRight } from './Either'
 import { Just, Maybe, Nothing, isJust } from './Maybe'
 import { NonEmptyArray } from './NonEmptyArray'
 import * as NEA from './NonEmptyArray'
-import { Ord, fromCompare } from '../typeclasses/concrete/Ord'
-import { Predicate } from '../function/Predicate'
-import { Refinement } from '../function/Refinement'
-import { Lazy, identity, pipe } from '../function/function'
 import * as N from './number'
 
 /**
@@ -1200,7 +1215,7 @@ export const duplicate: <A>(wa: ReadonlyArray<A>) => ReadonlyArray<ReadonlyArray
   extend(identity)
 
 export const foldMapWithIndex =
-  <M>(M: Associative<M> & Identity<M>) =>
+  <M>(M: ASSOC.Associative<M> & Identity<M>) =>
   <A>(f: (i: number, a: A) => M) =>
   (fa: ReadonlyArray<A>): M =>
     fa.reduce((b, a, i) => M.concat(b, f(i, a)), M.id)
@@ -1209,7 +1224,7 @@ export const reduce: <A, B>(b: B, f: (b: B, a: A) => B) => (fa: ReadonlyArray<A>
   reduceWithIndex(b, (_, b, a) => f(b, a))
 
 export const foldMap: <M>(
-  M: Associative<M> & Identity<M>,
+  M: ASSOC.Associative<M> & Identity<M>,
 ) => <A>(f: (a: A) => M) => (fa: ReadonlyArray<A>) => M = (M) => {
   const foldMapWithIndexM = foldMapWithIndex(M)
   return (f) => foldMapWithIndexM((_, a) => f(a))
@@ -1259,12 +1274,13 @@ export const makeDebug = <A>(S: Debug<A>): Debug<ReadonlyArray<A>> => ({
   debug: (as) => `[${as.map(S.debug).join(', ')}]`,
 })
 
-export const makeAssociative = <A = never>(): Associative<ReadonlyArray<A>> => ({
+export const makeAssociative = <A = never>(): ASSOC.Associative<ReadonlyArray<A>> => ({
   concat: (first, second) =>
     isEmpty(first) ? second : isEmpty(second) ? first : first.concat(second),
 })
 
 export const makeIdentity = <A>(): Identity<ReadonlyArray<A>> => ({
+  ...makeAssociative<A>(),
   id: empty,
 })
 
@@ -1314,14 +1330,14 @@ export const makeOrd = <A>(O: Ord<A>): Ord<ReadonlyArray<A>> =>
     return N.Ord.compare(aLen, bLen)
   })
 
-export const getUnionAssociative = <A>(E: Eq<A>): Associative<ReadonlyArray<A>> => {
+export const getUnionAssociative = <A>(E: Eq<A>): ASSOC.Associative<ReadonlyArray<A>> => {
   const unionE = union(E)
   return {
     concat: (first, second) => unionE(second)(first),
   }
 }
 
-export const getIntersectionAssociative = <A>(E: Eq<A>): Associative<ReadonlyArray<A>> => {
+export const getIntersectionAssociative = <A>(E: Eq<A>): ASSOC.Associative<ReadonlyArray<A>> => {
   const intersectionE = intersection(E)
   return {
     concat: (first, second) => intersectionE(second)(first),
@@ -1432,3 +1448,74 @@ export const some =
   <A>(predicate: Predicate<A>) =>
   (as: ReadonlyArray<A>): as is NonEmptyArray<A> =>
     as.some(predicate)
+
+export interface ArrayHKT extends HKT {
+  readonly type: ReadonlyArray<this[Params.A]>
+}
+
+export const Covariant: C.Covariant1<ArrayHKT> = {
+  map,
+}
+
+export const AssociativeBoth: AssociativeBoth1<ArrayHKT> = {
+  both: zip,
+}
+
+export const AssociativeEither: AssociativeEither1<ArrayHKT> = {
+  either: (s) => (f) => f.length === 0 ? s.map(Right) : f.map(Left),
+}
+
+export const AssociativeFlatten: AssociativeFlatten1<ArrayHKT> = {
+  flatten,
+}
+
+export const Bottom: Bottom1<ArrayHKT> = {
+  bottom: empty,
+}
+
+export const Compact: Compact1<ArrayHKT> = {
+  compact: flow(
+    filter(isJust),
+    map((a) => a.value),
+  ),
+}
+
+export const Separate: Separate1<ArrayHKT> = {
+  separate: (k) => [k.filter(isLeft).map((l) => l.left), k.filter(isRight).map((r) => r.right)],
+}
+
+export const Compactable: Compactable1<ArrayHKT> = {
+  ...Compact,
+  ...Separate,
+}
+
+export const Top: Top1<ArrayHKT> = {
+  top: [empty],
+}
+
+export const IdentityBoth: IB.IdentityBoth1<ArrayHKT> = {
+  ...AssociativeBoth,
+  ...Top,
+}
+
+export const IdentityEither: IdentityEither1<ArrayHKT> = {
+  ...AssociativeEither,
+  ...Bottom,
+}
+
+export const IdentityFlatten: IdentityFlatten1<ArrayHKT> = {
+  ...AssociativeFlatten,
+  ...Top,
+}
+
+export const ForEach: ForEach1<ArrayHKT> = {
+  map,
+  forEach: <T2 extends HKT>(IBC: IB.IdentityBoth<T2> & C.Covariant<T2>) => {
+    const tuple = IB.tuple(IBC)
+    return <A, B>(f: (a: A) => Kind<T2, B>) =>
+      (kind: ReadonlyArray<A>): Kind<T2, ReadonlyArray<B>> =>
+        tuple(...kind.map(f))
+  },
+}
+
+export const forEach = ForEach.forEach

@@ -1,13 +1,14 @@
-import { Associative } from '../typeclasses/concrete/Associative'
-import { Identity } from '../typeclasses/concrete/Identity'
-import { Concat } from '../typeclasses/concrete/Concat'
-import { Debug } from '../typeclasses/concrete/Debug'
-import { Eq, fromEquals } from '../typeclasses/concrete/Eq'
-import { Maybe } from './Maybe'
-import { Ord } from '../typeclasses/concrete/Ord'
 import { Predicate, not } from '../function/Predicate'
 import { Refinement } from '../function/Refinement'
 import { identity } from '../function/function'
+import { Associative } from '../typeclasses/concrete/Associative'
+import { Concat } from '../typeclasses/concrete/Concat'
+import { Debug } from '../typeclasses/concrete/Debug'
+import { Eq, fromEquals } from '../typeclasses/concrete/Eq'
+import { Identity } from '../typeclasses/concrete/Identity'
+import { Ord } from '../typeclasses/concrete/Ord'
+
+import { Maybe } from './Maybe'
 
 // -------------------------------------------------------------------------------------
 // interop

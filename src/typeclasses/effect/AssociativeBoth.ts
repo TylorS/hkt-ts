@@ -23,10 +23,10 @@ import {
   ParamOf,
   Params,
 } from '../../HKT'
-import { NonEmptyArray } from '../../data/NonEmptyArray'
-import { flow, pipe } from '../../function'
+import type { NonEmptyArray } from '../../data/NonEmptyArray'
+import { flow, pipe } from '../../function/function'
 
-import {
+import type {
   Contravariant,
   Contravariant1,
   Contravariant10,

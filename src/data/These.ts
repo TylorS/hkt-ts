@@ -1,7 +1,8 @@
+import { constFalse, constTrue, flow, pipe } from '../function/function'
 import { Associative } from '../typeclasses/concrete/Associative'
+
 import * as Either from './Either'
 import { NonEmptyArray } from './NonEmptyArray'
-import { constFalse, constTrue, flow, pipe } from '../function/function'
 
 /**
  * These is a data structure for representing an either-or relationship or the possibility of

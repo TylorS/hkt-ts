@@ -1,11 +1,12 @@
-import * as A from '../typeclasses/concrete/Associative'
-import * as I from '../typeclasses/concrete/Identity'
-import * as Sh from '../typeclasses/concrete/Debug'
-import * as E from '../typeclasses/concrete/Eq'
-import { NonEmptyArray, isNonEmpty } from './NonEmptyArray'
-import * as O from '../typeclasses/concrete/Ord'
 import { Refinement } from '../function/Refinement'
 import { pipe } from '../function/function'
+import * as A from '../typeclasses/concrete/Associative'
+import * as Sh from '../typeclasses/concrete/Debug'
+import * as E from '../typeclasses/concrete/Eq'
+import * as I from '../typeclasses/concrete/Identity'
+import * as O from '../typeclasses/concrete/Ord'
+
+import { NonEmptyArray, isNonEmpty } from './NonEmptyArray'
 
 export const equals: E.Eq<string>['equals'] = (x, y) => x === y
 
@@ -22,6 +23,7 @@ export const Associative: A.Associative<string> = {
 export const empty = '' as const
 
 export const Identity: I.Identity<string> = {
+  ...Associative,
   id: empty,
 }
 
