@@ -36,3 +36,14 @@ export function fromEither<E, A>(either: Either<E, A>): Fail<E, A> {
     return either.right
   })
 }
+
+export function tryCatch<E>(onError: (e: unknown) => E) {
+  return <Y extends Eff.AnyTagged, R>(eff: Eff.Eff<Y, R>): Eff.Eff<Y | FailInstruction<E>, R> =>
+    Eff.Eff(function* () {
+      try {
+        return yield* eff
+      } catch (e) {
+        return yield* fail(onError(e))
+      }
+    })
+}

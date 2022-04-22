@@ -1,10 +1,16 @@
 import { Cast } from 'ts-toolbelt/out/Any/Cast'
 
+import { HKT2, Params } from '../HKT'
 import { Include } from '../common'
 import { lookup } from '../data/Map'
 import { Just, Maybe, Nothing, isJust, isNothing } from '../data/Maybe'
 import { Lazy, Unary, identity, pipe } from '../function/function'
+import { Associative } from '../typeclasses/concrete/Associative'
 import { Eq } from '../typeclasses/concrete/Eq'
+import { Identity } from '../typeclasses/concrete/Identity'
+import * as AB from '../typeclasses/effect/AssociativeBoth'
+import { AssociativeFlatten2 } from '../typeclasses/effect/AssociativeFlatten'
+import { Covariant2 } from '../typeclasses/effect/Covariant'
 
 /**
  * Eff is a lightweight abstraction which preserves referential transparency of
@@ -58,7 +64,7 @@ export function flatMap<A, Y2 extends AnyTagged, B>(f: Unary<A, Eff<Y2, B>>) {
 export const flatten = <Y1 extends AnyTagged, Y2 extends AnyTagged, A>(eff: Eff<Y1, Eff<Y2, A>>) =>
   pipe(eff, flatMap(identity))
 
-export const forEach =
+export const fromIterable =
   <A, Y extends AnyTagged, B>(f: (a: A) => Eff<Y, B>) =>
   (iterable: Iterable<A>): Eff<Y, ReadonlyArray<B>> =>
     Eff(function* () {
@@ -287,11 +293,12 @@ export const memoize =
   <A extends ReadonlyArray<any>>(E: Eq<A>) =>
   <Y extends AnyTagged, R>(f: (...args: A) => Eff<Y, R>): ((...args: A) => Eff<Y, R>) => {
     const map = new Map<A, R>()
-    const find = lookup(E)
+    const lookupE = lookup(E)
+    const find = (args: A) => lookupE(args)(map)
 
     return (...args: A) =>
       Eff(function* () {
-        const m = find(args)(map)
+        const m = find(args)
 
         if (isJust(m)) {
           return m.value
@@ -304,3 +311,44 @@ export const memoize =
         return r
       })
   }
+
+export const makeAssociative = <A, Y extends AnyTagged = AnyTagged>(
+  A: Associative<A>,
+): Associative<Eff<Y, A>> => ({
+  concat: (f, s) =>
+    Eff(function* () {
+      return A.concat(yield* f, yield* s)
+    }),
+})
+
+export const makeIdentity = <A, Y extends AnyTagged = AnyTagged>(
+  A: Identity<A>,
+): Identity<Eff<Y, A>> => ({
+  ...makeAssociative(A),
+  id: of(A.id),
+})
+
+export interface EffHKT extends HKT2 {
+  readonly type: Eff<Cast<this[Params.E], AnyTagged>, this[Params.A]>
+}
+
+export const Covariant: Covariant2<EffHKT> = {
+  map,
+}
+
+export const AssociativeBoth: AB.AssociativeBoth2<EffHKT> = {
+  both: (s) => (f) =>
+    Eff(function* () {
+      const a = yield* f
+      const b = yield* s
+
+      return [a, b]
+    }),
+}
+
+export const both = AssociativeBoth.both
+export const tuple = AB.tuple<EffHKT>({ ...AssociativeBoth, ...Covariant })
+
+export const AssociativeFlatten: AssociativeFlatten2<EffHKT> = {
+  flatten,
+}

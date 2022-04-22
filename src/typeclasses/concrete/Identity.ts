@@ -1,5 +1,5 @@
-import { Associative } from './Associative'
+import { Associative as I } from './Associative'
 
-export interface Identity<A> extends Associative<A> {
+export interface Identity<A> extends I<A> {
   readonly id: A
 }

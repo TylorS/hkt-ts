@@ -1,3 +1,5 @@
+import { identity } from '../function'
+
 import * as Eff from './Eff'
 
 export interface Reader<R, A> extends Eff.Eff<Asks<R, any>, A> {}
@@ -15,3 +17,7 @@ export function asks<R, A>(asks: (r: R) => A): Reader<R, A> {
 export function runWith<R>(resources: R) {
   return Asks.handler((instr: Asks<R, any>) => Eff.fromLazy(() => instr.input(resources)))
 }
+
+const ask_ = asks(identity)
+
+export const ask = <R>(): Reader<R, R> => ask_ as Reader<R, R>

@@ -62,7 +62,7 @@ function bimapSafe<P1, P2, C1, C2>(
 
       const forest = yield* pipe(
         tree.forest,
-        Eff.forEach((t) => pipe(t, bimapSafe(f, g))),
+        Eff.fromIterable((t) => pipe(t, bimapSafe(f, g))),
       )
 
       return parent(yield* f(tree.value), forest)

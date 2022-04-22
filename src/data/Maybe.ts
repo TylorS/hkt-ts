@@ -1,18 +1,34 @@
+import { HKT, Kind, Params } from '../HKT'
 import { Predicate } from '../function/Predicate'
 import type { Refinement } from '../function/Refinement'
 import { constant, flow, identity, pipe } from '../function/function'
 import { Associative } from '../typeclasses/concrete/Associative'
+import { Commutative } from '../typeclasses/concrete/Commutative'
+import * as Debug from '../typeclasses/concrete/Debug'
+import * as Eq from '../typeclasses/concrete/Eq'
+import * as I from '../typeclasses/concrete/Identity'
+import * as Ord from '../typeclasses/concrete/Ord'
+import * as AB from '../typeclasses/effect/AssociativeBoth'
+import * as AE from '../typeclasses/effect/AssociativeEither'
+import * as AF from '../typeclasses/effect/AssociativeFlatten'
+import * as B from '../typeclasses/effect/Bottom'
+import * as C from '../typeclasses/effect/Covariant'
+import { ForEach1 } from '../typeclasses/effect/ForEach'
+import * as IB from '../typeclasses/effect/IdentityBoth'
+import * as IE from '../typeclasses/effect/IdentityEither'
+import * as IF from '../typeclasses/effect/IdentityFlatten'
+import { Top1, makeFromValue } from '../typeclasses/effect/Top'
 
-import type * as Either from './Either'
+import * as Either from './Either'
 
 export type Maybe<A> = Nothing | Just<A>
 
 export type OutputOf<T> = [T] extends [Maybe<infer R>] ? R : never
 
-export const Nothing = {
-  tag: 'Nothing',
-} as const
-export type Nothing = typeof Nothing
+export interface Nothing {
+  readonly tag: 'Nothing'
+}
+export const Nothing: Nothing = { tag: 'Nothing' }
 
 export interface Just<A> {
   readonly tag: typeof JUST_TYPE
@@ -156,44 +172,105 @@ export function toUndefined<A>(maybe: Maybe<A>): A | undefined {
   return isNothing(maybe) ? undefined : maybe.value
 }
 
-/**
- * Construct a Option that will output a homogenous Tuple given the
- * input of a Tuple of Options.
- * @example
- * ```typescript
- * import * as O from 'hkt-ts/Option'
- * import { pipe } from 'hkt-ts/function'
- *
- * const example: O.Option<[number, b: number]> = O.tuple(
- *   O.Some(1),
- *   O.Some(2),
- * )
- * ```
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const tuple = <A extends ReadonlyArray<Maybe<any>>>(
-  ...maybes: A
-): Maybe<{ readonly [K in keyof A]: OutputOf<A[K]> }> => {
-  if (maybes.length === 0) {
-    return Nothing
-  }
-
-  const values = Object.values(maybes)
-  const nones = values.filter(isNothing)
-
-  if (nones.length === 0) {
-    return Nothing
-  }
-
-  const tuple = values.filter(isJust).map((l) => l.value)
-
-  return Just(tuple as unknown as { readonly [K in keyof A]: OutputOf<A[K]> })
-}
-
 export const makeAssociative = <A>(A: Associative<A>): Associative<Maybe<A>> => ({
   concat: (f, s) => (isJust(f) && isJust(s) ? Just(A.concat(f.value, s.value)) : isJust(f) ? f : s),
 })
 
+export const makeCommutative = makeAssociative as <A>(A: Commutative<A>) => Commutative<Maybe<A>>
+
 export const makeFailFastAssociative = <A>(A: Associative<A>): Associative<Maybe<A>> => ({
   concat: (f, s) => (isJust(f) && isJust(s) ? Just(A.concat(f.value, s.value)) : Nothing),
 })
+
+export const makeIdentity = <A>(ID: I.Identity<A>): I.Identity<Maybe<A>> => ({
+  ...makeAssociative(ID),
+  id: Just(ID.id),
+})
+
+export const makeDebug = <A>(D: Debug.Debug<A>): Debug.Debug<Maybe<A>> => ({
+  debug: match(
+    () => `Nothing`,
+    (a) => `Just(${D.debug(a)})`,
+  ),
+})
+
+export const makeEq = <A>(E: Eq.Eq<A>): Eq.Eq<Maybe<A>> => ({
+  equals: (a, b) =>
+    a.tag === b.tag ? (a.tag === 'Just' ? E.equals(a.value, (b as Just<A>).value) : true) : false,
+})
+
+export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<Maybe<A>> =>
+  Ord.fromCompare((f, s) => {
+    const fx = isJust(f)
+    const sx = isJust(s)
+
+    if (fx && sx) {
+      return O.compare(f.value, s.value)
+    }
+
+    if (fx) {
+      return -1
+    }
+
+    return 1
+  })
+
+export interface MaybeHKT extends HKT {
+  readonly type: Maybe<this[Params.A]>
+}
+
+export const Covariant: C.Covariant1<MaybeHKT> = {
+  map,
+}
+
+export const AssociativeBoth: AB.AssociativeBoth1<MaybeHKT> = {
+  both: (s) => (f) => isJust(f) && isJust(s) ? Just([f.value, s.value]) : Nothing,
+}
+
+export const AssociativeEither: AE.AssociativeEither1<MaybeHKT> = {
+  either: (s) => (f) =>
+    isJust(f) ? Just(Either.Left(f.value)) : isJust(s) ? Just(Either.Right(s.value)) : Nothing,
+}
+
+export const AssociativeFlatten: AF.AssociativeFlatten1<MaybeHKT> = {
+  flatten: (k) => (isJust(k) ? k.value : Nothing),
+}
+
+export const Bottom: B.Bottom1<MaybeHKT> = {
+  bottom: Nothing,
+}
+
+export const Top: Top1<MaybeHKT> = {
+  top: Just({}),
+}
+
+export const IdentityBoth: IB.IdentityBoth1<MaybeHKT> = {
+  ...Top,
+  ...AssociativeBoth,
+}
+
+export const tuple = IB.tuple<MaybeHKT>({ ...IdentityBoth, ...Covariant })
+
+export const IdentityEither: IE.IdentityEither1<MaybeHKT> = {
+  ...Bottom,
+  ...AssociativeEither,
+}
+
+export const IdentityFlatten: IF.IdentityFlatten1<MaybeHKT> = {
+  ...Top,
+  ...AssociativeFlatten,
+}
+
+export const ForEach: ForEach1<MaybeHKT> = {
+  map,
+  forEach: <T2 extends HKT>(IBC: IB.IdentityBoth<T2> & C.Covariant<T2>) => {
+    const fromValue = makeFromValue(IBC)
+
+    return <A, B>(f: (a: A) => Kind<T2, B>) =>
+      (kind: Maybe<A>): Kind<T2, Maybe<B>> =>
+        pipe(
+          kind,
+          match(() => fromValue(Nothing), flow(f, IBC.map(Just))),
+        )
+  },
+}
