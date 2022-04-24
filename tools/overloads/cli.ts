@@ -63,7 +63,7 @@ async function main() {
     const overloads = yield* generateOverloadsSafe(node)
     const printed = yield* pipe(
       overloads,
-      Eff.forEach(([overload, context]) => printOverloadSafe(overload, context)),
+      Eff.fromIterable(([overload, context]) => printOverloadSafe(overload, context)),
     )
 
     const source = (noImports ? '' : HKT_IMPORTS + '\n\n') + printed.join('\n\n')

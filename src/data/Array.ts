@@ -1,6 +1,6 @@
 import { HKT, Kind, Params } from '../HKT'
 import { Predicate } from '../function/Predicate'
-import { Refinement } from '../function/Refinement'
+import type { Refinement } from '../function/Refinement'
 import { Lazy, flow, identity, pipe } from '../function/function'
 import * as ASSOC from '../typeclasses/concrete/Associative'
 import { Concat } from '../typeclasses/concrete/Concat'
@@ -12,10 +12,10 @@ import { AssociativeBoth1 } from '../typeclasses/effect/AssociativeBoth'
 import { AssociativeEither1 } from '../typeclasses/effect/AssociativeEither'
 import { AssociativeFlatten1 } from '../typeclasses/effect/AssociativeFlatten'
 import { Bottom1 } from '../typeclasses/effect/Bottom'
-import { Compact1 } from '../typeclasses/effect/Compact'
-import { Compactable1 } from '../typeclasses/effect/Compactable'
+import type { Compact1 } from '../typeclasses/effect/Compact'
+import type { Compactable1 } from '../typeclasses/effect/Compactable'
 import * as C from '../typeclasses/effect/Covariant'
-import { ForEach1 } from '../typeclasses/effect/ForEach'
+import type { ForEach1 } from '../typeclasses/effect/ForEach'
 import * as IB from '../typeclasses/effect/IdentityBoth'
 import { IdentityEither1 } from '../typeclasses/effect/IdentityEither'
 import { IdentityFlatten1 } from '../typeclasses/effect/IdentityFlatten'
@@ -24,7 +24,7 @@ import { Top1 } from '../typeclasses/effect/Top'
 
 import { Either, Left, Right, isLeft, isRight } from './Either'
 import { Just, Maybe, Nothing, isJust } from './Maybe'
-import { NonEmptyArray } from './NonEmptyArray'
+import type { NonEmptyArray } from './NonEmptyArray'
 import * as NEA from './NonEmptyArray'
 import * as N from './number'
 
@@ -1497,6 +1497,8 @@ export const IdentityBoth: IB.IdentityBoth1<ArrayHKT> = {
   ...AssociativeBoth,
   ...Top,
 }
+
+export const tuple = IB.tuple<ArrayHKT>({ ...IdentityBoth, ...Covariant })
 
 export const IdentityEither: IdentityEither1<ArrayHKT> = {
   ...AssociativeEither,

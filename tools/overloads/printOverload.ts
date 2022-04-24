@@ -175,7 +175,7 @@ export function printTypeAlias(
 
     const printed = yield* pipe(
       node.typeParams,
-      Eff.forEach((p) => printTypeParam(p, context, manager)),
+      Eff.fromIterable((p) => printTypeParam(p, context, manager)),
     )
 
     const params = printed.join(', ')
@@ -200,7 +200,7 @@ export function printInterface(
 
       const printed = yield* pipe(
         node.typeParams,
-        Eff.forEach((p) => printTypeParam(p, context, manager)),
+        Eff.fromIterable((p) => printTypeParam(p, context, manager)),
       )
 
       const s = `${node.name}${node.typeParams.length ? `<${printed.join(', ')}>` : ''}`
@@ -214,7 +214,7 @@ export function printInterface(
 
     const printedTypeParams = yield* pipe(
       node.typeParams,
-      Eff.forEach((p) => printTypeParam(p, context, manager)),
+      Eff.fromIterable((p) => printTypeParam(p, context, manager)),
     )
 
     const prefix = `export interface ${node.name}${
@@ -227,7 +227,7 @@ export function printInterface(
 
     const printedProperties = yield* pipe(
       node.properties,
-      Eff.forEach((p) => printLabeledKindParam(p, context, manager)),
+      Eff.fromIterable((p) => printLabeledKindParam(p, context, manager)),
     )
 
     const postfix = ` {
@@ -243,7 +243,7 @@ export function printInterface(
 
     const extensions = (yield* pipe(
       node.extensions,
-      Eff.forEach((i) =>
+      Eff.fromIterable((i) =>
         i.tag === Interface.tag
           ? printInterface(i, context, manager)
           : printKindParam(i, context, manager),
@@ -305,7 +305,7 @@ export function printFunctionSignature(
       const printed = [
         ...(yield* pipe(
           overloads,
-          Eff.forEach(([p, c]) => {
+          Eff.fromIterable(([p, c]) => {
             return printFunctionSignature(p, c, manager.clone(), true)
           }),
         )),
@@ -319,7 +319,7 @@ export function printFunctionSignature(
 
       const printed = yield* pipe(
         node.typeParams,
-        Eff.forEach((p) => printTypeParam(p, context, manager)),
+        Eff.fromIterable((p) => printTypeParam(p, context, manager)),
       )
 
       s += '<'
@@ -335,7 +335,7 @@ export function printFunctionSignature(
 
       const printed = yield* pipe(
         node.functionParams,
-        Eff.forEach((p) => printFunctionParam(p, context, manager)),
+        Eff.fromIterable((p) => printFunctionParam(p, context, manager)),
       )
 
       s += printed.join(', ')
@@ -385,7 +385,7 @@ export function printTypeParam(
       return Eff.Eff(function* () {
         const printed = yield* pipe(
           p.params,
-          Eff.forEach((t) => printKindParam(t, context, manager)),
+          Eff.fromIterable((t) => printKindParam(t, context, manager)),
         )
 
         return p.template(printed, context)
@@ -415,7 +415,7 @@ export function printKind(
     const length = context.lengths.get(kind.type.id)
     const printed = yield* pipe(
       kind.kindParams,
-      Eff.forEach((p) =>
+      Eff.fromIterable((p) =>
         Eff.Eff(function* () {
           const printed = yield* printKindParam(p, context, manager)
 
@@ -481,7 +481,7 @@ function printTuple(
   return Eff.Eff(function* () {
     const printed = yield* pipe(
       tuple.members,
-      Eff.forEach((p) => printKindParam(p, context, manager)),
+      Eff.fromIterable((p) => printKindParam(p, context, manager)),
     )
 
     return `readonly [${printed.join(', ')}]`
@@ -514,7 +514,7 @@ function printObjectNode(
 
     const printed = yield* pipe(
       node.properties,
-      Eff.forEach((p) => printLabeledKindParam(p, context, manager)),
+      Eff.fromIterable((p) => printLabeledKindParam(p, context, manager)),
     )
 
     manager.popContext()
