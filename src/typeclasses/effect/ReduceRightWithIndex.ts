@@ -21,6 +21,7 @@ import {
   Kind9,
 } from '../../HKT'
 
+/* #region Typeclass */
 export interface ReduceRightWithIndex<T extends HKT, K> {
   readonly reduceRightWithIndex: <B, A>(b: B, f: (k: K, a: A, b: B) => B) => (kind: Kind<T, A>) => B
 }
@@ -91,3 +92,71 @@ export interface ReduceRightWithIndex10<T extends HKT10, K> {
     f: (k: K, a: A, b: B) => B,
   ) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => B
 }
+
+/* #endregion */
+
+/* #region reduceRight */
+export function reduceRight<T extends HKT10, K>(
+  RRI: ReduceRightWithIndex10<T, K>,
+): <B, A>(
+  b: B,
+  f: (a: A, b: B) => B,
+) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT9, K>(
+  RRI: ReduceRightWithIndex9<T, K>,
+): <B, A>(
+  b: B,
+  f: (a: A, b: B) => B,
+) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT8, K>(
+  RRI: ReduceRightWithIndex8<T, K>,
+): <B, A>(
+  b: B,
+  f: (a: A, b: B) => B,
+) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT7, K>(
+  RRI: ReduceRightWithIndex7<T, K>,
+): <B, A>(
+  b: B,
+  f: (a: A, b: B) => B,
+) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT6, K>(
+  RRI: ReduceRightWithIndex6<T, K>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT5, K>(
+  RRI: ReduceRightWithIndex5<T, K>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT4, K>(
+  RRI: ReduceRightWithIndex4<T, K>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT3, K>(
+  RRI: ReduceRightWithIndex3<T, K>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <R, E>(kind: Kind3<T, R, E, A>) => B
+
+export function reduceRight<T extends HKT2, K>(
+  RRI: ReduceRightWithIndex2<T, K>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <E>(kind: Kind2<T, E, A>) => B
+
+export function reduceRight<T extends HKT, K>(
+  RRI: ReduceRightWithIndex1<T, K>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind<T, A>) => B
+
+export function reduceRight<T extends HKT, K>(
+  RRI: ReduceRightWithIndex<T, K>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind<T, A>) => B
+
+export function reduceRight<T extends HKT, K>(
+  RRI: ReduceRightWithIndex<T, K>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind<T, A>) => B {
+  return <B, A>(b: B, f: (a: A, b: B) => B) =>
+    RRI.reduceRightWithIndex(b, (_, a: A, b: B) => f(a, b))
+}
+
+/* #endregion */

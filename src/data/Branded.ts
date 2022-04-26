@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Branded is a module to help you construct Branded types.
-
  */
 import { M } from 'ts-toolbelt'
 
@@ -25,7 +25,6 @@ export type Brand<T> = { readonly [BRAND]: (brand: T) => void }
 /**
  * @category Type-level
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type BrandOf<A> = [A] extends [Branded<infer Brand, infer _>] ? Brand : unknown
 
 /**
@@ -104,7 +103,7 @@ export const makeTop =
     Constrain<
       Constrain<BrandedHKT, Params.A, Variance.Invariant<B>>,
       Params.E,
-      Variance.Invariant<BRAND>
+      Variance.Contravariant<BRAND>
     >
   > => ({
     top: unsafeCoerce(value),

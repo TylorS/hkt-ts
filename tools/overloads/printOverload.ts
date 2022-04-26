@@ -298,8 +298,7 @@ export function printFunctionSignature(
     if (
       !recursive &&
       hktParams.length > 0 &&
-      manager.isWithinInterface() &&
-      !manager.isWithinReturn()
+      (manager.isWithinInterface() || manager.isWithinReturn())
     ) {
       const overloads = yield* generateFunctionSignatureOverloads(node, context)
       const printed = [
@@ -365,7 +364,7 @@ export function printTypeParam(
 
     case HKTParam.tag:
       return Eff.fromLazy(() =>
-        manager.isWithinReturn() || manager.isWithinExtension()
+        (manager.isWithinReturn() || manager.isWithinExtension()) && !manager.isWithinTypeParam()
           ? p.name
           : `${p.name} extends HKT${p.size < 2 ? '' : `${p.size}`}`,
       )
@@ -373,10 +372,16 @@ export function printTypeParam(
       return Eff.of('')
     }
     case Typeclass.tag: {
-      return Eff.fromLazy(() => {
+      return Eff.Eff(function* () {
         const baseName = `${p.name}${p.type.size === 0 ? '' : p.type.size}`
+        const params = yield* pipe(
+          p.params,
+          Eff.fromIterable((p) => printTypeParam(p, context, manager)),
+        )
 
-        return manager.isWithinTypeParam() ? baseName : `${baseName}<${p.type.name}>`
+        return manager.isWithinTypeParam()
+          ? baseName
+          : `${baseName}<${p.type.name}${params.length > 0 ? ', ' : ''}${params.join(', ')}>`
       })
     }
     case Static.tag:

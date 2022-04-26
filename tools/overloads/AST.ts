@@ -46,7 +46,11 @@ export class Interface extends ast('Interface') {
   }
 
   toTypeClass(hkt: HKTParam) {
-    return new Typeclass(this.name, hkt)
+    return new Typeclass(
+      this.name,
+      hkt,
+      this.typeParams.filter((x) => x !== hkt),
+    )
   }
 }
 
@@ -90,7 +94,7 @@ export class HKTParam {
   }
 
   toTypeclass(name: string) {
-    return new Typeclass(name, this)
+    return new Typeclass(name, this, [])
   }
 
   toKind(kindParams: ReadonlyArray<KindParam>) {
@@ -113,12 +117,20 @@ export class HKTPlaceholder extends ast('HKTPlaceholder') {
 }
 
 export class Typeclass extends ast('Typeclass') {
-  constructor(readonly name: string, readonly type: HKTParam) {
+  constructor(
+    readonly name: string,
+    readonly type: HKTParam,
+    readonly params: readonly TypeParam[],
+  ) {
     super()
   }
 
   setType(type: HKTParam) {
-    return new Typeclass(this.name, type)
+    return new Typeclass(this.name, type, this.params)
+  }
+
+  setParams(params: readonly TypeParam[]) {
+    return new Typeclass(this.name, this.type, params)
   }
 
   labeled(label: string = this.name) {

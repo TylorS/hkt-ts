@@ -46,6 +46,10 @@ export function isJust<A>(maybe: Maybe<A>): maybe is Just<A> {
   return maybe.tag === 'Just'
 }
 
+export function fromJust<A>(just: Just<A>): A {
+  return just.value
+}
+
 export function isNothing<A>(maybe: Maybe<A>): maybe is Nothing {
   return maybe.tag === 'Nothing'
 }

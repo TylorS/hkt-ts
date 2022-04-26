@@ -22,7 +22,7 @@ export const PartitionMap = interface_(
           'f',
           [],
           [aTypeParam.labeled('a')],
-          new Static(`Either<${aTypeParam.type}, ${bTypeParam.type}>`),
+          new Static(`Either<${bTypeParam.type}, ${cTypeParam.type}>`),
         ),
       ],
       fn_(

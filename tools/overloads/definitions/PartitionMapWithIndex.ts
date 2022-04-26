@@ -23,7 +23,7 @@ export const PartitionMapWithIndex = new Interface(
           'f',
           [],
           [new Static(`K`).labeled('k'), aTypeParam.labeled('a')],
-          new Static(`Either<${aTypeParam.type}, ${bTypeParam.type}>`),
+          new Static(`Either<${bTypeParam.type}, ${cTypeParam.type}>`),
         ),
       ],
       fn_(

@@ -34,31 +34,3 @@ export const makeAssignIdentity = <A extends object = never>(): Identity<A> => (
   ...makeAssignAssociative<A>(),
   id: empty,
 })
-
-/**
- * Creates a new object by recursively evolving a shallow copy of `a`, according to the `transformation` functions.
- *
- * @example
- * import { pipe } from 'hkt-ts'
- * import { evolve } from 'hkt-ts/struct'
- *
- * assert.deepStrictEqual(
- *   pipe(
- *     { a: 'a', b: 1 },
- *     evolve({
- *       a: (a) => a.length,
- *       b: (b) => b * 2
- *     })
- *   ),
- *   { a: 1, b: 2 }
- * )
- */
-export const evolve =
-  <A, F extends { [K in keyof A]: (a: A[K]) => unknown }>(transformations: F) =>
-  (a: A): { [K in keyof F]: ReturnType<F[K]> } => {
-    const out: Record<string, unknown> = {}
-    for (const k in a) {
-      out[k] = transformations[k](a[k])
-    }
-    return out as any
-  }

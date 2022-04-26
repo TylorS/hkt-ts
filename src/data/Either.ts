@@ -23,6 +23,9 @@ export const isLeft = <A, B>(either: Either<A, B>): either is Left<A> => either.
  */
 export const isRight = <A, B>(either: Either<A, B>): either is Right<B> => either.tag === 'Right'
 
+export const fromLeft = <A>(left: Left<A>): A => left.left
+export const fromRight = <A>(right: Right<A>): A => right.right
+
 /**
  * Type-level helper for extracting the Left value from an Either
  */

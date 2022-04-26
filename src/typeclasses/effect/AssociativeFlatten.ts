@@ -20,6 +20,7 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
+import { flow } from '../../function/function'
 
 import {
   AssociativeBoth,
@@ -48,6 +49,7 @@ import {
   Covariant9,
 } from './Covariant'
 
+/* #region  Typeclass */
 export interface AssociativeFlatten<T extends HKT> {
   readonly flatten: <A>(kind: Kind<T, Kind<T, A>>) => Kind<T, A>
 }
@@ -105,7 +107,9 @@ export interface AssociativeFlatten10<T extends HKT10> {
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, Kind10<T, Z, Y, X, W, V, U, S, R, E, A>>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, A>
 }
+/* #endregion */
 
+/* #region makeAssociativeBoth */
 export function makeAssociativeBoth<T extends HKT10>(
   F: AssociativeFlatten10<T> & Covariant10<T>,
 ): AssociativeBoth10<T>
@@ -157,3 +161,72 @@ export function makeAssociativeBoth<T extends HKT>(
     both: (s) => (f) => F.flatten(F.map((a) => F.map((b) => [a, b])(s))(f)),
   }
 }
+/* #endregion */
+
+/* #region flatMap */
+
+export function flatMap<T extends HKT10>(
+  AFC: AssociativeFlatten10<T> & Covariant10<T>,
+): <A, Z, Y, X, W, V, U, S, R, E, B>(
+  f: (a: A) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>,
+) => (kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>
+
+export function flatMap<T extends HKT9>(
+  AFC: AssociativeFlatten9<T> & Covariant9<T>,
+): <A, Y, X, W, V, U, S, R, E, B>(
+  f: (a: A) => Kind9<T, Y, X, W, V, U, S, R, E, B>,
+) => (kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => Kind9<T, Y, X, W, V, U, S, R, E, B>
+
+export function flatMap<T extends HKT8>(
+  AFC: AssociativeFlatten8<T> & Covariant8<T>,
+): <A, X, W, V, U, S, R, E, B>(
+  f: (a: A) => Kind8<T, X, W, V, U, S, R, E, B>,
+) => (kind: Kind8<T, X, W, V, U, S, R, E, A>) => Kind8<T, X, W, V, U, S, R, E, B>
+
+export function flatMap<T extends HKT7>(
+  AFC: AssociativeFlatten7<T> & Covariant7<T>,
+): <A, W, V, U, S, R, E, B>(
+  f: (a: A) => Kind7<T, W, V, U, S, R, E, B>,
+) => (kind: Kind7<T, W, V, U, S, R, E, A>) => Kind7<T, W, V, U, S, R, E, B>
+
+export function flatMap<T extends HKT6>(
+  AFC: AssociativeFlatten6<T> & Covariant6<T>,
+): <A, V, U, S, R, E, B>(
+  f: (a: A) => Kind6<T, V, U, S, R, E, B>,
+) => (kind: Kind6<T, V, U, S, R, E, A>) => Kind6<T, V, U, S, R, E, B>
+
+export function flatMap<T extends HKT5>(
+  AFC: AssociativeFlatten5<T> & Covariant5<T>,
+): <A, U, S, R, E, B>(
+  f: (a: A) => Kind5<T, U, S, R, E, B>,
+) => (kind: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, B>
+
+export function flatMap<T extends HKT4>(
+  AFC: AssociativeFlatten4<T> & Covariant4<T>,
+): <A, S, R, E, B>(
+  f: (a: A) => Kind4<T, S, R, E, B>,
+) => (kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function flatMap<T extends HKT3>(
+  AFC: AssociativeFlatten3<T> & Covariant3<T>,
+): <A, R, E, B>(f: (a: A) => Kind3<T, R, E, B>) => (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function flatMap<T extends HKT2>(
+  AFC: AssociativeFlatten2<T> & Covariant2<T>,
+): <A, E, B>(f: (a: A) => Kind2<T, E, B>) => (kind: Kind2<T, E, A>) => Kind2<T, E, B>
+
+export function flatMap<T extends HKT>(
+  AFC: AssociativeFlatten1<T> & Covariant1<T>,
+): <A, B>(f: (a: A) => Kind<T, B>) => (kind: Kind<T, A>) => Kind<T, B>
+
+export function flatMap<T extends HKT>(
+  AFC: AssociativeFlatten<T> & Covariant<T>,
+): <A, B>(f: (a: A) => Kind<T, B>) => (kind: Kind<T, A>) => Kind<T, B>
+
+export function flatMap<T extends HKT>(
+  AFC: AssociativeFlatten<T> & Covariant<T>,
+): <A, B>(f: (a: A) => Kind<T, B>) => (kind: Kind<T, A>) => Kind<T, B> {
+  return <A, B>(f: (a: A) => Kind<T, B>) => flow(AFC.map(f), AFC.flatten)
+}
+
+/* #endregion */

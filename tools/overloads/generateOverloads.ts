@@ -205,7 +205,15 @@ export function generateHKTParam(p: HKTParam, context: Context): Eff.Eff<never, 
 
 export function generateTypeclass(p: Typeclass, context: Context): Eff.Eff<never, Typeclass> {
   return Eff.Eff(function* () {
-    return p.setType(yield* generateHKTParam(p.type, context))
+    const p2 = p.setType(yield* generateHKTParam(p.type, context))
+    const p3 = p2.setParams(
+      yield* generateTypeParams(
+        p.params.filter((p) => p.tag !== HKTParam.tag),
+        context,
+      ),
+    )
+
+    return p3
   })
 }
 

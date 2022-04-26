@@ -1,26 +1,15 @@
-import { Associative } from '../typeclasses/concrete/Associative'
 import { Debug } from '../typeclasses/concrete/Debug'
-import { Identity } from '../typeclasses/concrete/Identity'
 
 export type Tuple<A, B> = readonly [first: A, second: B]
 
-/**
- * @category destructors
- */
 export function fst<A, E>(ea: Tuple<A, E>): A {
   return ea[0]
 }
 
-/**
- * @category destructors
- */
 export function snd<A, E>(ea: Tuple<A, E>): E {
   return ea[1]
 }
 
-/**
- * @category combinators
- */
 export const swap = <A, E>(ea: Tuple<A, E>): Tuple<E, A> => [snd(ea), fst(ea)]
 
 export const bimap: <E, G, A, B>(
@@ -40,9 +29,8 @@ export const compose: <A, B>(ab: readonly [B, A]) => <C>(bc: readonly [C, B]) =>
   (ab) => (bc) =>
     [fst(bc), snd(ab)]
 
-export const foldMap: <M>(
-  M: Associative<M> & Identity<M>,
-) => <A>(f: (a: A) => M) => <E>(fa: readonly [A, E]) => M = () => (f) => (fa) => f(fst(fa))
+export const foldMap: <A, M>(f: (a: A) => M) => <E>(fa: readonly [A, E]) => M = (f) => (fa) =>
+  f(fst(fa))
 
 export const reduce: <A, B>(b: B, f: (b: B, a: A) => B) => <E>(fa: readonly [A, E]) => B =
   (b, f) => (fa) =>
