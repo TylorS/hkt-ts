@@ -230,3 +230,136 @@ export function flatMap<T extends HKT>(
 }
 
 /* #endregion */
+
+/* #region  bind */
+export function bind<T extends HKT10>(
+  AFC: AssociativeFlatten10<T> & Covariant10<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, Z, Y, X, W, V, U, S, R, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>,
+) => (
+  kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
+) => Kind10<
+  T,
+  Z,
+  Y,
+  X,
+  W,
+  V,
+  U,
+  S,
+  R,
+  E,
+  { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }
+>
+
+export function bind<T extends HKT9>(
+  AFC: AssociativeFlatten9<T> & Covariant9<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, Y, X, W, V, U, S, R, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind9<T, Y, X, W, V, U, S, R, E, B>,
+) => (
+  kind: Kind9<T, Y, X, W, V, U, S, R, E, A>,
+) => Kind9<T, Y, X, W, V, U, S, R, E, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT8>(
+  AFC: AssociativeFlatten8<T> & Covariant8<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, X, W, V, U, S, R, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind8<T, X, W, V, U, S, R, E, B>,
+) => (
+  kind: Kind8<T, X, W, V, U, S, R, E, A>,
+) => Kind8<T, X, W, V, U, S, R, E, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT7>(
+  AFC: AssociativeFlatten7<T> & Covariant7<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, W, V, U, S, R, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind7<T, W, V, U, S, R, E, B>,
+) => (
+  kind: Kind7<T, W, V, U, S, R, E, A>,
+) => Kind7<T, W, V, U, S, R, E, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT6>(
+  AFC: AssociativeFlatten6<T> & Covariant6<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, V, U, S, R, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind6<T, V, U, S, R, E, B>,
+) => (
+  kind: Kind6<T, V, U, S, R, E, A>,
+) => Kind6<T, V, U, S, R, E, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT5>(
+  AFC: AssociativeFlatten5<T> & Covariant5<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, U, S, R, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind5<T, U, S, R, E, B>,
+) => (
+  kind: Kind5<T, U, S, R, E, A>,
+) => Kind5<T, U, S, R, E, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT4>(
+  AFC: AssociativeFlatten4<T> & Covariant4<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, S, R, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind4<T, S, R, E, B>,
+) => (
+  kind: Kind4<T, S, R, E, A>,
+) => Kind4<T, S, R, E, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT3>(
+  AFC: AssociativeFlatten3<T> & Covariant3<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, R, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind3<T, R, E, B>,
+) => (
+  kind: Kind3<T, R, E, A>,
+) => Kind3<T, R, E, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT2>(
+  AFC: AssociativeFlatten2<T> & Covariant2<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, E, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind2<T, E, B>,
+) => (
+  kind: Kind2<T, E, A>,
+) => Kind2<T, E, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT>(
+  AFC: AssociativeFlatten1<T> & Covariant1<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind<T, B>,
+) => (kind: Kind<T, A>) => Kind<T, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT>(
+  AFC: AssociativeFlatten<T> & Covariant<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind<T, B>,
+) => (kind: Kind<T, A>) => Kind<T, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }>
+
+export function bind<T extends HKT>(
+  AFC: AssociativeFlatten<T> & Covariant<T>,
+): <N extends string, A extends Readonly<Record<string, any>>, B>(
+  name: Exclude<N, keyof A>,
+  f: (a: A) => Kind<T, B>,
+) => (kind: Kind<T, A>) => Kind<T, { readonly [K in keyof A | N]: K extends keyof A ? A[K] : B }> {
+  return <N extends string, A extends Readonly<Record<string, any>>, B>(
+      name: N,
+      f: (a: A) => Kind<T, B>,
+    ) =>
+    (kind: Kind<T, A>) =>
+      AFC.flatten(
+        AFC.map((a: A) =>
+          AFC.map(
+            (b: B) =>
+              ({ ...a, [name]: b } as {
+                readonly [K in keyof A | N]: K extends keyof A ? A[K] : B
+              }),
+          )(f(a)),
+        )(kind),
+      )
+}
+
+/* #endregion */

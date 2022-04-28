@@ -13,9 +13,9 @@ import * as C from '../typeclasses/effect/Covariant'
 import * as CI from '../typeclasses/effect/CovariantWithIndex'
 import * as FilterM from '../typeclasses/effect/FilterMap'
 import * as FilterMI from '../typeclasses/effect/FilterMapWithIndex'
-import { FoldMap1 } from '../typeclasses/effect/FoldMap'
+import * as FM from '../typeclasses/effect/FoldMap'
 import { FoldMapWithIndex1 } from '../typeclasses/effect/FoldMapWithIndex'
-import { ForEach1 } from '../typeclasses/effect/ForEach'
+import * as FE from '../typeclasses/effect/ForEach'
 import { ForEachWithIndex1 } from '../typeclasses/effect/ForEachWithIndex'
 import * as IB from '../typeclasses/effect/IdentityBoth'
 import { IdentityFlatten1 } from '../typeclasses/effect/IdentityFlatten'
@@ -26,7 +26,7 @@ import { ReduceRight1 } from '../typeclasses/effect/ReduceRight'
 import * as RRI from '../typeclasses/effect/ReduceRightWithIndex'
 import * as RI from '../typeclasses/effect/ReduceWithIndex'
 import { Separate1 } from '../typeclasses/effect/Separate'
-import { Top1 } from '../typeclasses/effect/Top'
+import * as T from '../typeclasses/effect/Top'
 
 import { Left, Right, fromLeft, fromRight, isLeft, isRight } from './Either'
 import { Maybe, isJust } from './Maybe'
@@ -44,8 +44,13 @@ export const match =
 export const makeEq = <A>(E: Eq<A>): Eq<ReadonlyArray<A>> =>
   fromEquals((a, b) => a.length === b.length && a.every((a, i) => E.equals(a, b[i])))
 
+export const concat =
+  <A>(second: ReadonlyArray<A>) =>
+  (first: ReadonlyArray<A>): ReadonlyArray<A> =>
+    [...first, ...second]
+
 export const makeAssociative = <A>(): Associative<ReadonlyArray<A>> => ({
-  concat: (a, b) => a.concat(b),
+  concat: (a, b) => concat(b)(a),
 })
 
 export const makeDebug = <A>(D: Debug<A>): Debug<ReadonlyArray<A>> => ({
@@ -104,6 +109,7 @@ export const AssociativeFlatten: AF.AssociativeFlatten1<ArrayHKT> = {
 
 export const flatten = AssociativeFlatten.flatten
 export const flatMap = AF.flatMap<ArrayHKT>({ ...AssociativeFlatten, ...Covariant })
+export const bind = AF.bind<ArrayHKT>({ ...AssociativeFlatten, ...Covariant })
 
 export const AssociativeBoth: AB.AssociativeBoth1<ArrayHKT> = AF.makeAssociativeBoth<ArrayHKT>({
   ...AssociativeFlatten,
@@ -151,11 +157,14 @@ export const Bottom: Bottom1<ArrayHKT> = {
 
 export const bottom = Bottom.bottom
 
-export const Top: Top1<ArrayHKT> = {
+export const Top: T.Top1<ArrayHKT> = {
   top: [{}],
 }
 
 export const top = Top.top
+export const fromLazy = T.makeFromLazy<ArrayHKT>({ ...Top, ...Covariant })
+export const fromValue = T.makeFromValue<ArrayHKT>({ ...Top, ...Covariant })
+export const Do = fromLazy(() => Object.create(null) as Readonly<Record<never, never>>)
 
 export const FoldMapWithIndex: FoldMapWithIndex1<ArrayHKT, number> = {
   foldMapWithIndex: (I) => (f) => (a) => a.reduce((b, a, i) => I.concat(b, f(i, a)), I.id),
@@ -168,9 +177,15 @@ export const foldMap =
   <A>(f: (a: A) => B) =>
     foldMapWithIndex(I)((_, a: A) => f(a))
 
-export const FoldMap: FoldMap1<ArrayHKT> = {
+export const FoldMap: FM.FoldMap1<ArrayHKT> = {
   foldMap,
 }
+
+export const concatenate = FM.concat(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
 
 export const ForEachWithIndex: ForEachWithIndex1<ArrayHKT, number> = {
   mapWithIndex,
@@ -188,7 +203,7 @@ export const ForEachWithIndex: ForEachWithIndex1<ArrayHKT, number> = {
 
 export const forEachWithIndex = ForEachWithIndex
 
-export const ForEach: ForEach1<ArrayHKT> = {
+export const ForEach: FE.ForEach1<ArrayHKT> = {
   map,
   forEach: <T2 extends HKT>(IBC: IB.IdentityBoth<T2> & C.Covariant<T2>) => {
     const tuple = IB.tuple(IBC)
@@ -200,6 +215,7 @@ export const ForEach: ForEach1<ArrayHKT> = {
 }
 
 export const forEach = ForEach.forEach
+export const sequence = FE.sequence(ForEach)
 
 export const IdentityBoth: IB.IdentityBoth1<ArrayHKT> = {
   ...Top,

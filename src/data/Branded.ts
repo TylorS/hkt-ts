@@ -2,7 +2,7 @@
 /**
  * Branded is a module to help you construct Branded types.
  */
-import { M } from 'ts-toolbelt'
+import { M as B } from 'ts-toolbelt'
 
 import { Constrain, HKT2, Params, Variance } from '../HKT'
 import { unsafeCoerce } from '../function/function'
@@ -12,10 +12,10 @@ import { Concat } from '../typeclasses/concrete/Concat'
 import { Eq } from '../typeclasses/concrete/Eq'
 import { Identity } from '../typeclasses/concrete/Identity'
 import { Ord } from '../typeclasses/concrete/Ord'
-import { AssociativeBoth2 } from '../typeclasses/effect/AssociativeBoth'
+import * as AB from '../typeclasses/effect/AssociativeBoth'
 import { Bounded } from '../typeclasses/effect/Bounded'
-import { Covariant2 } from '../typeclasses/effect/Covariant'
-import { Top2 } from '../typeclasses/effect/Top'
+import * as C from '../typeclasses/effect/Covariant'
+import * as T from '../typeclasses/effect/Top'
 
 export const BRAND = Symbol('@hkt-ts/Brand')
 export type BRAND = typeof BRAND
@@ -77,7 +77,7 @@ export const unwrap: <A extends Branded<any, any>>(value: A) => ValueOf<A> = uns
  * Helper for removing all Branded values from a given type. Can be helpful for generating
  * an incoming type from a domain type.
  */
-export type StripBranded<A> = A extends M.Primitive | Date
+export type StripBranded<A> = A extends B.Primitive | Date
   ? ValueOf<A>
   : {
       readonly [K in keyof A]: StripBranded<A[K]>
@@ -87,19 +87,28 @@ export interface BrandedHKT extends HKT2 {
   readonly type: Branded<this[Params.E], this[Params.A]>
 }
 
-export const Covariant: Covariant2<BrandedHKT> = {
+export const Covariant: C.Covariant2<BrandedHKT> = {
   map: (f) => (k) => unsafeCoerce(f(k)),
 }
 
-export const AssociativeBoth: AssociativeBoth2<BrandedHKT> = {
+export const map = Covariant.map
+export const bindTo = C.bindTo(Covariant)
+export const flap = C.flap(Covariant)
+export const tupled = C.tupled(Covariant)
+export const mapTo = C.mapTo(Covariant)
+
+export const AssociativeBoth: AB.AssociativeBoth2<BrandedHKT> = {
   both: (s) => (f) => unsafeCoerce([f, s] as const),
 }
+
+export const both = AssociativeBoth.both
+export const tuple = AB.tuple<BrandedHKT>({ ...AssociativeBoth, ...Covariant })
 
 export const makeTop =
   <BRAND>() =>
   <B>(
     value: B,
-  ): Top2<
+  ): T.Top2<
     Constrain<
       Constrain<BrandedHKT, Params.A, Variance.Invariant<B>>,
       Params.E,

@@ -2,7 +2,7 @@ import { HKT, Kind, Params } from '../HKT'
 import { Predicate } from '../function/Predicate'
 import type { Refinement } from '../function/Refinement'
 import { constant, flow, identity, pipe } from '../function/function'
-import { Associative } from '../typeclasses/concrete/Associative'
+import { Associative, reverse } from '../typeclasses/concrete/Associative'
 import { Commutative } from '../typeclasses/concrete/Commutative'
 import * as Debug from '../typeclasses/concrete/Debug'
 import * as Eq from '../typeclasses/concrete/Eq'
@@ -179,6 +179,12 @@ export function toUndefined<A>(maybe: Maybe<A>): A | undefined {
 export const makeAssociative = <A>(A: Associative<A>): Associative<Maybe<A>> => ({
   concat: (f, s) => (isJust(f) && isJust(s) ? Just(A.concat(f.value, s.value)) : isJust(f) ? f : s),
 })
+
+export const makeFirstAssociative = <A>(): Associative<Maybe<A>> => ({
+  concat: (f, s) => (isJust(f) ? f : s),
+})
+
+export const makeSecondAssociative = <A>(): Associative<Maybe<A>> => reverse(makeFirstAssociative())
 
 export const makeCommutative = makeAssociative as <A>(A: Commutative<A>) => Commutative<Maybe<A>>
 

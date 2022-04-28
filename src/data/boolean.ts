@@ -1,13 +1,14 @@
-import { Refinement } from '../function/Refinement'
+import { Refinement as B } from '../function/Refinement'
 import { Lazy } from '../function/function'
 import { Associative } from '../typeclasses/concrete/Associative'
+import { Commutative } from '../typeclasses/concrete/Commutative'
 import * as D from '../typeclasses/concrete/Debug'
 import * as E from '../typeclasses/concrete/Eq'
 import { Identity } from '../typeclasses/concrete/Identity'
+import * as I from '../typeclasses/concrete/Inverse'
 import * as O from '../typeclasses/concrete/Ord'
 
-export const isBoolean: Refinement<unknown, boolean> = (u: unknown): u is boolean =>
-  typeof u === 'boolean'
+export const isBoolean: B<unknown, boolean> = (u: unknown): u is boolean => typeof u === 'boolean'
 
 /**
  * Defines the fold over a boolean value.
@@ -37,6 +38,8 @@ export const Eq: E.Eq<boolean> = {
 export const AssociativeAll: Associative<boolean> = {
   concat: (first, second) => first && second,
 }
+
+export const CommutativeAll: Commutative<boolean> = AssociativeAll
 
 /**
  * `boolean` Associative under disjunction.
@@ -82,4 +85,8 @@ export const Ord: O.Ord<boolean> = O.fromCompare((first, second) =>
 
 export const Debug: D.Debug<boolean> = {
   debug: (b) => JSON.stringify(b),
+}
+
+export const Inverse: I.Inverse<boolean> = {
+  inverse: (a, b) => (a ? !b : b),
 }
