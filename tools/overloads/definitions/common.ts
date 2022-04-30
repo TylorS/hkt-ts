@@ -19,6 +19,12 @@ export const bTypeParam = new Static('B')
 export const cTypeParam = new Static('C')
 export const dTypeParam = new Static('D')
 
+export const boolean_ = new Static(`boolean`)
+export const number_ = new Static(`number`)
+export const string_ = new Static(`string`)
+export const null_ = new Static(`null`)
+export const undefined_ = new Static(`undefined`)
+
 export const kind_ = (params: readonly KindParam[]) => new Kind(hkt, [placeholder, ...params])
 
 export const kindWithDefaults_ = (params: readonly KindParam[]) =>
@@ -30,6 +36,20 @@ export const fn_ = (
   functionParams: ReadonlyArray<FunctionParam>,
   returnSignature: KindParam,
 ) => new FunctionSignature(name, typeParams, functionParams, returnSignature)
+
+export const derived_ = (name: string, i: Interface, returnSignature: KindParam) =>
+  new FunctionSignature(
+    name,
+    [hkt],
+    [
+      i.toTypeClass(hkt).labeled(
+        Array.from(i.name)
+          .filter((x) => x === x.toUpperCase())
+          .join(''),
+      ),
+    ],
+    returnSignature,
+  )
 
 export const fnLabeled_ = (
   name: string,

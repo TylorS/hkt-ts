@@ -127,7 +127,7 @@ export function generateTypeAliasOverloads(node: TypeAlias) {
 
 export function generateFunctionSignature(signature: FunctionSignature, context: Context) {
   return Eff.Eff(function* () {
-    context = { parent: signature, ...context }
+    context = { ...context, parent: signature }
 
     return new FunctionSignature(
       signature.name,
@@ -292,6 +292,9 @@ export function generateKindParam(
         const r = yield* generateKindParam(param.right, context)
 
         return l.flatMap((lv) => r.map((rv) => new UnionNode(lv, rv)))
+      }
+      case 'Interface': {
+        return [yield* generateInterface(param, context)]
       }
     }
   })

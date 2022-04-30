@@ -5,7 +5,7 @@ import yargs from 'yargs'
 
 import { Eff, pipe } from '../../src'
 
-import { FunctionSignature, Interface } from './AST'
+import { ParentNode } from './AST'
 import { generateOverloadsSafe } from './generateOverloads'
 import { printOverloadSafe } from './printOverload'
 
@@ -55,7 +55,9 @@ async function main() {
     definition.endsWith('.ts') ? definition : definition + '.ts',
   )
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const { node } = require(filePath) as { node: FunctionSignature | Interface }
+  const mod = require(filePath)
+  const modKeys = Object.keys(mod)
+  const node = (modKeys.length === 1 ? mod[modKeys[0]] : mod['node']) as ParentNode
 
   console.log('Generating overloads...')
 
@@ -76,6 +78,8 @@ async function main() {
 
   console.log(output + '\n')
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const { default: clipboard } = await import('clipboardy')
 
   await clipboard.write(output)

@@ -1,3 +1,4 @@
+import { HKT2, Params } from '../HKT'
 import { Predicate } from '../function/Predicate'
 import { Refinement } from '../function/Refinement'
 import { flow, pipe } from '../function/function'
@@ -657,4 +658,8 @@ export const difference = <K>(
 
       return out
     }
+}
+
+export interface MapHKT extends HKT2 {
+  readonly type: ReadonlyMap<this[Params.E], this[Params.A]>
 }

@@ -204,7 +204,7 @@ export const stateHandler =
   ) =>
   <Y extends AnyTagged, R>(
     eff: Eff<Y | EffInstruction<T, I, O>, R>,
-  ): Eff<Exclude<Y | Y2, EffInstruction<T, I, O>>, R> =>
+  ): Eff<Exclude<Y | Y2, EffInstruction<T, I, O>>, readonly [S, R]> =>
     Eff(function* () {
       const i = iterator(eff)
       let result = i.next()
@@ -223,7 +223,7 @@ export const stateHandler =
         }
       }
 
-      return result.value
+      return [current, result.value]
     })
 
 export function handleWith<E extends Eff, Y2 extends AnyTagged, R2>(

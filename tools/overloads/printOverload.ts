@@ -217,11 +217,15 @@ export function printInterface(
       Eff.fromIterable((p) => printTypeParam(p, context, manager)),
     )
 
-    const prefix = `export interface ${node.name}${
+    const prefix = `${manager.isWithinFunction() ? `` : `export interface `}${node.name}${
       node.typeParams.length ? `<${printedTypeParams.join(', ')}>` : ''
     }`
 
     manager.popContext()
+
+    if (manager.isWithinFunction()) {
+      return prefix
+    }
 
     manager.addContext('Property')
 
@@ -417,7 +421,7 @@ export function printKind(
   return Eff.Eff(function* () {
     manager.addContext('Kind')
 
-    const length = context.lengths.get(kind.type.id)
+    const length = context.lengths.get(kind.type.id)!
     const printed = yield* pipe(
       kind.kindParams,
       Eff.fromIterable((p) =>
@@ -473,6 +477,8 @@ function printKindParam(
           manager,
         )} | ${yield* printKindParam(kindParam.right, context, manager)}`
       })
+    case Interface.tag:
+      return printInterface(kindParam, context, manager)
     default:
       return printTypeParam(kindParam, context, manager)
   }

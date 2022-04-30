@@ -20,7 +20,9 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { identity } from '../../function/function'
+import { run } from '../../effects/Eff'
+import * as S from '../../effects/State'
+import { flow, identity } from '../../function/function'
 
 import {
   Covariant,
@@ -2151,3 +2153,104 @@ export function sequence<T extends HKT>(
 }
 
 /* #endregion */
+
+export function mapAccum<T extends HKT10>(
+  FE: ForEach10<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => <Z, Y, X, W, V, U, S, R, E>(
+  kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
+) => readonly [S, Kind10<T, Z, Y, X, W, V, U, S, R, E, B>]
+
+export function mapAccum<T extends HKT9>(
+  FE: ForEach9<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => <Y, X, W, V, U, S, R, E>(
+  kind: Kind9<T, Y, X, W, V, U, S, R, E, A>,
+) => readonly [S, Kind9<T, Y, X, W, V, U, S, R, E, B>]
+
+export function mapAccum<T extends HKT8>(
+  FE: ForEach8<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => <X, W, V, U, S, R, E>(
+  kind: Kind8<T, X, W, V, U, S, R, E, A>,
+) => readonly [S, Kind8<T, X, W, V, U, S, R, E, B>]
+
+export function mapAccum<T extends HKT7>(
+  FE: ForEach7<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => <W, V, U, S, R, E>(
+  kind: Kind7<T, W, V, U, S, R, E, A>,
+) => readonly [S, Kind7<T, W, V, U, S, R, E, B>]
+
+export function mapAccum<T extends HKT6>(
+  FE: ForEach6<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => readonly [S, Kind6<T, V, U, S, R, E, B>]
+
+export function mapAccum<T extends HKT5>(
+  FE: ForEach5<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => readonly [S, Kind5<T, U, S, R, E, B>]
+
+export function mapAccum<T extends HKT4>(
+  FE: ForEach4<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => readonly [S, Kind4<T, S, R, E, B>]
+
+export function mapAccum<T extends HKT3>(
+  FE: ForEach3<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => <R, E>(kind: Kind3<T, R, E, A>) => readonly [S, Kind3<T, R, E, B>]
+
+export function mapAccum<T extends HKT2>(
+  FE: ForEach2<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => <E>(kind: Kind2<T, E, A>) => readonly [S, Kind2<T, E, B>]
+
+export function mapAccum<T extends HKT>(
+  FE: ForEach1<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => (kind: Kind<T, A>) => readonly [S, Kind<T, B>]
+
+export function mapAccum<T extends HKT>(
+  FE: ForEach<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => readonly [S, B],
+) => (kind: Kind<T, A>) => readonly [S, Kind<T, B>]
+
+export function mapAccum<T extends HKT>(
+  FE: ForEach<T>,
+): <S, A, B>(
+  s: S,
+  f: (s: S, a: A) => S.StateTuple<S, B>,
+) => (kind: Kind<T, A>) => S.StateTuple<S, Kind<T, B>> {
+  const forEach = FE.forEach<S.StateHKT>({ ...S.IdentityBoth, ...S.Covariant })
+
+  return <S, A, B>(s: S, f: (s: S, a: A) => S.StateTuple<S, B>) =>
+    flow(
+      forEach((a: A) => S.modify((s: S) => f(s, a))),
+      S.runWith(() => s),
+      run,
+    )
+}

@@ -18,6 +18,7 @@ export type KindParam =
   | FunctionSignature
   | HKTParam
   | HKTPlaceholder
+  | Interface
   | Kind
   | ObjectNode
   | Static
@@ -51,6 +52,18 @@ export class Interface extends ast('Interface') {
       hkt,
       this.typeParams.filter((x) => x !== hkt),
     )
+  }
+
+  setParams(params: ReadonlyArray<TypeParam>) {
+    return new Interface(this.name, params, this.properties, this.extensions)
+  }
+
+  setProperties(properties: ReadonlyArray<Labeled<KindParam>>) {
+    return new Interface(this.name, this.typeParams, properties, this.extensions)
+  }
+
+  labeled(label: string = this.name) {
+    return new Labeled(label, this)
   }
 }
 
@@ -164,7 +177,7 @@ export class Kind extends ast('Kind') {
     return new Kind(this.type, kindParams)
   }
 
-  labeled(label: string) {
+  labeled(label = 'kind') {
     return new Labeled(label, this)
   }
 }

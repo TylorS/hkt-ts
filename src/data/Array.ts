@@ -186,6 +186,7 @@ export const contains = FM.contains(FoldMap)
 export const count = FM.count(FoldMap)
 export const exists = FM.exists(FoldMap)
 export const find = FM.find(FoldMap)
+export const reverse = <A>(a: ReadonlyArray<A>): ReadonlyArray<A> => a.slice().reverse()
 
 export const ForEachWithIndex: ForEachWithIndex1<ArrayHKT, number> = {
   mapWithIndex,

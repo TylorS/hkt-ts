@@ -5,6 +5,7 @@ import { Identity } from '../typeclasses/concrete/Identity'
 import { AssociativeBoth2 } from '../typeclasses/effect/AssociativeBoth'
 import { AssociativeFlatten2 } from '../typeclasses/effect/AssociativeFlatten'
 import { Covariant2 } from '../typeclasses/effect/Covariant'
+import { IdentityBoth2 } from '../typeclasses/effect/IdentityBoth'
 
 import * as Eff from './Eff'
 
@@ -36,7 +37,11 @@ export function get<S>(): State<S, S> {
 
 export type StateTuple<S, A> = readonly [updated: S, computed: A]
 
-export function runWith<S>(initial: Lazy<S>) {
+export function runWith<S>(
+  initial: Lazy<S>,
+): <Y extends Eff.AnyTagged, R>(
+  eff: Eff.Eff<Modify<S, any> | Y, R>,
+) => Eff.Eff<Exclude<Y, Modify<S, any>>, readonly [S, R]> {
   return Modify.stateHandler(initial, (current: S, instr: Modify<S, any>) =>
     Eff.fromLazy(() => instr.input(current)),
   )
@@ -63,3 +68,8 @@ export interface StateHKT extends HKT2 {
 export const Covariant = Eff.Covariant as Covariant2<StateHKT>
 export const AssociativeBoth = Eff.AssociativeBoth as AssociativeBoth2<StateHKT>
 export const AssociativeFlatten = Eff.AssociativeFlatten as AssociativeFlatten2<StateHKT>
+
+export const IdentityBoth: IdentityBoth2<StateHKT> = {
+  ...AssociativeBoth,
+  top: get(),
+}
