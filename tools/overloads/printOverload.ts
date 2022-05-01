@@ -56,8 +56,8 @@ export class PrintContextManager {
 
     manager.recursive = true
     manager.context = {
-      parentNodes: this.context.parentNodes.slice(),
-      contextStack: this.context.contextStack.slice(),
+      parentNodes: this.context.parentNodes.slice(0),
+      contextStack: this.context.contextStack.slice(0),
     }
 
     return manager

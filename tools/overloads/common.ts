@@ -23,7 +23,7 @@ export const hktParamNames = [
 export function combinations<A>(
   options: ReadonlyArray<ReadonlyArray<A>>,
 ): ReadonlyArray<ReadonlyArray<A>> {
-  const inputs = options.slice()
+  const inputs = options.slice(0)
 
   if (inputs.length === 1) {
     return inputs[0].map((x) => [x] as const)
@@ -63,7 +63,7 @@ export function uniq<A>(array: ReadonlyArray<A>): ReadonlyArray<A> {
 
 export function permutations<A>(permutation: Array<A>): Array<Array<A>> {
   let length = permutation.length,
-    result = [permutation.slice()],
+    result = [permutation.slice(0)],
     c = new Array(length).fill(0),
     i = 1,
     k,
@@ -77,7 +77,7 @@ export function permutations<A>(permutation: Array<A>): Array<Array<A>> {
       permutation[k] = p
       ++c[i]
       i = 1
-      result.push(permutation.slice())
+      result.push(permutation.slice(0))
     } else {
       c[i] = 0
       ++i

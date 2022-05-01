@@ -95,7 +95,7 @@ export const concatAll =
     as.reduce(A.concat)
 
 export const copy = <A>(nea: NonEmptyArray<A>): NonEmptyArray<A> =>
-  nea.slice() as unknown as NonEmptyArray<A>
+  nea.slice(0) as unknown as NonEmptyArray<A>
 
 export const flatMap =
   <A, B>(f: (a: A) => NonEmptyArray<B>) =>
@@ -265,7 +265,7 @@ export const shift = <A>(as: NonEmptyArray<A>): readonly [A, ReadonlyArray<A>] =
 export const sort =
   <B>(O: Ord.Ord<B>) =>
   <A extends B>(as: NonEmptyArray<A>): NonEmptyArray<A> =>
-    as.length === 1 ? as : (as.slice().sort(O.compare) as unknown as NonEmptyArray<A>)
+    as.length === 1 ? as : (as.slice(0).sort(O.compare) as unknown as NonEmptyArray<A>)
 
 export const sortBy = <B>(
   ords: ReadonlyArray<Ord.Ord<B>>,

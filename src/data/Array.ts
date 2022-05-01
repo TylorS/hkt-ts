@@ -31,16 +31,16 @@ import * as T from '../typeclasses/effect/Top'
 
 import { Left, Right, fromLeft, fromRight, isLeft, isRight } from './Either'
 import { Maybe, isJust } from './Maybe'
-import { NonEmptyArray, isNonEmpty } from './NonEmptyArray'
+import * as NEA from './NonEmptyArray'
 
 export interface ArrayHKT extends HKT {
   readonly type: ReadonlyArray<this[Params.A]>
 }
 
 export const match =
-  <A, B, C>(onEmpty: () => A, onValues: (values: NonEmptyArray<B>) => C) =>
+  <A, B, C>(onEmpty: () => A, onValues: (values: NEA.NonEmptyArray<B>) => C) =>
   (values: ReadonlyArray<B>): A | C =>
-    isNonEmpty(values) ? onValues(values) : onEmpty()
+    NEA.isNonEmpty(values) ? onValues(values) : onEmpty()
 
 export const makeEq = <A>(E: Eq<A>): Eq<ReadonlyArray<A>> =>
   fromEquals((a, b) => a.length === b.length && a.every((a, i) => E.equals(a, b[i])))
@@ -187,7 +187,13 @@ export const contains = FM.contains(FoldMap)
 export const count = FM.count(FoldMap)
 export const exists = FM.exists(FoldMap)
 export const find = FM.find(FoldMap)
-export const reverse = <A>(a: ReadonlyArray<A>): ReadonlyArray<A> => a.slice().reverse()
+export const reverse = <A>(a: ReadonlyArray<A>): ReadonlyArray<A> => a.slice(0).reverse()
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const groupBy = FM.groupBy(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+export const isEmpty = <A>(a: ReadonlyArray<A>): a is readonly [] => a.length === 0
+export const isNonEmpty = NEA.isNonEmpty
 
 export const ForEachWithIndex: ForEachWithIndex1<ArrayHKT, number> = {
   mapWithIndex,
@@ -278,4 +284,4 @@ export const Separate: Separate1<ArrayHKT> = {
 export const sort =
   <A>(O: Ord<A>) =>
   (array: ReadonlyArray<A>): ReadonlyArray<A> =>
-    array.slice().sort(O.compare)
+    array.slice(0).sort(O.compare)
