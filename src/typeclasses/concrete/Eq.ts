@@ -3,7 +3,7 @@ import fastDeepEqual from 'fast-deep-equal'
 import { HKT, Params } from '../../HKT'
 import { Include } from '../../common'
 import * as E from '../../data/Either'
-import { constFalse, constTrue, identity, pipe } from '../../function/function'
+import { constFalse, constTrue, pipe } from '../../function/function'
 import * as AB from '../effect/AssociativeBoth'
 import * as AE from '../effect/AssociativeEither'
 import { Contravariant1 } from '../effect/Contravariant'
@@ -121,9 +121,7 @@ export const AssociativeBoth: AB.AssociativeBoth1<EqHKT> = {
 }
 
 export const bothWith = AB.bothWith<EqHKT>({ ...AssociativeBoth, ...Contravariant })
-
-export const both = <A, B>(EA: Eq<A>, EB: Eq<B>): Eq<readonly [A, B]> =>
-  pipe(EA, bothWith(EB, identity))
+export const both = AssociativeBoth.both
 
 export const AssociativeEither: AE.AssociativeEither1<EqHKT> = {
   either: (EB) => (EA) =>
@@ -147,9 +145,7 @@ export const AssociativeEither: AE.AssociativeEither1<EqHKT> = {
 }
 
 export const eitherWith = AE.eitherWith<EqHKT>({ ...AssociativeEither, ...Contravariant })
-
-export const either = <A, B>(EA: Eq<A>, EB: Eq<B>): Eq<E.Either<A, B>> =>
-  pipe(EA, eitherWith(EB, identity))
+export const either = AssociativeEither.either
 
 export const not = <A>(E: Eq<A>): Eq<A> => ({
   equals: (a, b) => !E.equals(a, b),

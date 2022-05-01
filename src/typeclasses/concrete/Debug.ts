@@ -1,5 +1,11 @@
+import { HKT, Params } from '../../HKT'
 import { Include } from '../../common'
+import * as E from '../../data/Either'
 import { Json } from '../../data/Json'
+import { flow, pipe } from '../../function/function'
+import * as AB from '../effect/AssociativeBoth'
+import * as AE from '../effect/AssociativeEither'
+import { Contravariant1 } from '../effect/Contravariant'
 
 export interface Debug<A> {
   readonly debug: (a: A) => string
@@ -67,3 +73,38 @@ export const Stringify: Debug<Json> = {
 export const string: Debug<string> = Stringify
 export const number: Debug<number> = Stringify
 export const boolean: Debug<boolean> = Stringify
+
+export interface DebugHKT extends HKT {
+  readonly type: Debug<this[Params.A]>
+}
+
+export const Contravariant: Contravariant1<DebugHKT> = {
+  contramap: (f) => (d) => ({
+    debug: flow(f, d.debug),
+  }),
+}
+
+export const contramap = Contravariant.contramap
+
+export const AssociativeBoth: AB.AssociativeBoth1<DebugHKT> = {
+  both: (DB) => (DA) => tuple(DA, DB),
+}
+
+export const bothWith = AB.bothWith<DebugHKT>({ ...AssociativeBoth, ...Contravariant })
+
+export const AssociativeEither: AE.AssociativeEither1<DebugHKT> = {
+  either: (DB) => (DA) => ({
+    debug: (either) =>
+      pipe(
+        either,
+        E.match(
+          (a) => `Left<${DA.debug(a)}>`,
+          (b) => `Right<${DB.debug(b)}>`,
+        ),
+      ),
+  }),
+}
+
+export const eitherWith = AE.eitherWith<DebugHKT>({ ...AssociativeEither, ...Contravariant })
+
+export const either = AssociativeEither.either

@@ -1,6 +1,6 @@
 import { HKT, Params } from '../../HKT'
 import * as Either from '../../data/Either'
-import { constant, identity, pipe } from '../../function/function'
+import { constant, pipe } from '../../function/function'
 import type { Identity } from '../../typeclasses/concrete/Identity'
 import * as AB from '../effect/AssociativeBoth'
 import * as AE from '../effect/AssociativeEither'
@@ -144,8 +144,7 @@ export const AssociativeEither: AE.AssociativeEither1<OrdHKT> = {
 
 export const eitherWith = AE.eitherWith<OrdHKT>({ ...AssociativeEither, ...Contravariant })
 
-export const either = <A, B>(A: Ord<A>, B: Ord<B>): Ord<Either.Either<A, B>> =>
-  pipe(A, eitherWith(B, identity))
+export const either = AssociativeEither.either
 
 const orElse = (second: () => Ordering) => (first: Ordering) => first === 0 ? second() : first
 
@@ -161,5 +160,4 @@ export const AssociativeBoth: AB.AssociativeBoth1<OrdHKT> = {
 
 export const bothWith = AB.bothWith<OrdHKT>({ ...AssociativeBoth, ...Contravariant })
 
-export const both = <A, B>(A: Ord<A>, B: Ord<B>): Ord<readonly [A, B]> =>
-  pipe(A, bothWith(B, identity))
+export const both = AssociativeBoth.both
