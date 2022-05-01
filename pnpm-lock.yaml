@@ -19,6 +19,7 @@ specifiers:
   eslint-plugin-import: ^2.26.0
   eslint-plugin-prettier: ^4.0.0
   fast-deep-equal: ^3.1.3
+  fast-glob: ^3.2.11
   husky: ^7.0.4
   lint-staged: ^12.4.0
   mocha: ^9.2.2
@@ -52,6 +53,7 @@ devDependencies:
   eslint-import-resolver-typescript: 2.7.1_25dbcfb8cfecb7418ebda712664abe37
   eslint-plugin-import: 2.26.0_eslint@8.13.0
   eslint-plugin-prettier: 4.0.0_1815ac95b7fb26c13c7d48a8eef62d0f
+  fast-glob: 3.2.11
   husky: 7.0.4
   lint-staged: 12.4.0
   mocha: 9.2.2

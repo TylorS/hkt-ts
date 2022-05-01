@@ -3,5 +3,5 @@
   "extends": "../../tsconfig.base.json",
   "include": [
     "."
-  ]
+, "../generatePackageExports.ts"  ]
 }
