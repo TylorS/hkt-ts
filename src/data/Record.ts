@@ -17,7 +17,7 @@ export const size = <A>(r: ReadonlyRecord<string, A>): number => Object.keys(r).
 export const keys =
   (O: Ord<string>) =>
   <K extends string, A>(r: Record<K, A>): ReadonlyArray<K> =>
-    pipe(Object.keys(r) as unknown as ReadonlyArray<K>, sort(O))
+    pipe(Object.keys(r) as unknown as ReadonlyArray<K>, sort(O as Ord<K>))
 
 export const values =
   <A>(O: Ord<A>) =>
@@ -27,7 +27,7 @@ export const values =
 export const entries =
   <A>(OK: Ord<string>, OV: Ord<A>) =>
   <K extends string>(r: Record<K, A>): ReadonlyArray<readonly [K, A]> =>
-    pipe(Object.entries(r) as any as ReadonlyArray<readonly [K, A]>, sort(tuple(OK, OV)))
+    pipe(Object.entries(r) as any as ReadonlyArray<readonly [K, A]>, sort(tuple(OK as Ord<K>, OV)))
 
 export const isEmpty = <A>(r: ReadonlyRecord<string, A>) => size(r) === 0
 

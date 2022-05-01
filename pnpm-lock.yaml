@@ -7,6 +7,7 @@ specifiers:
   '@types/yargs': ^17.0.10
   '@typescript-eslint/eslint-plugin': ^5.20.0
   '@typescript-eslint/parser': ^5.20.0
+  '@zoltu/typescript-transformer-append-js-extension': ^1.0.1
   clipboardy: 2.3.0
   concurrently: ^6.5.1
   esbuild: ^0.14.38
@@ -25,6 +26,7 @@ specifiers:
   ts-node: ^10.7.0
   ts-toolbelt: ^9.6.0
   tslib: ^2.4.0
+  ttypescript: ^1.5.13
   typescript: ^4.6.3
   yargs: ^17.4.1
 
@@ -39,6 +41,7 @@ devDependencies:
   '@types/yargs': 17.0.10
   '@typescript-eslint/eslint-plugin': 5.20.0_b9ac9b5656ce5dffade639fcf5e491bf
   '@typescript-eslint/parser': 5.20.0_eslint@8.13.0+typescript@4.6.3
+  '@zoltu/typescript-transformer-append-js-extension': 1.0.1
   clipboardy: 2.3.0
   concurrently: 6.5.1
   esbuild: 0.14.38
@@ -55,6 +58,7 @@ devDependencies:
   prettier: 2.6.2
   ts-node: 10.7.0_de7c86b0cde507c63a0402da5b982bd3
   tslib: 2.4.0
+  ttypescript: 1.5.13_ts-node@10.7.0+typescript@4.6.3
   typescript: 4.6.3
   yargs: 17.4.1
 
@@ -299,6 +303,10 @@ packages:
 
   /@ungap/promise-all-settled/1.1.2:
     resolution: {integrity: sha512-sL/cEvJWAnClXw0wHk85/2L0G6Sj8UB0Ctc1TEMbKSsmpRosqhwj9gWgFRZSrBr2f9tiXISwNhCPmlfqUqyb9Q==}
+    dev: true
+
+  /@zoltu/typescript-transformer-append-js-extension/1.0.1:
+    resolution: {integrity: sha512-7Lp30MtJO7YHZW19yJWhkuJrf+Y78COHopeZli7fiWrbIRvodsSXZIa7cFX/c4PFwFJt55N/7Pp/t6VH0fwBVQ==}
     dev: true
 
   /acorn-jsx/5.3.2_acorn@8.7.0:
@@ -2420,6 +2428,18 @@ packages:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: 1.14.1
+      typescript: 4.6.3
+    dev: true
+
+  /ttypescript/1.5.13_ts-node@10.7.0+typescript@4.6.3:
+    resolution: {integrity: sha512-KT/RBfGGlVJFqEI8cVvI3nMsmYcFvPSZh8bU0qX+pAwbi7/ABmYkzn7l/K8skw0xmYjVCoyaV6WLsBQxdadybQ==}
+    hasBin: true
+    peerDependencies:
+      ts-node: '>=8.0.2'
+      typescript: '>=3.2.2'
+    dependencies:
+      resolve: 1.22.0
+      ts-node: 10.7.0_de7c86b0cde507c63a0402da5b982bd3
       typescript: 4.6.3
     dev: true
 

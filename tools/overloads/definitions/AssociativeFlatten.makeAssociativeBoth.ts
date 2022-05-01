@@ -12,7 +12,7 @@ export const makeAssociativeBoth = fn_(
       'F',
     ),
   ],
-  new Typeclass('AssociativeBoth', hkt),
+  new Typeclass('AssociativeBoth', hkt, []),
 )
 
 export const node = makeAssociativeBoth

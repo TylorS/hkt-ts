@@ -14,6 +14,7 @@
     "@types/yargs": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
+    "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
     "clipboardy": "2.3.0",
     "concurrently": "^6.5.1",
     "esbuild": "^0.14.38",
@@ -30,12 +31,13 @@
     "prettier": "^2.6.2",
     "ts-node": "^10.7.0",
     "tslib": "^2.4.0",
+    "ttypescript": "^1.5.13",
     "typescript": "^4.6.3",
     "yargs": "^17.4.1"
   },
   "scripts": {
-    "build:cjs": "rm -rf cjs && tsc -p ./tsconfig.json --module commonjs --outDir cjs",
-    "build:esm": "rm -rf esm && tsc -p ./tsconfig.json --outDir esm",
+    "build:cjs": "rm -rf cjs && tsc -p ./tsconfig.build.json --module commonjs --outDir cjs",
+    "build:esm": "rm -rf esm && ttsc -p ./tsconfig.build.json --outDir esm",
     "build": "concurrently npm:build:esm npm:build:cjs",
     "generate-overload": "node -r esbuild-register ./tools/overloads/cli.ts",
     "eslint": "eslint --ext .ts,.js,.json,.yaml --fix src",

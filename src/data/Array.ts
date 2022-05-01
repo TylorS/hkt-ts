@@ -4,6 +4,7 @@ import { Associative } from '../typeclasses/concrete/Associative'
 import { Debug } from '../typeclasses/concrete/Debug'
 import { Eq, fromEquals } from '../typeclasses/concrete/Eq'
 import { Identity } from '../typeclasses/concrete/Identity'
+import { Ord } from '../typeclasses/concrete/Ord'
 import * as AB from '../typeclasses/effect/AssociativeBoth'
 import * as AE from '../typeclasses/effect/AssociativeEither'
 import * as AF from '../typeclasses/effect/AssociativeFlatten'
@@ -273,3 +274,8 @@ export const separate = PM.separate(PartitionMap)
 export const Separate: Separate1<ArrayHKT> = {
   separate,
 }
+
+export const sort =
+  <A>(O: Ord<A>) =>
+  (array: ReadonlyArray<A>): ReadonlyArray<A> =>
+    array.slice().sort(O.compare)

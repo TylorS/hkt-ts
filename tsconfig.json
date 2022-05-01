@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "include": [
-    "src"
-, "tools/overloads/definitions/IdentityBoth.ts", "tools/overloads/definitions/Zero.ts", "tools/overloads/definitions/ForEachWithIndex.forEach.ts", "tools/overloads/definitions/Top.Do.ts"  ]
+    "src",
+    "tools"
+  ]
 }
