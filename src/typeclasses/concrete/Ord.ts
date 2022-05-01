@@ -1,6 +1,10 @@
-import { Either, match } from '../../data/Either'
+import { HKT, Params } from '../../HKT'
+import * as Either from '../../data/Either'
 import { constant, identity, pipe } from '../../function/function'
 import type { Identity } from '../../typeclasses/concrete/Identity'
+import * as AB from '../effect/AssociativeBoth'
+import * as AE from '../effect/AssociativeEither'
+import { Contravariant1 } from '../effect/Contravariant'
 
 import type { Associative } from './Associative'
 import type { Eq } from './Eq'
@@ -16,7 +20,8 @@ export type Ordering = -1 | 0 | 1
 export function fromCompare<A>(compare: Ord<A>['compare']): Ord<A> {
   return {
     equals: (a, b) => compare(a, b) === 0,
-    compare,
+    // Attempt reference equality first for performance
+    compare: (a, b) => (Object.is(a, b) ? 0 : compare(a, b)),
   }
 }
 
@@ -102,41 +107,59 @@ export const between = <A>(O: Ord<A>): ((low: A, hi: A) => (a: A) => boolean) =>
   return (low, hi) => (a) => ltO(a, low) || gtO(a, hi) ? false : true
 }
 
-export const bothWith =
-  <A, B>(A: Ord<A>, B: Ord<B>) =>
-  <C>(f: (c: C) => readonly [A, B]): Ord<C> =>
-    pipe(tuple(A, B), contramap(f))
+export interface OrdHKT extends HKT {
+  readonly type: Ord<this[Params.A]>
+}
 
-export const both = <A, B>(A: Ord<A>, B: Ord<B>): Ord<readonly [A, B]> => bothWith(A, B)(identity)
+export const Contravariant: Contravariant1<OrdHKT> = {
+  contramap,
+}
 
-export const eitherWith =
-  <A, B>(A: Ord<A>, B: Ord<B>) =>
-  <C>(f: (c: C) => Either<A, B>): Ord<C> =>
-    fromCompare((a, b) =>
+export const AssociativeEither: AE.AssociativeEither1<OrdHKT> = {
+  either: (second) => (first) =>
+    fromCompare((f, s) =>
       pipe(
-        a,
         f,
-        match(
+        Either.match(
           (a1) =>
             pipe(
-              b,
-              f,
-              match(
-                (a2) => A.compare(a1, a2),
-                () => 1,
+              s,
+              Either.match(
+                (a2) => first.compare(a1, a2),
+                () => -1,
               ),
             ),
           (b1) =>
             pipe(
-              b,
-              f,
-              match(
-                () => -1,
-                (b2) => B.compare(b1, b2),
+              s,
+              Either.match(
+                () => 1,
+                (b2) => second.compare(b1, b2),
               ),
             ),
         ),
       ),
-    )
+    ),
+}
 
-export const either = <A, B>(A: Ord<A>, B: Ord<B>): Ord<Either<A, B>> => eitherWith(A, B)(identity)
+export const eitherWith = AE.eitherWith<OrdHKT>({ ...AssociativeEither, ...Contravariant })
+
+export const either = <A, B>(A: Ord<A>, B: Ord<B>): Ord<Either.Either<A, B>> =>
+  pipe(A, eitherWith(B, identity))
+
+const orElse = (second: () => Ordering) => (first: Ordering) => first === 0 ? second() : first
+
+export const AssociativeBoth: AB.AssociativeBoth1<OrdHKT> = {
+  both: (second) => (first) =>
+    fromCompare(([a1, b1], [a2, b2]) =>
+      pipe(
+        first.compare(a1, a2),
+        orElse(() => second.compare(b1, b2)),
+      ),
+    ),
+}
+
+export const bothWith = AB.bothWith<OrdHKT>({ ...AssociativeBoth, ...Contravariant })
+
+export const both = <A, B>(A: Ord<A>, B: Ord<B>): Ord<readonly [A, B]> =>
+  pipe(A, bothWith(B, identity))

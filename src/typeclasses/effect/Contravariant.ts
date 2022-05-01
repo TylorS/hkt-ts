@@ -22,6 +22,7 @@ import {
 } from '../../HKT'
 import { Unary } from '../../function/function'
 
+/* #region Contravariant */
 export interface Contravariant<T extends HKT> {
   readonly contramap: <B, A>(f: Unary<B, A>) => (kind: Kind<T, A>) => Kind<T, B>
 }
@@ -85,3 +86,5 @@ export interface Contravariant10<T extends HKT10> {
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>
 }
+
+/* #endregion */
