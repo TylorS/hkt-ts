@@ -127,6 +127,7 @@ export interface AssociativeBoth10<T extends HKT10> {
 
 /* #region Covariant */
 
+/* #region tuple */
 export function tuple<T extends HKT10>(
   AB: AssociativeBoth10<T> & Covariant10<T>,
 ): <
@@ -368,6 +369,146 @@ export function tuple<T extends HKT>(
       tupled_(head),
     )
 }
+/* #endregion */
+
+/* #region zipRight */
+export function zipRight<T extends HKT10>(
+  ABC: AssociativeBoth10<T> & Covariant10<T>,
+): <Z, Y, X, W, V, U, S, R, E, B>(
+  second: Kind10<T, Z, Y, X, W, V, U, S, R, E, B>,
+) => <A>(first: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>
+
+export function zipRight<T extends HKT9>(
+  ABC: AssociativeBoth9<T> & Covariant9<T>,
+): <Y, X, W, V, U, S, R, E, B>(
+  second: Kind9<T, Y, X, W, V, U, S, R, E, B>,
+) => <A>(first: Kind9<T, Y, X, W, V, U, S, R, E, A>) => Kind9<T, Y, X, W, V, U, S, R, E, B>
+
+export function zipRight<T extends HKT8>(
+  ABC: AssociativeBoth8<T> & Covariant8<T>,
+): <X, W, V, U, S, R, E, B>(
+  second: Kind8<T, X, W, V, U, S, R, E, B>,
+) => <A>(first: Kind8<T, X, W, V, U, S, R, E, A>) => Kind8<T, X, W, V, U, S, R, E, B>
+
+export function zipRight<T extends HKT7>(
+  ABC: AssociativeBoth7<T> & Covariant7<T>,
+): <W, V, U, S, R, E, B>(
+  second: Kind7<T, W, V, U, S, R, E, B>,
+) => <A>(first: Kind7<T, W, V, U, S, R, E, A>) => Kind7<T, W, V, U, S, R, E, B>
+
+export function zipRight<T extends HKT6>(
+  ABC: AssociativeBoth6<T> & Covariant6<T>,
+): <V, U, S, R, E, B>(
+  second: Kind6<T, V, U, S, R, E, B>,
+) => <A>(first: Kind6<T, V, U, S, R, E, A>) => Kind6<T, V, U, S, R, E, B>
+
+export function zipRight<T extends HKT5>(
+  ABC: AssociativeBoth5<T> & Covariant5<T>,
+): <U, S, R, E, B>(
+  second: Kind5<T, U, S, R, E, B>,
+) => <A>(first: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, B>
+
+export function zipRight<T extends HKT4>(
+  ABC: AssociativeBoth4<T> & Covariant4<T>,
+): <S, R, E, B>(
+  second: Kind4<T, S, R, E, B>,
+) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function zipRight<T extends HKT3>(
+  ABC: AssociativeBoth3<T> & Covariant3<T>,
+): <R, E, B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function zipRight<T extends HKT2>(
+  ABC: AssociativeBoth2<T> & Covariant2<T>,
+): <E, B>(second: Kind2<T, E, B>) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, B>
+
+export function zipRight<T extends HKT>(
+  ABC: AssociativeBoth1<T> & Covariant1<T>,
+): <B>(second: Kind<T, B>) => <A>(first: Kind<T, A>) => Kind<T, B>
+
+export function zipRight<T extends HKT>(
+  ABC: AssociativeBoth<T> & Covariant<T>,
+): <B>(second: Kind<T, B>) => <A>(first: Kind<T, A>) => Kind<T, B> {
+  return (s) => (f) =>
+    pipe(
+      f,
+      ABC.both(s),
+      ABC.map(([, b]) => b),
+    )
+}
+
+/* #endregion */
+
+/* #region zipLeft */
+export function zipLeft<T extends HKT10>(
+  ABC: AssociativeBoth10<T> & Covariant10<T>,
+): <Z, Y, X, W, V, U, S, R, E, B>(
+  second: Kind10<T, Z, Y, X, W, V, U, S, R, E, B>,
+) => <A>(first: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => Kind10<T, Z, Y, X, W, V, U, S, R, E, A>
+
+export function zipLeft<T extends HKT9>(
+  ABC: AssociativeBoth9<T> & Covariant9<T>,
+): <Y, X, W, V, U, S, R, E, B>(
+  second: Kind9<T, Y, X, W, V, U, S, R, E, B>,
+) => <A>(first: Kind9<T, Y, X, W, V, U, S, R, E, A>) => Kind9<T, Y, X, W, V, U, S, R, E, A>
+
+export function zipLeft<T extends HKT8>(
+  ABC: AssociativeBoth8<T> & Covariant8<T>,
+): <X, W, V, U, S, R, E, B>(
+  second: Kind8<T, X, W, V, U, S, R, E, B>,
+) => <A>(first: Kind8<T, X, W, V, U, S, R, E, A>) => Kind8<T, X, W, V, U, S, R, E, A>
+
+export function zipLeft<T extends HKT7>(
+  ABC: AssociativeBoth7<T> & Covariant7<T>,
+): <W, V, U, S, R, E, B>(
+  second: Kind7<T, W, V, U, S, R, E, B>,
+) => <A>(first: Kind7<T, W, V, U, S, R, E, A>) => Kind7<T, W, V, U, S, R, E, A>
+
+export function zipLeft<T extends HKT6>(
+  ABC: AssociativeBoth6<T> & Covariant6<T>,
+): <V, U, S, R, E, B>(
+  second: Kind6<T, V, U, S, R, E, B>,
+) => <A>(first: Kind6<T, V, U, S, R, E, A>) => Kind6<T, V, U, S, R, E, A>
+
+export function zipLeft<T extends HKT5>(
+  ABC: AssociativeBoth5<T> & Covariant5<T>,
+): <U, S, R, E, B>(
+  second: Kind5<T, U, S, R, E, B>,
+) => <A>(first: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, A>
+
+export function zipLeft<T extends HKT4>(
+  ABC: AssociativeBoth4<T> & Covariant4<T>,
+): <S, R, E, B>(
+  second: Kind4<T, S, R, E, B>,
+) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+
+export function zipLeft<T extends HKT3>(
+  ABC: AssociativeBoth3<T> & Covariant3<T>,
+): <R, E, B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, A>
+
+export function zipLeft<T extends HKT2>(
+  ABC: AssociativeBoth2<T> & Covariant2<T>,
+): <E, B>(second: Kind2<T, E, B>) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, A>
+
+export function zipLeft<T extends HKT>(
+  ABC: AssociativeBoth1<T> & Covariant1<T>,
+): <B>(second: Kind<T, B>) => <A>(first: Kind<T, A>) => Kind<T, A>
+
+export function zipLeft<T extends HKT>(
+  ABC: AssociativeBoth<T> & Covariant<T>,
+): <B>(second: Kind<T, B>) => <A>(first: Kind<T, A>) => Kind<T, A>
+
+export function zipLeft<T extends HKT>(
+  ABC: AssociativeBoth<T> & Covariant<T>,
+): <B>(second: Kind<T, B>) => <A>(first: Kind<T, A>) => Kind<T, A> {
+  return (s) => (f) =>
+    pipe(
+      f,
+      ABC.both(s),
+      ABC.map(([a]) => a),
+    )
+}
+/* #endregion */
 
 /* #endregion */
 

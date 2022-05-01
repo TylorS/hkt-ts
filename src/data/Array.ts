@@ -224,6 +224,7 @@ export const ForEach: FE.ForEach1<ArrayHKT> = {
 
 export const forEach = ForEach.forEach
 export const sequence = FE.sequence(ForEach)
+export const mapAccum = FE.mapAccum(ForEach)
 
 export const IdentityBoth: IB.IdentityBoth1<ArrayHKT> = {
   ...Top,
