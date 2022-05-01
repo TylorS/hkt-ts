@@ -40,8 +40,8 @@ export const tuple = <A extends ReadonlyArray<unknown>>(
 
 export const intercalate =
   <A>(middle: A) =>
-  (S: Associative<A>): Associative<A> => ({
-    concat: (x, y) => S.concat(x, S.concat(middle, y)),
+  (A: Associative<A>): Associative<A> => ({
+    concat: (x, y) => A.concat(x, A.concat(middle, y)),
   })
 
 export const concatAll: <A>(M: Associative<A>) => (startWith: A) => (as: readonly A[]) => A =

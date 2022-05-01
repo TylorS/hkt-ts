@@ -1,7 +1,8 @@
 import fastDeepEqual from 'fast-deep-equal'
 
 import { Include } from '../../common'
-import { constFalse, constTrue } from '../../function/function'
+import * as E from '../../data/Either'
+import { constFalse, constTrue, identity, pipe } from '../../function/function'
 
 import { Associative } from './Associative'
 
@@ -96,4 +97,51 @@ export const optional = <A>(eq: Eq<A>): Eq<A | undefined> => ({
 
     return eq.equals(a, b)
   },
+})
+
+export const string = Strict as Eq<string>
+export const number = Strict as Eq<number>
+export const boolean = Strict as Eq<boolean>
+
+export const bothWith =
+  <A, B>(EA: Eq<A>, EB: Eq<B>) =>
+  <C>(f: (c: C) => readonly [A, B]): Eq<C> =>
+    fromEquals((a, b) => {
+      const fa = f(a)
+      const fb = f(b)
+
+      return EA.equals(fa[0], fb[0]) && EB.equals(fa[1], fb[1])
+    })
+
+export const both = <A, B>(EA: Eq<A>, EB: Eq<B>): Eq<readonly [A, B]> => bothWith(EA, EB)(identity)
+
+export const eitherWith =
+  <A, B>(EA: Eq<A>, EB: Eq<B>) =>
+  <C>(f: (c: C) => E.Either<A, B>): Eq<C> =>
+    fromEquals((first, second) =>
+      pipe(
+        first,
+        f,
+        E.match(
+          (a1) =>
+            pipe(
+              second,
+              f,
+              E.match((a2) => EA.equals(a1, a2), constFalse),
+            ),
+          (b1) =>
+            pipe(
+              second,
+              f,
+              E.match(constFalse, (b2) => EB.equals(b1, b2)),
+            ),
+        ),
+      ),
+    )
+
+export const either = <A, B>(EA: Eq<A>, EB: Eq<B>): Eq<E.Either<A, B>> =>
+  eitherWith(EA, EB)(identity)
+
+export const not = <A>(E: Eq<A>): Eq<A> => ({
+  equals: (a, b) => !E.equals(a, b),
 })

@@ -1,4 +1,6 @@
+import { Associative } from '../typeclasses/concrete/Associative'
 import { Debug } from '../typeclasses/concrete/Debug'
+import { Identity } from '../typeclasses/concrete/Identity'
 
 export type Tuple<A, B> = readonly [first: A, second: B]
 
@@ -45,3 +47,15 @@ export function makeDebug<A, B>(A: Debug<A>, B: Debug<B>): Debug<Tuple<A, B>> {
     debug: ([a, b]) => `[${A.debug(a)},${B.debug(b)}]`,
   }
 }
+
+export const makeAssociative = <A, B>(
+  A: Associative<A>,
+  B: Associative<B>,
+): Associative<Tuple<A, B>> => ({
+  concat: (f, s) => [A.concat(fst(f), fst(s)), B.concat(snd(f), snd(s))],
+})
+
+export const makeIdentity = <A, B>(A: Identity<A>, B: Identity<B>): Identity<Tuple<A, B>> => ({
+  ...makeAssociative(A, B),
+  id: [A.id, B.id],
+})

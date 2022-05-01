@@ -197,6 +197,11 @@ export const makeIdentity = <A>(ID: I.Identity<A>): I.Identity<Maybe<A>> => ({
   id: Just(ID.id),
 })
 
+export const makeAssociativeIdentity = <A>(A: Associative<A>): I.Identity<Maybe<A>> => ({
+  ...makeAssociative(A),
+  id: Nothing,
+})
+
 export const makeDebug = <A>(D: Debug.Debug<A>): Debug.Debug<Maybe<A>> => ({
   debug: match(
     () => `Nothing`,

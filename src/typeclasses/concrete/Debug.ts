@@ -1,4 +1,5 @@
 import { Include } from '../../common'
+import { Json } from '../../data/Json'
 
 export interface Debug<A> {
   readonly debug: (a: A) => string
@@ -58,3 +59,11 @@ export const nullable = <A>(debug: Debug<A>): Debug<A | null> => ({
 export const optional = <A>(debug: Debug<A>): Debug<A | undefined> => ({
   debug: (a) => (a === undefined ? 'undefined' : debug.debug(a)),
 })
+
+export const Stringify: Debug<Json> = {
+  debug: (x) => JSON.stringify(x),
+}
+
+export const string: Debug<string> = Stringify
+export const number: Debug<number> = Stringify
+export const boolean: Debug<boolean> = Stringify

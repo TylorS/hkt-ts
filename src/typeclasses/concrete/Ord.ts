@@ -1,4 +1,5 @@
-import { constant } from '../../function/function'
+import { Either, match } from '../../data/Either'
+import { constant, identity, pipe } from '../../function/function'
 import type { Identity } from '../../typeclasses/concrete/Identity'
 
 import type { Associative } from './Associative'
@@ -100,3 +101,42 @@ export const between = <A>(O: Ord<A>): ((low: A, hi: A) => (a: A) => boolean) =>
   const gtO = gt(O)
   return (low, hi) => (a) => ltO(a, low) || gtO(a, hi) ? false : true
 }
+
+export const bothWith =
+  <A, B>(A: Ord<A>, B: Ord<B>) =>
+  <C>(f: (c: C) => readonly [A, B]): Ord<C> =>
+    pipe(tuple(A, B), contramap(f))
+
+export const both = <A, B>(A: Ord<A>, B: Ord<B>): Ord<readonly [A, B]> => bothWith(A, B)(identity)
+
+export const eitherWith =
+  <A, B>(A: Ord<A>, B: Ord<B>) =>
+  <C>(f: (c: C) => Either<A, B>): Ord<C> =>
+    fromCompare((a, b) =>
+      pipe(
+        a,
+        f,
+        match(
+          (a1) =>
+            pipe(
+              b,
+              f,
+              match(
+                (a2) => A.compare(a1, a2),
+                () => 1,
+              ),
+            ),
+          (b1) =>
+            pipe(
+              b,
+              f,
+              match(
+                () => -1,
+                (b2) => B.compare(b1, b2),
+              ),
+            ),
+        ),
+      ),
+    )
+
+export const either = <A, B>(A: Ord<A>, B: Ord<B>): Ord<Either<A, B>> => eitherWith(A, B)(identity)

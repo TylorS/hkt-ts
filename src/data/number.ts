@@ -81,6 +81,7 @@ export const Bounded: B.Bounded<number> = {
 }
 
 export const Inverse: I.Inverse<number> = {
+  ...IdentitySum,
   inverse: ConcatSub.concat,
 }
 

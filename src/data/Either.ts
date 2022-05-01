@@ -1,5 +1,6 @@
 import { HKT2, Params, Variance } from '../HKT'
 import { Lazy, identity, pipe } from '../function/function'
+import type { Associative } from '../typeclasses/concrete/Associative'
 import * as AB from '../typeclasses/effect/AssociativeBoth'
 import * as F from '../typeclasses/effect/AssociativeFlatten'
 import { Covariant2 } from '../typeclasses/effect/Covariant'
@@ -253,3 +254,28 @@ export const AssociativeBoth = F.makeAssociativeBoth<EitherHKT>({ ...Flatten, ..
  * ```
  */
 export const tuple = AB.tuple<EitherHKT>({ ...AssociativeBoth, ...Covariant })
+
+export const makeAssociative = <E, A>(
+  E: Associative<E>,
+  A: Associative<A>,
+): Associative<Either<E, A>> => ({
+  concat: (first, second) =>
+    pipe(
+      first,
+      match(
+        (fe) =>
+          pipe(
+            second,
+            match((se) => Left(E.concat(fe, se)), Right),
+          ),
+        (fa) =>
+          pipe(
+            second,
+            match(
+              () => Right(fa),
+              (sa) => Right(A.concat(fa, sa)),
+            ),
+          ),
+      ),
+    ),
+})

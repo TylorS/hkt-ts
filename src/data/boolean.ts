@@ -87,6 +87,12 @@ export const Debug: D.Debug<boolean> = {
   debug: (b) => JSON.stringify(b),
 }
 
-export const Inverse: I.Inverse<boolean> = {
+export const InverseAny: I.Inverse<boolean> = {
+  ...Any,
+  inverse: (a, b) => (a ? !b : b),
+}
+
+export const InverseAll: I.Inverse<boolean> = {
+  ...All,
   inverse: (a, b) => (a ? !b : b),
 }

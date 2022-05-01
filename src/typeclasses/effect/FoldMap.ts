@@ -20,20 +20,63 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
+import * as Either from '../../data/Either'
 import { Just, Maybe, Nothing, makeFirstAssociative } from '../../data/Maybe'
+import * as M from '../../data/Maybe'
 import { NonEmptyArray } from '../../data/NonEmptyArray'
-import { snd } from '../../data/Tuple'
+import { makeIdentity, snd } from '../../data/Tuple'
 import * as B from '../../data/boolean'
 import * as N from '../../data/number'
 import { run } from '../../effects/Eff'
 import * as State from '../../effects/State'
 import { not } from '../../function/Predicate'
 import { constFalse, flow, pipe } from '../../function/function'
-import { Second } from '../concrete/Associative'
+import * as A from '../concrete/Associative'
+import { Commutative } from '../concrete/Commutative'
 import { Eq } from '../concrete/Eq'
-import { Identity } from '../concrete/Identity'
+import { Identity, fromIdentityEitherCovariant } from '../concrete/Identity'
 
+import {
+  Covariant,
+  Covariant1,
+  Covariant10,
+  Covariant2,
+  Covariant3,
+  Covariant4,
+  Covariant5,
+  Covariant6,
+  Covariant7,
+  Covariant8,
+  Covariant9,
+} from './Covariant'
 import * as FE from './ForEach'
+import {
+  IdentityEither,
+  IdentityEither1,
+  IdentityEither10,
+  IdentityEither2,
+  IdentityEither3,
+  IdentityEither4,
+  IdentityEither5,
+  IdentityEither6,
+  IdentityEither7,
+  IdentityEither8,
+  IdentityEither9,
+} from './IdentityEither'
+import {
+  Top,
+  Top1,
+  Top10,
+  Top2,
+  Top3,
+  Top4,
+  Top5,
+  Top6,
+  Top7,
+  Top8,
+  Top9,
+  makeFromValue,
+} from './Top'
 
 /* #region Typeclass */
 export interface FoldMap<T extends HKT> {
@@ -469,7 +512,7 @@ export function reduce<T extends HKT>(
     const foldMap = FM.foldMap(
       State.makeIdentity<B, B>({
         id: seed,
-        ...Second,
+        ...A.Second,
       }),
     )
 
@@ -1033,6 +1076,352 @@ export function size<T extends HKT>(FM: FoldMap<T>): <A>(kind: Kind<T, A>) => nu
 
 export function size<T extends HKT>(FM: FoldMap<T>): <A>(kind: Kind<T, A>) => number {
   return FM.foldMap(N.IdentitySum)(() => 1)
+}
+
+/* #endregion */
+
+/* #region reduceAssociative */
+export function reduceAssociative<T extends HKT10>(
+  FM: FoldMap10<T>,
+): <A>(
+  A: A.Associative<A>,
+) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT9>(
+  FM: FoldMap9<T>,
+): <A>(
+  A: A.Associative<A>,
+) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT8>(
+  FM: FoldMap8<T>,
+): <A>(
+  A: A.Associative<A>,
+) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT7>(
+  FM: FoldMap7<T>,
+): <A>(A: A.Associative<A>) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT6>(
+  FM: FoldMap6<T>,
+): <A>(A: A.Associative<A>) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT5>(
+  FM: FoldMap5<T>,
+): <A>(A: A.Associative<A>) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT4>(
+  FM: FoldMap4<T>,
+): <A>(A: A.Associative<A>) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT3>(
+  FM: FoldMap3<T>,
+): <A>(A: A.Associative<A>) => <R, E>(kind: Kind3<T, R, E, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT2>(
+  FM: FoldMap2<T>,
+): <A>(A: A.Associative<A>) => <E>(kind: Kind2<T, E, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT>(
+  FM: FoldMap1<T>,
+): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT>(
+  FM: FoldMap<T>,
+): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => Maybe<A>
+
+export function reduceAssociative<T extends HKT>(
+  FM: FoldMap<T>,
+): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => Maybe<A> {
+  return <A>(A: A.Associative<A>) => FM.foldMap(M.makeAssociativeIdentity(A))((a: A) => M.Just(a))
+}
+/* #endregion */
+
+/* #region reduceCommutative */
+export function reduceCommutative<T extends HKT10>(
+  FM: FoldMap10<T>,
+): <A>(
+  C: Commutative<A>,
+) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT9>(
+  FM: FoldMap9<T>,
+): <A>(
+  C: Commutative<A>,
+) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT8>(
+  FM: FoldMap8<T>,
+): <A>(
+  C: Commutative<A>,
+) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT7>(
+  FM: FoldMap7<T>,
+): <A>(C: Commutative<A>) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT6>(
+  FM: FoldMap6<T>,
+): <A>(C: Commutative<A>) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT5>(
+  FM: FoldMap5<T>,
+): <A>(C: Commutative<A>) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT4>(
+  FM: FoldMap4<T>,
+): <A>(C: Commutative<A>) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT3>(
+  FM: FoldMap3<T>,
+): <A>(C: Commutative<A>) => <R, E>(kind: Kind3<T, R, E, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT2>(
+  FM: FoldMap2<T>,
+): <A>(C: Commutative<A>) => <E>(kind: Kind2<T, E, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT>(
+  FM: FoldMap1<T>,
+): <A>(C: Commutative<A>) => (kind: Kind<T, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT>(
+  FM: FoldMap<T>,
+): <A>(C: Commutative<A>) => (kind: Kind<T, A>) => Maybe<A>
+
+export function reduceCommutative<T extends HKT>(
+  FM: FoldMap<T>,
+): <A>(C: Commutative<A>) => (kind: Kind<T, A>) => Maybe<A> {
+  return reduceAssociative(FM)
+}
+
+/* #endregion */
+
+/* #region intercalate */
+export function intercalate<T extends HKT10>(
+  FM: FoldMap10<T>,
+): <A>(
+  I: Identity<A>,
+) => (a: A) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => A
+
+export function intercalate<T extends HKT9>(
+  FM: FoldMap9<T>,
+): <A>(
+  I: Identity<A>,
+) => (a: A) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => A
+
+export function intercalate<T extends HKT8>(
+  FM: FoldMap8<T>,
+): <A>(
+  I: Identity<A>,
+) => (a: A) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => A
+
+export function intercalate<T extends HKT7>(
+  FM: FoldMap7<T>,
+): <A>(I: Identity<A>) => (a: A) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => A
+
+export function intercalate<T extends HKT6>(
+  FM: FoldMap6<T>,
+): <A>(I: Identity<A>) => (a: A) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => A
+
+export function intercalate<T extends HKT5>(
+  FM: FoldMap5<T>,
+): <A>(I: Identity<A>) => (a: A) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => A
+
+export function intercalate<T extends HKT4>(
+  FM: FoldMap4<T>,
+): <A>(I: Identity<A>) => (a: A) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => A
+
+export function intercalate<T extends HKT3>(
+  FM: FoldMap3<T>,
+): <A>(I: Identity<A>) => (a: A) => <R, E>(kind: Kind3<T, R, E, A>) => A
+
+export function intercalate<T extends HKT2>(
+  FM: FoldMap2<T>,
+): <A>(I: Identity<A>) => (a: A) => <E>(kind: Kind2<T, E, A>) => A
+
+export function intercalate<T extends HKT>(
+  FM: FoldMap1<T>,
+): <A>(I: Identity<A>) => (a: A) => (kind: Kind<T, A>) => A
+
+export function intercalate<T extends HKT>(
+  FM: FoldMap<T>,
+): <A>(I: Identity<A>) => (a: A) => (kind: Kind<T, A>) => A
+
+export function intercalate<T extends HKT>(
+  FM: FoldMap<T>,
+): <A>(I: Identity<A>) => (a: A) => (kind: Kind<T, A>) => A {
+  const reduceAssociative_ = reduceAssociative(FM)
+
+  return <A>(I: Identity<A>) =>
+    (a: A) =>
+      flow(
+        reduceAssociative_(A.intercalate(a)(I)),
+        M.getOrElse(() => I.id),
+      )
+}
+
+/* #endregion */
+
+/* #region reduceIdentity */
+export function reduceIdentity<T extends HKT10>(
+  FM: FoldMap10<T>,
+): <A>(
+  I: Identity<A>,
+) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => A
+
+export function reduceIdentity<T extends HKT9>(
+  FM: FoldMap9<T>,
+): <A>(I: Identity<A>) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => A
+
+export function reduceIdentity<T extends HKT8>(
+  FM: FoldMap8<T>,
+): <A>(I: Identity<A>) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => A
+
+export function reduceIdentity<T extends HKT7>(
+  FM: FoldMap7<T>,
+): <A>(I: Identity<A>) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => A
+
+export function reduceIdentity<T extends HKT6>(
+  FM: FoldMap6<T>,
+): <A>(I: Identity<A>) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => A
+
+export function reduceIdentity<T extends HKT5>(
+  FM: FoldMap5<T>,
+): <A>(I: Identity<A>) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => A
+
+export function reduceIdentity<T extends HKT4>(
+  FM: FoldMap4<T>,
+): <A>(I: Identity<A>) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => A
+
+export function reduceIdentity<T extends HKT3>(
+  FM: FoldMap3<T>,
+): <A>(I: Identity<A>) => <R, E>(kind: Kind3<T, R, E, A>) => A
+
+export function reduceIdentity<T extends HKT2>(
+  FM: FoldMap2<T>,
+): <A>(I: Identity<A>) => <E>(kind: Kind2<T, E, A>) => A
+
+export function reduceIdentity<T extends HKT>(
+  FM: FoldMap1<T>,
+): <A>(I: Identity<A>) => (kind: Kind<T, A>) => A
+
+export function reduceIdentity<T extends HKT>(
+  FM: FoldMap<T>,
+): <A>(I: Identity<A>) => (kind: Kind<T, A>) => A
+
+export function reduceIdentity<T extends HKT>(
+  FM: FoldMap<T>,
+): <A>(I: Identity<A>) => (kind: Kind<T, A>) => A {
+  return (I) =>
+    flow(
+      reduceAssociative(FM)(I),
+      M.getOrElse(() => I.id),
+    )
+}
+
+/* #endregion */
+
+/* #region partitionMap */
+export function partitionMap<T extends HKT10>(
+  F: FoldMap10<T> & IdentityEither10<T> & Top10<T> & Covariant10<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => <Z, Y, X, W, V, U, S, R, E>(
+  kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
+) => readonly [Kind10<T, Z, Y, X, W, V, U, S, R, E, B>, Kind10<T, Z, Y, X, W, V, U, S, R, E, C>]
+
+export function partitionMap<T extends HKT9>(
+  F: FoldMap9<T> & IdentityEither9<T> & Top9<T> & Covariant9<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => <Y, X, W, V, U, S, R, E>(
+  kind: Kind9<T, Y, X, W, V, U, S, R, E, A>,
+) => readonly [Kind9<T, Y, X, W, V, U, S, R, E, B>, Kind9<T, Y, X, W, V, U, S, R, E, C>]
+
+export function partitionMap<T extends HKT8>(
+  F: FoldMap8<T> & IdentityEither8<T> & Top8<T> & Covariant8<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => <X, W, V, U, S, R, E>(
+  kind: Kind8<T, X, W, V, U, S, R, E, A>,
+) => readonly [Kind8<T, X, W, V, U, S, R, E, B>, Kind8<T, X, W, V, U, S, R, E, C>]
+
+export function partitionMap<T extends HKT7>(
+  F: FoldMap7<T> & IdentityEither7<T> & Top7<T> & Covariant7<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => <W, V, U, S, R, E>(
+  kind: Kind7<T, W, V, U, S, R, E, A>,
+) => readonly [Kind7<T, W, V, U, S, R, E, B>, Kind7<T, W, V, U, S, R, E, C>]
+
+export function partitionMap<T extends HKT6>(
+  F: FoldMap6<T> & IdentityEither6<T> & Top6<T> & Covariant6<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => <V, U, S, R, E>(
+  kind: Kind6<T, V, U, S, R, E, A>,
+) => readonly [Kind6<T, V, U, S, R, E, B>, Kind6<T, V, U, S, R, E, C>]
+
+export function partitionMap<T extends HKT5>(
+  F: FoldMap5<T> & IdentityEither5<T> & Top5<T> & Covariant5<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => <U, S, R, E>(
+  kind: Kind5<T, U, S, R, E, A>,
+) => readonly [Kind5<T, U, S, R, E, B>, Kind5<T, U, S, R, E, C>]
+
+export function partitionMap<T extends HKT4>(
+  F: FoldMap4<T> & IdentityEither4<T> & Top4<T> & Covariant4<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => readonly [Kind4<T, S, R, E, B>, Kind4<T, S, R, E, C>]
+
+export function partitionMap<T extends HKT3>(
+  F: FoldMap3<T> & IdentityEither3<T> & Top3<T> & Covariant3<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => <R, E>(kind: Kind3<T, R, E, A>) => readonly [Kind3<T, R, E, B>, Kind3<T, R, E, C>]
+
+export function partitionMap<T extends HKT2>(
+  F: FoldMap2<T> & IdentityEither2<T> & Top2<T> & Covariant2<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => <E>(kind: Kind2<T, E, A>) => readonly [Kind2<T, E, B>, Kind2<T, E, C>]
+
+export function partitionMap<T extends HKT>(
+  F: FoldMap1<T> & IdentityEither1<T> & Top1<T> & Covariant1<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => (kind: Kind<T, A>) => readonly [Kind<T, B>, Kind<T, C>]
+
+export function partitionMap<T extends HKT>(
+  F: FoldMap<T> & IdentityEither<T> & Top<T> & Covariant<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => (kind: Kind<T, A>) => readonly [Kind<T, B>, Kind<T, C>]
+
+export function partitionMap<T extends HKT>(
+  F: FoldMap<T> & IdentityEither<T> & Top<T> & Covariant<T>,
+): <A, B, C>(
+  f: (a: A) => Either.Either<B, C>,
+) => (kind: Kind<T, A>) => readonly [Kind<T, B>, Kind<T, C>] {
+  const fromValue = makeFromValue(F)
+  const bottom = F.bottom
+  const makeEitherIdentity = fromIdentityEitherCovariant(F)
+
+  return <A, B, C>(f: (a: A) => Either.Either<B, C>) =>
+    F.foldMap<readonly [Kind<T, B>, Kind<T, C>]>(
+      makeIdentity(makeEitherIdentity<B>(), makeEitherIdentity<C>()),
+    )(
+      flow(
+        f,
+        Either.match(
+          (b) => [fromValue(b), bottom],
+          (c) => [bottom, fromValue(c)],
+        ),
+      ),
+    )
 }
 
 /* #endregion */
