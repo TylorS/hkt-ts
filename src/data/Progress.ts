@@ -26,7 +26,7 @@ export function Progress(
 
 export const Associative: A.Associative<Progress> = A.struct({
   loaded: N.NonNegativeFloatAssociativeSum,
-  total: M.makeAssociative(N.NonNegativeFloatAssociativeSum),
+  total: M.makeFailFastAssociative(N.NonNegativeFloatAssociativeSum),
 })
 
 export const Identity: I.Identity<Progress> = {

@@ -204,7 +204,7 @@ export const Bottom: B.Bottom1<MaybeHKT> = {
 }
 
 export const Top: Top1<MaybeHKT> = {
-  top: Just({}),
+  top: Just([]),
 }
 
 export const IdentityBoth: IB.IdentityBoth1<MaybeHKT> = {
@@ -247,7 +247,7 @@ export const FoldMap: FM.FoldMap1<MaybeHKT> = {
 }
 
 export const foldMap = FoldMap.foldMap
-export const concat = FM.concat(FoldMap)
+export const foldLeft = FM.foldLeft(FoldMap)
 export const contains = FM.contains(FoldMap)
 export const count = FM.count(FoldMap)
 export const every = FM.every(FoldMap)

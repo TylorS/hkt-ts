@@ -1,15 +1,31 @@
-import { HKT, Params } from '../HKT'
-import { constant, pipe } from '../function/function'
+import { HKT, Kind, Params } from '../HKT'
+import { constant, flow, identity, pipe } from '../function/function'
 import { Associative } from '../typeclasses/concrete/Associative'
 import { Commutative } from '../typeclasses/concrete/Commutative'
 import { Debug } from '../typeclasses/concrete/Debug'
 import * as EQ from '../typeclasses/concrete/Eq'
 import { Identity } from '../typeclasses/concrete/Identity'
 import * as Ord from '../typeclasses/concrete/Ord'
+import * as AB from '../typeclasses/effect/AssociativeBoth'
+import * as AE from '../typeclasses/effect/AssociativeEither'
+import * as AF from '../typeclasses/effect/AssociativeFlatten'
+import { Bottom1 } from '../typeclasses/effect/Bottom'
+import * as C from '../typeclasses/effect/Covariant'
+import * as FM from '../typeclasses/effect/FoldMap'
+import * as FE from '../typeclasses/effect/ForEach'
+import * as IB from '../typeclasses/effect/IdentityBoth'
+import { IdentityEither1 } from '../typeclasses/effect/IdentityEither'
+import * as IF from '../typeclasses/effect/IdentityFlatten'
+import * as PM from '../typeclasses/effect/PartitionMap'
+import { Reduce1 } from '../typeclasses/effect/Reduce'
+import { ReduceRight1 } from '../typeclasses/effect/ReduceRight'
+import { Separate1 } from '../typeclasses/effect/Separate'
+import * as T from '../typeclasses/effect/Top'
 
-import { brand } from './Branded'
+import { Left, Right } from './Either'
 import * as M from './Maybe'
 import * as Progress from './Progress'
+import { NonNegativeFloat } from './number'
 
 export type Data<A> = NoData | Pending | Refreshing<A> | Replete<A>
 
@@ -105,9 +121,9 @@ export interface DataHKT extends HKT {
   readonly type: Data<this[Params.A]>
 }
 
-export const makeAssociative = <A>(A: Associative<A>): Associative<Data<A>> => {
-  const { concat: concatProgress } = M.makeAssociative(Progress.Associative)
+const { concat: concatProgress } = M.makeAssociative(Progress.Associative)
 
+export const makeAssociative = <A>(A: Associative<A>): Associative<Data<A>> => {
   return {
     concat: (first, second) =>
       pipe(
@@ -190,6 +206,10 @@ export const makeIdentity = <A>(I: Identity<A>): Identity<Data<A>> => ({
   id: Replete(I.id),
 })
 
+const constZero = constant(0 as const)
+const constOne = constant(1 as const)
+const constNegativeOne = constant(-1 as const)
+
 export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<Data<A>> => {
   const MaybeProgressOrd = M.makeOrd(Progress.Ord)
   const WithProgressOrd = Ord.both(MaybeProgressOrd)(O)
@@ -198,37 +218,43 @@ export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<Data<A>> => {
     pipe(
       first,
       match(
-        () => pipe(second, match(constant(0), constant(-1), constant(-1), constant(-1))),
-        (progress) =>
+        () => pipe(second, match(constZero, constNegativeOne, constNegativeOne, constNegativeOne)),
+        (p1) =>
           pipe(
             second,
             match(
-              constant(1),
-              (p2) => MaybeProgressOrd.compare(progress, p2),
-              constant(-1),
-              constant(-1),
+              constOne,
+              (p2) => MaybeProgressOrd.compare(p1, p2),
+              constNegativeOne,
+              constNegativeOne,
             ),
           ),
-        (a, progress) =>
+        (a, p1) =>
           pipe(
             second,
             match(
-              constant(1),
-              constant(1),
-              (a2, p2) => WithProgressOrd.compare([a, progress], [a2, p2]),
+              constOne,
+              constOne,
+              (a2, p2) => WithProgressOrd.compare([a, p1], [a2, p2]),
               (a2) =>
-                WithProgressOrd.compare([a, M.Just(Progress.Progress(brand(0)))], [a2, M.Nothing]),
+                WithProgressOrd.compare(
+                  [a, M.Just(Progress.Progress(NonNegativeFloat(0)))],
+                  [a2, M.Nothing],
+                ),
             ),
           ),
         (a) =>
           pipe(
             second,
             match(
-              constant(1),
-              constant(1),
+              constOne,
+              constOne,
               (a2, p2) => WithProgressOrd.compare([a, M.Nothing], [a2, p2]),
               (a2) =>
-                WithProgressOrd.compare([a, M.Just(Progress.Progress(brand(0)))], [a2, M.Nothing]),
+                WithProgressOrd.compare(
+                  [a, M.Just(Progress.Progress(NonNegativeFloat(0)))],
+                  [a2, M.Nothing],
+                ),
             ),
           ),
       ),
@@ -236,4 +262,178 @@ export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<Data<A>> => {
   )
 
   return o
+}
+
+const constNoData = constant(NoData)
+const constPending = constant(Pending)
+
+export const Covariant: C.Covariant1<DataHKT> = {
+  map: (f) =>
+    match(
+      constNoData,
+      M.match(constPending, fromProgress),
+      (value, progress) => Refreshing(f(value), progress),
+      flow(f, Replete),
+    ),
+}
+
+export const map = Covariant.map
+export const bindTo = C.bindTo(Covariant)
+export const flap = C.flap(Covariant)
+export const mapTo = C.mapTo(Covariant)
+export const tupled = C.tupled(Covariant)
+
+export const AssociativeFlatten: AF.AssociativeFlatten1<DataHKT> = {
+  flatten: match(
+    constNoData,
+    M.match(constPending, fromProgress),
+    (data, p1) =>
+      pipe(
+        data,
+        match(
+          constNoData,
+          M.match(
+            () =>
+              pipe(
+                p1,
+                // There's no way to know the total amount so remove it
+                M.match(constPending, (p) => fromProgress(Progress.Progress(p.loaded))),
+              ),
+            (p2) => pipe(concatProgress(p1, M.Just(p2)), M.match(constPending, fromProgress)),
+          ),
+          (a, p2) => Refreshing(a, concatProgress(p1, p2)),
+          Replete,
+        ),
+      ),
+    identity,
+  ),
+}
+
+export const flatten = AssociativeFlatten.flatten
+export const flatMap = AF.flatMap<DataHKT>({ ...AssociativeFlatten, ...Covariant })
+
+export const AssociativeBoth = AF.makeAssociativeBoth<DataHKT>({
+  ...AssociativeFlatten,
+  ...Covariant,
+})
+
+export const both = AssociativeBoth.both
+export const zipLeft = AB.zipLeft<DataHKT>({ ...AssociativeBoth, ...Covariant })
+export const zipRight = AB.zipRight<DataHKT>({ ...AssociativeBoth, ...Covariant })
+
+export const Top: T.Top1<DataHKT> = {
+  top: Replete([]),
+}
+
+export const makeFromLazy = T.makeFromLazy<DataHKT>({ ...Top, ...Covariant })
+export const makeFromValue = T.makeFromValue<DataHKT>({ ...Top, ...Covariant })
+
+export const IdentityBoth: IB.IdentityBoth1<DataHKT> = {
+  ...AssociativeBoth,
+  ...Top,
+}
+
+export const tuple = IB.tuple<DataHKT>({ ...IdentityBoth, ...Covariant })
+export const struct = IB.struct<DataHKT>({ ...IdentityBoth, ...Covariant })
+
+export const IdentityFlatten: IF.IdentityFlatten1<DataHKT> = {
+  ...AssociativeFlatten,
+  ...Top,
+}
+
+export const Bottom: Bottom1<DataHKT> = {
+  bottom: NoData,
+}
+
+export const AssociativeEither: AE.AssociativeEither1<DataHKT> = {
+  either: (s) => (f) =>
+    isRefreshing(f) || isReplete(f) ? pipe(f, map(Left)) : isNoData(s) ? f : pipe(s, map(Right)),
+}
+
+export const either = AssociativeEither.either
+export const orElse = AE.orElse<DataHKT>({ ...AssociativeEither, ...Covariant })
+
+export const IdentityEither: IdentityEither1<DataHKT> = {
+  ...Bottom,
+  ...AssociativeEither,
+}
+
+export const ForEach: FE.ForEach1<DataHKT> = {
+  map,
+  forEach: <T2 extends HKT>(IB: IB.IdentityBoth<T2> & C.Covariant<T2>) => {
+    const fromValue = T.makeFromValue(IB)
+
+    return <A, B>(f: (a: A) => Kind<T2, B>) =>
+      (kind: Data<A>): Kind<T2, Data<B>> =>
+        pipe(
+          kind,
+          match(
+            () => fromValue(NoData),
+            M.match(() => fromValue(Pending), flow(fromProgress, fromValue)),
+            (a, progress) =>
+              pipe(
+                a,
+                f,
+                IB.map((b) => Refreshing(b, progress)),
+              ),
+            flow(f, IB.map(Replete)),
+          ),
+        )
+  },
+}
+
+export const mapAccum = FE.mapAccum(ForEach)
+export const sequence = FE.sequence(ForEach)
+
+export const FoldMap: FM.FoldMap1<DataHKT> = {
+  foldMap: (I) => (f) =>
+    match(
+      () => I.id,
+      () => I.id,
+      f,
+      f,
+    ),
+}
+
+export const foldMap = FoldMap.foldMap
+export const foldLeft = FM.foldLeft(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
+export const groupBy = FM.groupBy(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+export const partitionMap = FM.partitionMap<DataHKT>({
+  ...FoldMap,
+  ...IdentityEither,
+  ...Top,
+  ...Covariant,
+})
+export const reduce = FM.reduce(FoldMap)
+export const reduceAssociative = FM.reduceAssociative(FoldMap)
+export const reduceCommutative = FM.reduceCommutative(FoldMap)
+export const reduceIdentity = FM.reduceIdentity(FoldMap)
+export const reduceRight = FM.reduceRight<DataHKT>({ ...FoldMap, ...ForEach })
+export const reverse = FM.reverse<DataHKT>({ ...FoldMap, ...ForEach })
+export const size = FM.size(FoldMap)
+export const toArray = FM.toArray(FoldMap)
+
+export const PartitionMap: PM.PartitionMap1<DataHKT> = {
+  partitionMap,
+}
+
+export const separate = PM.separate(PartitionMap)
+
+export const Separate: Separate1<DataHKT> = {
+  separate,
+}
+
+export const Reduce: Reduce1<DataHKT> = {
+  reduce,
+}
+
+export const ReduceRight: ReduceRight1<DataHKT> = {
+  reduceRight,
 }

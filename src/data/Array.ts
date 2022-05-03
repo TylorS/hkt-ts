@@ -183,7 +183,7 @@ export const FoldMap: FM.FoldMap1<ArrayHKT> = {
   foldMap,
 }
 
-export const concatenate = FM.concat(FoldMap)
+export const foldLeft = FM.foldLeft(FoldMap)
 export const contains = FM.contains(FoldMap)
 export const count = FM.count(FoldMap)
 export const exists = FM.exists(FoldMap)

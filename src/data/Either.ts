@@ -4,6 +4,7 @@ import type { Associative } from '../typeclasses/concrete/Associative'
 import * as AB from '../typeclasses/effect/AssociativeBoth'
 import * as F from '../typeclasses/effect/AssociativeFlatten'
 import { Covariant2 } from '../typeclasses/effect/Covariant'
+import { Top2 } from '../typeclasses/effect/Top'
 
 import type { Maybe } from './Maybe'
 import type * as NEA from './NonEmptyArray'
@@ -255,6 +256,9 @@ export const AssociativeBoth = F.makeAssociativeBoth<EitherHKT>({ ...Flatten, ..
  */
 export const tuple = AB.tuple<EitherHKT>({ ...AssociativeBoth, ...Covariant })
 
+export const zipLeft = AB.zipLeft<EitherHKT>({ ...AssociativeBoth, ...Covariant })
+export const zipRight = AB.zipRight<EitherHKT>({ ...AssociativeBoth, ...Covariant })
+
 export const makeAssociative = <E, A>(
   E: Associative<E>,
   A: Associative<A>,
@@ -279,3 +283,7 @@ export const makeAssociative = <E, A>(
       ),
     ),
 })
+
+export const Top: Top2<EitherHKT> = {
+  top: Right([]),
+}

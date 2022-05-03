@@ -51,6 +51,19 @@ import {
   Covariant8,
   Covariant9,
 } from './Covariant'
+import {
+  FoldMapWithIndex,
+  FoldMapWithIndex1,
+  FoldMapWithIndex10,
+  FoldMapWithIndex2,
+  FoldMapWithIndex3,
+  FoldMapWithIndex4,
+  FoldMapWithIndex5,
+  FoldMapWithIndex6,
+  FoldMapWithIndex7,
+  FoldMapWithIndex8,
+  FoldMapWithIndex9,
+} from './FoldMapWithIndex'
 import * as FE from './ForEach'
 import {
   IdentityEither,
@@ -147,54 +160,54 @@ export interface FoldMap10<T extends HKT10> {
 
 /* #endregion */
 
-/* #region concat */
-export function concat<T extends HKT10>(
+/* #region foldLeft */
+export function foldLeft<T extends HKT10>(
   FM: FoldMap10<T>,
 ): <A>(
   I: Identity<A>,
 ) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => A
 
-export function concat<T extends HKT9>(
+export function foldLeft<T extends HKT9>(
   FM: FoldMap9<T>,
 ): <A>(I: Identity<A>) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => A
 
-export function concat<T extends HKT8>(
+export function foldLeft<T extends HKT8>(
   FM: FoldMap8<T>,
 ): <A>(I: Identity<A>) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => A
 
-export function concat<T extends HKT7>(
+export function foldLeft<T extends HKT7>(
   FM: FoldMap7<T>,
 ): <A>(I: Identity<A>) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => A
 
-export function concat<T extends HKT6>(
+export function foldLeft<T extends HKT6>(
   FM: FoldMap6<T>,
 ): <A>(I: Identity<A>) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => A
 
-export function concat<T extends HKT5>(
+export function foldLeft<T extends HKT5>(
   FM: FoldMap5<T>,
 ): <A>(I: Identity<A>) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => A
 
-export function concat<T extends HKT4>(
+export function foldLeft<T extends HKT4>(
   FM: FoldMap4<T>,
 ): <A>(I: Identity<A>) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => A
 
-export function concat<T extends HKT3>(
+export function foldLeft<T extends HKT3>(
   FM: FoldMap3<T>,
 ): <A>(I: Identity<A>) => <R, E>(kind: Kind3<T, R, E, A>) => A
 
-export function concat<T extends HKT2>(
+export function foldLeft<T extends HKT2>(
   FM: FoldMap2<T>,
 ): <A>(I: Identity<A>) => <E>(kind: Kind2<T, E, A>) => A
 
-export function concat<T extends HKT>(
+export function foldLeft<T extends HKT>(
   FM: FoldMap1<T>,
 ): <A>(I: Identity<A>) => (kind: Kind<T, A>) => A
 
-export function concat<T extends HKT>(
+export function foldLeft<T extends HKT>(
   FM: FoldMap<T>,
 ): <A>(I: Identity<A>) => (kind: Kind<T, A>) => A
 
-export function concat<T extends HKT>(
+export function foldLeft<T extends HKT>(
   FM: FoldMap<T>,
 ): <A>(I: Identity<A>) => (kind: Kind<T, A>) => A {
   return <A>(I: Identity<A>) => FM.foldMap(I)((a: A) => a)
@@ -1427,3 +1440,42 @@ export function partitionMap<T extends HKT>(
 }
 
 /* #endregion */
+
+export function addIndex<T extends HKT10>(FM: FoldMap10<T>): FoldMapWithIndex10<T, number>
+
+export function addIndex<T extends HKT9>(FM: FoldMap9<T>): FoldMapWithIndex9<T, number>
+
+export function addIndex<T extends HKT8>(FM: FoldMap8<T>): FoldMapWithIndex8<T, number>
+
+export function addIndex<T extends HKT7>(FM: FoldMap7<T>): FoldMapWithIndex7<T, number>
+
+export function addIndex<T extends HKT6>(FM: FoldMap6<T>): FoldMapWithIndex6<T, number>
+
+export function addIndex<T extends HKT5>(FM: FoldMap5<T>): FoldMapWithIndex5<T, number>
+
+export function addIndex<T extends HKT4>(FM: FoldMap4<T>): FoldMapWithIndex4<T, number>
+
+export function addIndex<T extends HKT3>(FM: FoldMap3<T>): FoldMapWithIndex3<T, number>
+
+export function addIndex<T extends HKT2>(FM: FoldMap2<T>): FoldMapWithIndex2<T, number>
+
+export function addIndex<T extends HKT>(FM: FoldMap1<T>): FoldMapWithIndex1<T, number>
+
+export function addIndex<T extends HKT>(FM: FoldMap<T>): FoldMapWithIndex<T, number>
+
+export function addIndex<T extends HKT>(FM: FoldMap<T>): FoldMapWithIndex<T, number> {
+  return {
+    foldMapWithIndex:
+      <B>(ID: Identity<B>) =>
+      <A>(f: (k: number, a: A) => B) => {
+        const foldMap = FM.foldMap(State.makeIdentity<number, B>(ID))
+
+        return flow(
+          foldMap((a: A) => State.modify((i: number) => [i + 1, f(i, a)] as const)),
+          State.runWith(() => 0),
+          run,
+          snd,
+        )
+      },
+  }
+}

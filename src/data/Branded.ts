@@ -40,13 +40,13 @@ export type Branded<B, T> = T & Brand<B>
 /**
  * @category Type-level
  */
-export type Combine<T, U> = Branded<BrandOf<T> & BrandOf<U>, ValueOf<T> & ValueOf<U>>
+export type Combine<T, U> = ValueOf<T> & ValueOf<U> & Brand<BrandOf<T> & BrandOf<U>>
 
 /**
  * @category Constructor
  */
 export const Branded = <A extends Branded<any, any>>() => {
-  const constructor_ = <E extends ValueOf<A>>(e: E): Branded<E, BrandOf<A>> => unsafeCoerce(e)
+  const constructor_ = <E extends ValueOf<A>>(e: E): Branded<BrandOf<A>, E> => unsafeCoerce(e)
 
   constructor_.makeEq = (A: Eq<ValueOf<A>>): Eq<A> => unsafeCoerce(A)
 
