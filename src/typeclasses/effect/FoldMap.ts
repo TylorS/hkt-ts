@@ -21,7 +21,9 @@ import {
   Kind9,
 } from '../../HKT'
 import * as Either from '../../data/Either'
+// eslint-disable-next-line import/no-cycle
 import { Just, Maybe, Nothing, makeFirstAssociative } from '../../data/Maybe'
+// eslint-disable-next-line import/no-cycle
 import * as M from '../../data/Maybe'
 import { NonEmptyArray } from '../../data/NonEmptyArray'
 import { makeIdentity, snd } from '../../data/Tuple'

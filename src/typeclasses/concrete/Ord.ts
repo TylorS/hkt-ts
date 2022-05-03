@@ -4,7 +4,11 @@ import { constant, pipe } from '../../function/function'
 import type { Identity } from '../../typeclasses/concrete/Identity'
 import * as AB from '../effect/AssociativeBoth'
 import * as AE from '../effect/AssociativeEither'
+import { Bottom1 } from '../effect/Bottom'
 import { Contravariant1 } from '../effect/Contravariant'
+import * as IB from '../effect/IdentityBoth'
+import * as IE from '../effect/IdentityEither'
+import { Top1 } from '../effect/Top'
 
 import type { Associative } from './Associative'
 import type { Eq } from './Eq'
@@ -161,3 +165,21 @@ export const AssociativeBoth: AB.AssociativeBoth1<OrdHKT> = {
 export const bothWith = AB.bothWith<OrdHKT>({ ...AssociativeBoth, ...Contravariant })
 
 export const both = AssociativeBoth.both
+
+export const Top: Top1<OrdHKT> = {
+  top: Static,
+}
+
+export const Bottom: Bottom1<OrdHKT> = {
+  bottom: Static,
+}
+
+export const IdentityBoth: IB.IdentityBoth1<OrdHKT> = {
+  ...AssociativeBoth,
+  ...Top,
+}
+
+export const IdentityEither: IE.IdentityEither1<OrdHKT> = {
+  ...AssociativeEither,
+  ...Bottom,
+}

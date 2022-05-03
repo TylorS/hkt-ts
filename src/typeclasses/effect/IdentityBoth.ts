@@ -327,3 +327,261 @@ export function tuple<T extends HKT>(IB: IdentityBoth<T> & Covariant<T>) {
       tuple,
     )
 }
+
+export function struct<T extends HKT10>(
+  AB: IdentityBoth10<T> & Covariant10<T>,
+): <
+  A extends Readonly<
+    Record<
+      string,
+      Kind9<
+        T,
+        DefaultOf<T, Params.Z>,
+        DefaultOf<T, Params.Y>,
+        DefaultOf<T, Params.X>,
+        DefaultOf<T, Params.W>,
+        DefaultOf<T, Params.V>,
+        DefaultOf<T, Params.U>,
+        DefaultOf<T, Params.S>,
+        DefaultOf<T, Params.R>,
+        any
+      >
+    >
+  >,
+>(
+  values: A,
+) => Kind10<
+  T,
+  ParamOf<T, A[string], Params.Z>,
+  ParamOf<T, A[string], Params.Y>,
+  ParamOf<T, A[string], Params.X>,
+  ParamOf<T, A[string], Params.W>,
+  ParamOf<T, A[string], Params.V>,
+  ParamOf<T, A[string], Params.U>,
+  ParamOf<T, A[string], Params.S>,
+  ParamOf<T, A[string], Params.R>,
+  ParamOf<T, A[string], Params.E>,
+  { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }
+>
+
+export function struct<T extends HKT9>(
+  AB: IdentityBoth9<T> & Covariant9<T>,
+): <
+  A extends Readonly<
+    Record<
+      string,
+      Kind8<
+        T,
+        DefaultOf<T, Params.Y>,
+        DefaultOf<T, Params.X>,
+        DefaultOf<T, Params.W>,
+        DefaultOf<T, Params.V>,
+        DefaultOf<T, Params.U>,
+        DefaultOf<T, Params.S>,
+        DefaultOf<T, Params.R>,
+        any
+      >
+    >
+  >,
+>(
+  values: A,
+) => Kind9<
+  T,
+  ParamOf<T, A[string], Params.Y>,
+  ParamOf<T, A[string], Params.X>,
+  ParamOf<T, A[string], Params.W>,
+  ParamOf<T, A[string], Params.V>,
+  ParamOf<T, A[string], Params.U>,
+  ParamOf<T, A[string], Params.S>,
+  ParamOf<T, A[string], Params.R>,
+  ParamOf<T, A[string], Params.E>,
+  { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }
+>
+
+export function struct<T extends HKT8>(
+  AB: IdentityBoth8<T> & Covariant8<T>,
+): <
+  A extends Readonly<
+    Record<
+      string,
+      Kind7<
+        T,
+        DefaultOf<T, Params.X>,
+        DefaultOf<T, Params.W>,
+        DefaultOf<T, Params.V>,
+        DefaultOf<T, Params.U>,
+        DefaultOf<T, Params.S>,
+        DefaultOf<T, Params.R>,
+        any
+      >
+    >
+  >,
+>(
+  values: A,
+) => Kind8<
+  T,
+  ParamOf<T, A[string], Params.X>,
+  ParamOf<T, A[string], Params.W>,
+  ParamOf<T, A[string], Params.V>,
+  ParamOf<T, A[string], Params.U>,
+  ParamOf<T, A[string], Params.S>,
+  ParamOf<T, A[string], Params.R>,
+  ParamOf<T, A[string], Params.E>,
+  { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }
+>
+
+export function struct<T extends HKT7>(
+  AB: IdentityBoth7<T> & Covariant7<T>,
+): <
+  A extends Readonly<
+    Record<
+      string,
+      Kind6<
+        T,
+        DefaultOf<T, Params.W>,
+        DefaultOf<T, Params.V>,
+        DefaultOf<T, Params.U>,
+        DefaultOf<T, Params.S>,
+        DefaultOf<T, Params.R>,
+        any
+      >
+    >
+  >,
+>(
+  values: A,
+) => Kind7<
+  T,
+  ParamOf<T, A[string], Params.W>,
+  ParamOf<T, A[string], Params.V>,
+  ParamOf<T, A[string], Params.U>,
+  ParamOf<T, A[string], Params.S>,
+  ParamOf<T, A[string], Params.R>,
+  ParamOf<T, A[string], Params.E>,
+  { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }
+>
+
+export function struct<T extends HKT6>(
+  AB: IdentityBoth6<T> & Covariant6<T>,
+): <
+  A extends Readonly<
+    Record<
+      string,
+      Kind5<
+        T,
+        DefaultOf<T, Params.V>,
+        DefaultOf<T, Params.U>,
+        DefaultOf<T, Params.S>,
+        DefaultOf<T, Params.R>,
+        any
+      >
+    >
+  >,
+>(
+  values: A,
+) => Kind6<
+  T,
+  ParamOf<T, A[string], Params.V>,
+  ParamOf<T, A[string], Params.U>,
+  ParamOf<T, A[string], Params.S>,
+  ParamOf<T, A[string], Params.R>,
+  ParamOf<T, A[string], Params.E>,
+  { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }
+>
+
+export function struct<T extends HKT5>(
+  AB: IdentityBoth5<T> & Covariant5<T>,
+): <
+  A extends Readonly<
+    Record<
+      string,
+      Kind4<T, DefaultOf<T, Params.U>, DefaultOf<T, Params.S>, DefaultOf<T, Params.R>, any>
+    >
+  >,
+>(
+  values: A,
+) => Kind5<
+  T,
+  ParamOf<T, A[string], Params.U>,
+  ParamOf<T, A[string], Params.S>,
+  ParamOf<T, A[string], Params.R>,
+  ParamOf<T, A[string], Params.E>,
+  { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }
+>
+
+export function struct<T extends HKT4>(
+  AB: IdentityBoth4<T> & Covariant4<T>,
+): <
+  A extends Readonly<Record<string, Kind3<T, DefaultOf<T, Params.S>, DefaultOf<T, Params.R>, any>>>,
+>(
+  values: A,
+) => Kind4<
+  T,
+  ParamOf<T, A[string], Params.S>,
+  ParamOf<T, A[string], Params.R>,
+  ParamOf<T, A[string], Params.E>,
+  { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }
+>
+
+export function struct<T extends HKT3>(
+  AB: IdentityBoth3<T> & Covariant3<T>,
+): <A extends Readonly<Record<string, Kind2<T, DefaultOf<T, Params.R>, any>>>>(
+  values: A,
+) => Kind3<
+  T,
+  ParamOf<T, A[string], Params.R>,
+  ParamOf<T, A[string], Params.E>,
+  { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }
+>
+
+export function struct<T extends HKT2>(
+  AB: IdentityBoth2<T> & Covariant2<T>,
+): <A extends Readonly<Record<string, Kind<T, any>>>>(
+  values: A,
+) => Kind2<
+  T,
+  ParamOf<T, A[string], Params.E>,
+  { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }
+>
+
+export function struct<T extends HKT>(
+  AB: IdentityBoth1<T> & Covariant1<T>,
+): <A extends Readonly<Record<string, Kind<T, any>>>>(
+  values: A,
+) => Kind<T, { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }>
+
+export function struct<T extends HKT>(
+  AB: IdentityBoth<T> & Covariant<T>,
+): <A extends Readonly<Record<string, Kind<T, any>>>>(
+  values: A,
+) => Kind<T, { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }>
+
+export function struct<T extends HKT>(
+  AB: IdentityBoth<T> & Covariant<T>,
+): <A extends Readonly<Record<string, Kind<T, any>>>>(
+  values: A,
+) => Kind<T, { readonly [K in keyof A]: ParamOf<T, A[K], Params.A> }> {
+  const tuple_ = tuple(AB)
+
+  return <A extends Readonly<Record<string, Kind<T, any>>>>(values: A) => {
+    const entries = Object.entries(values)
+
+    if (entries.length === 0) {
+      return pipe(
+        AB.top,
+        AB.map(() => Object.create({})),
+      )
+    }
+
+    return pipe(
+      tuple_(
+        ...entries.map(([k, f]) =>
+          pipe(
+            f,
+            AB.map((a) => [k, a] as const),
+          ),
+        ),
+      ),
+      AB.map(Object.entries),
+    )
+  }
+}

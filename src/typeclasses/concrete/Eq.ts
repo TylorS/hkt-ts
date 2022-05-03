@@ -1,4 +1,4 @@
-import fastDeepEqual from 'fast-deep-equal'
+import EQ from 'fast-deep-equal'
 
 import { HKT, Params } from '../../HKT'
 import { Include } from '../../common'
@@ -19,7 +19,7 @@ export interface Eq<A> {
 }
 
 export const DeepEquals: Eq<unknown> = {
-  equals: fastDeepEqual,
+  equals: EQ,
 }
 
 export const Strict: Eq<unknown> = {

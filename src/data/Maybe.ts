@@ -2,7 +2,7 @@ import { HKT, Kind, Params } from '../HKT'
 import { Predicate } from '../function/Predicate'
 import type { Refinement } from '../function/Refinement'
 import { constant, flow, identity, pipe } from '../function/function'
-import { Associative, reverse } from '../typeclasses/concrete/Associative'
+import * as ASSOC from '../typeclasses/concrete/Associative'
 import { Commutative } from '../typeclasses/concrete/Commutative'
 import * as Debug from '../typeclasses/concrete/Debug'
 import * as Eq from '../typeclasses/concrete/Eq'
@@ -13,7 +13,9 @@ import * as AE from '../typeclasses/effect/AssociativeEither'
 import * as AF from '../typeclasses/effect/AssociativeFlatten'
 import * as B from '../typeclasses/effect/Bottom'
 import * as C from '../typeclasses/effect/Covariant'
-import type { ForEach1 } from '../typeclasses/effect/ForEach'
+// eslint-disable-next-line import/no-cycle
+import * as FM from '../typeclasses/effect/FoldMap'
+import * as FE from '../typeclasses/effect/ForEach'
 import * as IB from '../typeclasses/effect/IdentityBoth'
 import * as IE from '../typeclasses/effect/IdentityEither'
 import * as IF from '../typeclasses/effect/IdentityFlatten'
@@ -64,22 +66,6 @@ export const match =
 
 const constNone = constant(Nothing)
 
-/**
- * Perform a Maybe-returning function utilizing the resulting type of a previous Maybe.
- * Allows chaining together a sequence of Maybes one after another.
- *
- * @example
- * ```
- * import * as O from 'hkt-ts/Maybe'
- * import { pipe } from 'hkt-ts/function'
- *
- * const example: O.Maybe<C> = pipe(
- *  MaybeA,
- *  O.flatMap(a => aToMaybeB(a)),
- *  O.flatMap(b => bToMaybeC(b)),
- * )
- * ```
- */
 export const flatMap = <A, B>(f: (a: A) => Maybe<B>): ((Maybe: Maybe<A>) => Maybe<B>) =>
   match(constNone, f)
 
@@ -115,59 +101,6 @@ export const fromRefinement =
  */
 export const getOrElse = <B>(f: () => B): (<A>(Maybe: Maybe<A>) => A | B) => match(f, identity)
 
-/**
- * Replace a None with another Maybe.
- */
-export const orElse =
-  <A>(f: () => Maybe<A>) =>
-  <B>(Maybe: Maybe<B>): Maybe<A | B> =>
-    pipe(Maybe, match(f, Just))
-
-/**
- * Apply a reducer to the value within an Option, or return the seed value
- * if the Option is a None.
- */
-export const reduce =
-  <A, B>(seed: A, f: (acc: A, value: B) => A) =>
-  (maybe: Maybe<B>): A =>
-    pipe(
-      maybe,
-      match(
-        () => seed,
-        (b) => f(seed, b),
-      ),
-    )
-
-/**
- * Construct a Option that will output a homogenous Record given the
- * input of a Record of Options.
- * @example
- * ```typescript
- * import * as O from 'hkt-ts/Option'
- * import { pipe } from 'hkt-ts/function'
- *
- * const example: O.Option<{a: number, b: number}> = O.struct({
- *   a: O.Some(1),
- *   b: O.Some(2),
- * })
- * ```
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const struct = <A extends Readonly<Record<string, Maybe<any>>>>(
-  maybes: A,
-): Maybe<{ readonly [K in keyof A]: OutputOf<A[K]> }> => {
-  const values = Object.entries(maybes)
-  const nothings = values.filter((x) => isNothing(x[1]))
-
-  if (nothings.length === 0) {
-    return Nothing
-  }
-
-  const entries = values.map(([k, l]) => [k, (l as Just<any>).value])
-
-  return Just(Object.fromEntries(entries))
-}
-
 export function toNull<A>(maybe: Maybe<A>): A | null {
   return isNothing(maybe) ? null : maybe.value
 }
@@ -176,19 +109,22 @@ export function toUndefined<A>(maybe: Maybe<A>): A | undefined {
   return isNothing(maybe) ? undefined : maybe.value
 }
 
-export const makeAssociative = <A>(A: Associative<A>): Associative<Maybe<A>> => ({
+export const makeAssociative = <A>(A: ASSOC.Associative<A>): ASSOC.Associative<Maybe<A>> => ({
   concat: (f, s) => (isJust(f) && isJust(s) ? Just(A.concat(f.value, s.value)) : isJust(f) ? f : s),
 })
 
-export const makeFirstAssociative = <A>(): Associative<Maybe<A>> => ({
+export const makeFirstAssociative = <A>(): ASSOC.Associative<Maybe<A>> => ({
   concat: (f, s) => (isJust(f) ? f : s),
 })
 
-export const makeSecondAssociative = <A>(): Associative<Maybe<A>> => reverse(makeFirstAssociative())
+export const makeSecondAssociative = <A>(): ASSOC.Associative<Maybe<A>> =>
+  ASSOC.reverse(makeFirstAssociative())
 
 export const makeCommutative = makeAssociative as <A>(A: Commutative<A>) => Commutative<Maybe<A>>
 
-export const makeFailFastAssociative = <A>(A: Associative<A>): Associative<Maybe<A>> => ({
+export const makeFailFastAssociative = <A>(
+  A: ASSOC.Associative<A>,
+): ASSOC.Associative<Maybe<A>> => ({
   concat: (f, s) => (isJust(f) && isJust(s) ? Just(A.concat(f.value, s.value)) : Nothing),
 })
 
@@ -197,8 +133,8 @@ export const makeIdentity = <A>(ID: I.Identity<A>): I.Identity<Maybe<A>> => ({
   id: Just(ID.id),
 })
 
-export const makeAssociativeIdentity = <A>(A: Associative<A>): I.Identity<Maybe<A>> => ({
-  ...makeAssociative(A),
+export const makeAssociativeIdentity = <A>(A: ASSOC.Associative<A>): I.Identity<Maybe<A>> => ({
+  concat: (f, s) => (isJust(f) && isJust(s) ? Just(A.concat(f.value, s.value)) : isJust(f) ? f : s),
   id: Nothing,
 })
 
@@ -224,10 +160,10 @@ export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<Maybe<A>> =>
     }
 
     if (fx) {
-      return -1
+      return 1
     }
 
-    return 1
+    return -1
   })
 
 export interface MaybeHKT extends HKT {
@@ -238,18 +174,30 @@ export const Covariant: C.Covariant1<MaybeHKT> = {
   map,
 }
 
+export const bindTo = C.bindTo(Covariant)
+export const flap = C.flap(Covariant)
+export const mapTo = C.mapTo(Covariant)
+export const tupled = C.tupled(Covariant)
+
 export const AssociativeBoth: AB.AssociativeBoth1<MaybeHKT> = {
   both: (s) => (f) => isJust(f) && isJust(s) ? Just([f.value, s.value]) : Nothing,
 }
+
+export const zipLeft = AB.zipLeft<MaybeHKT>({ ...AssociativeBoth, ...Covariant })
+export const zipRight = AB.zipRight<MaybeHKT>({ ...AssociativeBoth, ...Covariant })
 
 export const AssociativeEither: AE.AssociativeEither1<MaybeHKT> = {
   either: (s) => (f) =>
     isJust(f) ? Just(Either.Left(f.value)) : isJust(s) ? Just(Either.Right(s.value)) : Nothing,
 }
 
+export const orElse = AE.orElse<MaybeHKT>({ ...AssociativeEither, ...Covariant })
+
 export const AssociativeFlatten: AF.AssociativeFlatten1<MaybeHKT> = {
   flatten: (k) => (isJust(k) ? k.value : Nothing),
 }
+
+export const bind = AF.bind<MaybeHKT>({ ...AssociativeFlatten, ...Covariant })
 
 export const Bottom: B.Bottom1<MaybeHKT> = {
   bottom: Nothing,
@@ -265,6 +213,7 @@ export const IdentityBoth: IB.IdentityBoth1<MaybeHKT> = {
 }
 
 export const tuple = IB.tuple<MaybeHKT>({ ...IdentityBoth, ...Covariant })
+export const struct = IB.struct<MaybeHKT>({ ...IdentityBoth, ...Covariant })
 
 export const IdentityEither: IE.IdentityEither1<MaybeHKT> = {
   ...Bottom,
@@ -276,7 +225,7 @@ export const IdentityFlatten: IF.IdentityFlatten1<MaybeHKT> = {
   ...AssociativeFlatten,
 }
 
-export const ForEach: ForEach1<MaybeHKT> = {
+export const ForEach: FE.ForEach1<MaybeHKT> = {
   map,
   forEach: <T2 extends HKT>(IBC: IB.IdentityBoth<T2> & C.Covariant<T2>) => {
     const fromValue = makeFromValue(IBC)
@@ -289,3 +238,35 @@ export const ForEach: ForEach1<MaybeHKT> = {
         )
   },
 }
+
+export const sequence = FE.sequence(ForEach)
+export const mapAccum = FE.mapAccum(ForEach)
+
+export const FoldMap: FM.FoldMap1<MaybeHKT> = {
+  foldMap: (I) => (f) => match(() => I.id, f),
+}
+
+export const foldMap = FoldMap.foldMap
+export const concat = FM.concat(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
+export const groupBy = FM.groupBy(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+export const partitionMap = FM.partitionMap<MaybeHKT>({
+  ...FoldMap,
+  ...IdentityEither,
+  ...Top,
+  ...Covariant,
+})
+export const reduce = FM.reduce(FoldMap)
+export const reduceAssociative = FM.reduceAssociative(FoldMap)
+export const reduceCommutative = FM.reduceCommutative(FoldMap)
+export const reduceIdentity = FM.reduceIdentity(FoldMap)
+export const reduceRight = FM.reduceRight<MaybeHKT>({ ...FoldMap, ...ForEach })
+export const reverse = FM.reverse<MaybeHKT>({ ...FoldMap, ...ForEach })
+export const size = FM.size(FoldMap)
+export const toArray = FM.toArray(FoldMap)

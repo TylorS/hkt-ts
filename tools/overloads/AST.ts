@@ -147,7 +147,12 @@ export class Typeclass extends ast('Typeclass') {
   }
 
   labeled(label: string = this.name) {
-    return new Labeled(label, this)
+    return new Labeled(
+      Array.from(label)
+        .filter((x) => x === x.toUpperCase())
+        .join(''),
+      this,
+    )
   }
 }
 

@@ -15,11 +15,11 @@ import * as CI from '../typeclasses/effect/CovariantWithIndex'
 import * as FilterM from '../typeclasses/effect/FilterMap'
 import * as FilterMI from '../typeclasses/effect/FilterMapWithIndex'
 import * as FM from '../typeclasses/effect/FoldMap'
-import { FoldMapWithIndex1 } from '../typeclasses/effect/FoldMapWithIndex'
+import * as FMWI from '../typeclasses/effect/FoldMapWithIndex'
 import * as FE from '../typeclasses/effect/ForEach'
 import { ForEachWithIndex1 } from '../typeclasses/effect/ForEachWithIndex'
 import * as IB from '../typeclasses/effect/IdentityBoth'
-import { IdentityFlatten1 } from '../typeclasses/effect/IdentityFlatten'
+import * as IF from '../typeclasses/effect/IdentityFlatten'
 import * as PM from '../typeclasses/effect/PartitionMap'
 import * as PMI from '../typeclasses/effect/PartitionMapWithIndex'
 import { Reduce1 } from '../typeclasses/effect/Reduce'
@@ -167,11 +167,12 @@ export const fromLazy = T.makeFromLazy<ArrayHKT>({ ...Top, ...Covariant })
 export const fromValue = T.makeFromValue<ArrayHKT>({ ...Top, ...Covariant })
 export const Do = fromLazy(() => Object.create(null) as Readonly<Record<never, never>>)
 
-export const FoldMapWithIndex: FoldMapWithIndex1<ArrayHKT, number> = {
+export const FoldMapWithIndex: FMWI.FoldMapWithIndex1<ArrayHKT, number> = {
   foldMapWithIndex: (I) => (f) => (a) => a.reduce((b, a, i) => I.concat(b, f(i, a)), I.id),
 }
 
 export const foldMapWithIndex = FoldMapWithIndex.foldMapWithIndex
+export const toMap = FMWI.toMap(FoldMapWithIndex)
 
 export const foldMap =
   <B>(I: Identity<B>) =>
@@ -232,8 +233,9 @@ export const IdentityBoth: IB.IdentityBoth1<ArrayHKT> = {
 }
 
 export const tuple = IB.tuple<ArrayHKT>({ ...IdentityBoth, ...Covariant })
+export const struct = IB.struct<ArrayHKT>({ ...IdentityBoth, ...Covariant })
 
-export const IdentityFlatten: IdentityFlatten1<ArrayHKT> = {
+export const IdentityFlatten: IF.IdentityFlatten1<ArrayHKT> = {
   ...Top,
   ...AssociativeFlatten,
 }
