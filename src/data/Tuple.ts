@@ -1,6 +1,6 @@
-import { Associative } from '../Typeclass/concrete/Associative'
-import { Debug } from '../Typeclass/concrete/Debug'
-import { Identity } from '../Typeclass/concrete/Identity'
+import { Associative } from '../Typeclass/Data/Associative'
+import { Debug } from '../Typeclass/Data/Debug'
+import { Identity } from '../Typeclass/Data/Identity'
 
 export type Tuple<A, B> = readonly [first: A, second: B]
 

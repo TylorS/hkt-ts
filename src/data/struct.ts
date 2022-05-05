@@ -1,7 +1,7 @@
 import { Cast } from 'ts-toolbelt/out/Any/Cast'
 
-import { Associative } from '../Typeclass/concrete/Associative'
-import { Identity } from '../Typeclass/concrete/Identity'
+import { Associative } from '../Typeclass/Data/Associative'
+import { Identity } from '../Typeclass/Data/Identity'
 
 export type StructEntries = ReadonlyArray<readonly [PropertyKey, any]>
 

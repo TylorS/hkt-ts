@@ -4,9 +4,9 @@ import * as E from '../../Data/Either'
 import { HKT, Params } from '../../HKT'
 import { Include } from '../../common'
 import { constFalse, constTrue, pipe } from '../../function/function'
-import * as AB from '../effect/AssociativeBoth'
-import * as AE from '../effect/AssociativeEither'
-import { Contravariant1 } from '../effect/Contravariant'
+import * as AB from '../Effect/AssociativeBoth'
+import * as AE from '../Effect/AssociativeEither'
+import { Contravariant1 } from '../Effect/Contravariant'
 
 import { Associative } from './Associative'
 

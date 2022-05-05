@@ -1,7 +1,7 @@
 import { Left, Right } from '../Data/Either'
 import { isNonEmpty } from '../Data/NonEmptyArray'
 import { Both, These } from '../Data/These'
-import { Associative } from '../Typeclass/concrete/Associative'
+import { Associative } from '../Typeclass/Data/Associative'
 import { Include } from '../common'
 
 import * as Eff from './Eff'

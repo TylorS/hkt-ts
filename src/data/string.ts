@@ -1,8 +1,8 @@
-import * as A from '../Typeclass/concrete/Associative'
-import * as Sh from '../Typeclass/concrete/Debug'
-import * as E from '../Typeclass/concrete/Eq'
-import * as I from '../Typeclass/concrete/Identity'
-import * as O from '../Typeclass/concrete/Ord'
+import * as A from '../Typeclass/Data/Associative'
+import * as Sh from '../Typeclass/Data/Debug'
+import * as E from '../Typeclass/Data/Eq'
+import * as I from '../Typeclass/Data/Identity'
+import * as O from '../Typeclass/Data/Ord'
 import { Refinement } from '../function/Refinement'
 import { pipe } from '../function/function'
 

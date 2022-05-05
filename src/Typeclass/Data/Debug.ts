@@ -3,9 +3,9 @@ import { Json } from '../../Data/Json'
 import { HKT, Params } from '../../HKT'
 import { Include } from '../../common'
 import { flow, pipe } from '../../function/function'
-import * as AB from '../effect/AssociativeBoth'
-import * as AE from '../effect/AssociativeEither'
-import { Contravariant1 } from '../effect/Contravariant'
+import * as AB from '../Effect/AssociativeBoth'
+import * as AE from '../Effect/AssociativeEither'
+import { Contravariant1 } from '../Effect/Contravariant'
 
 export interface Debug<A> {
   readonly debug: (a: A) => string

@@ -1,8 +1,8 @@
 import { HKT2, Params } from '../HKT'
 import * as t from '../Typeclass'
-import { Bottom2 } from '../Typeclass/effect/Bottom'
-import { Covariant2 } from '../Typeclass/effect/Covariant'
-import { Top2 } from '../Typeclass/effect/Top'
+import { Bottom2 } from '../Typeclass/Effect/Bottom'
+import { Covariant2 } from '../Typeclass/Effect/Covariant'
+import { Top2 } from '../Typeclass/Effect/Top'
 
 import { absurd, flow, identity } from './function'
 

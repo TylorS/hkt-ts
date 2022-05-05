@@ -1,7 +1,7 @@
 import { HKT, Params } from '../HKT'
-import type { Associative } from '../Typeclass/concrete/Associative'
-import type { Identity } from '../Typeclass/concrete/Identity'
-import type * as I from '../Typeclass/effect/Invariant'
+import type { Associative } from '../Typeclass/Data/Associative'
+import type { Identity } from '../Typeclass/Data/Identity'
+import type * as I from '../Typeclass/Effect/Invariant'
 
 import { flow, identity } from './function'
 

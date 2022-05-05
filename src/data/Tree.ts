@@ -1,8 +1,8 @@
 import * as Eff from '../Eff/Eff'
-import { Associative } from '../Typeclass/concrete/Associative'
-import { Debug } from '../Typeclass/concrete/Debug'
-import * as Eq from '../Typeclass/concrete/Eq'
-import { Identity } from '../Typeclass/concrete/Identity'
+import { Associative } from '../Typeclass/Data/Associative'
+import { Debug } from '../Typeclass/Data/Debug'
+import * as Eq from '../Typeclass/Data/Eq'
+import { Identity } from '../Typeclass/Data/Identity'
 import { identity, pipe } from '../function/function'
 
 import * as A from './Array'

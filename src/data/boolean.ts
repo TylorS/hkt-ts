@@ -1,14 +1,15 @@
-import { Associative } from '../Typeclass/concrete/Associative'
-import { Commutative } from '../Typeclass/concrete/Commutative'
-import * as D from '../Typeclass/concrete/Debug'
-import * as E from '../Typeclass/concrete/Eq'
-import { Identity } from '../Typeclass/concrete/Identity'
-import * as I from '../Typeclass/concrete/Inverse'
-import * as O from '../Typeclass/concrete/Ord'
-import { Refinement as B } from '../function/Refinement'
+import { Associative } from '../Typeclass/Data/Associative'
+import { Commutative } from '../Typeclass/Data/Commutative'
+import * as D from '../Typeclass/Data/Debug'
+import * as E from '../Typeclass/Data/Eq'
+import { Identity } from '../Typeclass/Data/Identity'
+import * as I from '../Typeclass/Data/Inverse'
+import * as O from '../Typeclass/Data/Ord'
+import { Refinement } from '../function/Refinement'
 import { Lazy } from '../function/function'
 
-export const isBoolean: B<unknown, boolean> = (u: unknown): u is boolean => typeof u === 'boolean'
+export const isBoolean: Refinement<unknown, boolean> = (u: unknown): u is boolean =>
+  typeof u === 'boolean'
 
 /**
  * Defines the fold over a boolean value.

@@ -1,7 +1,7 @@
-import * as Associative from '../Typeclass/concrete/Associative'
-import { Debug } from '../Typeclass/concrete/Debug'
-import { Eq, fromEquals } from '../Typeclass/concrete/Eq'
-import * as Ord from '../Typeclass/concrete/Ord'
+import * as Associative from '../Typeclass/Data/Associative'
+import { Debug } from '../Typeclass/Data/Debug'
+import { Eq, fromEquals } from '../Typeclass/Data/Eq'
+import * as Ord from '../Typeclass/Data/Ord'
 import { identity, pipe } from '../function/function'
 
 import { Just, Maybe, Nothing } from './Maybe'

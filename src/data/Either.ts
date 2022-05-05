@@ -1,13 +1,16 @@
 import { HKT2, Params, Variance } from '../HKT'
-import type { Associative } from '../Typeclass/concrete/Associative'
-import * as AB from '../Typeclass/effect/AssociativeBoth'
-import * as F from '../Typeclass/effect/AssociativeFlatten'
-import { Covariant2 } from '../Typeclass/effect/Covariant'
-import { Top2 } from '../Typeclass/effect/Top'
+import type { Associative } from '../Typeclass/Data/Associative'
+import * as AB from '../Typeclass/Effect/AssociativeBoth'
+import * as F from '../Typeclass/Effect/AssociativeFlatten'
+import * as C from '../Typeclass/Effect/Covariant'
+// eslint-disable-next-line import/no-cycle
+import * as FM from '../Typeclass/Effect/FoldMap'
+import * as IB from '../Typeclass/Effect/IdentityBoth'
+import { Reduce2 } from '../Typeclass/Effect/Reduce'
+import * as T from '../Typeclass/Effect/Top'
 import { Lazy, identity, pipe } from '../function/function'
 
 import type { Maybe } from './Maybe'
-import type * as NEA from './NonEmptyArray'
 
 /**
  * A common disriminated union to represent the outcome of 2 separate
@@ -128,68 +131,13 @@ export const toUnion = match(identity, identity)
  */
 export const orElse =
   <E1, E2, B>(f: (value: E1) => Either<E2, B>) =>
-  <A>(either: Either<E1, A>): Either<E1 | E2, A | B> => {
+  <A>(either: Either<E1, A>): Either<E2, A | B> => {
     if (isLeft(either)) {
       return f(either.left)
     }
 
     return either
   }
-
-/**
- * Apply a reducer function to the Right value of an Either, otherwise
- * return the seed value.
- */
-export const reduce =
-  <A, B>(seed: A, f: (acc: A, value: B) => A) =>
-  <E>(either: Either<E, B>): A =>
-    pipe(
-      either,
-      match(
-        () => seed,
-        (b) => f(seed, b),
-      ),
-    )
-
-/**
- * Construct a Either that will output a homogenous Record given the
- * input of a Record of Eithers. All failures, or Lefts, will be collected into
- * a NonEmptyArray.
- * @example
- * ```typescript
- * import * as E from 'hkt-ts/Either'
- * import { NonEmptyArray } from 'hkt-ts/NonEmptyArray'
- * import { pipe } from 'hkt-ts/function'
- *
- * declare const eitherA: E.Either<'a', string>
- * declare const eitherB: E.Either<'b', number>
- *
- * const example: E.Either<NonEmptyArray<'a' | 'b'>, {  a: string, b: number }> = E.struct({
- *   a: eitherA,
- *   b: eitherB,
- * })
- * ```
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const struct = <A extends Readonly<Record<string, Either<any, any>>>>(
-  eithers: A,
-): Either<NEA.NonEmptyArray<LeftOf<A[keyof A]>>, { readonly [K in keyof A]: RightOf<A[K]> }> => {
-  const entries = Object.entries(eithers)
-  const lefts = entries.filter((e): e is [string, Left<LeftOf<A[keyof A]>>] => isLeft(e[1]))
-
-  if (lefts.length > 0) {
-    return pipe(
-      lefts.map((l) => l[1].left),
-      Left,
-    ) as any
-  }
-
-  const rights = entries
-    .filter((e): e is [string, Right<RightOf<A[keyof A]>>] => isRight(e[1]))
-    .map(([k, v]) => [k, v.right] as const)
-
-  return Right(Object.fromEntries(rights) as { readonly [K in keyof A]: RightOf<A[K]> })
-}
 
 /**
  * Swap a Left for a Right, or a Right for a Left.
@@ -224,9 +172,14 @@ export interface EitherHKT extends HKT2 {
   }
 }
 
-export const Covariant: Covariant2<EitherHKT> = {
+export const Covariant: C.Covariant2<EitherHKT> = {
   map,
 }
+
+export const bindTo = C.bindTo(Covariant)
+export const flap = C.flap(Covariant)
+export const mapTo = C.mapTo(Covariant)
+export const tupled = C.tupled(Covariant)
 
 export const flatten: <E, E2, A>(kind: Either<E, Either<E2, A>>) => Either<E | E2, A> = (either) =>
   isLeft(either) ? either : either.right
@@ -236,25 +189,6 @@ export const Flatten: F.AssociativeFlatten2<EitherHKT> = {
 }
 
 export const AssociativeBoth = F.makeAssociativeBoth<EitherHKT>({ ...Flatten, ...Covariant })
-
-/**
- * Construct a Either that will output a homogenous Record given the
- * input of a Tuple of Eithers.
- * @example
- * ```typescript
- * import * as E from 'hkt-ts/Either'
- * import { pipe } from 'hkt-ts/function'
- *
- * declare const eitherA: E.Either<'a', string>
- * declare const eitherB: E.Either<'b', number>
- *
- * const example: E.Either<'a' | 'b', readonly [string, number]> = E.tuple(
- *   eitherA,
- *   eitherB,
- * })
- * ```
- */
-export const tuple = AB.tuple<EitherHKT>({ ...AssociativeBoth, ...Covariant })
 
 export const zipLeft = AB.zipLeft<EitherHKT>({ ...AssociativeBoth, ...Covariant })
 export const zipRight = AB.zipRight<EitherHKT>({ ...AssociativeBoth, ...Covariant })
@@ -284,6 +218,78 @@ export const makeAssociative = <E, A>(
     ),
 })
 
-export const Top: Top2<EitherHKT> = {
+export const Top: T.Top2<EitherHKT> = {
   top: Right([]),
+}
+
+export const IdentityBoth: IB.IdentityBoth2<EitherHKT> = {
+  ...AssociativeBoth,
+  ...Top,
+}
+
+/**
+ * Construct a Either that will output a homogenous Record given the
+ * input of a Tuple of Eithers.
+ * @example
+ * ```typescript
+ * import * as E from 'hkt-ts/Either'
+ * import { pipe } from 'hkt-ts/function'
+ *
+ * declare const eitherA: E.Either<'a', string>
+ * declare const eitherB: E.Either<'b', number>
+ *
+ * const example: E.Either<'a' | 'b', readonly [string, number]> = E.tuple(
+ *   eitherA,
+ *   eitherB,
+ * })
+ * ```
+ */
+export const tuple = IB.tuple<EitherHKT>({ ...IdentityBoth, ...Covariant })
+
+/**
+ * Construct a Either that will output a homogenous Record given the
+ * input of a Record of Eithers.
+ * @example
+ * ```typescript
+ * import * as E from 'hkt-ts/Either'
+ * import { pipe } from 'hkt-ts/function'
+ *
+ * declare const eitherA: E.Either<'a', string>
+ * declare const eitherB: E.Either<'b', number>
+ *
+ * const example: E.Either<'a' | 'b', {  a: string, b: number }> = E.struct({
+ *   a: eitherA,
+ *   b: eitherB,
+ * })
+ * ```
+ */
+export const struct = IB.struct<EitherHKT>({ ...IdentityBoth, ...Covariant })
+
+export const FoldMap: FM.FoldMap2<EitherHKT> = {
+  foldMap: (I) => (f) => match(() => I.id, f),
+}
+
+export const foldMap = FoldMap.foldMap
+export const foldLeft = FM.foldLeft(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
+export const groupBy = FM.groupBy(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+/**
+ * Apply a reducer function to the Right value of an Either, otherwise
+ * return the seed value.
+ */
+export const reduce = FM.reduce(FoldMap)
+export const reduceAssociative = FM.reduceAssociative(FoldMap)
+export const reduceCommutative = FM.reduceCommutative(FoldMap)
+export const reduceIdentity = FM.reduceIdentity(FoldMap)
+export const size = FM.size(FoldMap)
+export const toArray = FM.toArray(FoldMap)
+
+export const Reduce: Reduce2<EitherHKT> = {
+  reduce,
 }

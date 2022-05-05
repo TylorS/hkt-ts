@@ -21,7 +21,7 @@ import {
   Kind9,
 } from '../../HKT'
 import { constant, pipe } from '../../function/function'
-import { orElse } from '../effect/AssociativeEither'
+import { orElse } from '../Effect/AssociativeEither'
 import {
   Covariant,
   Covariant1,
@@ -34,7 +34,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from '../effect/Covariant'
+} from '../Effect/Covariant'
 import {
   IdentityEither,
   IdentityEither1,
@@ -47,7 +47,7 @@ import {
   IdentityEither7,
   IdentityEither8,
   IdentityEither9,
-} from '../effect/IdentityEither'
+} from '../Effect/IdentityEither'
 
 import { Associative } from './Associative'
 

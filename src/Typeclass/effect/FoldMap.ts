@@ -1,6 +1,5 @@
-import * as Either from '../../Data/Either'
 // eslint-disable-next-line import/no-cycle
-import { Just, Maybe, Nothing, makeFirstAssociative } from '../../Data/Maybe'
+import * as Either from '../../Data/Either'
 // eslint-disable-next-line import/no-cycle
 import * as M from '../../Data/Maybe'
 import { NonEmptyArray } from '../../Data/NonEmptyArray'
@@ -33,10 +32,10 @@ import {
 } from '../../HKT'
 import { not } from '../../function/Predicate'
 import { constFalse, flow, pipe } from '../../function/function'
-import * as A from '../concrete/Associative'
-import { Commutative } from '../concrete/Commutative'
-import { Eq } from '../concrete/Eq'
-import { Identity, fromIdentityEitherCovariant } from '../concrete/Identity'
+import * as A from '../Data/Associative'
+import { Commutative } from '../Data/Commutative'
+import { Eq } from '../Data/Eq'
+import { Identity, fromIdentityEitherCovariant } from '../Data/Identity'
 
 import {
   Covariant,
@@ -403,62 +402,63 @@ export function find<T extends HKT10>(
   FM: FoldMap10<T>,
 ): <A>(
   predicate: (a: A) => boolean,
-) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function find<T extends HKT9>(
   FM: FoldMap9<T>,
 ): <A>(
   predicate: (a: A) => boolean,
-) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function find<T extends HKT8>(
   FM: FoldMap8<T>,
 ): <A>(
   predicate: (a: A) => boolean,
-) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => Maybe<A>
+) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function find<T extends HKT7>(
   FM: FoldMap7<T>,
 ): <A>(
   predicate: (a: A) => boolean,
-) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => Maybe<A>
+) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function find<T extends HKT6>(
   FM: FoldMap6<T>,
 ): <A>(
   predicate: (a: A) => boolean,
-) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => Maybe<A>
+) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function find<T extends HKT5>(
   FM: FoldMap5<T>,
-): <A>(predicate: (a: A) => boolean) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => Maybe<A>
+): <A>(predicate: (a: A) => boolean) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => M.Maybe<A>
 
 export function find<T extends HKT4>(
   FM: FoldMap4<T>,
-): <A>(predicate: (a: A) => boolean) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Maybe<A>
+): <A>(predicate: (a: A) => boolean) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => M.Maybe<A>
 
 export function find<T extends HKT3>(
   FM: FoldMap3<T>,
-): <A>(predicate: (a: A) => boolean) => <R, E>(kind: Kind3<T, R, E, A>) => Maybe<A>
+): <A>(predicate: (a: A) => boolean) => <R, E>(kind: Kind3<T, R, E, A>) => M.Maybe<A>
 
 export function find<T extends HKT2>(
   FM: FoldMap2<T>,
-): <A>(predicate: (a: A) => boolean) => <E>(kind: Kind2<T, E, A>) => Maybe<A>
+): <A>(predicate: (a: A) => boolean) => <E>(kind: Kind2<T, E, A>) => M.Maybe<A>
 
 export function find<T extends HKT>(
   FM: FoldMap1<T>,
-): <A>(predicate: (a: A) => boolean) => (kind: Kind<T, A>) => Maybe<A>
+): <A>(predicate: (a: A) => boolean) => (kind: Kind<T, A>) => M.Maybe<A>
 
 export function find<T extends HKT>(
   FM: FoldMap<T>,
-): <A>(predicate: (a: A) => boolean) => (kind: Kind<T, A>) => Maybe<A>
+): <A>(predicate: (a: A) => boolean) => (kind: Kind<T, A>) => M.Maybe<A>
 
 export function find<T extends HKT>(
   FM: FoldMap<T>,
-): <A>(predicate: (a: A) => boolean) => (kind: Kind<T, A>) => Maybe<A> {
-  const foldMap = FM.foldMap({ ...makeFirstAssociative<any>(), id: Nothing })
+): <A>(predicate: (a: A) => boolean) => (kind: Kind<T, A>) => M.Maybe<A> {
+  const foldMap = FM.foldMap({ ...M.makeFirstAssociative<any>(), id: M.Nothing })
 
-  return <A>(predicate: (a: A) => boolean) => foldMap((a: A) => (predicate(a) ? Just(a) : Nothing))
+  return <A>(predicate: (a: A) => boolean) =>
+    foldMap((a: A) => (predicate(a) ? M.Just(a) : M.Nothing))
 }
 
 /* #endregion */
@@ -1100,55 +1100,55 @@ export function reduceAssociative<T extends HKT10>(
   FM: FoldMap10<T>,
 ): <A>(
   A: A.Associative<A>,
-) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT9>(
   FM: FoldMap9<T>,
 ): <A>(
   A: A.Associative<A>,
-) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT8>(
   FM: FoldMap8<T>,
 ): <A>(
   A: A.Associative<A>,
-) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => Maybe<A>
+) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT7>(
   FM: FoldMap7<T>,
-): <A>(A: A.Associative<A>) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => Maybe<A>
+): <A>(A: A.Associative<A>) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT6>(
   FM: FoldMap6<T>,
-): <A>(A: A.Associative<A>) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => Maybe<A>
+): <A>(A: A.Associative<A>) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT5>(
   FM: FoldMap5<T>,
-): <A>(A: A.Associative<A>) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => Maybe<A>
+): <A>(A: A.Associative<A>) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT4>(
   FM: FoldMap4<T>,
-): <A>(A: A.Associative<A>) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Maybe<A>
+): <A>(A: A.Associative<A>) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT3>(
   FM: FoldMap3<T>,
-): <A>(A: A.Associative<A>) => <R, E>(kind: Kind3<T, R, E, A>) => Maybe<A>
+): <A>(A: A.Associative<A>) => <R, E>(kind: Kind3<T, R, E, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT2>(
   FM: FoldMap2<T>,
-): <A>(A: A.Associative<A>) => <E>(kind: Kind2<T, E, A>) => Maybe<A>
+): <A>(A: A.Associative<A>) => <E>(kind: Kind2<T, E, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT>(
   FM: FoldMap1<T>,
-): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => Maybe<A>
+): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT>(
   FM: FoldMap<T>,
-): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => Maybe<A>
+): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => M.Maybe<A>
 
 export function reduceAssociative<T extends HKT>(
   FM: FoldMap<T>,
-): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => Maybe<A> {
+): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => M.Maybe<A> {
   return <A>(A: A.Associative<A>) => FM.foldMap(M.makeAssociativeIdentity(A))((a: A) => M.Just(a))
 }
 /* #endregion */
@@ -1158,55 +1158,55 @@ export function reduceCommutative<T extends HKT10>(
   FM: FoldMap10<T>,
 ): <A>(
   C: Commutative<A>,
-) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT9>(
   FM: FoldMap9<T>,
 ): <A>(
   C: Commutative<A>,
-) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => Maybe<A>
+) => <Y, X, W, V, U, S, R, E>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT8>(
   FM: FoldMap8<T>,
 ): <A>(
   C: Commutative<A>,
-) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => Maybe<A>
+) => <X, W, V, U, S, R, E>(kind: Kind8<T, X, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT7>(
   FM: FoldMap7<T>,
-): <A>(C: Commutative<A>) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => Maybe<A>
+): <A>(C: Commutative<A>) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT6>(
   FM: FoldMap6<T>,
-): <A>(C: Commutative<A>) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => Maybe<A>
+): <A>(C: Commutative<A>) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT5>(
   FM: FoldMap5<T>,
-): <A>(C: Commutative<A>) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => Maybe<A>
+): <A>(C: Commutative<A>) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT4>(
   FM: FoldMap4<T>,
-): <A>(C: Commutative<A>) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Maybe<A>
+): <A>(C: Commutative<A>) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT3>(
   FM: FoldMap3<T>,
-): <A>(C: Commutative<A>) => <R, E>(kind: Kind3<T, R, E, A>) => Maybe<A>
+): <A>(C: Commutative<A>) => <R, E>(kind: Kind3<T, R, E, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT2>(
   FM: FoldMap2<T>,
-): <A>(C: Commutative<A>) => <E>(kind: Kind2<T, E, A>) => Maybe<A>
+): <A>(C: Commutative<A>) => <E>(kind: Kind2<T, E, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT>(
   FM: FoldMap1<T>,
-): <A>(C: Commutative<A>) => (kind: Kind<T, A>) => Maybe<A>
+): <A>(C: Commutative<A>) => (kind: Kind<T, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT>(
   FM: FoldMap<T>,
-): <A>(C: Commutative<A>) => (kind: Kind<T, A>) => Maybe<A>
+): <A>(C: Commutative<A>) => (kind: Kind<T, A>) => M.Maybe<A>
 
 export function reduceCommutative<T extends HKT>(
   FM: FoldMap<T>,
-): <A>(C: Commutative<A>) => (kind: Kind<T, A>) => Maybe<A> {
+): <A>(C: Commutative<A>) => (kind: Kind<T, A>) => M.Maybe<A> {
   return reduceAssociative(FM)
 }
 

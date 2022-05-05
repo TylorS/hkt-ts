@@ -21,7 +21,7 @@ import {
   Kind9,
 } from '../../HKT'
 import { pipe } from '../../function/function'
-import { Identity } from '../concrete/Identity'
+import { Identity } from '../Data/Identity'
 
 /* #region FoldMapWithIndex */
 export interface FoldMapWithIndex<T extends HKT, K> {

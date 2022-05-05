@@ -1,6 +1,6 @@
-import { Debug } from '../Typeclass/concrete/Debug'
-import { Eq } from '../Typeclass/concrete/Eq'
-import { Ord, tuple } from '../Typeclass/concrete/Ord'
+import { Debug } from '../Typeclass/Data/Debug'
+import { Eq } from '../Typeclass/Data/Eq'
+import { Ord, tuple } from '../Typeclass/Data/Ord'
 import { pipe } from '../function/function'
 
 import { sort } from './Array'

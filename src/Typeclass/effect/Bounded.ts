@@ -1,4 +1,4 @@
-import { Ord } from '../concrete/Ord'
+import { Ord } from '../Data/Ord'
 
 export interface Bounded<A> extends Ord<A> {
   readonly top: A

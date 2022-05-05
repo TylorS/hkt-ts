@@ -1,4 +1,4 @@
-import { Associative } from '../Typeclass/concrete/Associative'
+import { Associative } from '../Typeclass/Data/Associative'
 import { constFalse, constTrue, flow, pipe } from '../function/function'
 
 import * as Either from './Either'
