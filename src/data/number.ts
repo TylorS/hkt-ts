@@ -104,6 +104,7 @@ export const NegativeEq = Negative.makeEq(Eq)
 export const NegativeIdentitySum = Negative.makeIdentity(IdentitySum)
 export const NegativeIdentityProduct = Negative.makeIdentity(IdentityProduct)
 export const NegativeOrd = Negative.makeOrd(Ord)
+export const NegativeInverse = Negative.makeInverse(Inverse)
 
 export type NonNegative = Branded<{ readonly NonNegative: unique symbol }, number>
 export const NonNegative = Branded<NonNegative>()
@@ -116,6 +117,7 @@ export const NonNegativeEq = NonNegative.makeEq(Eq)
 export const NonNegativeIdentitySum = NonNegative.makeIdentity(IdentitySum)
 export const NonNegativeIdentityProduct = NonNegative.makeIdentity(IdentityProduct)
 export const NonNegativeOrd = NonNegative.makeOrd(Ord)
+export const NonNegativeInverse = NonNegative.makeInverse(Inverse)
 
 export type NonPositive = Branded<{ readonly NonPositive: unique symbol }, number>
 export const NonPositive = Branded<NonPositive>()
@@ -128,6 +130,7 @@ export const NonPositiveEq = NonPositive.makeEq(Eq)
 export const NonPositiveIdentitySum = NonPositive.makeIdentity(IdentitySum)
 export const NonPositiveIdentityProduct = NonPositive.makeIdentity(IdentityProduct)
 export const NonPositiveOrd = NonPositive.makeOrd(Ord)
+export const NonPositiveInverse = NonPositive.makeInverse(Inverse)
 
 export type NonZero = Branded<{ readonly NonZero: unique symbol }, number>
 export const NonZero = Branded<NonZero>()
@@ -140,6 +143,7 @@ export const NonZeroEq = NonZero.makeEq(Eq)
 export const NonZeroIdentitySum = NonZero.makeIdentity(IdentitySum)
 export const NonZeroIdentityProduct = NonZero.makeIdentity(IdentityProduct)
 export const NonZeroOrd = NonZero.makeOrd(Ord)
+export const NonZeroInverse = NonZero.makeInverse(Inverse)
 
 export type Positive = Branded<{ readonly Positive: unique symbol }, number>
 export const Positive = Branded<Positive>()
@@ -152,6 +156,7 @@ export const PositiveEq = Positive.makeEq(Eq)
 export const PositiveIdentitySum = Positive.makeIdentity(IdentitySum)
 export const PositiveIdentityProduct = Positive.makeIdentity(IdentityProduct)
 export const PositiveOrd = Positive.makeOrd(Ord)
+export const PositiveInverse = Positive.makeInverse(Inverse)
 
 // Base category refinements
 export const isInteger: R.Refinement<number, Integer> = (n): n is Integer => Number.isInteger(n)
@@ -191,6 +196,7 @@ export const NegativeIntegerEq = NegativeInteger.makeEq(Eq)
 export const NegativeIntegerIdentitySum = NegativeInteger.makeIdentity(IdentitySum)
 export const NegativeIntegerIdentityProduct = NegativeInteger.makeIdentity(IdentityProduct)
 export const NegativeIntegerOrd = NegativeInteger.makeOrd(Ord)
+export const NegativeIntegerInverse = NegativeInteger.makeInverse(Inverse)
 
 export type NegativeFloat = R.OutputOf<typeof isNegativeFloat>
 export const NegativeFloat = Branded<NegativeFloat>()
@@ -203,6 +209,7 @@ export const NegativeFloatEq = NegativeFloat.makeEq(Eq)
 export const NegativeFloatIdentitySum = NegativeFloat.makeIdentity(IdentitySum)
 export const NegativeFloatIdentityProduct = NegativeFloat.makeIdentity(IdentityProduct)
 export const NegativeFloatOrd = NegativeFloat.makeOrd(Ord)
+export const NegativeFloatInverse = NegativeFloat.makeInverse(Inverse)
 
 export type NonNegativeInteger = R.OutputOf<typeof isNonNegativeInteger>
 export const NonNegativeInteger = Branded<NonNegativeInteger>()
@@ -216,6 +223,7 @@ export const NonNegativeIntegerEq = NonNegativeInteger.makeEq(Eq)
 export const NonNegativeIntegerIdentitySum = NonNegativeInteger.makeIdentity(IdentitySum)
 export const NonNegativeIntegerIdentityProduct = NonNegativeInteger.makeIdentity(IdentityProduct)
 export const NonNegativeIntegerOrd = NonNegativeInteger.makeOrd(Ord)
+export const NonNegativeIntegerInverse = NonNegativeInteger.makeInverse(Inverse)
 
 export type NonNegativeFloat = R.OutputOf<typeof isNonNegativeFloat>
 export const NonNegativeFloat = Branded<NonNegativeFloat>()
@@ -229,6 +237,7 @@ export const NonNegativeFloatEq = NonNegativeFloat.makeEq(Eq)
 export const NonNegativeFloatIdentitySum = NonNegativeFloat.makeIdentity(IdentitySum)
 export const NonNegativeFloatIdentityProduct = NonNegativeFloat.makeIdentity(IdentityProduct)
 export const NonNegativeFloatOrd = NonNegativeFloat.makeOrd(Ord)
+export const NonNegativeFloatInverse = NonNegativeFloat.makeInverse(Inverse)
 
 export type NonPositiveInteger = R.OutputOf<typeof isNonPositiveInteger>
 export const NonPositiveInteger = Branded<NonPositiveInteger>()
@@ -242,6 +251,7 @@ export const NonPositiveIntegerEq = NonPositiveInteger.makeEq(Eq)
 export const NonPositiveIntegerIdentitySum = NonPositiveInteger.makeIdentity(IdentitySum)
 export const NonPositiveIntegerIdentityProduct = NonPositiveInteger.makeIdentity(IdentityProduct)
 export const NonPositiveIntegerOrd = NonPositiveInteger.makeOrd(Ord)
+export const NonPositiveIntegerInverse = NonPositiveInteger.makeInverse(Inverse)
 
 export type NonPositiveFloat = R.OutputOf<typeof isNonPositiveFloat>
 export const NonPositiveFloat = Branded<NonPositiveFloat>()
@@ -255,6 +265,7 @@ export const NonPositiveFloatEq = NonPositiveFloat.makeEq(Eq)
 export const NonPositiveFloatIdentitySum = NonPositiveFloat.makeIdentity(IdentitySum)
 export const NonPositiveFloatIdentityProduct = NonPositiveFloat.makeIdentity(IdentityProduct)
 export const NonPositiveFloatOrd = NonPositiveFloat.makeOrd(Ord)
+export const NonPositiveFloatInverse = NonPositiveFloat.makeInverse(Inverse)
 
 export type NonZeroInteger = R.OutputOf<typeof isNonZeroInteger>
 export const NonZeroInteger = Branded<NonZeroInteger>()
@@ -267,6 +278,7 @@ export const NonZeroIntegerEq = NonZeroInteger.makeEq(Eq)
 export const NonZeroIntegerIdentitySum = NonZeroInteger.makeIdentity(IdentitySum)
 export const NonZeroIntegerIdentityProduct = NonZeroInteger.makeIdentity(IdentityProduct)
 export const NonZeroIntegerOrd = NonZeroInteger.makeOrd(Ord)
+export const NonZeroIntegerInverse = NonZeroInteger.makeInverse(Inverse)
 
 export type NonZeroFloat = R.OutputOf<typeof isNonZeroFloat>
 export const NonZeroFloat = Branded<NonZeroFloat>()
@@ -279,6 +291,7 @@ export const NonZeroFloatEq = NonZeroFloat.makeEq(Eq)
 export const NonZeroFloatIdentitySum = NonZeroFloat.makeIdentity(IdentitySum)
 export const NonZeroFloatIdentityProduct = NonZeroFloat.makeIdentity(IdentityProduct)
 export const NonZeroFloatOrd = NonZeroFloat.makeOrd(Ord)
+export const NonZeroFloatInverse = NonZeroFloat.makeInverse(Inverse)
 
 export type PositiveInteger = R.OutputOf<typeof isPositiveInteger>
 export const PositiveInteger = Branded<PositiveInteger>()
@@ -291,6 +304,7 @@ export const PositiveIntegerEq = PositiveInteger.makeEq(Eq)
 export const PositiveIntegerIdentitySum = PositiveInteger.makeIdentity(IdentitySum)
 export const PositiveIntegerIdentityProduct = PositiveInteger.makeIdentity(IdentityProduct)
 export const PositiveIntegerOrd = PositiveInteger.makeOrd(Ord)
+export const PositiveIntegerInverse = PositiveInteger.makeInverse(Inverse)
 
 export type PositiveFloat = R.OutputOf<typeof isPositiveFloat>
 export const PositiveFloat = Branded<PositiveFloat>()
@@ -303,3 +317,4 @@ export const PositiveFloatEq = PositiveFloat.makeEq(Eq)
 export const PositiveFloatIdentitySum = PositiveFloat.makeIdentity(IdentitySum)
 export const PositiveFloatIdentityProduct = PositiveFloat.makeIdentity(IdentityProduct)
 export const PositiveFloatOrd = PositiveFloat.makeOrd(Ord)
+export const PositiveFloatInverse = PositiveFloat.makeInverse(Inverse)

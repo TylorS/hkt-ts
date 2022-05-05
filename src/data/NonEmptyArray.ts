@@ -1,7 +1,17 @@
+import { HKT, Kind, Params } from '../HKT'
 import * as Associative from '../Typeclass/Data/Associative'
 import { Debug } from '../Typeclass/Data/Debug'
 import { Eq, fromEquals } from '../Typeclass/Data/Eq'
 import * as Ord from '../Typeclass/Data/Ord'
+import * as AB from '../Typeclass/Effect/AssociativeBoth'
+import * as AF from '../Typeclass/Effect/AssociativeFlatten'
+import * as C from '../Typeclass/Effect/Covariant'
+import * as CI from '../Typeclass/Effect/CovariantWithIndex'
+// eslint-disable-next-line import/no-cycle
+import * as FM from '../Typeclass/Effect/FoldMap'
+import * as FE from '../Typeclass/Effect/ForEach'
+import * as IB from '../Typeclass/Effect/IdentityBoth'
+import * as T from '../Typeclass/Effect/Top'
 import { identity, pipe } from '../function/function'
 
 import { Just, Maybe, Nothing } from './Maybe'
@@ -96,11 +106,6 @@ export const concatAll =
 
 export const copy = <A>(nea: NonEmptyArray<A>): NonEmptyArray<A> =>
   nea.slice(0) as unknown as NonEmptyArray<A>
-
-export const flatMap =
-  <A, B>(f: (a: A) => NonEmptyArray<B>) =>
-  (nea: NonEmptyArray<A>): NonEmptyArray<B> =>
-    [...f(nea[0]), ...tail(nea).flatMap(f)]
 
 export const foldMap =
   <S>(A: Associative.Associative<S>) =>
@@ -338,3 +343,77 @@ export const zipWith = <A, B, C>(
   }
   return cs
 }
+
+export interface NonEmptyArrayHKT extends HKT {
+  readonly type: NonEmptyArray<this[Params.A]>
+}
+
+export const CovariantWithIndex: CI.CovariantWithIndex1<NonEmptyArrayHKT, number> = {
+  mapWithIndex: (f) => map((a, i) => f(i, a)),
+}
+
+export const Covariant: C.Covariant1<NonEmptyArrayHKT> = {
+  map,
+}
+
+export const Top: T.Top1<NonEmptyArrayHKT> = {
+  top: [[]],
+}
+
+export const AssociativeFlatten: AF.AssociativeFlatten1<NonEmptyArrayHKT> = {
+  flatten: <A>([first, ...rest]: NonEmptyArray<NonEmptyArray<A>>) => [...first, ...rest.flat(1)],
+}
+
+export const flatten = AssociativeFlatten.flatten
+
+export const flatMap = AF.flatMap<NonEmptyArrayHKT>({ ...AssociativeFlatten, ...Covariant })
+export const bind = AF.bind<NonEmptyArrayHKT>({ ...AssociativeFlatten, ...Covariant })
+
+export const AssociativeBoth = AF.makeAssociativeBoth<NonEmptyArrayHKT>({
+  ...AssociativeFlatten,
+  ...Covariant,
+})
+
+export const zipLeft = AB.zipLeft<NonEmptyArrayHKT>({ ...AssociativeBoth, ...Covariant })
+export const zipRight = AB.zipRight<NonEmptyArrayHKT>({ ...AssociativeBoth, ...Covariant })
+
+export const IdentityBoth: IB.IdentityBoth1<NonEmptyArrayHKT> = {
+  ...AssociativeBoth,
+  ...Top,
+}
+
+export const tuple = IB.tuple<NonEmptyArrayHKT>({ ...IdentityBoth, ...Covariant })
+export const struct = IB.struct<NonEmptyArrayHKT>({ ...IdentityBoth, ...Covariant })
+
+export const ForEach: FE.ForEach1<NonEmptyArrayHKT> = {
+  map,
+  forEach: <T2 extends HKT>(IBC: IB.IdentityBoth<T2> & C.Covariant<T2>) => {
+    const tuple = IB.tuple(IBC)
+
+    return <A, B>(f: (a: A) => Kind<T2, B>) =>
+      (kind: NonEmptyArray<A>): Kind<T2, NonEmptyArray<B>> =>
+        tuple(...pipe(kind, map(f)))
+  },
+}
+
+export const forEach = ForEach.forEach
+export const mapAccum = FE.mapAccum(ForEach)
+export const sequence = FE.sequence(ForEach)
+
+export const FoldMap: FM.FoldMap1<NonEmptyArrayHKT> = {
+  foldMap,
+}
+
+export const foldLeft = FM.foldLeft(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+export const reduce = FM.reduce(FoldMap)
+export const reduceAssociative = FM.reduceAssociative(FoldMap)
+export const reduceCommutative = FM.reduceCommutative(FoldMap)
+export const reduceIdentity = FM.reduceIdentity(FoldMap)
+export const reduceRight = FM.reduceRight<NonEmptyArrayHKT>({ ...FoldMap, ...ForEach })

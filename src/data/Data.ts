@@ -325,6 +325,7 @@ export const Top: T.Top1<DataHKT> = {
   top: Replete([]),
 }
 
+export const top = Top.top
 export const makeFromLazy = T.makeFromLazy<DataHKT>({ ...Top, ...Covariant })
 export const makeFromValue = T.makeFromValue<DataHKT>({ ...Top, ...Covariant })
 
@@ -344,6 +345,8 @@ export const IdentityFlatten: IF.IdentityFlatten1<DataHKT> = {
 export const Bottom: Bottom1<DataHKT> = {
   bottom: NoData,
 }
+
+export const bottom = Bottom.bottom
 
 export const AssociativeEither: AE.AssociativeEither1<DataHKT> = {
   either: (s) => (f) =>
@@ -382,6 +385,7 @@ export const ForEach: FE.ForEach1<DataHKT> = {
   },
 }
 
+export const forEach = ForEach.forEach
 export const mapAccum = FE.mapAccum(ForEach)
 export const sequence = FE.sequence(ForEach)
 

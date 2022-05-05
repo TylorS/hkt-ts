@@ -1,14 +1,18 @@
-import { HKT2, Params, Variance } from '../HKT'
+import { HKT, HKT2, Kind, Params, Variance } from '../HKT'
 import type { Associative } from '../Typeclass/Data/Associative'
 import * as AB from '../Typeclass/Effect/AssociativeBoth'
+// eslint-disable-next-line import/no-cycle
+import * as AE from '../Typeclass/Effect/AssociativeEither'
 import * as F from '../Typeclass/Effect/AssociativeFlatten'
+import { Bicovariant2 } from '../Typeclass/Effect/Bicovariant'
 import * as C from '../Typeclass/Effect/Covariant'
 // eslint-disable-next-line import/no-cycle
 import * as FM from '../Typeclass/Effect/FoldMap'
 import * as IB from '../Typeclass/Effect/IdentityBoth'
 import { Reduce2 } from '../Typeclass/Effect/Reduce'
 import * as T from '../Typeclass/Effect/Top'
-import { Lazy, identity, pipe } from '../function/function'
+import * as FE from '../Typeclass/effect/ForEach'
+import { Lazy, flow, identity, pipe } from '../function/function'
 
 import type { Maybe } from './Maybe'
 
@@ -181,6 +185,12 @@ export const flap = C.flap(Covariant)
 export const mapTo = C.mapTo(Covariant)
 export const tupled = C.tupled(Covariant)
 
+export const Bicovariant: Bicovariant2<EitherHKT> = {
+  bimap: (f, g) => match(flow(f, Left), flow(g, Right)),
+}
+
+export const bimap = Bicovariant.bimap
+
 export const flatten: <E, E2, A>(kind: Either<E, Either<E2, A>>) => Either<E | E2, A> = (either) =>
   isLeft(either) ? either : either.right
 
@@ -265,6 +275,21 @@ export const tuple = IB.tuple<EitherHKT>({ ...IdentityBoth, ...Covariant })
  */
 export const struct = IB.struct<EitherHKT>({ ...IdentityBoth, ...Covariant })
 
+export const ForEach: FE.ForEach2<EitherHKT> = {
+  map,
+  forEach: <T2 extends HKT>(IB: IB.IdentityBoth<T2> & C.Covariant<T2>) => {
+    const fromValue = T.makeFromValue(IB)
+
+    return <A, B>(f: (a: A) => Kind<T2, B>) =>
+      <E1>(kind: Either<E1, A>): Kind<T2, Either<E1, B>> =>
+        isLeft(kind) ? fromValue(kind) : pipe(kind.right, f, IB.map(Right))
+  },
+}
+
+export const forEach = ForEach.forEach
+export const sequence = FE.sequence(ForEach)
+export const mapAccum = FE.mapAccum(ForEach)
+
 export const FoldMap: FM.FoldMap2<EitherHKT> = {
   foldMap: (I) => (f) => match(() => I.id, f),
 }
@@ -293,3 +318,20 @@ export const toArray = FM.toArray(FoldMap)
 export const Reduce: Reduce2<EitherHKT> = {
   reduce,
 }
+
+export const AssociativeEither: AE.AssociativeEither2<EitherHKT> = {
+  either:
+    <E, B>(s: Either<E, B>) =>
+    <A>(f: Either<E, A>): Either<E, Either<A, B>> =>
+      isLeft(f)
+        ? pipe(
+            s,
+            map((b: B) => Right(b)),
+          )
+        : pipe(
+            f as Either<E, A>,
+            map((a: A) => Left(a)),
+          ),
+}
+
+export const either = AssociativeEither.either

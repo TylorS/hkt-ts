@@ -10,6 +10,7 @@ import * as Commutative from '../Typeclass/Data/Commutative'
 import { Concat } from '../Typeclass/Data/Concat'
 import { Eq } from '../Typeclass/Data/Eq'
 import { Identity } from '../Typeclass/Data/Identity'
+import { Inverse } from '../Typeclass/Data/Inverse'
 import { Ord } from '../Typeclass/Data/Ord'
 import * as AB from '../Typeclass/Effect/AssociativeBoth'
 import { Bounded } from '../Typeclass/Effect/Bounded'
@@ -65,6 +66,8 @@ export const Branded = <A extends Branded<any, any>>() => {
   constructor_.makeCommutative = (
     A: Commutative.Commutative<ValueOf<A>>,
   ): Commutative.Commutative<A> => unsafeCoerce(A)
+
+  constructor_.makeInverse = (A: Inverse<ValueOf<A>>): Inverse<A> => unsafeCoerce(A)
 
   return constructor_
 }

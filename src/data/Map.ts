@@ -1,14 +1,28 @@
-import { HKT2, Params } from '../HKT'
+import { HKT, HKT2, Kind, Params } from '../HKT'
 import { Associative } from '../Typeclass/Data/Associative'
 import { Concat } from '../Typeclass/Data/Concat'
 import { Debug } from '../Typeclass/Data/Debug'
 import { Eq, fromEquals } from '../Typeclass/Data/Eq'
 import { Identity } from '../Typeclass/Data/Identity'
 import { Ord } from '../Typeclass/Data/Ord'
+import * as AE from '../Typeclass/Effect/AssociativeEither'
+import { Bicovariant2 } from '../Typeclass/Effect/Bicovariant'
+import { Bottom2 } from '../Typeclass/Effect/Bottom'
+import { Compact2 } from '../Typeclass/Effect/Compact'
+import { Compactable2 } from '../Typeclass/Effect/Compactable'
+import * as FilterM from '../Typeclass/Effect/FilterMap'
+import * as FE from '../Typeclass/Effect/ForEach'
+import * as IB from '../Typeclass/Effect/IdentityBoth'
+import * as IE from '../Typeclass/Effect/IdentityEither'
+import * as PM from '../Typeclass/Effect/PartitionMap'
+import { Separate2 } from '../Typeclass/Effect/Separate'
+import { makeFromValue } from '../Typeclass/Effect/Top'
+import * as C from '../Typeclass/effect/Covariant'
 import { Predicate } from '../function/Predicate'
 import { Refinement } from '../function/Refinement'
 import { flow, pipe } from '../function/function'
 
+import { Either, Left, Right, isLeft } from './Either'
 import * as M from './Maybe'
 
 import Maybe = M.Maybe
@@ -48,6 +62,11 @@ export const size = <K, A>(m: ReadonlyMap<K, A>): number => m.size
  * Test whether or not a map is empty
  */
 export const isEmpty = <K, A>(m: ReadonlyMap<K, A>): boolean => m.size === 0
+
+/**
+ * Test whether or not a map is non-empty
+ */
+export const isNonEmpty = <K, A>(m: ReadonlyMap<K, A>): boolean => m.size > 0
 
 /**
  * Test whether or not a key exists in a map
@@ -479,7 +498,7 @@ export const reduce = <K>(
 
 export const foldMap = <K>(
   O: Ord<K>,
-): (<M>(M: Associative<M> & Identity<M>) => <A>(f: (a: A) => M) => (m: ReadonlyMap<K, A>) => M) => {
+): (<M>(M: Identity<M>) => <A>(f: (a: A) => M) => (m: ReadonlyMap<K, A>) => M) => {
   const foldMapWithIndexO = foldMapWithIndex(O)
 
   return (M) => {
@@ -663,3 +682,110 @@ export const difference = <K>(
 export interface MapHKT extends HKT2 {
   readonly type: ReadonlyMap<this[Params.E], this[Params.A]>
 }
+
+export const Covariant: C.Covariant2<MapHKT> = {
+  map,
+}
+
+export const bindTo = C.bindTo(Covariant)
+export const flap = C.flap(Covariant)
+export const mapTo = C.mapTo(Covariant)
+export const tupled = C.tupled(Covariant)
+
+export const AssociativeEither: AE.AssociativeEither2<MapHKT> = {
+  either: (s) => (f) => isEmpty(f) ? pipe(s, map(Right)) : pipe(f, map(Left)),
+}
+
+export const either = AssociativeEither.either
+export const orElse = AE.orElse<MapHKT>({ ...AssociativeEither, ...Covariant })
+
+export const Bicovariant: Bicovariant2<MapHKT> = {
+  bimap: (f, g) => (kind) => new Map(Array.from(kind).map(([k, v]) => [f(k), g(v)])),
+}
+
+export const bimap = Bicovariant.bimap
+
+export const Bottom: Bottom2<MapHKT> = {
+  bottom: empty,
+}
+
+export const IdentityEither: IE.IdentityEither2<MapHKT> = {
+  ...AssociativeEither,
+  ...Bottom,
+}
+
+export const Compact: Compact2<MapHKT> = {
+  compact,
+}
+
+export const Separate: Separate2<MapHKT> = {
+  separate: <K, A, B>(kind: ReadonlyMap<K, Either<A, B>>) => {
+    const lefts = new Map<K, A>()
+    const rights = new Map<K, B>()
+
+    for (const [k, either] of kind) {
+      if (isLeft(either)) {
+        lefts.set(k, either.left)
+      } else {
+        rights.set(k, either.right)
+      }
+    }
+
+    return [lefts, rights]
+  },
+}
+
+export const separate = Separate.separate
+
+export const Compactable: Compactable2<MapHKT> = {
+  compact,
+  separate,
+}
+
+export const FilterMap: FilterM.FilterMap2<MapHKT> = {
+  filterMap,
+}
+
+export const ForEach: FE.ForEach2<MapHKT> = {
+  map,
+  forEach: <T2 extends HKT>(IBC: IB.IdentityBoth<T2> & C.Covariant<T2>) => {
+    const fromValue = makeFromValue(IBC)
+    const tuple = IB.tuple(IBC)
+
+    return <A, B>(f: (a: A) => Kind<T2, B>) =>
+      <E1>(kind: ReadonlyMap<E1, A>): Kind<T2, ReadonlyMap<E1, B>> =>
+        isEmpty(kind)
+          ? fromValue(empty)
+          : pipe(
+              kind,
+              map(f),
+              (x) =>
+                Array.from(x.entries()).map(([k, kind]) =>
+                  pipe(
+                    kind,
+                    IBC.map((a) => new Map([[k, a]])),
+                  ),
+                ),
+              (x) => tuple(...x),
+              IBC.map((maps) => {
+                const output = new Map()
+
+                for (const map of maps) {
+                  map.forEach((b, k) => output.set(k, b))
+                }
+
+                return output
+              }),
+            )
+  },
+}
+
+export const forEach = ForEach.forEach
+export const sequence = FE.sequence(ForEach)
+export const mapAccum = FE.mapAccum(ForEach)
+
+export const PartitionMap: PM.PartitionMap2<MapHKT> = {
+  partitionMap: (f) => flow(map(f), separate),
+}
+
+export const partitionMap = PartitionMap.partitionMap
