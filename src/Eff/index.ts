@@ -1,5 +1,3 @@
-export * as Async from './Async'
-export * as Disposable from './Disposable'
 export * as Eff from './Eff'
 export * as Fail from './Fail'
 export * as OptionalFail from './OptionalFail'

@@ -1,3 +1,5 @@
+import { Equals } from 'ts-toolbelt/out/Any/Equals'
+
 import { Either, Left, Right, isLeft } from '../Data/Either'
 
 import * as Eff from './Eff'
@@ -5,7 +7,9 @@ import * as Eff from './Eff'
 export interface Fail<E, A> extends Eff.Eff<FailInstruction<E>, A> {}
 
 export type FailureOf<T> = [Eff.Extract<T, FailInstruction<any>>] extends [FailInstruction<infer E>]
-  ? E
+  ? Equals<E, unknown> extends 1
+    ? never
+    : E
   : never
 
 export class FailInstruction<E> extends Eff.instr('Fail')<E, never> {}
