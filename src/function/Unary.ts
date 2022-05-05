@@ -1,8 +1,8 @@
 import { HKT2, Params } from '../HKT'
-import * as t from '../typeclasses'
-import { Bottom2 } from '../typeclasses/effect/Bottom'
-import { Covariant2 } from '../typeclasses/effect/Covariant'
-import { Top2 } from '../typeclasses/effect/Top'
+import * as t from '../Typeclass'
+import { Bottom2 } from '../Typeclass/effect/Bottom'
+import { Covariant2 } from '../Typeclass/effect/Covariant'
+import { Top2 } from '../Typeclass/effect/Top'
 
 import { absurd, flow, identity } from './function'
 
@@ -34,11 +34,6 @@ export const AssociativeCompose: t.AssociativeCompose.AssociativeCompose2<UnaryH
 
 export const AssociativeFlatten: t.AssociativeFlatten.AssociativeFlatten2<UnaryHKT> = {
   flatten: (f) => (e) => f(e)(e),
-}
-
-export const Category: t.Category.Category2<UnaryHKT> = {
-  ...AssociativeCompose,
-  id: () => identity,
 }
 
 export const Divariant: t.Divariant.Divariant2<UnaryHKT> = {

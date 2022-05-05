@@ -1,3 +1,14 @@
+import * as Either from '../../Data/Either'
+// eslint-disable-next-line import/no-cycle
+import { Just, Maybe, Nothing, makeFirstAssociative } from '../../Data/Maybe'
+// eslint-disable-next-line import/no-cycle
+import * as M from '../../Data/Maybe'
+import { NonEmptyArray } from '../../Data/NonEmptyArray'
+import { makeIdentity, snd } from '../../Data/Tuple'
+import * as B from '../../Data/boolean'
+import * as N from '../../Data/number'
+import { run } from '../../Eff/Eff'
+import * as State from '../../Eff/State'
 import {
   HKT,
   HKT10,
@@ -20,17 +31,6 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import * as Either from '../../data/Either'
-// eslint-disable-next-line import/no-cycle
-import { Just, Maybe, Nothing, makeFirstAssociative } from '../../data/Maybe'
-// eslint-disable-next-line import/no-cycle
-import * as M from '../../data/Maybe'
-import { NonEmptyArray } from '../../data/NonEmptyArray'
-import { makeIdentity, snd } from '../../data/Tuple'
-import * as B from '../../data/boolean'
-import * as N from '../../data/number'
-import { run } from '../../effects/Eff'
-import * as State from '../../effects/State'
 import { not } from '../../function/Predicate'
 import { constFalse, flow, pipe } from '../../function/function'
 import * as A from '../concrete/Associative'

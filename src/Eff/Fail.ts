@@ -1,4 +1,4 @@
-import { Either, Left, Right, isLeft } from '../data/Either'
+import { Either, Left, Right, isLeft } from '../Data/Either'
 
 import * as Eff from './Eff'
 

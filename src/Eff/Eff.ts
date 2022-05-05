@@ -1,16 +1,18 @@
 import { Cast } from 'ts-toolbelt/out/Any/Cast'
 
+import { lookup } from '../Data/Map'
+import { Just, Maybe, Nothing, isJust, isNothing } from '../Data/Maybe'
 import { HKT2, Params } from '../HKT'
+import { Associative } from '../Typeclass/concrete/Associative'
+import { Eq } from '../Typeclass/concrete/Eq'
+import { Identity } from '../Typeclass/concrete/Identity'
+import * as AB from '../Typeclass/effect/AssociativeBoth'
+import { AssociativeFlatten2 } from '../Typeclass/effect/AssociativeFlatten'
+import * as C from '../Typeclass/effect/Covariant'
+import * as IB from '../Typeclass/effect/IdentityBoth'
+import * as T from '../Typeclass/effect/Top'
 import { Include } from '../common'
-import { lookup } from '../data/Map'
-import { Just, Maybe, Nothing, isJust, isNothing } from '../data/Maybe'
 import { Lazy, Unary, identity, pipe } from '../function/function'
-import { Associative } from '../typeclasses/concrete/Associative'
-import { Eq } from '../typeclasses/concrete/Eq'
-import { Identity } from '../typeclasses/concrete/Identity'
-import * as AB from '../typeclasses/effect/AssociativeBoth'
-import { AssociativeFlatten2 } from '../typeclasses/effect/AssociativeFlatten'
-import { Covariant2 } from '../typeclasses/effect/Covariant'
 
 /**
  * Eff is a lightweight abstraction which preserves referential transparency of
@@ -332,9 +334,14 @@ export interface EffHKT extends HKT2 {
   readonly type: Eff<Cast<this[Params.E], AnyTagged>, this[Params.A]>
 }
 
-export const Covariant: Covariant2<EffHKT> = {
+export const Covariant: C.Covariant2<EffHKT> = {
   map,
 }
+
+export const bindTo = C.bindTo(Covariant)
+export const flap = C.flap(Covariant)
+export const mapTo = C.mapTo(Covariant)
+export const tupled = C.tupled(Covariant)
 
 export const AssociativeBoth: AB.AssociativeBoth2<EffHKT> = {
   both: (s) => (f) =>
@@ -347,8 +354,19 @@ export const AssociativeBoth: AB.AssociativeBoth2<EffHKT> = {
 }
 
 export const both = AssociativeBoth.both
-export const tuple = AB.tuple<EffHKT>({ ...AssociativeBoth, ...Covariant })
 
 export const AssociativeFlatten: AssociativeFlatten2<EffHKT> = {
   flatten,
 }
+
+export const Top: T.Top2<EffHKT> = {
+  top: of([]),
+}
+
+export const IdentityBoth: IB.IdentityBoth2<EffHKT> = {
+  ...AssociativeBoth,
+  ...Top,
+}
+
+export const tuple = IB.tuple<EffHKT>({ ...IdentityBoth, ...Covariant })
+export const struct = IB.struct<EffHKT>({ ...IdentityBoth, ...Covariant })

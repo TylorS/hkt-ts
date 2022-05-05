@@ -1,5 +1,5 @@
-import { Associative } from '../typeclasses/concrete/Associative'
-import { Identity } from '../typeclasses/concrete/Identity'
+import { Associative } from '../Typeclass/concrete/Associative'
+import { Identity } from '../Typeclass/concrete/Identity'
 
 import { constFalse, flow, pipe } from './function'
 

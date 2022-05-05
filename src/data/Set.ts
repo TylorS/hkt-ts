@@ -1,5 +1,5 @@
 import { HKT, Params } from '../HKT'
-import * as C from '../typeclasses/effect/Covariant'
+import * as C from '../Typeclass/effect/Covariant'
 
 export interface SetHKT extends HKT {
   readonly type: ReadonlySet<this[Params.A]>

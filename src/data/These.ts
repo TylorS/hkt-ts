@@ -1,5 +1,5 @@
+import { Associative } from '../Typeclass/concrete/Associative'
 import { constFalse, constTrue, flow, pipe } from '../function/function'
-import { Associative } from '../typeclasses/concrete/Associative'
 
 import * as Either from './Either'
 import { NonEmptyArray } from './NonEmptyArray'

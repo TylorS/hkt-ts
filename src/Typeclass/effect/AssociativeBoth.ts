@@ -1,3 +1,4 @@
+import type { NonEmptyArray } from '../../Data/NonEmptyArray'
 import {
   DefaultOf,
   HKT,
@@ -23,7 +24,6 @@ import {
   ParamOf,
   Params,
 } from '../../HKT'
-import type { NonEmptyArray } from '../../data/NonEmptyArray'
 import { flow, pipe } from '../../function/function'
 
 import type {

@@ -1,10 +1,10 @@
+import * as A from '../Typeclass/concrete/Associative'
+import * as Sh from '../Typeclass/concrete/Debug'
+import * as E from '../Typeclass/concrete/Eq'
+import * as I from '../Typeclass/concrete/Identity'
+import * as O from '../Typeclass/concrete/Ord'
 import { Refinement } from '../function/Refinement'
 import { pipe } from '../function/function'
-import * as A from '../typeclasses/concrete/Associative'
-import * as Sh from '../typeclasses/concrete/Debug'
-import * as E from '../typeclasses/concrete/Eq'
-import * as I from '../typeclasses/concrete/Identity'
-import * as O from '../typeclasses/concrete/Ord'
 
 import { NonEmptyArray, isNonEmpty } from './NonEmptyArray'
 

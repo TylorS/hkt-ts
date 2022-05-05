@@ -1,7 +1,7 @@
+import { Debug } from '../Typeclass/concrete/Debug'
+import { Eq } from '../Typeclass/concrete/Eq'
+import { Ord, tuple } from '../Typeclass/concrete/Ord'
 import { pipe } from '../function/function'
-import { Debug } from '../typeclasses/concrete/Debug'
-import { Eq } from '../typeclasses/concrete/Eq'
-import { Ord, tuple } from '../typeclasses/concrete/Ord'
 
 import { sort } from './Array'
 import { Just, Maybe, Nothing, isNothing } from './Maybe'

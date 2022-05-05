@@ -1,3 +1,4 @@
+import { Either, toUnion } from '../../Data/Either'
 import {
   HKT,
   HKT10,
@@ -20,7 +21,6 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { Either, toUnion } from '../../data/Either'
 import { flow, pipe } from '../../function/function'
 
 import {

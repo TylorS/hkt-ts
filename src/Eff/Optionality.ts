@@ -1,4 +1,4 @@
-import * as Maybe from '../data/Maybe'
+import * as Maybe from '../Data/Maybe'
 import { flow } from '../function/function'
 
 import * as Eff from './Eff'

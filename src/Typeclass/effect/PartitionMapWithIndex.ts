@@ -1,3 +1,4 @@
+import { Either } from '../../Data/Either'
 import {
   HKT,
   HKT10,
@@ -20,7 +21,6 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { Either } from '../../data/Either'
 
 /* #region  Typeclass */
 export interface PartitionMapWithIndex<T extends HKT, K> {

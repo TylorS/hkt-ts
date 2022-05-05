@@ -1,3 +1,4 @@
+import { Maybe } from '../../Data/Maybe'
 import {
   HKT,
   HKT10,
@@ -20,7 +21,6 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { Maybe } from '../../data/Maybe'
 
 export interface FilterMapWithIndex<T extends HKT, K> {
   readonly filterMapWithIndex: <A, B>(

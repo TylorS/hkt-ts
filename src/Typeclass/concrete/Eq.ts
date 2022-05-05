@@ -1,8 +1,8 @@
 import EQ from 'fast-deep-equal'
 
+import * as E from '../../Data/Either'
 import { HKT, Params } from '../../HKT'
 import { Include } from '../../common'
-import * as E from '../../data/Either'
 import { constFalse, constTrue, pipe } from '../../function/function'
 import * as AB from '../effect/AssociativeBoth'
 import * as AE from '../effect/AssociativeEither'

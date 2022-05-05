@@ -1,7 +1,6 @@
+import * as Either from '../../Data/Either'
 import { HKT, Params } from '../../HKT'
-import * as Either from '../../data/Either'
 import { constant, pipe } from '../../function/function'
-import type { Identity } from '../../typeclasses/concrete/Identity'
 import * as AB from '../effect/AssociativeBoth'
 import * as AE from '../effect/AssociativeEither'
 import { Bottom1 } from '../effect/Bottom'
@@ -12,6 +11,7 @@ import { Top1 } from '../effect/Top'
 
 import type { Associative } from './Associative'
 import type { Eq } from './Eq'
+import type { Identity } from './Identity'
 
 export interface Ord<A> extends Eq<A> {
   readonly compare: (first: A, second: A) => Ordering

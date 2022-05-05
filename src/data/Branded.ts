@@ -5,17 +5,17 @@
 import { M as B } from 'ts-toolbelt'
 
 import { Constrain, HKT2, Params, Variance } from '../HKT'
+import * as Associative from '../Typeclass/concrete/Associative'
+import * as Commutative from '../Typeclass/concrete/Commutative'
+import { Concat } from '../Typeclass/concrete/Concat'
+import { Eq } from '../Typeclass/concrete/Eq'
+import { Identity } from '../Typeclass/concrete/Identity'
+import { Ord } from '../Typeclass/concrete/Ord'
+import * as AB from '../Typeclass/effect/AssociativeBoth'
+import { Bounded } from '../Typeclass/effect/Bounded'
+import * as C from '../Typeclass/effect/Covariant'
+import * as T from '../Typeclass/effect/Top'
 import { unsafeCoerce } from '../function/function'
-import * as Associative from '../typeclasses/concrete/Associative'
-import * as Commutative from '../typeclasses/concrete/Commutative'
-import { Concat } from '../typeclasses/concrete/Concat'
-import { Eq } from '../typeclasses/concrete/Eq'
-import { Identity } from '../typeclasses/concrete/Identity'
-import { Ord } from '../typeclasses/concrete/Ord'
-import * as AB from '../typeclasses/effect/AssociativeBoth'
-import { Bounded } from '../typeclasses/effect/Bounded'
-import * as C from '../typeclasses/effect/Covariant'
-import * as T from '../typeclasses/effect/Top'
 
 export const BRAND = Symbol('@hkt-ts/Brand')
 export type BRAND = typeof BRAND

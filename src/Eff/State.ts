@@ -1,11 +1,11 @@
 import { HKT2, Params } from '../HKT'
+import { Associative } from '../Typeclass/concrete/Associative'
+import { Identity } from '../Typeclass/concrete/Identity'
+import { AssociativeBoth2 } from '../Typeclass/effect/AssociativeBoth'
+import { AssociativeFlatten2 } from '../Typeclass/effect/AssociativeFlatten'
+import { Covariant2 } from '../Typeclass/effect/Covariant'
+import { IdentityBoth2 } from '../Typeclass/effect/IdentityBoth'
 import { Lazy } from '../function/function'
-import { Associative } from '../typeclasses/concrete/Associative'
-import { Identity } from '../typeclasses/concrete/Identity'
-import { AssociativeBoth2 } from '../typeclasses/effect/AssociativeBoth'
-import { AssociativeFlatten2 } from '../typeclasses/effect/AssociativeFlatten'
-import { Covariant2 } from '../typeclasses/effect/Covariant'
-import { IdentityBoth2 } from '../typeclasses/effect/IdentityBoth'
 
 import * as Eff from './Eff'
 

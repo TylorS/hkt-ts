@@ -1,3 +1,5 @@
+import { run } from '../../Eff/Eff'
+import * as S from '../../Eff/State'
 import {
   HKT,
   HKT10,
@@ -20,8 +22,6 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { run } from '../../effects/Eff'
-import * as S from '../../effects/State'
 import { flow, identity } from '../../function/function'
 
 import {

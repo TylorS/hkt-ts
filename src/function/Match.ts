@@ -1,4 +1,4 @@
-import * as M from '../data/Maybe'
+import * as M from '../Data/Maybe'
 
 import { flow, pipe, unsafeCoerce } from './function'
 

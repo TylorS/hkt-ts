@@ -1,3 +1,4 @@
+import { Just, Maybe, Nothing } from '../../Data/Maybe'
 import {
   HKT,
   HKT10,
@@ -20,7 +21,6 @@ import {
   Kind8,
   Kind9,
 } from '../../HKT'
-import { Just, Maybe, Nothing } from '../../data/Maybe'
 import { Predicate } from '../../function/Predicate'
 import { Refinement } from '../../function/Refinement'
 import { identity } from '../../function/function'

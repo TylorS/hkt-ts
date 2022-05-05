@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { pipe } from '../../src'
-import * as Eff from '../../src/effects/Eff'
+import * as Eff from '../../src/Eff/Eff'
 
 import {
   ArrayNode,

@@ -1,8 +1,8 @@
+import { Left, Right } from '../Data/Either'
+import { isNonEmpty } from '../Data/NonEmptyArray'
+import { Both, These } from '../Data/These'
+import { Associative } from '../Typeclass/concrete/Associative'
 import { Include } from '../common'
-import { Left, Right } from '../data/Either'
-import { isNonEmpty } from '../data/NonEmptyArray'
-import { Both, These } from '../data/These'
-import { Associative } from '../typeclasses/concrete/Associative'
 
 import * as Eff from './Eff'
 import { FailInstruction } from './Fail'
