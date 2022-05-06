@@ -8,10 +8,10 @@ import { Bicovariant2 } from '../Typeclass/Effect/Bicovariant'
 import * as C from '../Typeclass/Effect/Covariant'
 // eslint-disable-next-line import/no-cycle
 import * as FM from '../Typeclass/Effect/FoldMap'
+import * as FE from '../Typeclass/Effect/ForEach'
 import * as IB from '../Typeclass/Effect/IdentityBoth'
 import { Reduce2 } from '../Typeclass/Effect/Reduce'
 import * as T from '../Typeclass/Effect/Top'
-import * as FE from '../Typeclass/effect/ForEach'
 import { Lazy, flow, identity, pipe } from '../function/function'
 
 import type { Maybe } from './Maybe'

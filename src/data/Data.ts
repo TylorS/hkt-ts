@@ -326,8 +326,8 @@ export const Top: T.Top1<DataHKT> = {
 }
 
 export const top = Top.top
-export const makeFromLazy = T.makeFromLazy<DataHKT>({ ...Top, ...Covariant })
-export const makeFromValue = T.makeFromValue<DataHKT>({ ...Top, ...Covariant })
+export const fromLazy = T.makeFromLazy<DataHKT>({ ...Top, ...Covariant })
+export const fromValue = T.makeFromValue<DataHKT>({ ...Top, ...Covariant })
 
 export const IdentityBoth: IB.IdentityBoth1<DataHKT> = {
   ...AssociativeBoth,
