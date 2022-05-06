@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { Either, toUnion } from '../../Data/Either'
 import {
   HKT,

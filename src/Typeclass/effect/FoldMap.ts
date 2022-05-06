@@ -2,7 +2,7 @@
 import * as Either from '../../Data/Either'
 // eslint-disable-next-line import/no-cycle
 import * as M from '../../Data/Maybe'
-import { NonEmptyArray } from '../../Data/NonEmptyArray'
+import type { NonEmptyArray } from '../../Data/NonEmptyArray'
 import { makeIdentity, snd } from '../../Data/Tuple'
 import * as B from '../../Data/boolean'
 import * as N from '../../Data/number'
