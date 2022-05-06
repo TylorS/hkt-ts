@@ -1,8 +1,5 @@
 import { A, U } from 'ts-toolbelt'
 
-import { Eff } from '../../src'
-import { pipe } from '../../src/function'
-
 import {
   AST,
   Dynamic,
@@ -59,107 +56,99 @@ export function defaultVisitors(): Visitors {
   }
 }
 
-export function walkAst(node: AST, visitors: Visitors) {
-  return pipe(walkAstSafe(node, visitors), Eff.run)
-}
+export function walkAst(node: AST, visitors: Visitors): void {
+  switch (node.tag) {
+    case Interface.tag: {
+      visitors.Interface(node)
 
-function walkAstSafe(node: AST, visitors: Visitors): Eff.Eff<never, void> {
-  const run = Eff.Eff(function* () {
-    switch (node.tag) {
-      case Interface.tag: {
-        yield* Eff.fromLazy(() => visitors.Interface(node))
-
-        for (const param of node.typeParams) {
-          yield* walkAstSafe(param, visitors)
-        }
-
-        for (const e of node.extensions) {
-          yield* walkAstSafe(e, visitors)
-        }
-
-        for (const p of node.properties) {
-          yield* walkAstSafe(p, visitors)
-        }
-
-        break
+      for (const param of node.typeParams) {
+        walkAst(param, visitors)
       }
-      case FunctionSignature.tag: {
-        yield* Eff.fromLazy(() => visitors.FunctionSignature(node))
 
-        for (const param of node.typeParams) {
-          yield* walkAstSafe(param, visitors)
-        }
-
-        for (const p of node.functionParams) {
-          yield* walkAstSafe(p, visitors)
-        }
-
-        yield* walkAstSafe(node.returnSignature, visitors)
-
-        break
+      for (const e of node.extensions) {
+        walkAst(e, visitors)
       }
-      case HKTParam.tag:
-        return yield* Eff.fromLazy(() => visitors.HKTParam(node))
-      case HKTPlaceholder.tag:
-        return yield* Eff.fromLazy(() => visitors.HKTPlaceholder(node))
-      case Kind.tag: {
-        yield* Eff.fromLazy(() => visitors.Kind(node))
 
-        for (const param of node.kindParams) {
-          yield* walkAstSafe(param, visitors)
-        }
-
-        break
+      for (const p of node.properties) {
+        walkAst(p, visitors)
       }
-      case Labeled.tag: {
-        yield* Eff.fromLazy(() => visitors.Labeled(node))
 
-        return yield* walkAstSafe(node.param, visitors)
-      }
-      case Static.tag:
-        return yield* Eff.fromLazy(() => visitors.Static(node))
-      case Dynamic.tag: {
-        yield* Eff.fromLazy(() => visitors.Dynamic(node))
-
-        for (const param of node.params) {
-          yield* walkAstSafe(param, visitors)
-        }
-
-        break
-      }
-      case Tuple.tag: {
-        yield* Eff.fromLazy(() => visitors.Tuple(node))
-
-        for (const param of node.members) {
-          yield* walkAstSafe(param, visitors)
-        }
-
-        break
-      }
-      case ObjectNode.tag: {
-        yield* Eff.fromLazy(() => visitors.Object(node))
-
-        for (const param of node.properties) {
-          yield* walkAstSafe(param, visitors)
-        }
-
-        break
-      }
-      case TypeAlias.tag: {
-        yield* Eff.fromLazy(() => visitors.TypeAlias(node))
-
-        for (const param of node.typeParams) {
-          yield* walkAstSafe(param, visitors)
-        }
-
-        return yield* walkAstSafe(node.signature, visitors)
-      }
-      case Typeclass.tag:
-        return yield* Eff.fromLazy(() => visitors.Typeclass(node))
+      break
     }
-  })
+    case FunctionSignature.tag: {
+      visitors.FunctionSignature(node)
 
-  return run
+      for (const param of node.typeParams) {
+        walkAst(param, visitors)
+      }
+
+      for (const p of node.functionParams) {
+        walkAst(p, visitors)
+      }
+
+      walkAst(node.returnSignature, visitors)
+
+      break
+    }
+    case HKTParam.tag:
+      return visitors.HKTParam(node)
+    case HKTPlaceholder.tag:
+      return visitors.HKTPlaceholder(node)
+    case Kind.tag: {
+      visitors.Kind(node)
+
+      for (const param of node.kindParams) {
+        walkAst(param, visitors)
+      }
+
+      break
+    }
+    case Labeled.tag: {
+      visitors.Labeled(node)
+
+      return walkAst(node.param, visitors)
+    }
+    case Static.tag:
+      return visitors.Static(node)
+    case Dynamic.tag: {
+      visitors.Dynamic(node)
+
+      for (const param of node.params) {
+        walkAst(param, visitors)
+      }
+
+      break
+    }
+    case Tuple.tag: {
+      visitors.Tuple(node)
+
+      for (const param of node.members) {
+        walkAst(param, visitors)
+      }
+
+      break
+    }
+    case ObjectNode.tag: {
+      visitors.Object(node)
+
+      for (const param of node.properties) {
+        walkAst(param, visitors)
+      }
+
+      break
+    }
+    case TypeAlias.tag: {
+      visitors.TypeAlias(node)
+
+      for (const param of node.typeParams) {
+        walkAst(param, visitors)
+      }
+
+      return walkAst(node.signature, visitors)
+    }
+    case Typeclass.tag:
+      return visitors.Typeclass(node)
+  }
 }
 
 export function findAllHKTParams(node: ParentNode): readonly HKTParam[] {

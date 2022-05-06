@@ -3,11 +3,9 @@ import { join } from 'path'
 import { format } from 'prettier'
 import yargs from 'yargs'
 
-import { Eff, pipe } from '../../src'
-
 import { ParentNode } from './AST'
-import { generateOverloadsSafe } from './generateOverloads'
-import { printOverloadSafe } from './printOverload'
+import { generateOverloads } from './generateOverloads'
+import { printOverload } from './printOverload'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const prettierConfig = require('../../.prettierrc.js')
@@ -61,19 +59,11 @@ async function main() {
 
   console.log('Generating overloads...')
 
-  const main = Eff.Eff(function* () {
-    const overloads = yield* generateOverloadsSafe(node)
-    const printed = yield* pipe(
-      overloads,
-      Eff.fromIterable(([overload, context]) => printOverloadSafe(overload, context)),
-    )
+  const printed = generateOverloads(node).map(([overload, context]) =>
+    printOverload(overload, context),
+  )
 
-    const source = (noImports ? '' : HKT_IMPORTS + '\n\n') + printed.join('\n\n')
-
-    return source
-  })
-
-  const input = pipe(main, Eff.run)
+  const input = (noImports ? '' : HKT_IMPORTS + '\n\n') + printed.join('\n\n')
   const output = format(input, prettierConfig) + '\n'
 
   console.log(output + '\n')

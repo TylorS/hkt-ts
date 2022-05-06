@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { Params } from '../../src/HKT'
-import { DeepEquals } from '../../src/Typeclass/Data/Eq'
+import { DeepEquals } from '../../src/Typeclass/Eq'
 
 export const possibleLengths: ReadonlyArray<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 export type PossibleLength = typeof possibleLengths[number]

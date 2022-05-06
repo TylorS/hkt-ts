@@ -1,7 +1,0 @@
-export * as Endomorphism from './Endomorphism'
-export * as Match from './Match'
-export * as Predicate from './Predicate'
-export * as Refinement from './Refinement'
-export * as Unary from './Unary'
-export * from './function'
-export * from './logical'

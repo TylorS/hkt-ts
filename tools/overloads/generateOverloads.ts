@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { pipe } from '../../src'
-import * as Eff from '../../src/Eff/Eff'
 
 import {
   ArrayNode,
@@ -34,25 +33,19 @@ const emptyContext = (node: ParentNode): Context => ({
   existing: new Map(),
 })
 
-export function generateOverloads(ast: ParentNode) {
-  return pipe(ast, generateOverloadsSafe, Eff.run)
-}
-
-export function generateOverloadsSafe(
+export function generateOverloads(
   ast: ParentNode | Labeled<ParentNode>,
-): Eff.Eff<never, ReadonlyArray<readonly [ParentNode, Context]>> {
-  return Eff.Eff(function* () {
-    switch (ast.tag) {
-      case FunctionSignature.tag:
-        return (yield* generateFunctionSignatureOverloads(ast)).reverse()
-      case Interface.tag:
-        return yield* generateInterfaceOverloads(ast)
-      case TypeAlias.tag:
-        return yield* generateTypeAliasOverloads(ast)
-      case Labeled.tag:
-        return yield* generateOverloadsSafe(ast.param)
-    }
-  })
+): ReadonlyArray<readonly [ParentNode, Context]> {
+  switch (ast.tag) {
+    case FunctionSignature.tag:
+      return generateFunctionSignatureOverloads(ast).reverse()
+    case Interface.tag:
+      return generateInterfaceOverloads(ast)
+    case TypeAlias.tag:
+      return generateTypeAliasOverloads(ast)
+    case Labeled.tag:
+      return generateOverloads(ast.param)
+  }
 }
 
 export function generateFunctionSignatureOverloads(
@@ -61,100 +54,90 @@ export function generateFunctionSignatureOverloads(
 ) {
   const possiblilties = findPossibilities(signature)
 
-  return Eff.Eff(function* () {
-    const output: Array<readonly [FunctionSignature, Context]> = []
+  const output: Array<readonly [FunctionSignature, Context]> = []
 
-    for (const possiblilty of possiblilties) {
-      const built = buildContext(signature, possiblilty)
-      const context = initialContext ? mergeContexts(initialContext, built) : built
+  for (const possiblilty of possiblilties) {
+    const built = buildContext(signature, possiblilty)
+    const context = initialContext ? mergeContexts(initialContext, built) : built
 
-      output.push([yield* generateFunctionSignature(signature, context), context])
-    }
+    output.push([generateFunctionSignature(signature, context), context])
+  }
 
-    if (possiblilties.length === 0) {
-      const context: Context = initialContext ?? emptyContext(signature)
+  if (possiblilties.length === 0) {
+    const context: Context = initialContext ?? emptyContext(signature)
 
-      output.push([yield* generateFunctionSignature(signature, context), context])
-    }
+    output.push([generateFunctionSignature(signature, context), context])
+  }
 
-    return output
-  })
+  return output
 }
 
 export function generateInterfaceOverloads(node: Interface) {
   const possiblilties = findPossibilities(node)
 
-  return Eff.Eff(function* () {
-    const output: Array<readonly [Interface, Context]> = []
+  const output: Array<readonly [Interface, Context]> = []
 
-    for (const possiblilty of possiblilties) {
-      const context = buildContext(node, possiblilty)
+  for (const possiblilty of possiblilties) {
+    const context = buildContext(node, possiblilty)
 
-      output.push([yield* generateInterface(node, context), context])
-    }
+    output.push([generateInterface(node, context), context])
+  }
 
-    if (possiblilties.length === 0) {
-      const context: Context = emptyContext(node)
+  if (possiblilties.length === 0) {
+    const context: Context = emptyContext(node)
 
-      output.push([yield* generateInterface(node, context), context])
-    }
+    output.push([generateInterface(node, context), context])
+  }
 
-    return output
-  })
+  return output
 }
 
 export function generateTypeAliasOverloads(node: TypeAlias) {
   const possiblilties = findPossibilities(node)
 
-  return Eff.Eff(function* () {
-    const output: Array<readonly [TypeAlias, Context]> = []
+  const output: Array<readonly [TypeAlias, Context]> = []
 
-    for (const possiblilty of possiblilties) {
-      const context = buildContext(node, possiblilty)
+  for (const possiblilty of possiblilties) {
+    const context = buildContext(node, possiblilty)
 
-      output.push([yield* generateTypeAlias(node, context), context])
-    }
+    output.push([generateTypeAlias(node, context), context])
+  }
 
-    if (possiblilties.length === 0) {
-      const context: Context = emptyContext(node)
+  if (possiblilties.length === 0) {
+    const context: Context = emptyContext(node)
 
-      output.push([yield* generateTypeAlias(node, context), context])
-    }
+    output.push([generateTypeAlias(node, context), context])
+  }
 
-    return output
-  })
+  return output
 }
 
 export function generateFunctionSignature(signature: FunctionSignature, context: Context) {
-  return Eff.Eff(function* () {
-    context = { ...context, parent: signature }
+  context = { ...context, parent: signature }
 
-    return new FunctionSignature(
-      signature.name,
-      yield* generateTypeParams(signature.typeParams, context),
-      yield* generateFunctionParams(signature.functionParams, context),
-      (yield* generateKindParam(signature.returnSignature, context))[0],
-    )
-  })
+  return new FunctionSignature(
+    signature.name,
+    generateTypeParams(signature.typeParams, context),
+    generateFunctionParams(signature.functionParams, context),
+    generateKindParam(signature.returnSignature, context)[0],
+  )
 }
 
 export function generateTypeParams(
   params: readonly TypeParam[],
   context: Context,
-): Eff.Eff<never, readonly TypeParam[]> {
-  return Eff.Eff(function* () {
-    const output: TypeParam[] = []
+): readonly TypeParam[] {
+  const output: TypeParam[] = []
 
-    for (const p of params) {
-      if (p.tag === 'Labeled') {
-        output.push(...(yield* generateLabeledKindParam(p, context)))
-      } else {
-        output.push(...((yield* generateKindParam(p, context)) as TypeParam[]))
-      }
+  for (const p of params) {
+    if (p.tag === 'Labeled') {
+      output.push(...generateLabeledKindParam(p, context))
+    } else {
+      output.push(...(generateKindParam(p, context) as TypeParam[]))
     }
+  }
 
-    return output
-  })
+  return output
 }
 
 export function generateHktPlaceholders(p: HKTPlaceholder, context: Context) {
@@ -196,175 +179,147 @@ function findExistingParams(context: Context, id: symbol): number {
   return params.length
 }
 
-export function generateHKTParam(p: HKTParam, context: Context): Eff.Eff<never, HKTParam> {
-  // eslint-disable-next-line require-yield
-  return Eff.Eff(function* () {
-    return p.setSize(context.lengths.get(p.id) ?? 0)
-  })
+export function generateHKTParam(p: HKTParam, context: Context): HKTParam {
+  return p.setSize(context.lengths.get(p.id) ?? 0)
 }
 
-export function generateTypeclass(p: Typeclass, context: Context): Eff.Eff<never, Typeclass> {
-  return Eff.Eff(function* () {
-    const p2 = p.setType(yield* generateHKTParam(p.type, context))
-    const p3 = p2.setParams(
-      yield* generateTypeParams(
-        p.params.filter((p) => p.tag !== HKTParam.tag),
-        context,
-      ),
-    )
+export function generateTypeclass(p: Typeclass, context: Context): Typeclass {
+  const p2 = p.setType(generateHKTParam(p.type, context))
+  const p3 = p2.setParams(
+    generateTypeParams(
+      p.params.filter((p) => p.tag !== HKTParam.tag),
+      context,
+    ),
+  )
 
-    return p3
-  })
+  return p3
 }
 
-export function generateDynamic(p: Dynamic, context: Context): Eff.Eff<never, Dynamic> {
-  return Eff.Eff(function* () {
-    return new Dynamic(yield* generateKindParams(p.params, context), p.template)
-  })
+export function generateDynamic(p: Dynamic, context: Context): Dynamic {
+  return new Dynamic(generateKindParams(p.params, context), p.template)
 }
 
-export function generateKind(kind: Kind, context: Context): Eff.Eff<never, Kind> {
-  return Eff.Eff(function* () {
-    return new Kind(kind.type, yield* generateKindParams(kind.kindParams, context))
-  })
+export function generateKind(kind: Kind, context: Context): Kind {
+  return new Kind(kind.type, generateKindParams(kind.kindParams, context))
 }
 
 export function generateKindParams(params: readonly KindParam[], context: Context) {
-  return Eff.Eff(function* () {
-    const output: KindParam[] = []
+  const output: KindParam[] = []
 
-    for (const p of params) {
-      output.push(...(yield* generateKindParam(p, context)))
+  for (const p of params) {
+    output.push(...generateKindParam(p, context))
+  }
+
+  return output
+}
+
+export function generateKindParam(param: KindParam, context: Context): readonly KindParam[] {
+  switch (param.tag) {
+    case 'Array': {
+      const isNonEmpty = param.isNonEmpty
+
+      return pipe(generateKindParam(param.member, context), (_) =>
+        _.map((param) => new ArrayNode(param, isNonEmpty)),
+      )
     }
-
-    return output
-  })
-}
-
-export function generateKindParam(
-  param: KindParam,
-  context: Context,
-): Eff.Eff<never, readonly KindParam[]> {
-  return Eff.Eff(function* () {
-    switch (param.tag) {
-      case 'Array': {
-        const isNonEmpty = param.isNonEmpty
-
-        return pipe(yield* generateKindParam(param.member, context), (_) =>
-          _.map((param) => new ArrayNode(param, isNonEmpty)),
-        )
-      }
-      case 'Dynamic': {
-        return [yield* generateDynamic(param, context)]
-      }
-      case 'FunctionSignature': {
-        return [yield* generateFunctionSignature(param, context)]
-      }
-      case 'HKTParam': {
-        return [yield* generateHKTParam(param, context)]
-      }
-      case 'HKTPlaceholder': {
-        return generateHktPlaceholders(param, context)
-      }
-      case 'Kind': {
-        return [yield* generateKind(param, context)]
-      }
-      case 'Object': {
-        return [yield* generateObjectNode(param, context)]
-      }
-      case 'Static': {
-        return [param]
-      }
-      case 'Tuple': {
-        return [yield* generateTuple(param, context)]
-      }
-      case 'Typeclass': {
-        return [yield* generateTypeclass(param, context)]
-      }
-      case 'Intersection': {
-        const l = yield* generateKindParam(param.left, context)
-        const r = yield* generateKindParam(param.right, context)
-
-        return l.flatMap((lv) => r.map((rv) => new IntersectionNode(lv, rv)))
-      }
-      case 'Union': {
-        const l = yield* generateKindParam(param.left, context)
-        const r = yield* generateKindParam(param.right, context)
-
-        return l.flatMap((lv) => r.map((rv) => new UnionNode(lv, rv)))
-      }
-      case 'Interface': {
-        return [yield* generateInterface(param, context)]
-      }
+    case 'Dynamic': {
+      return [generateDynamic(param, context)]
     }
-  })
+    case 'FunctionSignature': {
+      return [generateFunctionSignature(param, context)]
+    }
+    case 'HKTParam': {
+      return [generateHKTParam(param, context)]
+    }
+    case 'HKTPlaceholder': {
+      return generateHktPlaceholders(param, context)
+    }
+    case 'Kind': {
+      return [generateKind(param, context)]
+    }
+    case 'Object': {
+      return [generateObjectNode(param, context)]
+    }
+    case 'Static': {
+      return [param]
+    }
+    case 'Tuple': {
+      return [generateTuple(param, context)]
+    }
+    case 'Typeclass': {
+      return [generateTypeclass(param, context)]
+    }
+    case 'Intersection': {
+      const l = generateKindParam(param.left, context)
+      const r = generateKindParam(param.right, context)
+
+      return l.flatMap((lv) => r.map((rv) => new IntersectionNode(lv, rv)))
+    }
+    case 'Union': {
+      const l = generateKindParam(param.left, context)
+      const r = generateKindParam(param.right, context)
+
+      return l.flatMap((lv) => r.map((rv) => new UnionNode(lv, rv)))
+    }
+    case 'Interface': {
+      return [generateInterface(param, context)]
+    }
+  }
 }
 
-export function generateTuple(tuple: Tuple, context: Context): Eff.Eff<never, Tuple> {
-  return Eff.Eff(function* () {
-    return new Tuple(yield* generateKindParams(tuple.members, context))
-  })
+export function generateTuple(tuple: Tuple, context: Context): Tuple {
+  return new Tuple(generateKindParams(tuple.members, context))
 }
 
-export function generateObjectNode(node: ObjectNode, context: Context): Eff.Eff<never, ObjectNode> {
-  return Eff.Eff(function* () {
-    return node.setProperties(yield* generateLabeledKindParams(node.properties, context))
-  })
+export function generateObjectNode(node: ObjectNode, context: Context): ObjectNode {
+  return node.setProperties(generateLabeledKindParams(node.properties, context))
 }
 
-export function generateKindReturn(kind: Kind, context: Context): Eff.Eff<never, Kind> {
-  return Eff.Eff(function* () {
-    const params = yield* generateKindParams(kind.kindParams, context)
+export function generateKindReturn(kind: Kind, context: Context): Kind {
+  const params = generateKindParams(kind.kindParams, context)
 
-    return kind.setParams(params)
-  })
+  return kind.setParams(params)
 }
 
 export function generateFunctionParams(
   params: readonly FunctionParam[],
   context: Context,
-): Eff.Eff<never, readonly FunctionParam[]> {
-  return Eff.Eff(function* () {
-    const output: FunctionParam[] = []
+): readonly FunctionParam[] {
+  const output: FunctionParam[] = []
 
-    for (const p of params) {
-      output.push(...(yield* generateFunctionParam(p, context)))
-    }
+  for (const p of params) {
+    output.push(...generateFunctionParam(p, context))
+  }
 
-    return output
-  })
+  return output
 }
 
 export function generateFunctionParam(
   param: FunctionParam,
   context: Context,
-): Eff.Eff<never, readonly FunctionParam[]> {
-  return Eff.Eff(function* () {
-    const kindParams = yield* generateKindParam(param.param, context)
+): readonly FunctionParam[] {
+  const kindParams = generateKindParam(param.param, context)
 
-    return kindParams.map((p) => param.setKind(p))
-  })
+  return kindParams.map((p) => param.setKind(p))
 }
 
-export function generateInterface(node: Interface, context: Context): Eff.Eff<never, Interface> {
-  return Eff.Eff(function* () {
-    const extensions: Array<Interface | KindParam> = []
+export function generateInterface(node: Interface, context: Context): Interface {
+  const extensions: Array<Interface | KindParam> = []
 
-    for (const e of node.extensions) {
-      extensions.push(
-        ...(e.tag === Interface.tag
-          ? [yield* generateInterface(e, context)]
-          : yield* generateKindParam(e, context)),
-      )
-    }
-
-    return new Interface(
-      generateTypeName(node, context),
-      yield* generateTypeParams(node.typeParams, context),
-      yield* generateLabeledKindParams(node.properties, context),
-      extensions,
+  for (const e of node.extensions) {
+    extensions.push(
+      ...(e.tag === Interface.tag
+        ? [generateInterface(e, context)]
+        : generateKindParam(e, context)),
     )
-  })
+  }
+
+  return new Interface(
+    generateTypeName(node, context),
+    generateTypeParams(node.typeParams, context),
+    generateLabeledKindParams(node.properties, context),
+    extensions,
+  )
 }
 
 function generateTypeName(node: Interface | TypeAlias, context: Context): string {
@@ -379,39 +334,33 @@ function generatePostfix(hktParams: readonly HKTParam[], context: Context) {
     .join('')
 }
 
-export function generateTypeAlias(node: TypeAlias, context: Context): Eff.Eff<never, TypeAlias> {
-  return Eff.Eff(function* () {
-    return {
-      ...node,
-      name: generateTypeName(node, context),
-      typeParams: yield* generateTypeParams(node.typeParams, context),
-      signature: (yield* generateKindParam(node.signature, context))[0],
-    }
-  })
+export function generateTypeAlias(node: TypeAlias, context: Context): TypeAlias {
+  return {
+    ...node,
+    name: generateTypeName(node, context),
+    typeParams: generateTypeParams(node.typeParams, context),
+    signature: generateKindParam(node.signature, context)[0],
+  }
 }
 
 export function generateLabeledKindParams<P extends ReadonlyArray<Labeled<KindParam>>>(
   labels: P,
   context: Context,
-): Eff.Eff<never, ReadonlyArray<Labeled<KindParam>>> {
-  return Eff.Eff(function* () {
-    const output = []
+): ReadonlyArray<Labeled<KindParam>> {
+  const output = []
 
-    for (const label of labels) {
-      output.push(...(yield* generateLabeledKindParam(label, context)))
-    }
+  for (const label of labels) {
+    output.push(...generateLabeledKindParam(label, context))
+  }
 
-    return output
-  })
+  return output
 }
 
 export function generateLabeledKindParam<P extends KindParam>(
   labeled: Labeled<P>,
   context: Context,
 ) {
-  return Eff.Eff(function* () {
-    const params = yield* generateKindParam(labeled.param, context)
+  const params = generateKindParam(labeled.param, context)
 
-    return params.map((p) => labeled.setKind(p))
-  })
+  return params.map((p) => labeled.setKind(p))
 }
