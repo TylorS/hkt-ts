@@ -2,29 +2,27 @@ import * as Maybe from '../Data/Maybe'
 import { flow } from '../function/function'
 
 import * as Eff from './Eff'
+import { instr } from './Instruction'
 
-export interface Optionality<A> extends Eff.Eff<OptionalityInstruction<any>, A> {}
+export class Optionality<A> extends instr('Optionality')<Maybe.Maybe<A>, A> {
+  static is = <A, Y extends Eff.AnyTagged>(instr: Optionality<A> | Y): instr is Optionality<A> =>
+    instr.tag === Optionality.tag
 
-export class OptionalityInstruction<A> extends Eff.instr('Optionality')<Maybe.Maybe<A>, A> {}
+  static with = <E extends Eff.Eff>(
+    eff: E,
+  ): Eff.Eff<Exclude<Eff.YieldOf<E>, Optionality<any>>, Maybe.Maybe<Eff.ReturnOf<E>>> =>
+    Optionality.returnHandler(
+      eff,
+      (instr: Optionality<any>, exit) =>
+        Eff.fromLazy(() => {
+          if (Maybe.isNothing(instr.input)) {
+            return exit(Maybe.Nothing)
+          }
 
-export const fromMaybe = <A>(maybe: Maybe.Maybe<A>) => new OptionalityInstruction(maybe)
-
-export const Nothing: Optionality<never> = fromMaybe<never>(Maybe.Nothing)
-export const Just = flow(Maybe.Just, fromMaybe)
-
-export function runWith<G extends Eff.Eff>(
-  g: G,
-): Eff.Eff<Exclude<Eff.YieldOf<G>, OptionalityInstruction<any>>, Maybe.Maybe<Eff.ReturnOf<G>>> {
-  return OptionalityInstruction.returnHandler(
-    g,
-    (instr, exit) =>
-      Eff.fromLazy(() => {
-        if (Maybe.isNothing(instr.input)) {
-          return exit(Maybe.Nothing)
-        }
-
-        return instr.input.value
-      }),
-    (a) => Eff.of(Maybe.Just(a)),
-  )
+          return instr.input.value
+        }),
+      flow(Maybe.Just, Eff.of),
+    )
 }
+
+export const fromMaybe = <A>(maybe: Maybe.Maybe<A>) => new Optionality(maybe)

@@ -6,8 +6,7 @@ import type { NonEmptyArray } from '../../Data/NonEmptyArray'
 import { makeIdentity, snd } from '../../Data/Tuple'
 import * as B from '../../Data/boolean'
 import * as N from '../../Data/number'
-import { run } from '../../Eff/Eff'
-import * as State from '../../Eff/State'
+import * as Eff from '../../Eff'
 import {
   HKT,
   HKT10,
@@ -525,16 +524,16 @@ export function reduce<T extends HKT>(
 ): <B, A>(seed: B, f: (b: B, a: A) => B) => (kind: Kind<T, A>) => B {
   return <B, A>(seed: B, f: (b: B, a: A) => B) => {
     const foldMap = FM.foldMap(
-      State.makeIdentity<B, B>({
+      Eff.makeModifyIdentity<B, B>({
         id: seed,
         ...A.Second,
       }),
     )
 
     return flow(
-      foldMap((a: A) => State.update((b: B) => f(b, a))),
-      State.runWith(() => seed),
-      run,
+      foldMap((a: A) => Eff.update((b: B) => f(b, a))),
+      Eff.Modify.with(() => seed),
+      Eff.run,
       snd,
     )
   }
@@ -1468,12 +1467,12 @@ export function addIndex<T extends HKT>(FM: FoldMap<T>): FoldMapWithIndex<T, num
     foldMapWithIndex:
       <B>(ID: Identity<B>) =>
       <A>(f: (k: number, a: A) => B) => {
-        const foldMap = FM.foldMap(State.makeIdentity<number, B>(ID))
+        const foldMap = FM.foldMap(Eff.makeModifyIdentity<number, B>(ID))
 
         return flow(
-          foldMap((a: A) => State.modify((i: number) => [i + 1, f(i, a)] as const)),
-          State.runWith(() => 0),
-          run,
+          foldMap((a: A) => Eff.modify((i: number) => [i + 1, f(i, a)] as const)),
+          Eff.Modify.with(() => 0),
+          Eff.run,
           snd,
         )
       },

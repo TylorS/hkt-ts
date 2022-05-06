@@ -1,5 +1,4 @@
-import { run } from '../../Eff/Eff'
-import * as S from '../../Eff/State'
+import * as Eff from '../../Eff'
 import {
   HKT,
   HKT10,
@@ -2243,14 +2242,14 @@ export function mapAccum<T extends HKT>(
   FE: ForEach<T>,
 ): <S, A, B>(
   s: S,
-  f: (s: S, a: A) => S.StateTuple<S, B>,
-) => (kind: Kind<T, A>) => S.StateTuple<S, Kind<T, B>> {
-  const forEach = FE.forEach<S.StateHKT>({ ...S.IdentityBoth, ...S.Covariant })
+  f: (s: S, a: A) => readonly [S, B],
+) => (kind: Kind<T, A>) => readonly [S, Kind<T, B>] {
+  const forEach = FE.forEach<Eff.EffHKT>({ ...Eff.IdentityBoth, ...Eff.Covariant })
 
-  return <S, A, B>(s: S, f: (s: S, a: A) => S.StateTuple<S, B>) =>
+  return <S, A, B>(s: S, f: (s: S, a: A) => readonly [S, B]) =>
     flow(
-      forEach((a: A) => S.modify((s: S) => f(s, a))),
-      S.runWith(() => s),
-      run,
+      forEach((a: A) => Eff.modify((s: S) => f(s, a))),
+      Eff.Modify.with(() => s),
+      Eff.run,
     )
 }

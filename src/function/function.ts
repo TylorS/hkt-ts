@@ -508,13 +508,6 @@ export function pipe(
 
 export const second = <A, B>(_: A, b: B): B => b
 
-/**
- * Creates a 1-tuple from a value.
- */
-export function tupled<A>(a: A): readonly [A] {
-  return [a] as const
-}
-
 export const unsafeCoerce: <A, B>(a: A) => B = identity as any
 
 import type { Unary } from './Unary'
