@@ -231,10 +231,17 @@ export function printTypeParam(
     case Typeclass.tag: {
       const baseName = `${p.name}${p.type.size === 0 ? '' : p.type.size}`
       const params = pipe(p.params.map((p) => printTypeParam(p, context, manager)))
+      const placeholders = (context.placeholders.get(p.type.id) ?? []).map((possibility) =>
+        context.positions.size > 1
+          ? `${possibility}${context.positions.get(p.type.id)}`
+          : `${possibility}`,
+      )
 
       return manager.isWithinTypeParam()
         ? baseName
-        : `${baseName}<${p.type.name}${params.length > 0 ? ', ' : ''}${params.join(', ')}>`
+        : `${baseName}${placeholders.length > 0 ? placeholders.join('') + 'C' : ''}<${p.type.name}${
+            params.length > 0 ? ', ' : ''
+          }${params.join(', ')}>`
     }
     case Static.tag:
       return printStatic(p, manager)

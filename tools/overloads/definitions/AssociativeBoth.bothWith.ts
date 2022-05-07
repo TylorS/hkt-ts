@@ -6,6 +6,7 @@ import {
   aTypeParam,
   bTypeParam,
   cTypeParam,
+  curriedPlaceholder_,
   fnLabeled_,
   fn_,
   hkt,
@@ -15,7 +16,7 @@ import {
 
 export const bothWith = fn_(
   'bothWith',
-  [hkt],
+  [hkt, curriedPlaceholder_(hkt)],
   [
     new IntersectionNode(AssociativeBoth.toTypeClass(hkt), Contravariant.toTypeClass(hkt)).labeled(
       'AB',

@@ -157,6 +157,8 @@ export function findPlaceholders(
     const possiblilties = possibleLengths.slice(existing.length, length)
     const possibleParams = possiblilties.map((p) => hktParamNames[p])
     const params = uniq(combinations(possiblilties.map(() => possibleParams)).map(uniq))
+      .slice()
+      .reverse()
 
     params.forEach((params, i) => addPlaceholder(i, hkt.id, params.slice().reverse()))
   }
