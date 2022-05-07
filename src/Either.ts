@@ -2,12 +2,10 @@ import { HKT, HKT2, Kind, Params, Variance } from './HKT'
 import type { Maybe } from './Maybe'
 import type { Associative } from './Typeclass/Associative'
 import * as AB from './Typeclass/AssociativeBoth'
-// eslint-disable-next-line import/no-cycle
 import * as AE from './Typeclass/AssociativeEither'
 import * as F from './Typeclass/AssociativeFlatten'
-import { Bicovariant2 } from './Typeclass/Bicovariant'
+import type { Bicovariant2 } from './Typeclass/Bicovariant'
 import * as C from './Typeclass/Covariant'
-// eslint-disable-next-line import/no-cycle
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach'
 import * as IB from './Typeclass/IdentityBoth'

@@ -183,3 +183,11 @@ export const IdentityEither: IE.IdentityEither1<OrdHKT> = {
   ...AssociativeEither,
   ...Bottom,
 }
+
+export const makeMinAssociative = <A>(O: Ord<A>): Associative<A> => ({
+  concat: min(O),
+})
+
+export const makeMaxAssociative = <A>(O: Ord<A>): Associative<A> => ({
+  concat: max(O),
+})

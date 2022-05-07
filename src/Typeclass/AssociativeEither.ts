@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import { Either, toUnion } from '../Either'
+import type { Either } from '../Either'
 import {
   HKT,
   HKT10,
@@ -188,7 +187,12 @@ export function orElse<T extends HKT>(
 export function orElse<T extends HKT>(
   AE: AssociativeEither<T> & Covariant<T>,
 ): <B>(f: () => Kind<T, B>) => <A>(kind: Kind<T, A>) => Kind<T, A | B> {
-  return (f) => (kind) => pipe(kind, AE.either(f()), AE.map(toUnion))
+  return (f) => (kind) =>
+    pipe(
+      kind,
+      AE.either(f()),
+      AE.map((e) => (e.tag === 'Left' ? e.left : e.right)),
+    )
 }
 
 export function eventually<T extends HKT10>(

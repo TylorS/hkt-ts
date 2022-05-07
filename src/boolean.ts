@@ -1,11 +1,11 @@
-import { Refinement } from './Refinement'
+import type { Refinement } from './Refinement'
 import { Associative } from './Typeclass/Associative'
 import { Commutative } from './Typeclass/Commutative'
-import * as D from './Typeclass/Debug'
-import * as E from './Typeclass/Eq'
+import type * as D from './Typeclass/Debug'
+import type * as E from './Typeclass/Eq'
 import { Identity } from './Typeclass/Identity'
 import * as I from './Typeclass/Inverse'
-import * as O from './Typeclass/Ord'
+import type * as O from './Typeclass/Ord'
 import { Lazy } from './function'
 
 export const isBoolean: Refinement<unknown, boolean> = (u: unknown): u is boolean =>
@@ -80,9 +80,10 @@ export const Any: Identity<boolean> = {
   id: false,
 }
 
-export const Ord: O.Ord<boolean> = O.fromCompare((first, second) =>
-  first < second ? -1 : first > second ? 1 : 0,
-)
+export const Ord: O.Ord<boolean> = {
+  ...Eq,
+  compare: (first, second) => (first < second ? -1 : first > second ? 1 : 0),
+}
 
 export const Debug: D.Debug<boolean> = {
   debug: (b) => JSON.stringify(b),

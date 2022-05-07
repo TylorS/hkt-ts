@@ -1,6 +1,5 @@
-import { Associative } from './Typeclass/Associative'
-import { Identity } from './Typeclass/Identity'
-
+import type { Associative } from './Typeclass/Associative'
+import type { Identity } from './Typeclass/Identity'
 import { constFalse, flow, pipe } from './function'
 
 export interface Predicate<A> {

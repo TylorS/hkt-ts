@@ -1,24 +1,23 @@
-import * as Either from './Either'
+import type * as Either from './Either'
 import { HKT, Kind, Params } from './HKT'
-import { Predicate } from './Predicate'
+import type { Predicate } from './Predicate'
 import type { Refinement } from './Refinement'
 import * as ASSOC from './Typeclass/Associative'
 import * as AB from './Typeclass/AssociativeBoth'
 import * as AE from './Typeclass/AssociativeEither'
 import * as AF from './Typeclass/AssociativeFlatten'
 import * as B from './Typeclass/Bottom'
-import { Commutative } from './Typeclass/Commutative'
+import type { Commutative } from './Typeclass/Commutative'
 import * as C from './Typeclass/Covariant'
 import * as Debug from './Typeclass/Debug'
-import * as Eq from './Typeclass/Eq'
-// eslint-disable-next-line import/no-cycle
+import type * as Eq from './Typeclass/Eq'
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach'
 import * as I from './Typeclass/Identity'
 import * as IB from './Typeclass/IdentityBoth'
 import * as IE from './Typeclass/IdentityEither'
 import * as IF from './Typeclass/IdentityFlatten'
-import * as Ord from './Typeclass/Ord'
+import type * as Ord from './Typeclass/Ord'
 import { Top1, makeFromValue } from './Typeclass/Top'
 import { constant, flow, identity, pipe } from './function'
 
@@ -149,8 +148,9 @@ export const makeEq = <A>(E: Eq.Eq<A>): Eq.Eq<Maybe<A>> => ({
     a.tag === b.tag ? (a.tag === 'Just' ? E.equals(a.value, (b as Just<A>).value) : true) : false,
 })
 
-export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<Maybe<A>> =>
-  Ord.fromCompare((f, s) => {
+export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<Maybe<A>> => ({
+  ...makeEq(O),
+  compare: (f, s) => {
     const fx = isJust(f)
     const sx = isJust(s)
 
@@ -163,7 +163,8 @@ export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<Maybe<A>> =>
     }
 
     return -1
-  })
+  },
+})
 
 export interface MaybeHKT extends HKT {
   readonly type: Maybe<this[Params.A]>
@@ -187,7 +188,11 @@ export const zipRight = AB.zipRight<MaybeHKT>({ ...AssociativeBoth, ...Covariant
 
 export const AssociativeEither: AE.AssociativeEither1<MaybeHKT> = {
   either: (s) => (f) =>
-    isJust(f) ? Just(Either.Left(f.value)) : isJust(s) ? Just(Either.Right(s.value)) : Nothing,
+    isJust(f)
+      ? Just({ tag: 'Left', left: f.value })
+      : isJust(s)
+      ? Just({ tag: 'Right', right: s.value })
+      : Nothing,
 }
 
 export const orElse = AE.orElse<MaybeHKT>({ ...AssociativeEither, ...Covariant })

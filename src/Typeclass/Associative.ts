@@ -1,19 +1,10 @@
 import * as ASSOC from './Concat'
-import * as Ord from './Ord'
 
 // Associative represents a concatenation that MUST be associatve.
 export type Associative<A> = ASSOC.Concat<A>
 
 export const constant = <A>(value: A): Associative<A> => ({
   concat: () => value,
-})
-
-export const min = <A>(O: Ord.Ord<A>): Associative<A> => ({
-  concat: Ord.min(O),
-})
-
-export const max = <A>(O: Ord.Ord<A>): Associative<A> => ({
-  concat: Ord.max(O),
 })
 
 export const reverse: <A>(S: Associative<A>) => Associative<A> = ASSOC.reverse

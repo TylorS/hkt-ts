@@ -1,4 +1,7 @@
+import { HKT2, Params } from './HKT'
 import { Associative } from './Typeclass/Associative'
+import { AssociativeBoth2C } from './Typeclass/AssociativeBoth'
+import { Covariant2 } from './Typeclass/Covariant'
 import { Debug } from './Typeclass/Debug'
 import { Identity } from './Typeclass/Identity'
 
@@ -58,4 +61,16 @@ export const makeAssociative = <A, B>(
 export const makeIdentity = <A, B>(A: Identity<A>, B: Identity<B>): Identity<Tuple<A, B>> => ({
   ...makeAssociative(A, B),
   id: [A.id, B.id],
+})
+
+export interface TupleHKT extends HKT2 {
+  readonly type: Tuple<this[Params.E], this[Params.A]>
+}
+
+export const Covariant: Covariant2<TupleHKT> = {
+  map: mapSnd,
+}
+
+export const makeAssociativeBoth = <E>(E: Associative<E>): AssociativeBoth2C<TupleHKT, E> => ({
+  both: (second) => (first) => [E.concat(first[0], second[0]), [first[1], second[1]]],
 })

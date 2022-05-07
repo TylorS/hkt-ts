@@ -70,6 +70,12 @@ export interface AssociativeBoth2<T extends HKT2> {
   ) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, readonly [A, B]>
 }
 
+export interface AssociativeBoth2C<T extends HKT2, E> {
+  readonly both: <B>(
+    second: Kind2<T, E, B>,
+  ) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, readonly [A, B]>
+}
+
 export interface AssociativeBoth3<T extends HKT3> {
   readonly both: <R, E, B>(
     second: Kind3<T, R, E, B>,

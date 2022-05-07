@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import * as Either from '../Either'
-// eslint-disable-next-line import/no-cycle
+import type * as Either from '../Either'
 import * as Endo from '../Endomorphism'
 import {
   HKT,
@@ -24,8 +22,7 @@ import {
   Kind8,
   Kind9,
 } from '../HKT'
-// eslint-disable-next-line import/no-cycle
-import * as M from '../Maybe'
+import type * as M from '../Maybe'
 import type { NonEmptyArray } from '../NonEmptyArray'
 import { not } from '../Predicate'
 import { makeIdentity, snd } from '../Tuple'
@@ -49,7 +46,7 @@ import {
   Covariant8,
   Covariant9,
 } from './Covariant'
-import { Eq } from './Eq'
+import type { Eq } from './Eq'
 import {
   FoldMapWithIndex,
   FoldMapWithIndex1,
@@ -92,6 +89,29 @@ import {
   Top9,
   makeFromValue,
 } from './Top'
+
+const Nothing: M.Nothing = {
+  tag: 'Nothing',
+}
+
+const Just = <A>(value: A): M.Just<A> => ({
+  tag: 'Just',
+  value,
+})
+
+const makeFirstAssociative = <A>(): A.Associative<M.Maybe<A>> => ({
+  concat: (f, s) => (f.tag === 'Just' ? f : s),
+})
+
+const makeAssociativeIdentity = <A>(A: A.Associative<A>): Identity<M.Maybe<A>> => ({
+  concat: (f, s) =>
+    f.tag === 'Just' && s.tag === 'Just'
+      ? Just(A.concat(f.value, s.value))
+      : f.tag === 'Just'
+      ? f
+      : s,
+  id: Nothing,
+})
 
 /* #region Typeclass */
 export interface FoldMap<T extends HKT> {
@@ -456,10 +476,9 @@ export function find<T extends HKT>(
 export function find<T extends HKT>(
   FM: FoldMap<T>,
 ): <A>(predicate: (a: A) => boolean) => (kind: Kind<T, A>) => M.Maybe<A> {
-  const foldMap = FM.foldMap({ ...M.makeFirstAssociative<any>(), id: M.Nothing })
+  const foldMap = FM.foldMap({ ...makeFirstAssociative<any>(), id: Nothing })
 
-  return <A>(predicate: (a: A) => boolean) =>
-    foldMap((a: A) => (predicate(a) ? M.Just(a) : M.Nothing))
+  return <A>(predicate: (a: A) => boolean) => foldMap((a: A) => (predicate(a) ? Just(a) : Nothing))
 }
 
 /* #endregion */
@@ -1143,7 +1162,7 @@ export function reduceAssociative<T extends HKT>(
 export function reduceAssociative<T extends HKT>(
   FM: FoldMap<T>,
 ): <A>(A: A.Associative<A>) => (kind: Kind<T, A>) => M.Maybe<A> {
-  return <A>(A: A.Associative<A>) => FM.foldMap(M.makeAssociativeIdentity(A))((a: A) => M.Just(a))
+  return <A>(A: A.Associative<A>) => FM.foldMap(makeAssociativeIdentity(A))((a: A) => Just(a))
 }
 /* #endregion */
 
@@ -1264,10 +1283,7 @@ export function intercalate<T extends HKT>(
 
   return <A>(I: Identity<A>) =>
     (a: A) =>
-      flow(
-        reduceAssociative_(A.intercalate(a)(I)),
-        M.getOrElse(() => I.id),
-      )
+      flow(reduceAssociative_(A.intercalate(a)(I)), (x) => (x.tag === 'Just' ? x.value : I.id))
 }
 
 /* #endregion */
@@ -1322,11 +1338,7 @@ export function reduceIdentity<T extends HKT>(
 export function reduceIdentity<T extends HKT>(
   FM: FoldMap<T>,
 ): <A>(I: Identity<A>) => (kind: Kind<T, A>) => A {
-  return (I) =>
-    flow(
-      reduceAssociative(FM)(I),
-      M.getOrElse(() => I.id),
-    )
+  return (I) => flow(reduceAssociative(FM)(I), (x) => (x.tag === 'Just' ? x.value : I.id))
 }
 
 /* #endregion */
@@ -1423,12 +1435,8 @@ export function partitionMap<T extends HKT>(
     F.foldMap<readonly [Kind<T, B>, Kind<T, C>]>(
       makeIdentity(makeEitherIdentity<B>(), makeEitherIdentity<C>()),
     )(
-      flow(
-        f,
-        Either.match(
-          (b) => [fromValue(b), bottom],
-          (c) => [bottom, fromValue(c)],
-        ),
+      flow(f, (e) =>
+        e.tag === 'Left' ? [fromValue(e.left), bottom] : [bottom, fromValue(e.right)],
       ),
     )
 }

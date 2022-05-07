@@ -1,8 +1,8 @@
-import { HKT2, Params } from './HKT'
-import * as t from './Typeclass'
-import { Bottom2 } from './Typeclass/Bottom'
-import { Covariant2 } from './Typeclass/Covariant'
-import { Top2 } from './Typeclass/Top'
+import type { HKT2, Params } from './HKT'
+import type * as t from './Typeclass'
+import type { Bottom2 } from './Typeclass/Bottom'
+import type { Covariant2 } from './Typeclass/Covariant'
+import type { Top2 } from './Typeclass/Top'
 import { absurd, flow, identity } from './function'
 
 export type Unary<A, B> = (a: A) => B

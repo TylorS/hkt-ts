@@ -1,6 +1,6 @@
 import type { HKT2, Params } from './HKT'
 import type { Covariant2 } from './Typeclass/Covariant'
-import { Identity } from './Typeclass/Identity'
+import type { Identity } from './Typeclass/Identity'
 import type { IdentityBoth2 } from './Typeclass/IdentityBoth'
 
 export type Include<A, B> = A extends B ? A : never

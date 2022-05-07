@@ -2,8 +2,8 @@
 import { Cast } from 'ts-toolbelt/out/Any/Cast'
 
 import type { Branded, Combine } from './Branded'
-import { Either, isRight } from './Either'
-import { Maybe, isJust } from './Maybe'
+import type { Either } from './Either'
+import type { Maybe } from './Maybe'
 
 export interface Refinement<A, B extends A> {
   (a: A): a is B
@@ -13,13 +13,13 @@ export type InputOf<T> = [T] extends [Refinement<infer I, infer _>] ? I : never
 export type OutputOf<T> = [T] extends [Refinement<infer _, infer O>] ? O : never
 
 export const fromMaybeK = <A, B extends A>(getOption: (a: A) => Maybe<B>): Refinement<A, B> => {
-  return (a: A): a is B => isJust(getOption(a))
+  return (a: A): a is B => getOption(a).tag === 'Just'
 }
 
 export const fromEitherK = <A, E, B extends A>(
   getEither: (a: A) => Either<E, B>,
 ): Refinement<A, B> => {
-  return (a: A): a is B => isRight(getEither(a))
+  return (a: A): a is B => getEither(a).tag === 'Right'
 }
 
 export const id = <A>(): Refinement<A, A> => {

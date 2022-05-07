@@ -18,7 +18,7 @@ import {
   Kind8,
   Kind9,
 } from '../HKT'
-import { Unary } from '../Unary'
+import type { Unary } from '../Unary'
 import { identity } from '../function'
 
 export interface Bicovariant<T extends HKT2> {

@@ -1,8 +1,7 @@
-import { Associative } from './Typeclass/Associative'
-import { constFalse, constTrue, flow, pipe } from './function'
-
 import * as Either from './Either'
 import { NonEmptyArray } from './NonEmptyArray'
+import { Associative } from './Typeclass/Associative'
+import { constFalse, constTrue, flow, pipe } from './function'
 
 /**
  * These is a data structure for representing an either-or relationship or the possibility of

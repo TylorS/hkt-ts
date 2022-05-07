@@ -1,8 +1,7 @@
-import * as E from '../Either'
 import { HKT, Params } from '../HKT'
 import { Json } from '../Json'
 import { Include } from '../common'
-import { flow, pipe } from '../function'
+import { flow } from '../function'
 
 import * as AB from './AssociativeBoth'
 import * as AE from './AssociativeEither'
@@ -96,13 +95,7 @@ export const bothWith = AB.bothWith<DebugHKT>({ ...AssociativeBoth, ...Contravar
 export const AssociativeEither: AE.AssociativeEither1<DebugHKT> = {
   either: (DB) => (DA) => ({
     debug: (either) =>
-      pipe(
-        either,
-        E.match(
-          (a) => `Left<${DA.debug(a)}>`,
-          (b) => `Right<${DB.debug(b)}>`,
-        ),
-      ),
+      either.tag === 'Left' ? `Left<${DA.debug(either.left)}>` : `Right<${DB.debug(either.right)}>`,
   }),
 }
 

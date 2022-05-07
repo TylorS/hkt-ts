@@ -1,3 +1,4 @@
+import * as M from './Maybe'
 import * as A from './Typeclass/Associative'
 import * as C from './Typeclass/Commutative'
 import * as D from './Typeclass/Debug'
@@ -5,8 +6,6 @@ import * as EQ from './Typeclass/EQ'
 import * as I from './Typeclass/Identity'
 import * as O from './Typeclass/Ord'
 import { pipe } from './function'
-
-import * as M from './Maybe'
 import * as N from './number'
 
 export interface Progress {

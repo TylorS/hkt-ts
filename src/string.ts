@@ -1,12 +1,11 @@
+import { NonEmptyArray, isNonEmpty } from './NonEmptyArray'
+import { Refinement } from './Refinement'
 import * as A from './Typeclass/Associative'
 import * as Sh from './Typeclass/Debug'
 import * as E from './Typeclass/Eq'
 import * as I from './Typeclass/Identity'
 import * as O from './Typeclass/Ord'
-import { Refinement } from './Refinement'
 import { pipe } from './function'
-
-import { NonEmptyArray, isNonEmpty } from './NonEmptyArray'
 
 export const equals: E.Eq<string>['equals'] = (x, y) => x === y
 

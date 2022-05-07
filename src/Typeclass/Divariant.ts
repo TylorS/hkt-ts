@@ -18,7 +18,7 @@ import {
   Kind8,
   Kind9,
 } from '../HKT'
-import { Unary } from '../Unary'
+import type { Unary } from '../Unary'
 
 export interface Divariant<T extends HKT2> {
   readonly dimap: <A, B, C, D>(

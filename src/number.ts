@@ -1,16 +1,16 @@
 import { Branded } from './Branded'
-import { Match } from './Match'
-import { Just, Nothing } from './Maybe'
+import type { Match } from './Match'
+import type * as M from './Maybe'
 import * as R from './Refinement'
 import * as Associative from './Typeclass/Associative'
-import * as B from './Typeclass/Bounded'
+import type * as B from './Typeclass/Bounded'
 import * as Commutative from './Typeclass/Commutative'
 import { Concat } from './Typeclass/Concat'
 import * as D from './Typeclass/Debug'
-import * as E from './Typeclass/Eq'
+import type * as E from './Typeclass/Eq'
 import { Identity } from './Typeclass/Identity'
 import * as I from './Typeclass/Inverse'
-import * as O from './Typeclass/Ord'
+import type * as O from './Typeclass/Ord'
 import { pipe } from './function'
 
 export const isNumber: R.Refinement<unknown, number> = (x: unknown): x is number =>
@@ -19,6 +19,15 @@ export const isNumber: R.Refinement<unknown, number> = (x: unknown): x is number
 export const isNan = Number.isNaN
 export const isFinite = Number.isFinite
 export const isSafeInteger = Number.isSafeInteger
+
+const Nothing: M.Nothing = {
+  tag: 'Nothing',
+}
+
+const Just = <A>(value: A): M.Just<A> => ({
+  tag: 'Just',
+  value,
+})
 
 export const parseInt: Match<string, number> = (s) => {
   const n = Number.parseInt(s, 10)
@@ -32,7 +41,7 @@ export const parseFloat: Match<string, number> = (s) => {
   return isFinite(n) && !isNan(n) ? Just(n) : Nothing
 }
 
-export const Eq: E.Eq<number> = E.Strict
+export const Eq: E.Eq<number> = { equals: (x, y) => x === y }
 
 export const Ord: O.Ord<number> = {
   ...Eq,

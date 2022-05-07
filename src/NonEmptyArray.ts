@@ -7,7 +7,6 @@ import * as C from './Typeclass/Covariant'
 import * as CI from './Typeclass/CovariantWithIndex'
 import { Debug } from './Typeclass/Debug'
 import { Eq, fromEquals } from './Typeclass/Eq'
-// eslint-disable-next-line import/no-cycle
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach'
 import * as IB from './Typeclass/IdentityBoth'
@@ -206,12 +205,12 @@ export const map =
     [f(a, 0), ...as.map((a, i) => f(a, i + 1))]
 
 export const max = <A>(O: Ord.Ord<A>): ((as: NonEmptyArray<A>) => A) => {
-  const S = Associative.max(O)
+  const S = Ord.makeMaxAssociative(O)
   return (as) => as.reduce(S.concat)
 }
 
 export const min = <A>(O: Ord.Ord<A>): ((as: NonEmptyArray<A>) => A) => {
-  const S = Associative.min(O)
+  const S = Ord.makeMinAssociative(O)
   return (as) => as.reduce(S.concat)
 }
 

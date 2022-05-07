@@ -20,7 +20,7 @@ import {
   Kind8,
   Kind9,
 } from '../HKT'
-import { Unary } from '../Unary'
+import type { Unary } from '../Unary'
 
 /* #region Contravariant */
 export interface Contravariant<T extends HKT> {
