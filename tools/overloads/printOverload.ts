@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { pipe } from '../../src'
+import { pipe } from '../../src/function'
 
 import {
   ArrayNode,
   Dynamic,
   FunctionParam,
   FunctionSignature,
+  HKTCurriedPlaceholder,
   HKTParam,
   HKTPlaceholder,
   Interface,
@@ -23,120 +24,9 @@ import {
   UnionNode,
 } from './AST'
 import { Context } from './Context'
+import { PrintContextManager } from './PrintManagerContext'
 import { findHKTParams } from './findHKTParams'
 import { generateFunctionSignatureOverloads } from './generateOverloads'
-
-type PrintContext = {
-  parentNodes: ParentNode[]
-  contextStack: CurrentContext[]
-}
-
-type CurrentContext =
-  | 'TypeParam'
-  | 'Property'
-  | 'FunctionParam'
-  | 'Return'
-  | 'Extension'
-  | 'Kind'
-  | 'Array'
-
-export class PrintContextManager {
-  context: PrintContext
-  recursive = false
-
-  constructor() {
-    this.context = {
-      parentNodes: [],
-      contextStack: [],
-    }
-  }
-
-  clone() {
-    const manager = new PrintContextManager()
-
-    manager.recursive = true
-    manager.context = {
-      parentNodes: this.context.parentNodes.slice(0),
-      contextStack: this.context.contextStack.slice(0),
-    }
-
-    return manager
-  }
-
-  addParentNode(node: ParentNode) {
-    this.context.parentNodes.push(node)
-  }
-
-  popParentNode() {
-    return this.context.parentNodes.pop()
-  }
-
-  addContext(currentContext: CurrentContext) {
-    this.context.contextStack.push(currentContext)
-  }
-
-  popContext() {
-    return this.context.contextStack.pop()
-  }
-
-  isWithinInterface(): boolean {
-    return !!this.context.parentNodes.find((x) => x.tag === Interface.tag)
-  }
-
-  isWithinFunction(): boolean {
-    return !!this.context.parentNodes.find((x) => x.tag === FunctionSignature.tag)
-  }
-
-  isWithinTypeAlias(): boolean {
-    return !!this.context.parentNodes.find((x) => x.tag === TypeAlias.tag)
-  }
-
-  isWithinExtension(): boolean {
-    return !!this.context.contextStack.find((x) => x === 'Extension')
-  }
-
-  isWithinReturn(): boolean {
-    return !!this.context.contextStack.find((x) => x === 'Return')
-  }
-
-  isWithinProperty(): boolean {
-    return !!this.context.contextStack.find((x) => x === 'Property')
-  }
-
-  isWithinTypeParam(): boolean {
-    return !!this.context.contextStack.find((x) => x === 'TypeParam')
-  }
-
-  isWithinKind(): boolean {
-    return !!this.context.contextStack.find((x) => x === 'Kind')
-  }
-
-  isWithinArray(): boolean {
-    return !!this.context.contextStack.find((x) => x === 'Array')
-  }
-
-  shouldPrintFunctionName(): boolean {
-    return !this.isWithinReturn() && !this.isWithinProperty()
-  }
-
-  shouldUseColon(): boolean {
-    if (this.recursive) {
-      this.recursive = false
-
-      return true
-    }
-
-    return !this.isWithinProperty() && !this.isWithinReturn() && !this.isWithinExtension()
-  }
-
-  getParentNode() {
-    return this.context.parentNodes[this.context.parentNodes.length - 1]
-  }
-
-  getCurrentContext() {
-    return this.context.contextStack[this.context.contextStack.length - 1]
-  }
-}
 
 export function printOverload(
   node: ParentNode,
@@ -196,10 +86,15 @@ export function printInterface(
   manager.addContext('TypeParam')
 
   const printedTypeParams = pipe(node.typeParams.map((p) => printTypeParam(p, context, manager)))
+  const placeholders = findHKTParams(node).flatMap((hkt) =>
+    (context.placeholders.get(hkt.id) ?? []).map((p) =>
+      context.positions.size > 1 ? `${p}${context.positions.get(hkt.id)}` : `${p}`,
+    ),
+  )
 
   const prefix = `${manager.isWithinFunction() ? `` : `export interface `}${node.name}${
-    node.typeParams.length ? `<${printedTypeParams.join(', ')}>` : ''
-  }`
+    placeholders.length > 0 ? placeholders.join('') + 'C' : ''
+  }${node.typeParams.length ? `<${printedTypeParams.join(', ')}>` : ''}`
 
   manager.popContext()
 
@@ -327,6 +222,9 @@ export function printTypeParam(
         !manager.isWithinTypeParam()
         ? p.name
         : `${p.name} extends HKT${p.size < 2 ? '' : `${p.size}`}`
+    case HKTCurriedPlaceholder.tag:
+      // TODO: Print current placeholder
+      return ''
     case HKTPlaceholder.tag: {
       return ''
     }

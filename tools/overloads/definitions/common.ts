@@ -1,6 +1,7 @@
 import {
   FunctionParam,
   FunctionSignature,
+  HKTCurriedPlaceholder,
   HKTParam,
   Interface,
   Kind,
@@ -58,8 +59,11 @@ export const fnLabeled_ = (
   returnSignature: KindParam,
 ) => fn_(name, typeParams, functionParams, returnSignature).labeled()
 
+export const curriedPlaceholder_ = (hkt: HKTParam, useDefaults?: boolean) =>
+  new HKTCurriedPlaceholder(hkt, useDefaults)
+
 export const interface_ = (
   name: string,
   properties: readonly Labeled<KindParam>[],
   extensions: readonly (Interface | KindParam)[] = [],
-) => new Interface(name, [hkt], properties, extensions)
+) => new Interface(name, [hkt, curriedPlaceholder_(hkt)], properties, extensions)

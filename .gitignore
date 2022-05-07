@@ -54,3 +54,4 @@ src/test.ts
 .history
 tsconfig*.tsbuildinfo
 .rpt2_cache
+.eslintcache

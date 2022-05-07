@@ -8,6 +8,7 @@ export type TypeParam =
   | Dynamic
   | HKTParam
   | HKTPlaceholder
+  | HKTCurriedPlaceholder
   | Static
   | Typeclass
   | Labeled<KindParam>
@@ -18,6 +19,7 @@ export type KindParam =
   | FunctionSignature
   | HKTParam
   | HKTPlaceholder
+  | HKTCurriedPlaceholder
   | Interface
   | Kind
   | ObjectNode
@@ -126,6 +128,20 @@ export class HKTPlaceholder extends ast('HKTPlaceholder') {
 
   extract(param: string) {
     return new HKTPlaceholder(this.type, this.useDefaults, param)
+  }
+}
+
+export class HKTCurriedPlaceholder extends ast('HKTCurriedPlaceholder') {
+  constructor(
+    readonly type: HKTParam,
+    readonly useDefaults: boolean = false,
+    readonly extractFrom: string | null = null,
+  ) {
+    super()
+  }
+
+  extract(param: string) {
+    return new HKTCurriedPlaceholder(this.type, this.useDefaults, param)
   }
 }
 

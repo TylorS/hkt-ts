@@ -42,7 +42,7 @@
     "build:package-exports": "node -r esbuild-register ./tools/generatePackageExports.ts",
     "build": "concurrently npm:build:esm npm:build:cjs && npm run build:package-exports",
     "generate-overload": "node -r esbuild-register ./tools/overloads/cli.ts",
-    "eslint": "eslint --ext .ts,.js,.json,.yaml --fix src",
+    "eslint": "eslint --ext .ts,.js,.json,.yaml --fix --cache src",
     "mocha": "mocha -r esbuild-register 'src/**/*.test.ts'",
     "test": "concurrenctly npm:eslint npm:mocha",
     "preversion": "npm test",

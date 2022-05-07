@@ -1,3 +1,5 @@
+import { Params } from '../../src/HKT'
+
 import {
   FunctionSignature,
   HKTPlaceholder,
@@ -6,7 +8,7 @@ import {
   ParentNode,
   TypeAlias,
 } from './AST'
-import { combinations, possibleLengths, uniq } from './common'
+import { combinations, hktParamNames, possibleLengths, uniq } from './common'
 import { findHKTParams } from './findHKTParams'
 import { defaultVisitors, walkAst } from './walkAst'
 
@@ -15,9 +17,13 @@ export interface Context {
   readonly lengths: Map<symbol, number>
   readonly positions: Map<symbol, number>
   readonly existing: Map<symbol, readonly KindParam[]>
+  readonly placeholders: Map<symbol, readonly Params[]>
 }
 
-export function buildContext(ast: ParentNode, possibility: ReadonlyArray<number>): Context {
+export function buildContext(
+  ast: ParentNode,
+  possibility: ReadonlyArray<number>,
+): Omit<Context, 'placeholders'> {
   switch (ast.tag) {
     case FunctionSignature.tag:
       return buildContextFromFunctionSignature(ast, possibility)
@@ -31,7 +37,7 @@ export function buildContext(ast: ParentNode, possibility: ReadonlyArray<number>
 export function buildContextFromFunctionSignature(
   signature: FunctionSignature,
   possibility: ReadonlyArray<number>,
-): Context {
+): Omit<Context, 'placeholders'> {
   const hkts = findHKTParams(signature)
   const lengths = new Map<symbol, number>(hkts.map((hkt, i) => [hkt.id, possibility[i]] as const))
   const positions = new Map<symbol, number>(hkts.map((hkt, i) => [hkt.id, i + 1] as const))
@@ -48,7 +54,7 @@ export function buildContextFromFunctionSignature(
 export function buildContextFromInterface(
   node: Interface,
   possibility: ReadonlyArray<number>,
-): Context {
+): Omit<Context, 'placeholders'> {
   const hkts = findHKTParams(node)
   const lengths = new Map<symbol, number>(hkts.map((hkt, i) => [hkt.id, possibility[i]] as const))
   const positions = new Map<symbol, number>(hkts.map((hkt, i) => [hkt.id, i + 1] as const))
@@ -65,7 +71,7 @@ export function buildContextFromInterface(
 export function buildContextFromTypeAlias(
   node: TypeAlias,
   possibility: ReadonlyArray<number>,
-): Context {
+): Omit<Context, 'placeholders'> {
   const hkts = findHKTParams(node)
   const lengths = new Map<symbol, number>(hkts.map((hkt, i) => [hkt.id, possibility[i]] as const))
   const positions = new Map<symbol, number>(hkts.map((hkt, i) => [hkt.id, i + 1] as const))
@@ -118,6 +124,7 @@ export function mergeContexts(a: Context, b: Context): Context {
       ...Array.from(b.positions).map(([k, v]) => [k, v + a.positions.size - 1] as const),
     ]),
     existing: new Map([...a.existing, ...b.existing]),
+    placeholders: new Map([...a.placeholders, ...b.placeholders]),
   }
 
   c.lengths.forEach((v, k) => a.lengths.set(k, v))
@@ -125,4 +132,34 @@ export function mergeContexts(a: Context, b: Context): Context {
   c.existing.forEach((v, k) => a.existing.set(k, v))
 
   return c
+}
+
+export function findPlaceholders(
+  ast: ParentNode,
+  context: Omit<Context, 'placeholders'>,
+): ReadonlyArray<Context['placeholders']> {
+  const placeholders: Array<Context['placeholders']> = []
+  const hktParams = findHKTParams(ast)
+
+  const addPlaceholder = (i: number, hkt: symbol, params: ReadonlyArray<Params>) => {
+    if (!placeholders[i]) {
+      placeholders[i] = new Map()
+    }
+
+    const map = placeholders[i]
+
+    map.set(hkt, params)
+  }
+
+  for (const hkt of hktParams) {
+    const length = context.lengths.get(hkt.id) ?? 1
+    const existing = context.existing.get(hkt.id) ?? []
+    const possiblilties = possibleLengths.slice(existing.length, length)
+    const possibleParams = possiblilties.map((p) => hktParamNames[p])
+    const params = uniq(combinations(possiblilties.map(() => possibleParams)).map(uniq))
+
+    params.forEach((params, i) => addPlaceholder(i, hkt.id, params.slice().reverse()))
+  }
+
+  return placeholders
 }

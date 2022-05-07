@@ -43,6 +43,7 @@ export function defaultVisitors(): Visitors {
     FunctionSignature: identity,
     HKTParam: identity,
     HKTPlaceholder: identity,
+    HKTCurriedPlaceholder: identity,
     Labeled: identity,
     Interface: identity,
     Kind: identity,
