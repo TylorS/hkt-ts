@@ -22,7 +22,6 @@ import {
   Kind9,
   Params,
 } from '../HKT'
-
 export interface Bottom<T extends HKT> {
   readonly bottom: Kind<T, never>
 }
@@ -35,8 +34,24 @@ export interface Bottom2<T extends HKT2> {
   readonly bottom: Kind2<T, DefaultOf<T, Params.E>, never>
 }
 
+export interface Bottom2EC<T extends HKT2, E> {
+  readonly bottom: Kind2<T, E, never>
+}
+
 export interface Bottom3<T extends HKT3> {
   readonly bottom: Kind3<T, DefaultOf<T, Params.R>, DefaultOf<T, Params.E>, never>
+}
+
+export interface Bottom3RC<T extends HKT3, R> {
+  readonly bottom: Kind3<T, R, DefaultOf<T, Params.E>, never>
+}
+
+export interface Bottom3REC<T extends HKT3, R, E> {
+  readonly bottom: Kind3<T, R, E, never>
+}
+
+export interface Bottom3EC<T extends HKT3, E> {
+  readonly bottom: Kind3<T, DefaultOf<T, Params.R>, E, never>
 }
 
 export interface Bottom4<T extends HKT4> {
@@ -47,6 +62,34 @@ export interface Bottom4<T extends HKT4> {
     DefaultOf<T, Params.E>,
     never
   >
+}
+
+export interface Bottom4SREC<T extends HKT4, S, R, E> {
+  readonly bottom: Kind4<T, S, R, E, never>
+}
+
+export interface Bottom4SC<T extends HKT4, S> {
+  readonly bottom: Kind4<T, S, DefaultOf<T, Params.R>, DefaultOf<T, Params.E>, never>
+}
+
+export interface Bottom4SRC<T extends HKT4, S, R> {
+  readonly bottom: Kind4<T, S, R, DefaultOf<T, Params.E>, never>
+}
+
+export interface Bottom4RC<T extends HKT4, R> {
+  readonly bottom: Kind4<T, DefaultOf<T, Params.S>, R, DefaultOf<T, Params.E>, never>
+}
+
+export interface Bottom4SEC<T extends HKT4, S, E> {
+  readonly bottom: Kind4<T, S, DefaultOf<T, Params.R>, E, never>
+}
+
+export interface Bottom4REC<T extends HKT4, R, E> {
+  readonly bottom: Kind4<T, DefaultOf<T, Params.S>, R, E, never>
+}
+
+export interface Bottom4EC<T extends HKT4, E> {
+  readonly bottom: Kind4<T, DefaultOf<T, Params.S>, DefaultOf<T, Params.R>, E, never>
 }
 
 export interface Bottom5<T extends HKT5> {

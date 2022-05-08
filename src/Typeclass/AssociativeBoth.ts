@@ -55,7 +55,6 @@ import {
 } from './Covariant'
 
 /* #region TypeClass */
-
 export interface AssociativeBoth<T extends HKT> {
   readonly both: <B>(second: Kind<T, B>) => <A>(first: Kind<T, A>) => Kind<T, readonly [A, B]>
 }
@@ -70,7 +69,7 @@ export interface AssociativeBoth2<T extends HKT2> {
   ) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, readonly [A, B]>
 }
 
-export interface AssociativeBoth2C<T extends HKT2, E> {
+export interface AssociativeBoth2EC<T extends HKT2, E> {
   readonly both: <B>(
     second: Kind2<T, E, B>,
   ) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, readonly [A, B]>
@@ -82,8 +81,68 @@ export interface AssociativeBoth3<T extends HKT3> {
   ) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, readonly [A, B]>
 }
 
+export interface AssociativeBoth3RC<T extends HKT3, R> {
+  readonly both: <E, B>(
+    second: Kind3<T, R, E, B>,
+  ) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, readonly [A, B]>
+}
+
+export interface AssociativeBoth3REC<T extends HKT3, R, E> {
+  readonly both: <B>(
+    second: Kind3<T, R, E, B>,
+  ) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, readonly [A, B]>
+}
+
+export interface AssociativeBoth3EC<T extends HKT3, E> {
+  readonly both: <R, B>(
+    second: Kind3<T, R, E, B>,
+  ) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, readonly [A, B]>
+}
+
 export interface AssociativeBoth4<T extends HKT4> {
   readonly both: <S, R, E, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A, B]>
+}
+
+export interface AssociativeBoth4SREC<T extends HKT4, S, R, E> {
+  readonly both: <B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A, B]>
+}
+
+export interface AssociativeBoth4SC<T extends HKT4, S> {
+  readonly both: <R, E, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A, B]>
+}
+
+export interface AssociativeBoth4SRC<T extends HKT4, S, R> {
+  readonly both: <E, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A, B]>
+}
+
+export interface AssociativeBoth4RC<T extends HKT4, R> {
+  readonly both: <S, E, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A, B]>
+}
+
+export interface AssociativeBoth4SEC<T extends HKT4, S, E> {
+  readonly both: <R, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A, B]>
+}
+
+export interface AssociativeBoth4REC<T extends HKT4, R, E> {
+  readonly both: <S, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A, B]>
+}
+
+export interface AssociativeBoth4EC<T extends HKT4, E> {
+  readonly both: <S, R, B>(
     second: Kind4<T, S, R, E, B>,
   ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A, B]>
 }

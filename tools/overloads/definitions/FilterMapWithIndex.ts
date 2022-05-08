@@ -1,12 +1,21 @@
 import { Interface, Static } from '../AST'
 
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import {
+  aTypeParam,
+  bTypeParam,
+  curriedPlaceholder_,
+  fnLabeled_,
+  fn_,
+  hkt,
+  kind_,
+  placeholder,
+} from './common'
 
 const kTypeParam = new Static(`K`)
 
 export const FilterMapWithIndex = new Interface(
   'FilterMapWithIndex',
-  [hkt, kTypeParam],
+  [hkt, kTypeParam, curriedPlaceholder_(hkt)],
   [
     fnLabeled_(
       'filterMapWithIndex',

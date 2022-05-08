@@ -36,14 +36,54 @@ export interface Covariant2<T extends HKT2> {
   readonly map: <A, B>(f: Unary<A, B>) => <E>(kind: Kind2<T, E, A>) => Kind2<T, E, B>
 }
 
+export interface Covariant2EC<T extends HKT2, E> {
+  readonly map: <A, B>(f: Unary<A, B>) => (kind: Kind2<T, E, A>) => Kind2<T, E, B>
+}
+
 export interface Covariant3<T extends HKT3> {
   readonly map: <A, B>(f: Unary<A, B>) => <R, E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface Covariant3RC<T extends HKT3, R> {
+  readonly map: <A, B>(f: Unary<A, B>) => <E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface Covariant3REC<T extends HKT3, R, E> {
+  readonly map: <A, B>(f: Unary<A, B>) => (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface Covariant3EC<T extends HKT3, E> {
+  readonly map: <A, B>(f: Unary<A, B>) => <R>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
 }
 
 export interface Covariant4<T extends HKT4> {
   readonly map: <A, B>(
     f: Unary<A, B>,
   ) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Covariant4SC<T extends HKT4, S> {
+  readonly map: <A, B>(f: Unary<A, B>) => <R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Covariant4SRC<T extends HKT4, S, R> {
+  readonly map: <A, B>(f: Unary<A, B>) => <E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Covariant4RC<T extends HKT4, R> {
+  readonly map: <A, B>(f: Unary<A, B>) => <S, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Covariant4SEC<T extends HKT4, S, E> {
+  readonly map: <A, B>(f: Unary<A, B>) => <R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Covariant4REC<T extends HKT4, R, E> {
+  readonly map: <A, B>(f: Unary<A, B>) => <S>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Covariant4EC<T extends HKT4, E> {
+  readonly map: <A, B>(f: Unary<A, B>) => <S, R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 }
 
 export interface Covariant5<T extends HKT5> {
@@ -87,6 +127,7 @@ export interface Covariant10<T extends HKT10> {
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>
 }
+
 /* #endregion */
 
 /* #region Composition */

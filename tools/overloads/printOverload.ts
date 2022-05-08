@@ -75,8 +75,13 @@ export function printInterface(
     manager.addContext('TypeParam')
 
     const printed = pipe(node.typeParams.map((p) => printTypeParam(p, context, manager)))
+    const placeholders = findHKTParams(node).flatMap(
+      (hkt) => context.placeholders.get(hkt.id) ?? [],
+    )
 
-    const s = `${node.name}${node.typeParams.length ? `<${printed.join(', ')}>` : ''}`
+    const s = `${node.name}${placeholders.length > 0 ? placeholders.join('') + 'C' : ''}${
+      node.typeParams.length ? `<${printed.join(', ')}>` : ''
+    }`
 
     manager.popContext()
 
@@ -86,11 +91,7 @@ export function printInterface(
   manager.addContext('TypeParam')
 
   const printedTypeParams = pipe(node.typeParams.map((p) => printTypeParam(p, context, manager)))
-  const placeholders = findHKTParams(node).flatMap((hkt) =>
-    (context.placeholders.get(hkt.id) ?? []).map((p) =>
-      context.positions.size > 1 ? `${p}${context.positions.get(hkt.id)}` : `${p}`,
-    ),
-  )
+  const placeholders = findHKTParams(node).flatMap((hkt) => context.placeholders.get(hkt.id) ?? [])
 
   const prefix = `${manager.isWithinFunction() ? `` : `export interface `}${node.name}${
     placeholders.length > 0 ? placeholders.join('') + 'C' : ''
@@ -170,6 +171,7 @@ export function printFunctionSignature(
     (manager.isWithinInterface() || manager.isWithinReturn())
   ) {
     const overloads = generateFunctionSignatureOverloads(node, context)
+
     const printed = overloads.map(([p, c]) => printFunctionSignature(p, c, manager.clone(), true))
 
     return `{\n  ${printed.reverse().join('\n    ')}\n  }`
@@ -219,29 +221,34 @@ export function printTypeParam(
 
     case HKTParam.tag:
       return (manager.isWithinReturn() || manager.isWithinExtension()) &&
-        !manager.isWithinTypeParam()
+        manager.isWithinTypeParam()
         ? p.name
         : `${p.name} extends HKT${p.size < 2 ? '' : `${p.size}`}`
-    case HKTCurriedPlaceholder.tag:
+    case HKTCurriedPlaceholder.tag: {
       // TODO: Print current placeholder
-      return ''
+      const placeholders = context.placeholders.get(p.type.id)
+
+      if (!placeholders) {
+        throw new Error(`There should always be a placeholder amount in the context!`)
+      }
+
+      return placeholders
+        .map((s) => (context.positions.size > 1 ? `${s}${context.positions.get(p.type.id)}` : s))
+        .join(', ')
+    }
     case HKTPlaceholder.tag: {
       return ''
     }
     case Typeclass.tag: {
       const baseName = `${p.name}${p.type.size === 0 ? '' : p.type.size}`
-      const params = pipe(p.params.map((p) => printTypeParam(p, context, manager)))
-      const placeholders = (context.placeholders.get(p.type.id) ?? []).map((possibility) =>
-        context.positions.size > 1
-          ? `${possibility}${context.positions.get(p.type.id)}`
-          : `${possibility}`,
-      )
+      const params = p.params
+        .map((p) => printTypeParam(p, context, manager))
+        .filter((x) => x.trim().length > 0)
+      const placeholders = context.placeholders.get(p.type.id)
 
-      return manager.isWithinTypeParam()
-        ? baseName
-        : `${baseName}${placeholders.length > 0 ? placeholders.join('') + 'C' : ''}<${p.type.name}${
-            params.length > 0 ? ', ' : ''
-          }${params.join(', ')}>`
+      return `${baseName}${
+        placeholders && placeholders.length > 0 ? placeholders.join('') + 'C' : ''
+      }<${p.type.name}${params.length > 0 ? ', ' : ''}${params.join(', ')}>`
     }
     case Static.tag:
       return printStatic(p, manager)

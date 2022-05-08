@@ -61,6 +61,23 @@ export function uniq<A>(array: ReadonlyArray<A>): ReadonlyArray<A> {
   return unique
 }
 
+export function uniqBy<A, B>(array: ReadonlyArray<A>, by: (a: A) => B): ReadonlyArray<A> {
+  const seen: B[] = []
+  const unique: A[] = []
+
+  for (const value of array) {
+    const y = by(value)
+    if (seen.find((x) => DeepEquals.equals(y, x))) {
+      continue
+    }
+
+    seen.push(y)
+    unique.push(value)
+  }
+
+  return unique
+}
+
 export function permutations<A>(permutation: Array<A>): Array<Array<A>> {
   let length = permutation.length,
     result = [permutation.slice(0)],

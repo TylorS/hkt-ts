@@ -1,6 +1,7 @@
 import { Params } from '../../src/HKT'
 
 import {
+  AST,
   FunctionSignature,
   HKTPlaceholder,
   Interface,
@@ -8,9 +9,11 @@ import {
   ParentNode,
   TypeAlias,
 } from './AST'
-import { combinations, hktParamNames, possibleLengths, uniq } from './common'
+import { combinations, hktParamNames, possibleLengths, uniq, uniqBy } from './common'
 import { findHKTParams } from './findHKTParams'
 import { defaultVisitors, walkAst } from './walkAst'
+
+const SUPPORTED_PLACEHOLDER_LENGTH = 4
 
 export interface Context {
   readonly parent: ParentNode
@@ -115,7 +118,7 @@ export function findPossibilities(ast: ParentNode): ReadonlyArray<ReadonlyArray<
   return uniq(combinations(findHKTParams(ast).map(() => possibleLengths)))
 }
 
-export function mergeContexts(a: Context, b: Context): Context {
+export function mergeContexts(a: Context, b: Context | Omit<Context, 'placeholders'>): Context {
   const c: Context = {
     parent: b.parent,
     lengths: new Map([...a.lengths, ...b.lengths]),
@@ -124,7 +127,7 @@ export function mergeContexts(a: Context, b: Context): Context {
       ...Array.from(b.positions).map(([k, v]) => [k, v + a.positions.size - 1] as const),
     ]),
     existing: new Map([...a.existing, ...b.existing]),
-    placeholders: new Map([...a.placeholders, ...b.placeholders]),
+    placeholders: new Map([...a.placeholders, ...('placeholders' in b ? b.placeholders : [])]),
   }
 
   c.lengths.forEach((v, k) => a.lengths.set(k, v))
@@ -148,19 +151,73 @@ export function findPlaceholders(
 
     const map = placeholders[i]
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    if (map.has(hkt) && map.get(hkt)!.length > params.length) {
+      return
+    }
+
     map.set(hkt, params)
   }
 
   for (const hkt of hktParams) {
     const length = context.lengths.get(hkt.id) ?? 1
+    const hasNoPlaceholders = length < 2
+
+    addPlaceholder(0, hkt.id, [])
+
+    if (hasNoPlaceholders || length > SUPPORTED_PLACEHOLDER_LENGTH) {
+      continue
+    }
+
     const existing = context.existing.get(hkt.id) ?? []
-    const possiblilties = possibleLengths.slice(existing.length, length)
+    const possiblilties = possibleLengths.slice(
+      existing.length,
+      Math.min(SUPPORTED_PLACEHOLDER_LENGTH, length),
+    )
     const possibleParams = possiblilties.map((p) => hktParamNames[p])
-    const params = uniq(combinations(possiblilties.map(() => possibleParams)).map(uniq))
+    const params = uniqBy(combinations(possiblilties.map(() => possibleParams)).map(uniq), (x) =>
+      x.slice().sort(),
+    )
       .slice()
       .reverse()
 
-    params.forEach((params, i) => addPlaceholder(i, hkt.id, params.slice().reverse()))
+    const shouldAddAll = possibleParams.length > 2
+
+    if (shouldAddAll) {
+      addPlaceholder(1, hkt.id, possibleParams.reverse())
+    }
+
+    params.forEach((params, i) => addPlaceholder(i + (shouldAddAll ? 2 : 1), hkt.id, params))
+
+    const recurse = (node: AST) => {
+      if (
+        node.tag === FunctionSignature.tag ||
+        node.tag === Interface.tag ||
+        node.tag === TypeAlias.tag
+      ) {
+        findPlaceholders(node, context).forEach((map, i) =>
+          map.forEach((params, id) => addPlaceholder(i, id, params)),
+        )
+      }
+
+      return []
+    }
+
+    switch (ast.tag) {
+      case FunctionSignature.tag: {
+        recurse(ast.returnSignature)
+        break
+      }
+      case Interface.tag: {
+        for (const prop of ast.properties) {
+          recurse(prop.param)
+        }
+        break
+      }
+      case TypeAlias.tag: {
+        recurse(ast.signature)
+      }
+    }
   }
 
   return placeholders

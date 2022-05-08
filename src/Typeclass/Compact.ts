@@ -34,12 +34,56 @@ export interface Compact2<T extends HKT2> {
   readonly compact: <E, A>(kind: Kind2<T, E, Maybe<A>>) => Kind2<T, E, A>
 }
 
+export interface Compact2EC<T extends HKT2, E> {
+  readonly compact: <A>(kind: Kind2<T, E, Maybe<A>>) => Kind2<T, E, A>
+}
+
 export interface Compact3<T extends HKT3> {
   readonly compact: <R, E, A>(kind: Kind3<T, R, E, Maybe<A>>) => Kind3<T, R, E, A>
 }
 
+export interface Compact3RC<T extends HKT3, R> {
+  readonly compact: <E, A>(kind: Kind3<T, R, E, Maybe<A>>) => Kind3<T, R, E, A>
+}
+
+export interface Compact3REC<T extends HKT3, R, E> {
+  readonly compact: <A>(kind: Kind3<T, R, E, Maybe<A>>) => Kind3<T, R, E, A>
+}
+
+export interface Compact3EC<T extends HKT3, E> {
+  readonly compact: <R, A>(kind: Kind3<T, R, E, Maybe<A>>) => Kind3<T, R, E, A>
+}
+
 export interface Compact4<T extends HKT4> {
   readonly compact: <S, R, E, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface Compact4SREC<T extends HKT4, S, R, E> {
+  readonly compact: <A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface Compact4SC<T extends HKT4, S> {
+  readonly compact: <R, E, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface Compact4SRC<T extends HKT4, S, R> {
+  readonly compact: <E, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface Compact4RC<T extends HKT4, R> {
+  readonly compact: <S, E, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface Compact4SEC<T extends HKT4, S, E> {
+  readonly compact: <R, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface Compact4REC<T extends HKT4, R, E> {
+  readonly compact: <S, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface Compact4EC<T extends HKT4, E> {
+  readonly compact: <S, R, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
 }
 
 export interface Compact5<T extends HKT5> {

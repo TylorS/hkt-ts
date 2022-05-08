@@ -19,6 +19,9 @@ const program = yargs(process.argv, process.cwd())
   .option('noImports', {
     type: 'boolean',
   })
+  .option('printOutput', {
+    type: 'boolean',
+  })
 
 const HKT_IMPORTS = `import {
   HKT,
@@ -46,7 +49,7 @@ const HKT_IMPORTS = `import {
 } from './HKT'`
 
 async function main() {
-  const { definition, noImports } = await program.argv
+  const { definition, noImports, printOutput } = await program.argv
   const filePath = join(
     __dirname,
     'definitions',
@@ -66,15 +69,17 @@ async function main() {
   const input = (noImports ? '' : HKT_IMPORTS + '\n\n') + printed.join('\n\n')
   const output = format(input, prettierConfig) + '\n'
 
-  console.log(output + '\n')
+  if (printOutput) {
+    console.log(output + '\n')
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const { default: clipboard } = await import('clipboardy')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const { default: clipboard } = await import('clipboardy')
 
-  await clipboard.write(output)
+    await clipboard.write(output)
 
-  console.log('Copied overload to your clipboard!')
+    console.log('Copied overload to your clipboard!')
+  }
 }
 
 main().catch((error) => {

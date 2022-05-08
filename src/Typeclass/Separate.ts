@@ -36,14 +36,80 @@ export interface Separate2<T extends HKT2> {
   ) => readonly [Kind2<T, E, A>, Kind2<T, E, B>]
 }
 
+export interface Separate2EC<T extends HKT2, E> {
+  readonly separate: <A, B>(
+    kind: Kind2<T, E, Either<A, B>>,
+  ) => readonly [Kind2<T, E, A>, Kind2<T, E, B>]
+}
+
 export interface Separate3<T extends HKT3> {
   readonly separate: <R, E, A, B>(
     kind: Kind3<T, R, E, Either<A, B>>,
   ) => readonly [Kind3<T, R, E, A>, Kind3<T, R, E, B>]
 }
 
+export interface Separate3RC<T extends HKT3, R> {
+  readonly separate: <E, A, B>(
+    kind: Kind3<T, R, E, Either<A, B>>,
+  ) => readonly [Kind3<T, R, E, A>, Kind3<T, R, E, B>]
+}
+
+export interface Separate3REC<T extends HKT3, R, E> {
+  readonly separate: <A, B>(
+    kind: Kind3<T, R, E, Either<A, B>>,
+  ) => readonly [Kind3<T, R, E, A>, Kind3<T, R, E, B>]
+}
+
+export interface Separate3EC<T extends HKT3, E> {
+  readonly separate: <R, A, B>(
+    kind: Kind3<T, R, E, Either<A, B>>,
+  ) => readonly [Kind3<T, R, E, A>, Kind3<T, R, E, B>]
+}
+
 export interface Separate4<T extends HKT4> {
   readonly separate: <S, R, E, A, B>(
+    kind: Kind4<T, S, R, E, Either<A, B>>,
+  ) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+}
+
+export interface Separate4SREC<T extends HKT4, S, R, E> {
+  readonly separate: <A, B>(
+    kind: Kind4<T, S, R, E, Either<A, B>>,
+  ) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+}
+
+export interface Separate4SC<T extends HKT4, S> {
+  readonly separate: <R, E, A, B>(
+    kind: Kind4<T, S, R, E, Either<A, B>>,
+  ) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+}
+
+export interface Separate4SRC<T extends HKT4, S, R> {
+  readonly separate: <E, A, B>(
+    kind: Kind4<T, S, R, E, Either<A, B>>,
+  ) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+}
+
+export interface Separate4RC<T extends HKT4, R> {
+  readonly separate: <S, E, A, B>(
+    kind: Kind4<T, S, R, E, Either<A, B>>,
+  ) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+}
+
+export interface Separate4SEC<T extends HKT4, S, E> {
+  readonly separate: <R, A, B>(
+    kind: Kind4<T, S, R, E, Either<A, B>>,
+  ) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+}
+
+export interface Separate4REC<T extends HKT4, R, E> {
+  readonly separate: <S, A, B>(
+    kind: Kind4<T, S, R, E, Either<A, B>>,
+  ) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+}
+
+export interface Separate4EC<T extends HKT4, E> {
+  readonly separate: <S, R, A, B>(
     kind: Kind4<T, S, R, E, Either<A, B>>,
   ) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
 }

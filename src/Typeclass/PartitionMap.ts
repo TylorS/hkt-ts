@@ -23,8 +23,7 @@ import {
 } from '../HKT'
 import { identity } from '../function'
 
-/* #region  Typeclass */
-export interface PartitionMap<T extends HKT> {
+/* #region  Typeclass */ export interface PartitionMap<T extends HKT> {
   readonly partitionMap: <A, B, C>(
     f: (a: A) => Either<B, C>,
   ) => (kind: Kind<T, A>) => readonly [Kind<T, B>, Kind<T, C>]
@@ -42,10 +41,34 @@ export interface PartitionMap2<T extends HKT2> {
   ) => <E>(kind: Kind2<T, E, A>) => readonly [Kind2<T, E, B>, Kind2<T, E, C>]
 }
 
+export interface PartitionMap2EC<T extends HKT2, E> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => (kind: Kind2<T, E, A>) => readonly [Kind2<T, E, B>, Kind2<T, E, C>]
+}
+
 export interface PartitionMap3<T extends HKT3> {
   readonly partitionMap: <A, B, C>(
     f: (a: A) => Either<B, C>,
   ) => <R, E>(kind: Kind3<T, R, E, A>) => readonly [Kind3<T, R, E, B>, Kind3<T, R, E, C>]
+}
+
+export interface PartitionMap3RC<T extends HKT3, R> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => <E>(kind: Kind3<T, R, E, A>) => readonly [Kind3<T, R, E, B>, Kind3<T, R, E, C>]
+}
+
+export interface PartitionMap3REC<T extends HKT3, R, E> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => (kind: Kind3<T, R, E, A>) => readonly [Kind3<T, R, E, B>, Kind3<T, R, E, C>]
+}
+
+export interface PartitionMap3EC<T extends HKT3, E> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => <R>(kind: Kind3<T, R, E, A>) => readonly [Kind3<T, R, E, B>, Kind3<T, R, E, C>]
 }
 
 export interface PartitionMap4<T extends HKT4> {
@@ -54,6 +77,48 @@ export interface PartitionMap4<T extends HKT4> {
   ) => <S, R, E>(
     kind: Kind4<T, S, R, E, A>,
   ) => readonly [Kind4<T, S, R, E, B>, Kind4<T, S, R, E, C>]
+}
+
+export interface PartitionMap4SREC<T extends HKT4, S, R, E> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => (kind: Kind4<T, S, R, E, A>) => readonly [Kind4<T, S, R, E, B>, Kind4<T, S, R, E, C>]
+}
+
+export interface PartitionMap4SC<T extends HKT4, S> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => <R, E>(kind: Kind4<T, S, R, E, A>) => readonly [Kind4<T, S, R, E, B>, Kind4<T, S, R, E, C>]
+}
+
+export interface PartitionMap4SRC<T extends HKT4, S, R> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => <E>(kind: Kind4<T, S, R, E, A>) => readonly [Kind4<T, S, R, E, B>, Kind4<T, S, R, E, C>]
+}
+
+export interface PartitionMap4RC<T extends HKT4, R> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => <S, E>(kind: Kind4<T, S, R, E, A>) => readonly [Kind4<T, S, R, E, B>, Kind4<T, S, R, E, C>]
+}
+
+export interface PartitionMap4SEC<T extends HKT4, S, E> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => <R>(kind: Kind4<T, S, R, E, A>) => readonly [Kind4<T, S, R, E, B>, Kind4<T, S, R, E, C>]
+}
+
+export interface PartitionMap4REC<T extends HKT4, R, E> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => <S>(kind: Kind4<T, S, R, E, A>) => readonly [Kind4<T, S, R, E, B>, Kind4<T, S, R, E, C>]
+}
+
+export interface PartitionMap4EC<T extends HKT4, E> {
+  readonly partitionMap: <A, B, C>(
+    f: (a: A) => Either<B, C>,
+  ) => <S, R>(kind: Kind4<T, S, R, E, A>) => readonly [Kind4<T, S, R, E, B>, Kind4<T, S, R, E, C>]
 }
 
 export interface PartitionMap5<T extends HKT5> {
@@ -103,7 +168,6 @@ export interface PartitionMap10<T extends HKT10> {
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
   ) => readonly [Kind10<T, Z, Y, X, W, V, U, S, R, E, B>, Kind10<T, Z, Y, X, W, V, U, S, R, E, C>]
 }
-
 /* #endregion */
 
 export function separate<T extends HKT10>(

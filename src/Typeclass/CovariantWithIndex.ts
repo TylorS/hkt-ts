@@ -36,16 +36,82 @@ export interface CovariantWithIndex2<T extends HKT2, K> {
   ) => <E>(kind: Kind2<T, E, A>) => Kind2<T, E, B>
 }
 
+export interface CovariantWithIndex2EC<T extends HKT2, K, E> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => (kind: Kind2<T, E, A>) => Kind2<T, E, B>
+}
+
 export interface CovariantWithIndex3<T extends HKT3, K> {
   readonly mapWithIndex: <A, B>(
     f: (index: K, a: A) => B,
   ) => <R, E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
 }
 
+export interface CovariantWithIndex3RC<T extends HKT3, K, R> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => <E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface CovariantWithIndex3REC<T extends HKT3, K, R, E> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface CovariantWithIndex3EC<T extends HKT3, K, E> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => <R>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
 export interface CovariantWithIndex4<T extends HKT4, K> {
   readonly mapWithIndex: <A, B>(
     f: (index: K, a: A) => B,
   ) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface CovariantWithIndex4SREC<T extends HKT4, K, S, R, E> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => (kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface CovariantWithIndex4SC<T extends HKT4, K, S> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => <R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface CovariantWithIndex4SRC<T extends HKT4, K, S, R> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => <E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface CovariantWithIndex4RC<T extends HKT4, K, R> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => <S, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface CovariantWithIndex4SEC<T extends HKT4, K, S, E> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => <R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface CovariantWithIndex4REC<T extends HKT4, K, R, E> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => <S>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface CovariantWithIndex4EC<T extends HKT4, K, E> {
+  readonly mapWithIndex: <A, B>(
+    f: (index: K, a: A) => B,
+  ) => <S, R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 }
 
 export interface CovariantWithIndex5<T extends HKT5, K> {
@@ -89,7 +155,6 @@ export interface CovariantWithIndex10<T extends HKT10, K> {
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>
 }
-
 /* #endregion */
 
 /* #region map */

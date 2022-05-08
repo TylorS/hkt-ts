@@ -4,6 +4,7 @@ import {
   aTypeParam,
   bTypeParam,
   cTypeParam,
+  curriedPlaceholder_,
   fnLabeled_,
   fn_,
   hkt,
@@ -13,7 +14,7 @@ import {
 
 export const PartitionMapWithIndex = new Interface(
   'PartitionMapWithIndex',
-  [hkt, new Static(`K`)],
+  [hkt, new Static(`K`), curriedPlaceholder_(hkt)],
   [
     fnLabeled_(
       'partitionMapWithIndex',

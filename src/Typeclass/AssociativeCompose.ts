@@ -33,8 +33,32 @@ export interface AssociativeCompose3<T extends HKT3> {
   ) => <A>(first: Kind3<T, R, A, B>) => Kind3<T, R, A, B>
 }
 
+export interface AssociativeCompose3RC<T extends HKT3, R> {
+  readonly compose: <B, C>(
+    second: Kind3<T, R, B, C>,
+  ) => <A>(first: Kind3<T, R, A, B>) => Kind3<T, R, A, B>
+}
+
 export interface AssociativeCompose4<T extends HKT4> {
   readonly compose: <S, R, B, C>(
+    second: Kind4<T, S, R, B, C>,
+  ) => <A>(first: Kind4<T, S, R, A, B>) => Kind4<T, S, R, A, B>
+}
+
+export interface AssociativeCompose4SC<T extends HKT4, S> {
+  readonly compose: <R, B, C>(
+    second: Kind4<T, S, R, B, C>,
+  ) => <A>(first: Kind4<T, S, R, A, B>) => Kind4<T, S, R, A, B>
+}
+
+export interface AssociativeCompose4SRC<T extends HKT4, S, R> {
+  readonly compose: <B, C>(
+    second: Kind4<T, S, R, B, C>,
+  ) => <A>(first: Kind4<T, S, R, A, B>) => Kind4<T, S, R, A, B>
+}
+
+export interface AssociativeCompose4RC<T extends HKT4, R> {
+  readonly compose: <S, B, C>(
     second: Kind4<T, S, R, B, C>,
   ) => <A>(first: Kind4<T, S, R, A, B>) => Kind4<T, S, R, A, B>
 }

@@ -1,10 +1,19 @@
 import { Interface, Static } from '../AST'
 
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import {
+  aTypeParam,
+  bTypeParam,
+  curriedPlaceholder_,
+  fnLabeled_,
+  fn_,
+  hkt,
+  kind_,
+  placeholder,
+} from './common'
 
 export const FoldMapWithIndex = new Interface(
   'FoldMapWithIndex',
-  [hkt, new Static(`K`)],
+  [hkt, new Static(`K`), curriedPlaceholder_(hkt)],
   [
     fnLabeled_(
       'foldMapWithIndex',

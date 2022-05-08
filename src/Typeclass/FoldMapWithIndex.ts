@@ -43,16 +43,82 @@ export interface FoldMapWithIndex2<T extends HKT2, K> {
   ) => <A>(f: (k: K, a: A) => B) => <E>(kind: Kind2<T, E, A>) => B
 }
 
+export interface FoldMapWithIndex2EC<T extends HKT2, K, E> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => (kind: Kind2<T, E, A>) => B
+}
+
 export interface FoldMapWithIndex3<T extends HKT3, K> {
   readonly foldMapWithIndex: <B>(
     ID: Identity<B>,
   ) => <A>(f: (k: K, a: A) => B) => <R, E>(kind: Kind3<T, R, E, A>) => B
 }
 
+export interface FoldMapWithIndex3RC<T extends HKT3, K, R> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => <E>(kind: Kind3<T, R, E, A>) => B
+}
+
+export interface FoldMapWithIndex3REC<T extends HKT3, K, R, E> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => (kind: Kind3<T, R, E, A>) => B
+}
+
+export interface FoldMapWithIndex3EC<T extends HKT3, K, E> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => <R>(kind: Kind3<T, R, E, A>) => B
+}
+
 export interface FoldMapWithIndex4<T extends HKT4, K> {
   readonly foldMapWithIndex: <B>(
     ID: Identity<B>,
   ) => <A>(f: (k: K, a: A) => B) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface FoldMapWithIndex4SREC<T extends HKT4, K, S, R, E> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => (kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface FoldMapWithIndex4SC<T extends HKT4, K, S> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => <R, E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface FoldMapWithIndex4SRC<T extends HKT4, K, S, R> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => <E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface FoldMapWithIndex4RC<T extends HKT4, K, R> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => <S, E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface FoldMapWithIndex4SEC<T extends HKT4, K, S, E> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => <R>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface FoldMapWithIndex4REC<T extends HKT4, K, R, E> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => <S>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface FoldMapWithIndex4EC<T extends HKT4, K, E> {
+  readonly foldMapWithIndex: <B>(
+    ID: Identity<B>,
+  ) => <A>(f: (k: K, a: A) => B) => <S, R>(kind: Kind4<T, S, R, E, A>) => B
 }
 
 export interface FoldMapWithIndex5<T extends HKT5, K> {
@@ -96,7 +162,6 @@ export interface FoldMapWithIndex10<T extends HKT10, K> {
     f: (k: K, a: A) => B,
   ) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => B
 }
-
 /* #endregion */
 
 /* #region toMap */

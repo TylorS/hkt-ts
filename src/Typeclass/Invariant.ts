@@ -37,6 +37,10 @@ export interface Invariant2<T extends HKT2> {
   ) => <E>(kind: Kind2<T, E, A>) => Kind2<T, E, B>
 }
 
+export interface Invariant2EC<T extends HKT2, E> {
+  readonly imap: <A, B>(f: Unary<A, B>, g: Unary<B, A>) => (kind: Kind2<T, E, A>) => Kind2<T, E, B>
+}
+
 export interface Invariant3<T extends HKT3> {
   readonly imap: <A, B>(
     f: Unary<A, B>,
@@ -44,11 +48,81 @@ export interface Invariant3<T extends HKT3> {
   ) => <R, E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
 }
 
+export interface Invariant3RC<T extends HKT3, R> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => <E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface Invariant3REC<T extends HKT3, R, E> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface Invariant3EC<T extends HKT3, E> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => <R>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
 export interface Invariant4<T extends HKT4> {
   readonly imap: <A, B>(
     f: Unary<A, B>,
     g: Unary<B, A>,
   ) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Invariant4SREC<T extends HKT4, S, R, E> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => (kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Invariant4SC<T extends HKT4, S> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => <R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Invariant4SRC<T extends HKT4, S, R> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => <E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Invariant4RC<T extends HKT4, R> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => <S, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Invariant4SEC<T extends HKT4, S, E> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => <R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Invariant4REC<T extends HKT4, R, E> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => <S>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Invariant4EC<T extends HKT4, E> {
+  readonly imap: <A, B>(
+    f: Unary<A, B>,
+    g: Unary<B, A>,
+  ) => <S, R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 }
 
 export interface Invariant5<T extends HKT5> {

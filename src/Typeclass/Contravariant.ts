@@ -35,14 +35,66 @@ export interface Contravariant2<T extends HKT2> {
   readonly contramap: <B, A>(f: Unary<B, A>) => <E>(kind: Kind2<T, E, A>) => Kind2<T, E, B>
 }
 
+export interface Contravariant2EC<T extends HKT2, E> {
+  readonly contramap: <B, A>(f: Unary<B, A>) => (kind: Kind2<T, E, A>) => Kind2<T, E, B>
+}
+
 export interface Contravariant3<T extends HKT3> {
   readonly contramap: <B, A>(f: Unary<B, A>) => <R, E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface Contravariant3RC<T extends HKT3, R> {
+  readonly contramap: <B, A>(f: Unary<B, A>) => <E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface Contravariant3REC<T extends HKT3, R, E> {
+  readonly contramap: <B, A>(f: Unary<B, A>) => (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface Contravariant3EC<T extends HKT3, E> {
+  readonly contramap: <B, A>(f: Unary<B, A>) => <R>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
 }
 
 export interface Contravariant4<T extends HKT4> {
   readonly contramap: <B, A>(
     f: Unary<B, A>,
   ) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Contravariant4SC<T extends HKT4, S> {
+  readonly contramap: <B, A>(
+    f: Unary<B, A>,
+  ) => <R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Contravariant4SRC<T extends HKT4, S, R> {
+  readonly contramap: <B, A>(
+    f: Unary<B, A>,
+  ) => <E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Contravariant4RC<T extends HKT4, R> {
+  readonly contramap: <B, A>(
+    f: Unary<B, A>,
+  ) => <S, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Contravariant4SEC<T extends HKT4, S, E> {
+  readonly contramap: <B, A>(
+    f: Unary<B, A>,
+  ) => <R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Contravariant4REC<T extends HKT4, R, E> {
+  readonly contramap: <B, A>(
+    f: Unary<B, A>,
+  ) => <S>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface Contravariant4EC<T extends HKT4, E> {
+  readonly contramap: <B, A>(
+    f: Unary<B, A>,
+  ) => <S, R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 }
 
 export interface Contravariant5<T extends HKT5> {
@@ -86,5 +138,4 @@ export interface Contravariant10<T extends HKT10> {
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>
 }
-
 /* #endregion */

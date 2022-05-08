@@ -1,23 +1,36 @@
 import { HKTParam, Interface, IntersectionNode, Kind, Static } from '../AST'
 
-import { Covariant } from './Covariant'
+import { CovariantWithIndex } from './CovariantWithIndex'
 import { IdentityBoth } from './IdentityBoth'
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import {
+  aTypeParam,
+  bTypeParam,
+  curriedPlaceholder_,
+  fnLabeled_,
+  fn_,
+  hkt,
+  kind_,
+  placeholder,
+} from './common'
 
 const hkt2 = new HKTParam(Symbol('T2'), 'T2')
 const hkt2Placeholder = hkt2.toPlaceholder()
 
 export const ForEachWithIndex = new Interface(
   'ForEachWithIndex',
-  [hkt, new Static(`K`)],
+  [hkt, new Static(`K`), curriedPlaceholder_(hkt)],
   [
     fnLabeled_(
       'forEachWithIndex',
-      [hkt2],
+      [hkt2, new Static(`K2`), curriedPlaceholder_(hkt2)],
       [
-        new IntersectionNode(IdentityBoth.toTypeClass(hkt2), Covariant.toTypeClass(hkt2)).labeled(
-          'IB',
-        ),
+        new IntersectionNode(
+          IdentityBoth.toTypeClass(hkt2).setParams([curriedPlaceholder_(hkt2)]),
+          CovariantWithIndex.toTypeClass(hkt2).setParams([
+            new Static(`K2`),
+            curriedPlaceholder_(hkt2),
+          ]),
+        ).labeled('IB'),
       ],
       fn_(
         '',
@@ -39,7 +52,7 @@ export const ForEachWithIndex = new Interface(
       ),
     ),
   ],
-  [Covariant],
+  [CovariantWithIndex.setParams([hkt, new Static('K'), curriedPlaceholder_(hkt)])],
 )
 
 export const node = ForEachWithIndex

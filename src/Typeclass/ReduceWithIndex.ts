@@ -21,7 +21,7 @@ import {
   Kind9,
 } from '../HKT'
 
-/* #region Typeclass */
+/* #region ReduceWithIndex */
 export interface ReduceWithIndex<T extends HKT, K> {
   readonly reduceWithIndex: <B, A>(b: B, f: (k: K, b: B, a: A) => B) => (kind: Kind<T, A>) => B
 }
@@ -37,6 +37,10 @@ export interface ReduceWithIndex2<T extends HKT2, K> {
   ) => <E>(kind: Kind2<T, E, A>) => B
 }
 
+export interface ReduceWithIndex2EC<T extends HKT2, K, E> {
+  readonly reduceWithIndex: <B, A>(b: B, f: (k: K, b: B, a: A) => B) => (kind: Kind2<T, E, A>) => B
+}
+
 export interface ReduceWithIndex3<T extends HKT3, K> {
   readonly reduceWithIndex: <B, A>(
     b: B,
@@ -44,11 +48,81 @@ export interface ReduceWithIndex3<T extends HKT3, K> {
   ) => <R, E>(kind: Kind3<T, R, E, A>) => B
 }
 
+export interface ReduceWithIndex3RC<T extends HKT3, K, R> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => <E>(kind: Kind3<T, R, E, A>) => B
+}
+
+export interface ReduceWithIndex3REC<T extends HKT3, K, R, E> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => (kind: Kind3<T, R, E, A>) => B
+}
+
+export interface ReduceWithIndex3EC<T extends HKT3, K, E> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => <R>(kind: Kind3<T, R, E, A>) => B
+}
+
 export interface ReduceWithIndex4<T extends HKT4, K> {
   readonly reduceWithIndex: <B, A>(
     b: B,
     f: (k: K, b: B, a: A) => B,
   ) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceWithIndex4SREC<T extends HKT4, K, S, R, E> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => (kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceWithIndex4SC<T extends HKT4, K, S> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => <R, E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceWithIndex4SRC<T extends HKT4, K, S, R> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => <E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceWithIndex4RC<T extends HKT4, K, R> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => <S, E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceWithIndex4SEC<T extends HKT4, K, S, E> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => <R>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceWithIndex4REC<T extends HKT4, K, R, E> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => <S>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceWithIndex4EC<T extends HKT4, K, E> {
+  readonly reduceWithIndex: <B, A>(
+    b: B,
+    f: (k: K, b: B, a: A) => B,
+  ) => <S, R>(kind: Kind4<T, S, R, E, A>) => B
 }
 
 export interface ReduceWithIndex5<T extends HKT5, K> {
@@ -92,7 +166,6 @@ export interface ReduceWithIndex10<T extends HKT10, K> {
     f: (k: K, b: B, a: A) => B,
   ) => <Z, Y, X, W, V, U, S, R, E>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => B
 }
-
 /* #endregion */
 
 /* #region reduce */

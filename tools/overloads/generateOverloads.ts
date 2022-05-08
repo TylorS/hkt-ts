@@ -6,7 +6,6 @@ import {
   Dynamic,
   FunctionParam,
   FunctionSignature,
-  HKTCurriedPlaceholder,
   HKTParam,
   HKTPlaceholder,
   Interface,
@@ -66,13 +65,21 @@ export function generateFunctionSignatureOverloads(
   const output: Array<readonly [FunctionSignature, Context]> = []
 
   for (const possiblilty of possiblilties) {
-    const built = buildContext(signature, possiblilty)
+    const built = (
+      initialContext
+        ? mergeContexts(initialContext, buildContext(signature, possiblilty))
+        : buildContext(signature, possiblilty)
+    ) as Context
 
     for (const placeholders of findPlaceholders(signature, built)) {
       const manager = new PrintContextManager()
-      const context = initialContext
-        ? mergeContexts(initialContext, { ...built, placeholders })
-        : { ...built, placeholders }
+      const context = {
+        ...built,
+        placeholders: new Map([
+          ...('placeholders' in built ? built.placeholders : new Map()),
+          ...placeholders,
+        ]),
+      }
 
       output.push([generateFunctionSignature(signature, context, manager), context])
     }
@@ -213,6 +220,11 @@ export function generateHktPlaceholders(
     }
 
     const base = multiple ? `${name}${position}` : name
+
+    if (curriedPlaceholders.includes(name)) {
+      return new Static(base)
+    }
+
     const withExtension = p.useDefaults
       ? `${base} = DefaultOf<${p.type.name}, Params.${name}>`
       : base
@@ -221,10 +233,6 @@ export function generateHktPlaceholders(
   })
 
   return placeholders
-}
-
-export function generateHktCurriedPlaceholders(p: HKTCurriedPlaceholder, context: Context) {
-  return (context.placeholders.get(p.type.id) ?? []).map((s) => new Static(`${s}`))
 }
 
 function findExistingParams(context: Context, id: symbol): number {
@@ -247,13 +255,15 @@ export function generateTypeclass(
   manager: PrintContextManager,
 ): Typeclass {
   const p2 = p.setType(generateHKTParam(p.type, context))
-  const p3 = p2.setParams(
-    generateTypeParams(
-      p.params.filter((p) => p.tag !== HKTParam.tag),
-      context,
-      manager,
-    ),
+  manager.addContext('TypeParam')
+  const params = generateTypeParams(
+    p.params.filter((p) => p.tag !== HKTParam.tag),
+    context,
+    manager,
   )
+
+  const p3 = p2.setParams(params)
+  manager.popContext()
 
   return p3
 }
@@ -310,7 +320,7 @@ export function generateKindParam(
       return generateHktPlaceholders(param, context, manager)
     }
     case 'HKTCurriedPlaceholder': {
-      return generateHktCurriedPlaceholders(param, context)
+      return [param]
     }
     case 'Kind': {
       return [generateKind(param, context, manager)]

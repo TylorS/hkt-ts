@@ -1,6 +1,6 @@
 import { HKT2, Params } from './HKT'
 import { Associative } from './Typeclass/Associative'
-import { AssociativeBoth2C } from './Typeclass/AssociativeBoth'
+import { AssociativeBoth2EC } from './Typeclass/AssociativeBoth'
 import { Covariant2 } from './Typeclass/Covariant'
 import { Debug } from './Typeclass/Debug'
 import { Identity } from './Typeclass/Identity'
@@ -71,6 +71,6 @@ export const Covariant: Covariant2<TupleHKT> = {
   map: mapSnd,
 }
 
-export const makeAssociativeBoth = <E>(E: Associative<E>): AssociativeBoth2C<TupleHKT, E> => ({
+export const makeAssociativeBoth = <E>(E: Associative<E>): AssociativeBoth2EC<TupleHKT, E> => ({
   both: (second) => (first) => [E.concat(first[0], second[0]), [first[1], second[1]]],
 })

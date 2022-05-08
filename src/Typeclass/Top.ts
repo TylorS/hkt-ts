@@ -37,7 +37,6 @@ import {
   Covariant8,
   Covariant9,
 } from './Covariant'
-
 export interface Top<T extends HKT> {
   readonly top: Kind<T, unknown>
 }
@@ -50,8 +49,24 @@ export interface Top2<T extends HKT2> {
   readonly top: Kind2<T, DefaultOf<T, Params.E>, unknown>
 }
 
+export interface Top2EC<T extends HKT2, E> {
+  readonly top: Kind2<T, E, unknown>
+}
+
 export interface Top3<T extends HKT3> {
   readonly top: Kind3<T, DefaultOf<T, Params.R>, DefaultOf<T, Params.E>, unknown>
+}
+
+export interface Top3RC<T extends HKT3, R> {
+  readonly top: Kind3<T, R, DefaultOf<T, Params.E>, unknown>
+}
+
+export interface Top3REC<T extends HKT3, R, E> {
+  readonly top: Kind3<T, R, E, unknown>
+}
+
+export interface Top3EC<T extends HKT3, E> {
+  readonly top: Kind3<T, DefaultOf<T, Params.R>, E, unknown>
 }
 
 export interface Top4<T extends HKT4> {
@@ -62,6 +77,34 @@ export interface Top4<T extends HKT4> {
     DefaultOf<T, Params.E>,
     unknown
   >
+}
+
+export interface Top4SREC<T extends HKT4, S, R, E> {
+  readonly top: Kind4<T, S, R, E, unknown>
+}
+
+export interface Top4SC<T extends HKT4, S> {
+  readonly top: Kind4<T, S, DefaultOf<T, Params.R>, DefaultOf<T, Params.E>, unknown>
+}
+
+export interface Top4SRC<T extends HKT4, S, R> {
+  readonly top: Kind4<T, S, R, DefaultOf<T, Params.E>, unknown>
+}
+
+export interface Top4RC<T extends HKT4, R> {
+  readonly top: Kind4<T, DefaultOf<T, Params.S>, R, DefaultOf<T, Params.E>, unknown>
+}
+
+export interface Top4SEC<T extends HKT4, S, E> {
+  readonly top: Kind4<T, S, DefaultOf<T, Params.R>, E, unknown>
+}
+
+export interface Top4REC<T extends HKT4, R, E> {
+  readonly top: Kind4<T, DefaultOf<T, Params.S>, R, E, unknown>
+}
+
+export interface Top4EC<T extends HKT4, E> {
+  readonly top: Kind4<T, DefaultOf<T, Params.S>, DefaultOf<T, Params.R>, E, unknown>
 }
 
 export interface Top5<T extends HKT5> {

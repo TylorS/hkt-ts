@@ -62,14 +62,58 @@ export interface AssociativeFlatten2<T extends HKT2> {
   readonly flatten: <E, A>(kind: Kind2<T, E, Kind2<T, E, A>>) => Kind2<T, E, A>
 }
 
+export interface AssociativeFlatten2EC<T extends HKT2, E> {
+  readonly flatten: <A>(kind: Kind2<T, E, Kind2<T, E, A>>) => Kind2<T, E, A>
+}
+
 export interface AssociativeFlatten3<T extends HKT3> {
   readonly flatten: <R, E, A>(kind: Kind3<T, R, E, Kind3<T, R, E, A>>) => Kind3<T, R, E, A>
+}
+
+export interface AssociativeFlatten3RC<T extends HKT3, R> {
+  readonly flatten: <E, A>(kind: Kind3<T, R, E, Kind3<T, R, E, A>>) => Kind3<T, R, E, A>
+}
+
+export interface AssociativeFlatten3REC<T extends HKT3, R, E> {
+  readonly flatten: <A>(kind: Kind3<T, R, E, Kind3<T, R, E, A>>) => Kind3<T, R, E, A>
+}
+
+export interface AssociativeFlatten3EC<T extends HKT3, E> {
+  readonly flatten: <R, A>(kind: Kind3<T, R, E, Kind3<T, R, E, A>>) => Kind3<T, R, E, A>
 }
 
 export interface AssociativeFlatten4<T extends HKT4> {
   readonly flatten: <S, R, E, A>(
     kind: Kind4<T, S, R, E, Kind4<T, S, R, E, A>>,
   ) => Kind4<T, S, R, E, A>
+}
+
+export interface AssociativeFlatten4SREC<T extends HKT4, S, R, E> {
+  readonly flatten: <A>(kind: Kind4<T, S, R, E, Kind4<T, S, R, E, A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface AssociativeFlatten4SC<T extends HKT4, S> {
+  readonly flatten: <R, E, A>(kind: Kind4<T, S, R, E, Kind4<T, S, R, E, A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface AssociativeFlatten4SRC<T extends HKT4, S, R> {
+  readonly flatten: <E, A>(kind: Kind4<T, S, R, E, Kind4<T, S, R, E, A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface AssociativeFlatten4RC<T extends HKT4, R> {
+  readonly flatten: <S, E, A>(kind: Kind4<T, S, R, E, Kind4<T, S, R, E, A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface AssociativeFlatten4SEC<T extends HKT4, S, E> {
+  readonly flatten: <R, A>(kind: Kind4<T, S, R, E, Kind4<T, S, R, E, A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface AssociativeFlatten4REC<T extends HKT4, R, E> {
+  readonly flatten: <S, A>(kind: Kind4<T, S, R, E, Kind4<T, S, R, E, A>>) => Kind4<T, S, R, E, A>
+}
+
+export interface AssociativeFlatten4EC<T extends HKT4, E> {
+  readonly flatten: <S, R, A>(kind: Kind4<T, S, R, E, Kind4<T, S, R, E, A>>) => Kind4<T, S, R, E, A>
 }
 
 export interface AssociativeFlatten5<T extends HKT5> {

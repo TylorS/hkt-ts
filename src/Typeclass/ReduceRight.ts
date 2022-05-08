@@ -20,7 +20,6 @@ import {
   Kind8,
   Kind9,
 } from '../HKT'
-
 export interface ReduceRight<T extends HKT> {
   readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind<T, A>) => B
 }
@@ -33,8 +32,24 @@ export interface ReduceRight2<T extends HKT2> {
   readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => <E>(kind: Kind2<T, E, A>) => B
 }
 
+export interface ReduceRight2EC<T extends HKT2, E> {
+  readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind2<T, E, A>) => B
+}
+
 export interface ReduceRight3<T extends HKT3> {
   readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => <R, E>(kind: Kind3<T, R, E, A>) => B
+}
+
+export interface ReduceRight3RC<T extends HKT3, R> {
+  readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => <E>(kind: Kind3<T, R, E, A>) => B
+}
+
+export interface ReduceRight3REC<T extends HKT3, R, E> {
+  readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind3<T, R, E, A>) => B
+}
+
+export interface ReduceRight3EC<T extends HKT3, E> {
+  readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => <R>(kind: Kind3<T, R, E, A>) => B
 }
 
 export interface ReduceRight4<T extends HKT4> {
@@ -42,6 +57,43 @@ export interface ReduceRight4<T extends HKT4> {
     b: B,
     f: (a: A, b: B) => B,
   ) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceRight4SREC<T extends HKT4, S, R, E> {
+  readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceRight4SC<T extends HKT4, S> {
+  readonly reduceRight: <B, A>(
+    b: B,
+    f: (a: A, b: B) => B,
+  ) => <R, E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceRight4SRC<T extends HKT4, S, R> {
+  readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => <E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceRight4RC<T extends HKT4, R> {
+  readonly reduceRight: <B, A>(
+    b: B,
+    f: (a: A, b: B) => B,
+  ) => <S, E>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceRight4SEC<T extends HKT4, S, E> {
+  readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => <R>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceRight4REC<T extends HKT4, R, E> {
+  readonly reduceRight: <B, A>(b: B, f: (a: A, b: B) => B) => <S>(kind: Kind4<T, S, R, E, A>) => B
+}
+
+export interface ReduceRight4EC<T extends HKT4, E> {
+  readonly reduceRight: <B, A>(
+    b: B,
+    f: (a: A, b: B) => B,
+  ) => <S, R>(kind: Kind4<T, S, R, E, A>) => B
 }
 
 export interface ReduceRight5<T extends HKT5> {

@@ -1,12 +1,20 @@
 import { Dynamic, FunctionSignature, Interface, Static } from '../AST'
 
-import { aTypeParam, bTypeParam, fnLabeled_, hkt, kind_, placeholder } from './common'
+import {
+  aTypeParam,
+  bTypeParam,
+  curriedPlaceholder_,
+  fnLabeled_,
+  hkt,
+  kind_,
+  placeholder,
+} from './common'
 
 export const kTypeParam = new Static('K')
 
 export const node = new Interface(
   'CovariantWithIndex',
-  [hkt, kTypeParam],
+  [hkt, kTypeParam, curriedPlaceholder_(hkt)],
   [
     fnLabeled_(
       'mapWithIndex',

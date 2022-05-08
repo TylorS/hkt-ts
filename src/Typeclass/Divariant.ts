@@ -41,11 +41,39 @@ export interface Divariant3<T extends HKT3> {
   ) => <R>(kind: Kind3<T, R, B, C>) => Kind3<T, R, A, D>
 }
 
+export interface Divariant3RC<T extends HKT3, R> {
+  readonly dimap: <A, B, C, D>(
+    f: Unary<A, B>,
+    g: Unary<C, D>,
+  ) => (kind: Kind3<T, R, B, C>) => Kind3<T, R, A, D>
+}
+
 export interface Divariant4<T extends HKT4> {
   readonly dimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
   ) => <S, R>(kind: Kind4<T, S, R, B, C>) => Kind4<T, S, R, A, D>
+}
+
+export interface Divariant4SC<T extends HKT4, S> {
+  readonly dimap: <A, B, C, D>(
+    f: Unary<A, B>,
+    g: Unary<C, D>,
+  ) => <R>(kind: Kind4<T, S, R, B, C>) => Kind4<T, S, R, A, D>
+}
+
+export interface Divariant4SRC<T extends HKT4, S, R> {
+  readonly dimap: <A, B, C, D>(
+    f: Unary<A, B>,
+    g: Unary<C, D>,
+  ) => (kind: Kind4<T, S, R, B, C>) => Kind4<T, S, R, A, D>
+}
+
+export interface Divariant4RC<T extends HKT4, R> {
+  readonly dimap: <A, B, C, D>(
+    f: Unary<A, B>,
+    g: Unary<C, D>,
+  ) => <S>(kind: Kind4<T, S, R, B, C>) => Kind4<T, S, R, A, D>
 }
 
 export interface Divariant5<T extends HKT5> {

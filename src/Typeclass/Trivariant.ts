@@ -17,7 +17,6 @@ import {
   Kind9,
 } from '../HKT'
 import type { Unary } from '../Unary'
-
 export interface Trivariant<T extends HKT3> {
   readonly trimap: <R1, R2, E1, E2, A1, A2>(
     f: Unary<R1, R2>,
@@ -40,6 +39,14 @@ export interface Trivariant4<T extends HKT4> {
     g: Unary<E1, E2>,
     h: Unary<A1, A2>,
   ) => <S>(kind: Kind4<T, S, R2, E1, A1>) => Kind4<T, S, R1, E2, A2>
+}
+
+export interface Trivariant4SC<T extends HKT4, S> {
+  readonly trimap: <R1, R2, E1, E2, A1, A2>(
+    f: Unary<R1, R2>,
+    g: Unary<E1, E2>,
+    h: Unary<A1, A2>,
+  ) => (kind: Kind4<T, S, R2, E1, A1>) => Kind4<T, S, R1, E2, A2>
 }
 
 export interface Trivariant5<T extends HKT5> {

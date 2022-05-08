@@ -21,6 +21,7 @@ import {
 import type { Unary } from '../Unary'
 import { identity } from '../function'
 
+/* #region Bicovariant */
 export interface Bicovariant<T extends HKT2> {
   readonly bimap: <A, B, C, D>(
     f: Unary<A, B>,
@@ -42,11 +43,39 @@ export interface Bicovariant3<T extends HKT3> {
   ) => <R>(kind: Kind3<T, R, A, C>) => Kind3<T, R, B, D>
 }
 
+export interface Bicovariant3RC<T extends HKT3, R> {
+  readonly bimap: <A, B, C, D>(
+    f: Unary<A, B>,
+    g: Unary<C, D>,
+  ) => (kind: Kind3<T, R, A, C>) => Kind3<T, R, B, D>
+}
+
 export interface Bicovariant4<T extends HKT4> {
   readonly bimap: <A, B, C, D>(
     f: Unary<A, B>,
     g: Unary<C, D>,
   ) => <S, R>(kind: Kind4<T, S, R, A, C>) => Kind4<T, S, R, B, D>
+}
+
+export interface Bicovariant4SC<T extends HKT4, S> {
+  readonly bimap: <A, B, C, D>(
+    f: Unary<A, B>,
+    g: Unary<C, D>,
+  ) => <R>(kind: Kind4<T, S, R, A, C>) => Kind4<T, S, R, B, D>
+}
+
+export interface Bicovariant4SRC<T extends HKT4, S, R> {
+  readonly bimap: <A, B, C, D>(
+    f: Unary<A, B>,
+    g: Unary<C, D>,
+  ) => (kind: Kind4<T, S, R, A, C>) => Kind4<T, S, R, B, D>
+}
+
+export interface Bicovariant4RC<T extends HKT4, R> {
+  readonly bimap: <A, B, C, D>(
+    f: Unary<A, B>,
+    g: Unary<C, D>,
+  ) => <S>(kind: Kind4<T, S, R, A, C>) => Kind4<T, S, R, B, D>
 }
 
 export interface Bicovariant5<T extends HKT5> {
@@ -96,6 +125,7 @@ export interface Bicovariant10<T extends HKT10> {
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, A, C>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, B, D>
 }
+/* #endregion */
 
 export function map<T extends HKT10>(
   B: Bicovariant10<T>,

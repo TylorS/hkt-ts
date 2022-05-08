@@ -50,8 +50,7 @@ import {
   Covariant9,
 } from './Covariant'
 
-/* #region  TypeClasses */
-
+/* #region AssociativeEither */
 export interface AssociativeEither<T extends HKT> {
   readonly either: <B>(second: Kind<T, B>) => <A>(first: Kind<T, A>) => Kind<T, Either<A, B>>
 }
@@ -66,14 +65,80 @@ export interface AssociativeEither2<T extends HKT2> {
   ) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, Either<A, B>>
 }
 
+export interface AssociativeEither2EC<T extends HKT2, E> {
+  readonly either: <B>(
+    second: Kind2<T, E, B>,
+  ) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, Either<A, B>>
+}
+
 export interface AssociativeEither3<T extends HKT3> {
   readonly either: <R, E, B>(
     second: Kind3<T, R, E, B>,
   ) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, Either<A, B>>
 }
 
+export interface AssociativeEither3RC<T extends HKT3, R> {
+  readonly either: <E, B>(
+    second: Kind3<T, R, E, B>,
+  ) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, Either<A, B>>
+}
+
+export interface AssociativeEither3REC<T extends HKT3, R, E> {
+  readonly either: <B>(
+    second: Kind3<T, R, E, B>,
+  ) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, Either<A, B>>
+}
+
+export interface AssociativeEither3EC<T extends HKT3, E> {
+  readonly either: <R, B>(
+    second: Kind3<T, R, E, B>,
+  ) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, Either<A, B>>
+}
+
 export interface AssociativeEither4<T extends HKT4> {
   readonly either: <S, R, E, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, Either<A, B>>
+}
+
+export interface AssociativeEither4SREC<T extends HKT4, S, R, E> {
+  readonly either: <B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, Either<A, B>>
+}
+
+export interface AssociativeEither4SC<T extends HKT4, S> {
+  readonly either: <R, E, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, Either<A, B>>
+}
+
+export interface AssociativeEither4SRC<T extends HKT4, S, R> {
+  readonly either: <E, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, Either<A, B>>
+}
+
+export interface AssociativeEither4RC<T extends HKT4, R> {
+  readonly either: <S, E, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, Either<A, B>>
+}
+
+export interface AssociativeEither4SEC<T extends HKT4, S, E> {
+  readonly either: <R, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, Either<A, B>>
+}
+
+export interface AssociativeEither4REC<T extends HKT4, R, E> {
+  readonly either: <S, B>(
+    second: Kind4<T, S, R, E, B>,
+  ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, Either<A, B>>
+}
+
+export interface AssociativeEither4EC<T extends HKT4, E> {
+  readonly either: <S, R, B>(
     second: Kind4<T, S, R, E, B>,
   ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, Either<A, B>>
 }

@@ -40,16 +40,82 @@ export interface FilterMapWithIndex2<T extends HKT2, K> {
   ) => <E>(kind: Kind2<T, E, A>) => Kind2<T, E, B>
 }
 
+export interface FilterMapWithIndex2EC<T extends HKT2, K, E> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => (kind: Kind2<T, E, A>) => Kind2<T, E, B>
+}
+
 export interface FilterMapWithIndex3<T extends HKT3, K> {
   readonly filterMapWithIndex: <A, B>(
     f: (k: K, a: A) => Maybe<B>,
   ) => <R, E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
 }
 
+export interface FilterMapWithIndex3RC<T extends HKT3, K, R> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => <E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface FilterMapWithIndex3REC<T extends HKT3, K, R, E> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
+export interface FilterMapWithIndex3EC<T extends HKT3, K, E> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => <R>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+}
+
 export interface FilterMapWithIndex4<T extends HKT4, K> {
   readonly filterMapWithIndex: <A, B>(
     f: (k: K, a: A) => Maybe<B>,
   ) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface FilterMapWithIndex4SREC<T extends HKT4, K, S, R, E> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => (kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface FilterMapWithIndex4SC<T extends HKT4, K, S> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => <R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface FilterMapWithIndex4SRC<T extends HKT4, K, S, R> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => <E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface FilterMapWithIndex4RC<T extends HKT4, K, R> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => <S, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface FilterMapWithIndex4SEC<T extends HKT4, K, S, E> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => <R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface FilterMapWithIndex4REC<T extends HKT4, K, R, E> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => <S>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
+export interface FilterMapWithIndex4EC<T extends HKT4, K, E> {
+  readonly filterMapWithIndex: <A, B>(
+    f: (k: K, a: A) => Maybe<B>,
+  ) => <S, R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 }
 
 export interface FilterMapWithIndex5<T extends HKT5, K> {
