@@ -334,7 +334,7 @@ export function bimap<F extends HKT10, G extends HKT10>(
     S1,
     R1,
     E1,
-    Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>
+    Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>
   >,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
@@ -345,7 +345,7 @@ export function bimap<F extends HKT9, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT10>(
@@ -355,7 +355,7 @@ export function bimap<F extends HKT8, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT10>(
@@ -365,7 +365,7 @@ export function bimap<F extends HKT7, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT10>(
@@ -375,7 +375,7 @@ export function bimap<F extends HKT6, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT10>(
@@ -385,7 +385,7 @@ export function bimap<F extends HKT5, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT10>(
@@ -395,7 +395,7 @@ export function bimap<F extends HKT4, E1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT10>(
@@ -405,7 +405,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT10>(
@@ -415,7 +415,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT10>(
@@ -425,7 +425,7 @@ export function bimap<F extends HKT4, R1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT10>(
@@ -435,7 +435,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT10>(
@@ -445,7 +445,7 @@ export function bimap<F extends HKT4, S1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT10>(
@@ -455,7 +455,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT10>(
@@ -465,7 +465,7 @@ export function bimap<F extends HKT4, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT10>(
@@ -475,7 +475,7 @@ export function bimap<F extends HKT3, E1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT10>(
@@ -485,7 +485,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT10>(
@@ -495,7 +495,7 @@ export function bimap<F extends HKT3, R1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT10>(
@@ -505,7 +505,7 @@ export function bimap<F extends HKT3, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT10>(
@@ -515,7 +515,7 @@ export function bimap<F extends HKT2, E1, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT10>(
@@ -525,7 +525,7 @@ export function bimap<F extends HKT2, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT10>(
@@ -535,7 +535,7 @@ export function bimap<F extends HKT, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT10>(
@@ -545,7 +545,7 @@ export function bimap<F extends HKT, G extends HKT10>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z2, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT9>(
@@ -555,7 +555,7 @@ export function bimap<F extends HKT10, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT9>(
@@ -565,7 +565,7 @@ export function bimap<F extends HKT9, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT9>(
@@ -575,7 +575,7 @@ export function bimap<F extends HKT8, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT9>(
@@ -585,7 +585,7 @@ export function bimap<F extends HKT7, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT9>(
@@ -595,7 +595,7 @@ export function bimap<F extends HKT6, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT9>(
@@ -605,7 +605,7 @@ export function bimap<F extends HKT5, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT9>(
@@ -615,7 +615,7 @@ export function bimap<F extends HKT4, E1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT9>(
@@ -625,7 +625,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT9>(
@@ -635,7 +635,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT9>(
@@ -645,7 +645,7 @@ export function bimap<F extends HKT4, R1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT9>(
@@ -655,7 +655,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT9>(
@@ -665,7 +665,7 @@ export function bimap<F extends HKT4, S1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT9>(
@@ -675,7 +675,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT9>(
@@ -685,7 +685,7 @@ export function bimap<F extends HKT4, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT9>(
@@ -695,7 +695,7 @@ export function bimap<F extends HKT3, E1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT9>(
@@ -705,7 +705,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT9>(
@@ -715,7 +715,7 @@ export function bimap<F extends HKT3, R1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT9>(
@@ -725,7 +725,7 @@ export function bimap<F extends HKT3, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT9>(
@@ -735,7 +735,7 @@ export function bimap<F extends HKT2, E1, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT9>(
@@ -745,7 +745,7 @@ export function bimap<F extends HKT2, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT9>(
@@ -755,7 +755,7 @@ export function bimap<F extends HKT, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT9>(
@@ -765,7 +765,7 @@ export function bimap<F extends HKT, G extends HKT9>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y2, X2, W2, V2, U2, S2, R2>(
-  kind: Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT8>(
@@ -775,7 +775,7 @@ export function bimap<F extends HKT10, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT8>(
@@ -785,7 +785,7 @@ export function bimap<F extends HKT9, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT8>(
@@ -795,7 +795,7 @@ export function bimap<F extends HKT8, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT8>(
@@ -805,7 +805,7 @@ export function bimap<F extends HKT7, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT8>(
@@ -815,7 +815,7 @@ export function bimap<F extends HKT6, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT8>(
@@ -825,7 +825,7 @@ export function bimap<F extends HKT5, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT8>(
@@ -835,7 +835,7 @@ export function bimap<F extends HKT4, E1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT8>(
@@ -845,7 +845,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT8>(
@@ -855,7 +855,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT8>(
@@ -865,7 +865,7 @@ export function bimap<F extends HKT4, R1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT8>(
@@ -875,7 +875,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT8>(
@@ -885,7 +885,7 @@ export function bimap<F extends HKT4, S1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT8>(
@@ -895,7 +895,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT8>(
@@ -905,7 +905,7 @@ export function bimap<F extends HKT4, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT8>(
@@ -915,7 +915,7 @@ export function bimap<F extends HKT3, E1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT8>(
@@ -925,7 +925,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT8>(
@@ -935,7 +935,7 @@ export function bimap<F extends HKT3, R1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT8>(
@@ -945,7 +945,7 @@ export function bimap<F extends HKT3, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT8>(
@@ -955,7 +955,7 @@ export function bimap<F extends HKT2, E1, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X2, W2, V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT8>(
@@ -965,7 +965,7 @@ export function bimap<F extends HKT2, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, X2, W2, V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT8>(
@@ -975,7 +975,7 @@ export function bimap<F extends HKT, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X2, W2, V2, U2, S2, R2>(
-  kind: Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT8>(
@@ -985,7 +985,7 @@ export function bimap<F extends HKT, G extends HKT8>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X2, W2, V2, U2, S2, R2>(
-  kind: Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT7>(
@@ -995,7 +995,7 @@ export function bimap<F extends HKT10, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT7>(
@@ -1005,7 +1005,7 @@ export function bimap<F extends HKT9, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT7>(
@@ -1015,7 +1015,7 @@ export function bimap<F extends HKT8, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT7>(
@@ -1025,7 +1025,7 @@ export function bimap<F extends HKT7, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT7>(
@@ -1035,7 +1035,7 @@ export function bimap<F extends HKT6, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT7>(
@@ -1045,7 +1045,7 @@ export function bimap<F extends HKT5, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT7>(
@@ -1055,7 +1055,7 @@ export function bimap<F extends HKT4, E1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT7>(
@@ -1065,7 +1065,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT7>(
@@ -1075,7 +1075,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT7>(
@@ -1085,7 +1085,7 @@ export function bimap<F extends HKT4, R1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT7>(
@@ -1095,7 +1095,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT7>(
@@ -1105,7 +1105,7 @@ export function bimap<F extends HKT4, S1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT7>(
@@ -1115,7 +1115,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT7>(
@@ -1125,7 +1125,7 @@ export function bimap<F extends HKT4, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT7>(
@@ -1135,7 +1135,7 @@ export function bimap<F extends HKT3, E1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT7>(
@@ -1145,7 +1145,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT7>(
@@ -1155,7 +1155,7 @@ export function bimap<F extends HKT3, R1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT7>(
@@ -1165,7 +1165,7 @@ export function bimap<F extends HKT3, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, W2, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT7>(
@@ -1175,7 +1175,7 @@ export function bimap<F extends HKT2, E1, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W2, V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT7>(
@@ -1185,7 +1185,7 @@ export function bimap<F extends HKT2, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, W2, V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT7>(
@@ -1195,7 +1195,7 @@ export function bimap<F extends HKT, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W2, V2, U2, S2, R2>(
-  kind: Kind<F, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT7>(
@@ -1205,7 +1205,7 @@ export function bimap<F extends HKT, G extends HKT7>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W2, V2, U2, S2, R2>(
-  kind: Kind<F, Kind7<G, W2, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind7<G, W2, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind7<G, W2, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT6>(
@@ -1215,7 +1215,7 @@ export function bimap<F extends HKT10, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, V2, U2, S2, R2>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT6>(
@@ -1225,7 +1225,7 @@ export function bimap<F extends HKT9, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, V2, U2, S2, R2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT6>(
@@ -1235,7 +1235,7 @@ export function bimap<F extends HKT8, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, V2, U2, S2, R2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT6>(
@@ -1245,7 +1245,7 @@ export function bimap<F extends HKT7, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, V2, U2, S2, R2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT6>(
@@ -1255,7 +1255,7 @@ export function bimap<F extends HKT6, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, V2, U2, S2, R2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT6>(
@@ -1265,7 +1265,7 @@ export function bimap<F extends HKT5, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, V2, U2, S2, R2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT6>(
@@ -1275,7 +1275,7 @@ export function bimap<F extends HKT4, E1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT6>(
@@ -1285,7 +1285,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT6>(
@@ -1295,7 +1295,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT6>(
@@ -1305,7 +1305,7 @@ export function bimap<F extends HKT4, R1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, E1, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT6>(
@@ -1315,7 +1315,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT6>(
@@ -1325,7 +1325,7 @@ export function bimap<F extends HKT4, S1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT6>(
@@ -1335,7 +1335,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT6>(
@@ -1345,7 +1345,7 @@ export function bimap<F extends HKT4, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1, V2, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT6>(
@@ -1355,7 +1355,7 @@ export function bimap<F extends HKT3, E1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT6>(
@@ -1365,7 +1365,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT6>(
@@ -1375,7 +1375,7 @@ export function bimap<F extends HKT3, R1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT6>(
@@ -1385,7 +1385,7 @@ export function bimap<F extends HKT3, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, V2, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT6>(
@@ -1395,7 +1395,7 @@ export function bimap<F extends HKT2, E1, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT6>(
@@ -1405,7 +1405,7 @@ export function bimap<F extends HKT2, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, V2, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT6>(
@@ -1415,7 +1415,7 @@ export function bimap<F extends HKT, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V2, U2, S2, R2>(
-  kind: Kind<F, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT6>(
@@ -1425,7 +1425,7 @@ export function bimap<F extends HKT, G extends HKT6>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V2, U2, S2, R2>(
-  kind: Kind<F, Kind6<G, V2, U2, S2, R2, A, B>>,
+  kind: Kind<F, Kind6<G, V2, U2, S2, R2, A, C>>,
 ) => Kind<F, Kind6<G, V2, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT5>(
@@ -1435,7 +1435,7 @@ export function bimap<F extends HKT10, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, U2, S2, R2>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT5>(
@@ -1445,7 +1445,7 @@ export function bimap<F extends HKT9, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, U2, S2, R2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT5>(
@@ -1455,7 +1455,7 @@ export function bimap<F extends HKT8, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, U2, S2, R2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT5>(
@@ -1465,7 +1465,7 @@ export function bimap<F extends HKT7, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, U2, S2, R2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT5>(
@@ -1475,7 +1475,7 @@ export function bimap<F extends HKT6, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, U2, S2, R2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT5>(
@@ -1485,7 +1485,7 @@ export function bimap<F extends HKT5, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, U2, S2, R2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT5>(
@@ -1495,7 +1495,7 @@ export function bimap<F extends HKT4, E1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT5>(
@@ -1505,7 +1505,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT5>(
@@ -1515,7 +1515,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT5>(
@@ -1525,7 +1525,7 @@ export function bimap<F extends HKT4, R1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, E1, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT5>(
@@ -1535,7 +1535,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT5>(
@@ -1545,7 +1545,7 @@ export function bimap<F extends HKT4, S1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT5>(
@@ -1555,7 +1555,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT5>(
@@ -1565,7 +1565,7 @@ export function bimap<F extends HKT4, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1, U2, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT5>(
@@ -1575,7 +1575,7 @@ export function bimap<F extends HKT3, E1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT5>(
@@ -1585,7 +1585,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT5>(
@@ -1595,7 +1595,7 @@ export function bimap<F extends HKT3, R1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT5>(
@@ -1605,7 +1605,7 @@ export function bimap<F extends HKT3, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, U2, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT5>(
@@ -1615,7 +1615,7 @@ export function bimap<F extends HKT2, E1, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U2, S2, R2>(
-  kind: Kind2<F, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT5>(
@@ -1625,7 +1625,7 @@ export function bimap<F extends HKT2, G extends HKT5>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, U2, S2, R2>(
-  kind: Kind2<F, E1, Kind5<G, U2, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind5<G, U2, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT5>(
@@ -1634,7 +1634,7 @@ export function bimap<F extends HKT, G extends HKT5>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <U2, S2, R2>(kind: Kind<F, Kind5<G, U2, S2, R2, A, B>>) => Kind<F, Kind5<G, U2, S2, R2, B, D>>
+) => <U2, S2, R2>(kind: Kind<F, Kind5<G, U2, S2, R2, A, C>>) => Kind<F, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT5>(
   F: Covariant<F>,
@@ -1642,7 +1642,7 @@ export function bimap<F extends HKT, G extends HKT5>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <U2, S2, R2>(kind: Kind<F, Kind5<G, U2, S2, R2, A, B>>) => Kind<F, Kind5<G, U2, S2, R2, B, D>>
+) => <U2, S2, R2>(kind: Kind<F, Kind5<G, U2, S2, R2, A, C>>) => Kind<F, Kind5<G, U2, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT4, R2>(
   F: Covariant10<F>,
@@ -1651,7 +1651,7 @@ export function bimap<F extends HKT10, G extends HKT4, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT4, S2, R2>(
@@ -1661,7 +1661,7 @@ export function bimap<F extends HKT10, G extends HKT4, S2, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT4, S2>(
@@ -1671,7 +1671,7 @@ export function bimap<F extends HKT10, G extends HKT4, S2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, R2>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT4>(
@@ -1681,7 +1681,7 @@ export function bimap<F extends HKT10, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2, R2>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT4, R2>(
@@ -1691,7 +1691,7 @@ export function bimap<F extends HKT9, G extends HKT4, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, S2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT4, S2, R2>(
@@ -1701,7 +1701,7 @@ export function bimap<F extends HKT9, G extends HKT4, S2, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT4, S2>(
@@ -1711,7 +1711,7 @@ export function bimap<F extends HKT9, G extends HKT4, S2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, R2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT4>(
@@ -1721,7 +1721,7 @@ export function bimap<F extends HKT9, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, S2, R2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT4, R2>(
@@ -1731,7 +1731,7 @@ export function bimap<F extends HKT8, G extends HKT4, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, S2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT4, S2, R2>(
@@ -1741,7 +1741,7 @@ export function bimap<F extends HKT8, G extends HKT4, S2, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT4, S2>(
@@ -1751,7 +1751,7 @@ export function bimap<F extends HKT8, G extends HKT4, S2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, R2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT4>(
@@ -1761,7 +1761,7 @@ export function bimap<F extends HKT8, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, S2, R2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT4, R2>(
@@ -1771,7 +1771,7 @@ export function bimap<F extends HKT7, G extends HKT4, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, S2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT4, S2, R2>(
@@ -1781,7 +1781,7 @@ export function bimap<F extends HKT7, G extends HKT4, S2, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT4, S2>(
@@ -1791,7 +1791,7 @@ export function bimap<F extends HKT7, G extends HKT4, S2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, R2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT4>(
@@ -1801,7 +1801,7 @@ export function bimap<F extends HKT7, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, S2, R2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT4, R2>(
@@ -1811,7 +1811,7 @@ export function bimap<F extends HKT6, G extends HKT4, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, S2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT4, S2, R2>(
@@ -1821,7 +1821,7 @@ export function bimap<F extends HKT6, G extends HKT4, S2, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT4, S2>(
@@ -1831,7 +1831,7 @@ export function bimap<F extends HKT6, G extends HKT4, S2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, R2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT4>(
@@ -1841,7 +1841,7 @@ export function bimap<F extends HKT6, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, S2, R2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT4, R2>(
@@ -1851,7 +1851,7 @@ export function bimap<F extends HKT5, G extends HKT4, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, S2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT4, S2, R2>(
@@ -1861,7 +1861,7 @@ export function bimap<F extends HKT5, G extends HKT4, S2, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT4, S2>(
@@ -1871,7 +1871,7 @@ export function bimap<F extends HKT5, G extends HKT4, S2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, R2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT4>(
@@ -1881,7 +1881,7 @@ export function bimap<F extends HKT5, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, S2, R2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT4>(
@@ -1891,7 +1891,7 @@ export function bimap<F extends HKT4, E1, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT4>(
@@ -1901,7 +1901,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT4>(
@@ -1911,7 +1911,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT4>(
@@ -1921,7 +1921,7 @@ export function bimap<F extends HKT4, R1, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, E1, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT4, R2>(
@@ -1931,7 +1931,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT4, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, S2>(
-  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT4, S2, R2>(
@@ -1941,7 +1941,7 @@ export function bimap<F extends HKT4, S1, G extends HKT4, S2, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1>(
-  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT4, S2>(
@@ -1951,7 +1951,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT4, S2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R2>(
-  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT4>(
@@ -1961,7 +1961,7 @@ export function bimap<F extends HKT4, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1, S2, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT4, R2>(
@@ -1971,7 +1971,7 @@ export function bimap<F extends HKT3, E1, G extends HKT4, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, S2>(
-  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT4, S2, R2>(
@@ -1980,7 +1980,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT4, S2, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind3<F, R1, E1, Kind4<G, S2, R2, A, B>>) => Kind3<F, R1, E1, Kind4<G, S2, R2, B, D>>
+) => (kind: Kind3<F, R1, E1, Kind4<G, S2, R2, A, C>>) => Kind3<F, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT4, S2>(
   F: Covariant3RC<F, R1>,
@@ -1989,7 +1989,7 @@ export function bimap<F extends HKT3, R1, G extends HKT4, S2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, R2>(
-  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT4>(
@@ -1999,7 +1999,7 @@ export function bimap<F extends HKT3, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, S2, R2>(
-  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT4, R2>(
@@ -2008,7 +2008,7 @@ export function bimap<F extends HKT2, G extends HKT4, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1, S2>(kind: Kind2<F, E1, Kind4<G, S2, R2, A, B>>) => Kind2<F, E1, Kind4<G, S2, R2, B, D>>
+) => <E1, S2>(kind: Kind2<F, E1, Kind4<G, S2, R2, A, C>>) => Kind2<F, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT4, S2, R2>(
   F: Covariant2<F>,
@@ -2016,7 +2016,7 @@ export function bimap<F extends HKT2, G extends HKT4, S2, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1>(kind: Kind2<F, E1, Kind4<G, S2, R2, A, B>>) => Kind2<F, E1, Kind4<G, S2, R2, B, D>>
+) => <E1>(kind: Kind2<F, E1, Kind4<G, S2, R2, A, C>>) => Kind2<F, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT4, S2>(
   F: Covariant2EC<F, E1>,
@@ -2024,7 +2024,7 @@ export function bimap<F extends HKT2, E1, G extends HKT4, S2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R2>(kind: Kind2<F, E1, Kind4<G, S2, R2, A, B>>) => Kind2<F, E1, Kind4<G, S2, R2, B, D>>
+) => <R2>(kind: Kind2<F, E1, Kind4<G, S2, R2, A, C>>) => Kind2<F, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT4>(
   F: Covariant2<F>,
@@ -2033,7 +2033,7 @@ export function bimap<F extends HKT2, G extends HKT4>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, S2, R2>(
-  kind: Kind2<F, E1, Kind4<G, S2, R2, A, B>>,
+  kind: Kind2<F, E1, Kind4<G, S2, R2, A, C>>,
 ) => Kind2<F, E1, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT4, R2>(
@@ -2042,7 +2042,7 @@ export function bimap<F extends HKT, G extends HKT4, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S2>(kind: Kind<F, Kind4<G, S2, R2, A, B>>) => Kind<F, Kind4<G, S2, R2, B, D>>
+) => <S2>(kind: Kind<F, Kind4<G, S2, R2, A, C>>) => Kind<F, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT4, S2, R2>(
   F: Covariant1<F>,
@@ -2050,7 +2050,7 @@ export function bimap<F extends HKT, G extends HKT4, S2, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind<F, Kind4<G, S2, R2, A, B>>) => Kind<F, Kind4<G, S2, R2, B, D>>
+) => (kind: Kind<F, Kind4<G, S2, R2, A, C>>) => Kind<F, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT4, S2>(
   F: Covariant1<F>,
@@ -2058,7 +2058,7 @@ export function bimap<F extends HKT, G extends HKT4, S2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R2>(kind: Kind<F, Kind4<G, S2, R2, A, B>>) => Kind<F, Kind4<G, S2, R2, B, D>>
+) => <R2>(kind: Kind<F, Kind4<G, S2, R2, A, C>>) => Kind<F, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT4>(
   F: Covariant1<F>,
@@ -2066,7 +2066,7 @@ export function bimap<F extends HKT, G extends HKT4>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S2, R2>(kind: Kind<F, Kind4<G, S2, R2, A, B>>) => Kind<F, Kind4<G, S2, R2, B, D>>
+) => <S2, R2>(kind: Kind<F, Kind4<G, S2, R2, A, C>>) => Kind<F, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT4, R2>(
   F: Covariant<F>,
@@ -2074,7 +2074,7 @@ export function bimap<F extends HKT, G extends HKT4, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S2>(kind: Kind<F, Kind4<G, S2, R2, A, B>>) => Kind<F, Kind4<G, S2, R2, B, D>>
+) => <S2>(kind: Kind<F, Kind4<G, S2, R2, A, C>>) => Kind<F, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT4, S2, R2>(
   F: Covariant<F>,
@@ -2082,7 +2082,7 @@ export function bimap<F extends HKT, G extends HKT4, S2, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind<F, Kind4<G, S2, R2, A, B>>) => Kind<F, Kind4<G, S2, R2, B, D>>
+) => (kind: Kind<F, Kind4<G, S2, R2, A, C>>) => Kind<F, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT4, S2>(
   F: Covariant<F>,
@@ -2090,7 +2090,7 @@ export function bimap<F extends HKT, G extends HKT4, S2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R2>(kind: Kind<F, Kind4<G, S2, R2, A, B>>) => Kind<F, Kind4<G, S2, R2, B, D>>
+) => <R2>(kind: Kind<F, Kind4<G, S2, R2, A, C>>) => Kind<F, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT4>(
   F: Covariant<F>,
@@ -2098,7 +2098,7 @@ export function bimap<F extends HKT, G extends HKT4>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S2, R2>(kind: Kind<F, Kind4<G, S2, R2, A, B>>) => Kind<F, Kind4<G, S2, R2, B, D>>
+) => <S2, R2>(kind: Kind<F, Kind4<G, S2, R2, A, C>>) => Kind<F, Kind4<G, S2, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT3, R2>(
   F: Covariant10<F>,
@@ -2107,7 +2107,7 @@ export function bimap<F extends HKT10, G extends HKT3, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT3>(
@@ -2117,7 +2117,7 @@ export function bimap<F extends HKT10, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, R2>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT3, R2>(
@@ -2127,7 +2127,7 @@ export function bimap<F extends HKT9, G extends HKT3, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT3>(
@@ -2137,7 +2137,7 @@ export function bimap<F extends HKT9, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, R2>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT3, R2>(
@@ -2147,7 +2147,7 @@ export function bimap<F extends HKT8, G extends HKT3, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT3>(
@@ -2157,7 +2157,7 @@ export function bimap<F extends HKT8, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1, R2>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT3, R2>(
@@ -2167,7 +2167,7 @@ export function bimap<F extends HKT7, G extends HKT3, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT3>(
@@ -2177,7 +2177,7 @@ export function bimap<F extends HKT7, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1, R2>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT3, R2>(
@@ -2187,7 +2187,7 @@ export function bimap<F extends HKT6, G extends HKT3, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT3>(
@@ -2197,7 +2197,7 @@ export function bimap<F extends HKT6, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1, R2>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT3, R2>(
@@ -2207,7 +2207,7 @@ export function bimap<F extends HKT5, G extends HKT3, R2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT3>(
@@ -2217,7 +2217,7 @@ export function bimap<F extends HKT5, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1, R2>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT3>(
@@ -2227,7 +2227,7 @@ export function bimap<F extends HKT4, E1, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT3>(
@@ -2237,7 +2237,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT3>(
@@ -2247,7 +2247,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT3>(
@@ -2257,7 +2257,7 @@ export function bimap<F extends HKT4, R1, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, E1, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT3>(
@@ -2267,7 +2267,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <E1, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT3>(
@@ -2277,7 +2277,7 @@ export function bimap<F extends HKT4, S1, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT3, R2>(
@@ -2286,7 +2286,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT3, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, B>>) => Kind4<F, S1, R1, E1, Kind3<G, R2, B, D>>
+) => (kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, C>>) => Kind4<F, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT3>(
   F: Covariant4<F>,
@@ -2295,7 +2295,7 @@ export function bimap<F extends HKT4, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1, R2>(
-  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT3>(
@@ -2304,7 +2304,7 @@ export function bimap<F extends HKT3, E1, G extends HKT3>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R1, R2>(kind: Kind3<F, R1, E1, Kind3<G, R2, A, B>>) => Kind3<F, R1, E1, Kind3<G, R2, B, D>>
+) => <R1, R2>(kind: Kind3<F, R1, E1, Kind3<G, R2, A, C>>) => Kind3<F, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT3>(
   F: Covariant3REC<F, R1, E1>,
@@ -2312,7 +2312,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT3>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R2>(kind: Kind3<F, R1, E1, Kind3<G, R2, A, B>>) => Kind3<F, R1, E1, Kind3<G, R2, B, D>>
+) => <R2>(kind: Kind3<F, R1, E1, Kind3<G, R2, A, C>>) => Kind3<F, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT3, R2>(
   F: Covariant3RC<F, R1>,
@@ -2320,7 +2320,7 @@ export function bimap<F extends HKT3, R1, G extends HKT3, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1>(kind: Kind3<F, R1, E1, Kind3<G, R2, A, B>>) => Kind3<F, R1, E1, Kind3<G, R2, B, D>>
+) => <E1>(kind: Kind3<F, R1, E1, Kind3<G, R2, A, C>>) => Kind3<F, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT3>(
   F: Covariant3<F>,
@@ -2329,7 +2329,7 @@ export function bimap<F extends HKT3, G extends HKT3>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <R1, E1, R2>(
-  kind: Kind3<F, R1, E1, Kind3<G, R2, A, B>>,
+  kind: Kind3<F, R1, E1, Kind3<G, R2, A, C>>,
 ) => Kind3<F, R1, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT3, R2>(
@@ -2338,7 +2338,7 @@ export function bimap<F extends HKT2, E1, G extends HKT3, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind2<F, E1, Kind3<G, R2, A, B>>) => Kind2<F, E1, Kind3<G, R2, B, D>>
+) => (kind: Kind2<F, E1, Kind3<G, R2, A, C>>) => Kind2<F, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT3>(
   F: Covariant2<F>,
@@ -2346,7 +2346,7 @@ export function bimap<F extends HKT2, G extends HKT3>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1, R2>(kind: Kind2<F, E1, Kind3<G, R2, A, B>>) => Kind2<F, E1, Kind3<G, R2, B, D>>
+) => <E1, R2>(kind: Kind2<F, E1, Kind3<G, R2, A, C>>) => Kind2<F, E1, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT3, R2>(
   F: Covariant1<F>,
@@ -2354,7 +2354,7 @@ export function bimap<F extends HKT, G extends HKT3, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind<F, Kind3<G, R2, A, B>>) => Kind<F, Kind3<G, R2, B, D>>
+) => (kind: Kind<F, Kind3<G, R2, A, C>>) => Kind<F, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT3>(
   F: Covariant1<F>,
@@ -2362,7 +2362,7 @@ export function bimap<F extends HKT, G extends HKT3>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R2>(kind: Kind<F, Kind3<G, R2, A, B>>) => Kind<F, Kind3<G, R2, B, D>>
+) => <R2>(kind: Kind<F, Kind3<G, R2, A, C>>) => Kind<F, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT3, R2>(
   F: Covariant<F>,
@@ -2370,7 +2370,7 @@ export function bimap<F extends HKT, G extends HKT3, R2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind<F, Kind3<G, R2, A, B>>) => Kind<F, Kind3<G, R2, B, D>>
+) => (kind: Kind<F, Kind3<G, R2, A, C>>) => Kind<F, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT, G extends HKT3>(
   F: Covariant<F>,
@@ -2378,7 +2378,7 @@ export function bimap<F extends HKT, G extends HKT3>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R2>(kind: Kind<F, Kind3<G, R2, A, B>>) => Kind<F, Kind3<G, R2, B, D>>
+) => <R2>(kind: Kind<F, Kind3<G, R2, A, C>>) => Kind<F, Kind3<G, R2, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT2>(
   F: Covariant10<F>,
@@ -2387,7 +2387,7 @@ export function bimap<F extends HKT10, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT2>(
@@ -2397,7 +2397,7 @@ export function bimap<F extends HKT9, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT2>(
@@ -2407,7 +2407,7 @@ export function bimap<F extends HKT8, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT2>(
@@ -2417,7 +2417,7 @@ export function bimap<F extends HKT7, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT2>(
@@ -2427,7 +2427,7 @@ export function bimap<F extends HKT6, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT2>(
@@ -2437,7 +2437,7 @@ export function bimap<F extends HKT5, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT2>(
@@ -2446,7 +2446,7 @@ export function bimap<F extends HKT4, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S1, R1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <S1, R1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT2>(
   F: Covariant4REC<F, R1, E1>,
@@ -2454,7 +2454,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <S1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT2>(
   F: Covariant4SEC<F, S1, E1>,
@@ -2462,7 +2462,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <R1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT2>(
   F: Covariant4RC<F, R1>,
@@ -2470,7 +2470,7 @@ export function bimap<F extends HKT4, R1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S1, E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <S1, E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT2>(
   F: Covariant4SRC<F, S1, R1>,
@@ -2478,7 +2478,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT2>(
   F: Covariant4SC<F, S1>,
@@ -2486,7 +2486,7 @@ export function bimap<F extends HKT4, S1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R1, E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <R1, E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT2>(
   F: Covariant4SREC<F, S1, R1, E1>,
@@ -2494,7 +2494,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => (kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT2>(
   F: Covariant4<F>,
@@ -2503,7 +2503,7 @@ export function bimap<F extends HKT4, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1>(
-  kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT2>(
@@ -2512,7 +2512,7 @@ export function bimap<F extends HKT3, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R1>(kind: Kind3<F, R1, E1, Kind2<G, A, B>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
+) => <R1>(kind: Kind3<F, R1, E1, Kind2<G, A, C>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT2>(
   F: Covariant3REC<F, R1, E1>,
@@ -2520,7 +2520,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind3<F, R1, E1, Kind2<G, A, B>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
+) => (kind: Kind3<F, R1, E1, Kind2<G, A, C>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT2>(
   F: Covariant3RC<F, R1>,
@@ -2528,7 +2528,7 @@ export function bimap<F extends HKT3, R1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1>(kind: Kind3<F, R1, E1, Kind2<G, A, B>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
+) => <E1>(kind: Kind3<F, R1, E1, Kind2<G, A, C>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT2>(
   F: Covariant3<F>,
@@ -2536,7 +2536,7 @@ export function bimap<F extends HKT3, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R1, E1>(kind: Kind3<F, R1, E1, Kind2<G, A, B>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
+) => <R1, E1>(kind: Kind3<F, R1, E1, Kind2<G, A, C>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT2>(
   F: Covariant2EC<F, E1>,
@@ -2544,7 +2544,7 @@ export function bimap<F extends HKT2, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind2<F, E1, Kind2<G, A, B>>) => Kind2<F, E1, Kind2<G, B, D>>
+) => (kind: Kind2<F, E1, Kind2<G, A, C>>) => Kind2<F, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT2>(
   F: Covariant2<F>,
@@ -2552,7 +2552,7 @@ export function bimap<F extends HKT2, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1>(kind: Kind2<F, E1, Kind2<G, A, B>>) => Kind2<F, E1, Kind2<G, B, D>>
+) => <E1>(kind: Kind2<F, E1, Kind2<G, A, C>>) => Kind2<F, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT, G extends HKT2>(
   F: Covariant1<F>,
@@ -2560,7 +2560,7 @@ export function bimap<F extends HKT, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind<F, Kind2<G, A, B>>) => Kind<F, Kind2<G, B, D>>
+) => (kind: Kind<F, Kind2<G, A, C>>) => Kind<F, Kind2<G, B, D>>
 
 export function bimap<F extends HKT, G extends HKT2>(
   F: Covariant<F>,
@@ -2568,7 +2568,7 @@ export function bimap<F extends HKT, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind<F, Kind2<G, A, B>>) => Kind<F, Kind2<G, B, D>>
+) => (kind: Kind<F, Kind2<G, A, C>>) => Kind<F, Kind2<G, B, D>>
 
 export function bimap<F extends HKT10, G extends HKT2>(
   F: Covariant10<F>,
@@ -2577,7 +2577,7 @@ export function bimap<F extends HKT10, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT9, G extends HKT2>(
@@ -2587,7 +2587,7 @@ export function bimap<F extends HKT9, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT8, G extends HKT2>(
@@ -2597,7 +2597,7 @@ export function bimap<F extends HKT8, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <X1, W1, V1, U1, S1, R1, E1>(
-  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT7, G extends HKT2>(
@@ -2607,7 +2607,7 @@ export function bimap<F extends HKT7, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <W1, V1, U1, S1, R1, E1>(
-  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT6, G extends HKT2>(
@@ -2617,7 +2617,7 @@ export function bimap<F extends HKT6, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <V1, U1, S1, R1, E1>(
-  kind: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT5, G extends HKT2>(
@@ -2627,7 +2627,7 @@ export function bimap<F extends HKT5, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <U1, S1, R1, E1>(
-  kind: Kind5<F, U1, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind5<F, U1, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, E1, G extends HKT2>(
@@ -2636,7 +2636,7 @@ export function bimap<F extends HKT4, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S1, R1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <S1, R1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, R1, E1, G extends HKT2>(
   F: Covariant4REC<F, R1, E1>,
@@ -2644,7 +2644,7 @@ export function bimap<F extends HKT4, R1, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <S1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, S1, E1, G extends HKT2>(
   F: Covariant4SEC<F, S1, E1>,
@@ -2652,7 +2652,7 @@ export function bimap<F extends HKT4, S1, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <R1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, R1, G extends HKT2>(
   F: Covariant4RC<F, R1>,
@@ -2660,7 +2660,7 @@ export function bimap<F extends HKT4, R1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <S1, E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <S1, E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, G extends HKT2>(
   F: Covariant4SRC<F, S1, R1>,
@@ -2668,7 +2668,7 @@ export function bimap<F extends HKT4, S1, R1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, S1, G extends HKT2>(
   F: Covariant4SC<F, S1>,
@@ -2676,7 +2676,7 @@ export function bimap<F extends HKT4, S1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R1, E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => <R1, E1>(kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, S1, R1, E1, G extends HKT2>(
   F: Covariant4SREC<F, S1, R1, E1>,
@@ -2684,7 +2684,7 @@ export function bimap<F extends HKT4, S1, R1, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
+) => (kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT4, G extends HKT2>(
   F: Covariant4<F>,
@@ -2693,7 +2693,7 @@ export function bimap<F extends HKT4, G extends HKT2>(
   f: Unary<A, B>,
   g: Unary<C, D>,
 ) => <S1, R1, E1>(
-  kind: Kind4<F, S1, R1, E1, Kind2<G, A, B>>,
+  kind: Kind4<F, S1, R1, E1, Kind2<G, A, C>>,
 ) => Kind4<F, S1, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT3, E1, G extends HKT2>(
@@ -2702,7 +2702,7 @@ export function bimap<F extends HKT3, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R1>(kind: Kind3<F, R1, E1, Kind2<G, A, B>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
+) => <R1>(kind: Kind3<F, R1, E1, Kind2<G, A, C>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT3, R1, E1, G extends HKT2>(
   F: Covariant3REC<F, R1, E1>,
@@ -2710,7 +2710,7 @@ export function bimap<F extends HKT3, R1, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind3<F, R1, E1, Kind2<G, A, B>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
+) => (kind: Kind3<F, R1, E1, Kind2<G, A, C>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT3, R1, G extends HKT2>(
   F: Covariant3RC<F, R1>,
@@ -2718,7 +2718,7 @@ export function bimap<F extends HKT3, R1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1>(kind: Kind3<F, R1, E1, Kind2<G, A, B>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
+) => <E1>(kind: Kind3<F, R1, E1, Kind2<G, A, C>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT3, G extends HKT2>(
   F: Covariant3<F>,
@@ -2726,7 +2726,7 @@ export function bimap<F extends HKT3, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <R1, E1>(kind: Kind3<F, R1, E1, Kind2<G, A, B>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
+) => <R1, E1>(kind: Kind3<F, R1, E1, Kind2<G, A, C>>) => Kind3<F, R1, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT2, E1, G extends HKT2>(
   F: Covariant2EC<F, E1>,
@@ -2734,7 +2734,7 @@ export function bimap<F extends HKT2, E1, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind2<F, E1, Kind2<G, A, B>>) => Kind2<F, E1, Kind2<G, B, D>>
+) => (kind: Kind2<F, E1, Kind2<G, A, C>>) => Kind2<F, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT2, G extends HKT2>(
   F: Covariant2<F>,
@@ -2742,7 +2742,7 @@ export function bimap<F extends HKT2, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => <E1>(kind: Kind2<F, E1, Kind2<G, A, B>>) => Kind2<F, E1, Kind2<G, B, D>>
+) => <E1>(kind: Kind2<F, E1, Kind2<G, A, C>>) => Kind2<F, E1, Kind2<G, B, D>>
 
 export function bimap<F extends HKT, G extends HKT2>(
   F: Covariant1<F>,
@@ -2750,7 +2750,7 @@ export function bimap<F extends HKT, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind<F, Kind2<G, A, B>>) => Kind<F, Kind2<G, B, D>>
+) => (kind: Kind<F, Kind2<G, A, C>>) => Kind<F, Kind2<G, B, D>>
 
 export function bimap<F extends HKT, G extends HKT2>(
   F: Covariant<F>,
@@ -2758,7 +2758,7 @@ export function bimap<F extends HKT, G extends HKT2>(
 ): <A, B, C, D>(
   f: Unary<A, B>,
   g: Unary<C, D>,
-) => (kind: Kind<F, Kind2<G, A, B>>) => Kind<F, Kind2<G, B, D>>
+) => (kind: Kind<F, Kind2<G, A, C>>) => Kind<F, Kind2<G, B, D>>
 
 export function bimap<F extends HKT, G extends HKT2>(
   F: Covariant<F>,

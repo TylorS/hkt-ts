@@ -40,6 +40,7 @@ export const ForEach = interface_(
           new Kind(hkt2, [hkt2Placeholder, kind_([bTypeParam])]),
         ),
       ),
+      hkt2,
     ).labeled('forEach'),
   ],
   [Covariant],

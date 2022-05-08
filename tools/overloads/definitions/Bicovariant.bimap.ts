@@ -29,7 +29,7 @@ export const bimap = composed_(
     fn_(
       '',
       [placeholderF, placeholderG],
-      [kindF_([kindG_([aTypeParam, bTypeParam])]).labeled()],
+      [kindF_([kindG_([aTypeParam, cTypeParam])]).labeled()],
       kindF_([kindG_([bTypeParam, dTypeParam])]),
     ),
   ),

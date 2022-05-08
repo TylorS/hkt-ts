@@ -74,10 +74,12 @@ export function printInterface(
   if (manager.isWithinExtension()) {
     manager.addContext('TypeParam')
 
-    const printed = pipe(node.typeParams.map((p) => printTypeParam(p, context, manager)))
-    const placeholders = findHKTParams(node).flatMap(
-      (hkt) => context.placeholders.get(hkt.id) ?? [],
-    )
+    const printed = node.typeParams
+      .map((p) => printTypeParam(p, context, manager))
+      .filter((x) => x.length > 0)
+    const placeholders = findHKTParams(node)
+      .flatMap((hkt) => context.placeholders.get(hkt.id) ?? [])
+      .filter((x) => x.length > 0)
 
     const s = `${node.name}${placeholders.length > 0 ? placeholders.join('') + 'C' : ''}${
       node.typeParams.length ? `<${printed.join(', ')}>` : ''
@@ -90,8 +92,12 @@ export function printInterface(
 
   manager.addContext('TypeParam')
 
-  const printedTypeParams = pipe(node.typeParams.map((p) => printTypeParam(p, context, manager)))
-  const placeholders = findHKTParams(node).flatMap((hkt) => context.placeholders.get(hkt.id) ?? [])
+  const printedTypeParams = node.typeParams
+    .map((p) => printTypeParam(p, context, manager))
+    .filter((x) => x.length > 0)
+  const placeholders = findHKTParams(node)
+    .flatMap((hkt) => context.placeholders.get(hkt.id) ?? [])
+    .filter((x) => x.length > 0)
 
   const prefix = `${manager.isWithinFunction() ? `` : `export interface `}${node.name}${
     placeholders.length > 0 ? placeholders.join('') + 'C' : ''

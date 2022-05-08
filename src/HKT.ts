@@ -81,6 +81,158 @@ export type Kind<T extends HKT, A> = (T & {
   readonly [A]: A
 })['type']
 
+export type Kind_<
+  T extends ReadonlyArray<HKT>,
+  Params extends readonly any[],
+> = T extends readonly [infer Head, ...infer Tail]
+  ? {
+      1: Kind<Cast<Head, HKT>, Kind_<Cast<Tail, ReadonlyArray<HKT>>, Params>>
+      2: Params extends readonly [infer Z, ...infer Rest]
+        ? Kind2<Cast<Head, HKT2>, Z, Kind_<Cast<Tail, ReadonlyArray<HKT>>, Rest>>
+        : never
+      3: Params extends readonly [infer Z, infer Y, ...infer Rest]
+        ? Kind3<Cast<Head, HKT3>, Z, Y, Kind_<Cast<Tail, ReadonlyArray<HKT>>, Rest>>
+        : never
+      4: Params extends readonly [infer Z, infer Y, infer X, ...infer Rest]
+        ? Kind4<Cast<Head, HKT4>, Z, Y, X, Kind_<Cast<Tail, ReadonlyArray<HKT>>, Rest>>
+        : never
+      5: Params extends readonly [infer Z, infer Y, infer X, infer W, ...infer Rest]
+        ? Kind5<Cast<Head, HKT5>, Z, Y, X, W, Kind_<Cast<Tail, ReadonlyArray<HKT>>, Rest>>
+        : never
+      6: Params extends readonly [infer Z, infer Y, infer X, infer W, infer V, ...infer Rest]
+        ? Kind6<Cast<Head, HKT6>, Z, Y, X, W, V, Kind_<Cast<Tail, ReadonlyArray<HKT>>, Rest>>
+        : never
+      7: Params extends readonly [
+        infer Z,
+        infer Y,
+        infer X,
+        infer W,
+        infer V,
+        infer U,
+        ...infer Rest,
+      ]
+        ? Kind7<Cast<Head, HKT7>, Z, Y, X, W, V, U, Kind_<Cast<Tail, ReadonlyArray<HKT>>, Rest>>
+        : never
+      8: Params extends readonly [
+        infer Z,
+        infer Y,
+        infer X,
+        infer W,
+        infer V,
+        infer U,
+        infer S,
+        ...infer Rest,
+      ]
+        ? Kind8<Cast<Head, HKT8>, Z, Y, X, W, V, U, S, Kind_<Cast<Tail, ReadonlyArray<HKT>>, Rest>>
+        : never
+      9: Params extends readonly [
+        infer Z,
+        infer Y,
+        infer X,
+        infer W,
+        infer V,
+        infer U,
+        infer S,
+        infer R,
+        ...infer Rest,
+      ]
+        ? Kind9<
+            Cast<Head, HKT9>,
+            Z,
+            Y,
+            X,
+            W,
+            V,
+            U,
+            S,
+            R,
+            Kind_<Cast<Tail, ReadonlyArray<HKT>>, Rest>
+          >
+        : never
+      10: Params extends readonly [
+        infer Z,
+        infer Y,
+        infer X,
+        infer W,
+        infer V,
+        infer U,
+        infer S,
+        infer R,
+        infer E,
+        ...infer Rest,
+      ]
+        ? Kind10<
+            Cast<Head, HKT10>,
+            Z,
+            Y,
+            X,
+            W,
+            V,
+            U,
+            S,
+            R,
+            E,
+            Kind_<Cast<Tail, ReadonlyArray<HKT>>, Rest>
+          >
+        : never
+    }[LengthOf<Cast<Head, HKT>>]
+  : T['length'] extends 1
+  ? {
+      1: Kind<Cast<T[0], HKT>, Params[0]>
+      2: Kind2<Cast<T[0], HKT2>, Params[0], Params[1]>
+      3: Kind3<Cast<T[0], HKT3>, Params[0], Params[1], Params[2]>
+      4: Kind4<Cast<T[0], HKT4>, Params[0], Params[1], Params[2], Params[3]>
+      5: Kind5<Cast<T[0], HKT5>, Params[0], Params[1], Params[2], Params[3], Params[4]>
+      6: Kind6<Cast<T[0], HKT6>, Params[0], Params[1], Params[2], Params[3], Params[4], Params[5]>
+      7: Kind7<
+        Cast<T[0], HKT7>,
+        Params[0],
+        Params[1],
+        Params[2],
+        Params[3],
+        Params[4],
+        Params[5],
+        Params[6]
+      >
+      8: Kind8<
+        Cast<T[0], HKT8>,
+        Params[0],
+        Params[1],
+        Params[2],
+        Params[3],
+        Params[4],
+        Params[5],
+        Params[6],
+        Params[7]
+      >
+      9: Kind9<
+        Cast<T[0], HKT9>,
+        Params[0],
+        Params[1],
+        Params[2],
+        Params[3],
+        Params[4],
+        Params[5],
+        Params[6],
+        Params[7],
+        Params[8]
+      >
+      10: Kind10<
+        Cast<T[0], HKT10>,
+        Params[0],
+        Params[1],
+        Params[2],
+        Params[3],
+        Params[4],
+        Params[5],
+        Params[6],
+        Params[7],
+        Params[8],
+        Params[9]
+      >
+    }[LengthOf<Cast<T[0], HKT>>]
+  : Params[0]
+
 export type Kind2<T extends HKT2, E, A> = (T & {
   readonly [E]: E
   readonly [A]: A
