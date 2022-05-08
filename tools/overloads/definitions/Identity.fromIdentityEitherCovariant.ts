@@ -1,17 +1,12 @@
-import { Dynamic, IntersectionNode } from '../AST'
+import { Dynamic } from '../AST'
 
 import { Covariant } from './Covariant'
 import { IdentityEither } from './IdentityEither'
-import { aTypeParam, fn_, hkt, kindWithDefaults_, placeholder } from './common'
+import { aTypeParam, derived_, fn_, kindWithDefaults_, placeholder } from './common'
 
-export const fromIdentityEitherCovariant = fn_(
+export const fromIdentityEitherCovariant = derived_(
   'fromIdentityEitherCovariant',
-  [hkt],
-  [
-    new IntersectionNode(IdentityEither.toTypeClass(hkt), Covariant.toTypeClass(hkt)).labeled(
-      'IEC',
-    ),
-  ],
+  [IdentityEither, Covariant],
   fn_(
     '',
     [placeholder, aTypeParam],

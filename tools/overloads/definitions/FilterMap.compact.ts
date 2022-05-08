@@ -1,12 +1,11 @@
 import { Static } from '../AST'
 
 import { FilterMap } from './FilterMap'
-import { aTypeParam, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
-export const makeCompact = fn_(
+export const makeCompact = derived_(
   'makeCompact',
-  [hkt],
-  [FilterMap.toTypeClass(hkt).labeled('F')],
+  [FilterMap],
   fn_(
     '',
     [placeholder, aTypeParam],

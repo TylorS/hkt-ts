@@ -204,25 +204,25 @@ export function generateHktPlaceholders(
   const existing = findExistingParams(context, p.type.id)
   const position = context.positions.get(p.type.id)!
   const multiple = context.existing.size > 1
+  const shouldRemoveCurriedPlaceholders = manager.isWithinTypeParam() && !manager.isWithinKind()
   const params = hktParamNames
     .slice(existing, length)
     .reverse()
-    .filter((x) => (manager.isWithinTypeParam() ? !curriedPlaceholders.includes(x) : true))
-
-  const placeholderLength = manager.isWithinTypeParam()
-    ? length - existing - curriedPlaceholders.length
-    : length - existing
+    .filter((x) => (shouldRemoveCurriedPlaceholders ? !curriedPlaceholders.includes(x) : true))
+  const baseLength = length - existing
+  const placeholderLength = shouldRemoveCurriedPlaceholders
+    ? baseLength - curriedPlaceholders.length
+    : baseLength
   const placeholders = Array.from({ length: placeholderLength }, (_, i) => {
     const name = params[i]
-
-    if (p.extractFrom) {
-      return new Static(`ParamOf<${p.type.name}, ${p.extractFrom}, Params.${name}>`)
-    }
-
     const base = multiple ? `${name}${position}` : name
 
     if (curriedPlaceholders.includes(name)) {
       return new Static(base)
+    }
+
+    if (p.extractFrom) {
+      return new Static(`ParamOf<${p.type.name}, ${p.extractFrom}, Params.${name}>`)
     }
 
     const withExtension = p.useDefaults
@@ -277,7 +277,10 @@ export function generateDynamic(
 }
 
 export function generateKind(kind: Kind, context: Context, manager: PrintContextManager): Kind {
-  return new Kind(kind.type, generateKindParams(kind.kindParams, context, manager))
+  manager.addContext('Kind')
+  const k = new Kind(kind.type, generateKindParams(kind.kindParams, context, manager))
+  manager.popContext()
+  return k
 }
 
 export function generateKindParams(

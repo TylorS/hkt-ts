@@ -1,17 +1,12 @@
-import { IntersectionNode, UnionNode } from '../AST'
+import { UnionNode } from '../AST'
 
 import { AssociativeEither } from './AssociativeEither'
 import { Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
 
-export const orElse = fn_(
+export const orElse = derived_(
   'orElse',
-  [hkt],
-  [
-    new IntersectionNode(AssociativeEither.toTypeClass(hkt), Covariant.toTypeClass(hkt)).labeled(
-      'AE',
-    ),
-  ],
+  [AssociativeEither, Covariant],
   fn_(
     '',
     [placeholder, bTypeParam],

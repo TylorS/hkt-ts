@@ -5,7 +5,7 @@ import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
 export const reduceAssociative = derived_(
   'reduceAssociative',
-  FoldMap,
+  [FoldMap],
   fn_(
     '',
     [aTypeParam],

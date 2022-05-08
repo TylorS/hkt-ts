@@ -1,12 +1,11 @@
 import { Static } from '../AST'
 
 import { Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
-export const node = fn_(
+export const node = derived_(
   'mapTo',
-  [hkt],
-  [Covariant.toTypeClass(hkt).labeled('C')],
+  [Covariant],
   fn_(
     '',
     [bTypeParam],

@@ -1,21 +1,16 @@
-import { Dynamic, IntersectionNode, Static } from '../AST'
+import { Dynamic, Static } from '../AST'
 
 import { AssociativeFlatten } from './AssociativeFlatten'
 import { Covariant } from './Covariant'
-import { bTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import { bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
 
 const aTypeParam = new Static(`A extends Readonly<Record<string, any>>`)
 
 export const nameTypeParam = new Static('N extends string')
 
-export const node = fn_(
+export const node = derived_(
   'bind',
-  [hkt],
-  [
-    new IntersectionNode(AssociativeFlatten.toTypeClass(hkt), Covariant.toTypeClass(hkt)).labeled(
-      'AFC',
-    ),
-  ],
+  [AssociativeFlatten, Covariant],
   fn_(
     '',
     [nameTypeParam, aTypeParam, placeholder, bTypeParam],

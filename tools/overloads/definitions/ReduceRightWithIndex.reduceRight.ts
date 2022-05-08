@@ -2,15 +2,19 @@ import { Static } from '../AST'
 
 import { ReduceRight } from './ReduceRight'
 import { ReduceRightWithIndex } from './ReduceRightWithIndex'
-import { fn_, hkt } from './common'
+import { curriedPlaceholder_, fn_, hkt } from './common'
 
 const k = new Static(`K`)
 
-export const reduce = fn_(
+export const reduceRight = fn_(
   'reduceRight',
-  [hkt, k],
-  [ReduceRightWithIndex.toTypeClass(hkt).setParams([k]).labeled('RRI')],
+  [hkt, k, curriedPlaceholder_(hkt)],
+  [
+    ReduceRightWithIndex.toTypeClass(hkt)
+      .setParams([k, curriedPlaceholder_(hkt)])
+      .labeled('RRI'),
+  ],
   ReduceRight.properties[0].param,
 )
 
-export const node = reduce
+export const node = reduceRight

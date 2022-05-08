@@ -1,17 +1,10 @@
-import { IntersectionNode } from '../AST'
-
 import { AssociativeBoth } from './AssociativeBoth'
 import { Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
-export const zipRight = fn_(
+export const zipRight = derived_(
   'zipRight',
-  [hkt],
-  [
-    new IntersectionNode(AssociativeBoth.toTypeClass(hkt), Covariant.toTypeClass(hkt)).labeled(
-      'ABC',
-    ),
-  ],
+  [AssociativeBoth, Covariant],
   fn_(
     '',
     [placeholder, bTypeParam],

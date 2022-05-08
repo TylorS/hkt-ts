@@ -1,4 +1,4 @@
-import { Dynamic, IntersectionNode } from '../AST'
+import { Dynamic } from '../AST'
 
 import { AssociativeEither } from './AssociativeEither'
 import { Contravariant } from './Contravariant'
@@ -6,22 +6,16 @@ import {
   aTypeParam,
   bTypeParam,
   cTypeParam,
+  derived_,
   fnLabeled_,
   fn_,
-  hkt,
   kind_,
   placeholder,
 } from './common'
 
-export const eitherWith = fn_(
+export const eitherWith = derived_(
   'eitherWith',
-  [hkt],
-  [
-    new IntersectionNode(
-      AssociativeEither.toTypeClass(hkt),
-      Contravariant.toTypeClass(hkt),
-    ).labeled('AE'),
-  ],
+  [AssociativeEither, Contravariant],
   fn_(
     '',
     [placeholder, bTypeParam, cTypeParam, aTypeParam],

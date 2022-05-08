@@ -62,6 +62,10 @@ export interface Covariant4<T extends HKT4> {
   ) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 }
 
+export interface Covariant4SREC<T extends HKT4, S, R, E> {
+  readonly map: <A, B>(f: Unary<A, B>) => (kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+}
+
 export interface Covariant4SC<T extends HKT4, S> {
   readonly map: <A, B>(f: Unary<A, B>) => <R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 }
@@ -127,7 +131,6 @@ export interface Covariant10<T extends HKT10> {
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>
 }
-
 /* #endregion */
 
 /* #region Composition */

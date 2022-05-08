@@ -1,4 +1,4 @@
-import { IntersectionNode, Static, Tuple } from '../AST'
+import { Static, Tuple } from '../AST'
 
 import { Covariant } from './Covariant'
 import { FoldMap } from './FoldMap'
@@ -8,25 +8,16 @@ import {
   aTypeParam,
   bTypeParam,
   cTypeParam,
+  derived_,
   fnLabeled_,
   fn_,
-  hkt,
   kind_,
   placeholder,
 } from './common'
 
-export const partitionMap = fn_(
+export const partitionMap = derived_(
   'partitionMap',
-  [hkt],
-  [
-    new IntersectionNode(
-      FoldMap.toTypeClass(hkt),
-      new IntersectionNode(
-        IdentityEither.toTypeClass(hkt),
-        new IntersectionNode(Top.toTypeClass(hkt), Covariant.toTypeClass(hkt)),
-      ),
-    ).labeled('F'),
-  ],
+  [FoldMap, IdentityEither, Top, Covariant],
   fn_(
     '',
     [aTypeParam, bTypeParam, cTypeParam],

@@ -1,10 +1,9 @@
 import { FoldMap } from './FoldMap'
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
 
-export const reduce = fn_(
+export const reduce = derived_(
   'reduce',
-  [hkt],
-  [FoldMap.toTypeClass(hkt).labeled('FM')],
+  [FoldMap],
   fn_(
     '',
     [bTypeParam, aTypeParam],

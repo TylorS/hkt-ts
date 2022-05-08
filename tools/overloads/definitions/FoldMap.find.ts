@@ -1,14 +1,13 @@
 import { Static } from '../AST'
 
 import { FoldMap } from './FoldMap'
-import { aTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
 
 const bool = new Static(`boolean`)
 
-export const find = fn_(
+export const find = derived_(
   'find',
-  [hkt],
-  [FoldMap.toTypeClass(hkt).labeled('FM')],
+  [FoldMap],
   fn_(
     '',
     [aTypeParam],

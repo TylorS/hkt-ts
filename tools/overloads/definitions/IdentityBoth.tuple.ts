@@ -1,13 +1,12 @@
-import { ArrayNode, Dynamic, IntersectionNode, Kind, Static } from '../AST'
+import { ArrayNode, Dynamic, Kind, Static } from '../AST'
 
 import { Covariant } from './Covariant'
 import { IdentityBoth } from './IdentityBoth'
-import { fn_, hkt, kindWithDefaults_, placeholder } from './common'
+import { derived_, fn_, hkt, kindWithDefaults_, placeholder } from './common'
 
-export const tuple = fn_(
+export const tuple = derived_(
   'tuple',
-  [hkt],
-  [new IntersectionNode(IdentityBoth.toTypeClass(hkt), Covariant.toTypeClass(hkt)).labeled('AB')],
+  [IdentityBoth, Covariant],
   fn_(
     '',
     [new ArrayNode(kindWithDefaults_([new Static('any')])).labeled('AS')],

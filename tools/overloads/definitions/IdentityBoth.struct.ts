@@ -1,13 +1,12 @@
-import { Dynamic, IntersectionNode, Kind, Static } from '../AST'
+import { Dynamic, Kind, Static } from '../AST'
 
 import { Covariant } from './Covariant'
 import { IdentityBoth } from './IdentityBoth'
-import { fn_, hkt, placeholder, placeholderWithDefaults } from './common'
+import { derived_, fn_, hkt, placeholder, placeholderWithDefaults } from './common'
 
-export const struct = fn_(
+export const struct = derived_(
   'struct',
-  [hkt],
-  [new IntersectionNode(IdentityBoth.toTypeClass(hkt), Covariant.toTypeClass(hkt)).labeled('AB')],
+  [IdentityBoth, Covariant],
   fn_(
     '',
     [

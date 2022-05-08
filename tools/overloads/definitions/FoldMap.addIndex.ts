@@ -4,6 +4,6 @@ import { derived_, hkt, number_ } from './common'
 
 export const addIndex = derived_(
   'addIndex',
-  FoldMap,
+  [FoldMap],
   FoldMapWithIndex.toTypeClass(hkt).setParams([number_]),
 )

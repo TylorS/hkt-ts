@@ -28,8 +28,19 @@ import {
   Contravariant1,
   Contravariant10,
   Contravariant2,
+  Contravariant2EC,
   Contravariant3,
+  Contravariant3EC,
+  Contravariant3RC,
+  Contravariant3REC,
   Contravariant4,
+  Contravariant4EC,
+  Contravariant4RC,
+  Contravariant4REC,
+  Contravariant4SC,
+  Contravariant4SEC,
+  Contravariant4SRC,
+  Contravariant4SREC,
   Contravariant5,
   Contravariant6,
   Contravariant7,
@@ -323,76 +334,149 @@ export function eventually<T extends HKT>(AE: AssociativeEither<T> & Covariant<T
 /* #endregion */
 
 /* #region Contravariant */
-
 export function eitherWith<T extends HKT10>(
-  AE: AssociativeEither10<T> & Contravariant10<T>,
+  AEC: AssociativeEither10<T> & Contravariant10<T>,
 ): <Z, Y, X, W, V, U, S, R, E, B, C, A>(
   b: Kind10<T, Z, Y, X, W, V, U, S, R, E, B>,
   f: (c: C) => Either<A, B>,
 ) => (a: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>) => Kind10<T, Z, Y, X, W, V, U, S, R, E, C>
 
 export function eitherWith<T extends HKT9>(
-  AE: AssociativeEither9<T> & Contravariant9<T>,
+  AEC: AssociativeEither9<T> & Contravariant9<T>,
 ): <Y, X, W, V, U, S, R, E, B, C, A>(
   b: Kind9<T, Y, X, W, V, U, S, R, E, B>,
   f: (c: C) => Either<A, B>,
 ) => (a: Kind9<T, Y, X, W, V, U, S, R, E, A>) => Kind9<T, Y, X, W, V, U, S, R, E, C>
 
 export function eitherWith<T extends HKT8>(
-  AE: AssociativeEither8<T> & Contravariant8<T>,
+  AEC: AssociativeEither8<T> & Contravariant8<T>,
 ): <X, W, V, U, S, R, E, B, C, A>(
   b: Kind8<T, X, W, V, U, S, R, E, B>,
   f: (c: C) => Either<A, B>,
 ) => (a: Kind8<T, X, W, V, U, S, R, E, A>) => Kind8<T, X, W, V, U, S, R, E, C>
 
 export function eitherWith<T extends HKT7>(
-  AE: AssociativeEither7<T> & Contravariant7<T>,
+  AEC: AssociativeEither7<T> & Contravariant7<T>,
 ): <W, V, U, S, R, E, B, C, A>(
   b: Kind7<T, W, V, U, S, R, E, B>,
   f: (c: C) => Either<A, B>,
 ) => (a: Kind7<T, W, V, U, S, R, E, A>) => Kind7<T, W, V, U, S, R, E, C>
 
 export function eitherWith<T extends HKT6>(
-  AE: AssociativeEither6<T> & Contravariant6<T>,
+  AEC: AssociativeEither6<T> & Contravariant6<T>,
 ): <V, U, S, R, E, B, C, A>(
   b: Kind6<T, V, U, S, R, E, B>,
   f: (c: C) => Either<A, B>,
 ) => (a: Kind6<T, V, U, S, R, E, A>) => Kind6<T, V, U, S, R, E, C>
 
 export function eitherWith<T extends HKT5>(
-  AE: AssociativeEither5<T> & Contravariant5<T>,
+  AEC: AssociativeEither5<T> & Contravariant5<T>,
 ): <U, S, R, E, B, C, A>(
   b: Kind5<T, U, S, R, E, B>,
   f: (c: C) => Either<A, B>,
 ) => (a: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, C>
 
+export function eitherWith<T extends HKT4, E>(
+  AEC: AssociativeEither4EC<T, E> & Contravariant4EC<T, E>,
+): <S, R, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function eitherWith<T extends HKT4, R, E>(
+  AEC: AssociativeEither4REC<T, R, E> & Contravariant4REC<T, R, E>,
+): <S, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function eitherWith<T extends HKT4, S, E>(
+  AEC: AssociativeEither4SEC<T, S, E> & Contravariant4SEC<T, S, E>,
+): <R, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function eitherWith<T extends HKT4, R>(
+  AEC: AssociativeEither4RC<T, R> & Contravariant4RC<T, R>,
+): <S, E, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function eitherWith<T extends HKT4, S, R>(
+  AEC: AssociativeEither4SRC<T, S, R> & Contravariant4SRC<T, S, R>,
+): <E, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function eitherWith<T extends HKT4, S>(
+  AEC: AssociativeEither4SC<T, S> & Contravariant4SC<T, S>,
+): <R, E, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function eitherWith<T extends HKT4, S, R, E>(
+  AEC: AssociativeEither4SREC<T, S, R, E> & Contravariant4SREC<T, S, R, E>,
+): <B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
 export function eitherWith<T extends HKT4>(
-  AE: AssociativeEither4<T> & Contravariant4<T>,
+  AEC: AssociativeEither4<T> & Contravariant4<T>,
 ): <S, R, E, B, C, A>(
   b: Kind4<T, S, R, E, B>,
   f: (c: C) => Either<A, B>,
 ) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
 
+export function eitherWith<T extends HKT3, E>(
+  AEC: AssociativeEither3EC<T, E> & Contravariant3EC<T, E>,
+): <R, B, C, A>(
+  b: Kind3<T, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind3<T, R, E, A>) => Kind3<T, R, E, C>
+
+export function eitherWith<T extends HKT3, R, E>(
+  AEC: AssociativeEither3REC<T, R, E> & Contravariant3REC<T, R, E>,
+): <B, C, A>(
+  b: Kind3<T, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind3<T, R, E, A>) => Kind3<T, R, E, C>
+
+export function eitherWith<T extends HKT3, R>(
+  AEC: AssociativeEither3RC<T, R> & Contravariant3RC<T, R>,
+): <E, B, C, A>(
+  b: Kind3<T, R, E, B>,
+  f: (c: C) => Either<A, B>,
+) => (a: Kind3<T, R, E, A>) => Kind3<T, R, E, C>
+
 export function eitherWith<T extends HKT3>(
-  AE: AssociativeEither3<T> & Contravariant3<T>,
+  AEC: AssociativeEither3<T> & Contravariant3<T>,
 ): <R, E, B, C, A>(
   b: Kind3<T, R, E, B>,
   f: (c: C) => Either<A, B>,
 ) => (a: Kind3<T, R, E, A>) => Kind3<T, R, E, C>
 
+export function eitherWith<T extends HKT2, E>(
+  AEC: AssociativeEither2EC<T, E> & Contravariant2EC<T, E>,
+): <B, C, A>(b: Kind2<T, E, B>, f: (c: C) => Either<A, B>) => (a: Kind2<T, E, A>) => Kind2<T, E, C>
+
 export function eitherWith<T extends HKT2>(
-  AE: AssociativeEither2<T> & Contravariant2<T>,
+  AEC: AssociativeEither2<T> & Contravariant2<T>,
 ): <E, B, C, A>(
   b: Kind2<T, E, B>,
   f: (c: C) => Either<A, B>,
 ) => (a: Kind2<T, E, A>) => Kind2<T, E, C>
 
 export function eitherWith<T extends HKT>(
-  AE: AssociativeEither1<T> & Contravariant1<T>,
+  AEC: AssociativeEither1<T> & Contravariant1<T>,
 ): <B, C, A>(b: Kind<T, B>, f: (c: C) => Either<A, B>) => (a: Kind<T, A>) => Kind<T, C>
 
 export function eitherWith<T extends HKT>(
-  AE: AssociativeEither<T> & Contravariant<T>,
+  AEC: AssociativeEither<T> & Contravariant<T>,
 ): <B, C, A>(b: Kind<T, B>, f: (c: C) => Either<A, B>) => (a: Kind<T, A>) => Kind<T, C>
 
 export function eitherWith<T extends HKT>(

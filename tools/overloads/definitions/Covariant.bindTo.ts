@@ -1,14 +1,13 @@
 import { ObjectNode, Static } from '../AST'
 
 import { Covariant } from './Covariant'
-import { aTypeParam, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
 export const nameTypeParam = new Static('N extends string')
 
-export const node = fn_(
+export const node = derived_(
   'bindTo',
-  [hkt],
-  [Covariant.toTypeClass(hkt).labeled('C')],
+  [Covariant],
   fn_(
     '',
     [nameTypeParam],

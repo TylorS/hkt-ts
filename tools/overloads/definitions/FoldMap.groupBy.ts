@@ -1,14 +1,13 @@
 import { Static } from '../AST'
 
 import { FoldMap } from './FoldMap'
-import { aTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
 
 const k = new Static(`K`)
 
-export const groupBy = fn_(
+export const groupBy = derived_(
   'groupBy',
-  [hkt],
-  [FoldMap.toTypeClass(hkt).labeled('FM')],
+  [FoldMap],
   fn_(
     '',
     [k, aTypeParam],

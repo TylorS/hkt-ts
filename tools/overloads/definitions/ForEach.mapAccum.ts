@@ -1,14 +1,13 @@
 import { Static, Tuple } from '../AST'
 
 import { ForEach } from './ForEach'
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
 
 const sTypeParam = new Static(`S`)
 
-export const mapAccum = fn_(
+export const mapAccum = derived_(
   'mapAccum',
-  [hkt],
-  [ForEach.toTypeClass(hkt).labeled('FE')],
+  [ForEach],
   fn_(
     '',
     [sTypeParam, aTypeParam, bTypeParam],

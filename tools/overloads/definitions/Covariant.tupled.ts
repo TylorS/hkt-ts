@@ -1,12 +1,11 @@
 import { Tuple } from '../AST'
 
 import { Covariant } from './Covariant'
-import { aTypeParam, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
-export const node = fn_(
+export const node = derived_(
   'tupled',
-  [hkt],
-  [Covariant.toTypeClass(hkt).labeled('C')],
+  [Covariant],
   fn_(
     '',
     [placeholder, aTypeParam],

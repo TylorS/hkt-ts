@@ -31,8 +31,19 @@ import type {
   Contravariant1,
   Contravariant10,
   Contravariant2,
+  Contravariant2EC,
   Contravariant3,
+  Contravariant3EC,
+  Contravariant3RC,
+  Contravariant3REC,
   Contravariant4,
+  Contravariant4EC,
+  Contravariant4RC,
+  Contravariant4REC,
+  Contravariant4SC,
+  Contravariant4SEC,
+  Contravariant4SRC,
+  Contravariant4SREC,
   Contravariant5,
   Contravariant6,
   Contravariant7,
@@ -44,8 +55,19 @@ import {
   Covariant1,
   Covariant10,
   Covariant2,
+  Covariant2EC,
   Covariant3,
+  Covariant3EC,
+  Covariant3RC,
+  Covariant3REC,
   Covariant4,
+  Covariant4EC,
+  Covariant4RC,
+  Covariant4REC,
+  Covariant4SC,
+  Covariant4SEC,
+  Covariant4SRC,
+  Covariant4SREC,
   Covariant5,
   Covariant6,
   Covariant7,
@@ -194,7 +216,7 @@ export interface AssociativeBoth10<T extends HKT10> {
 
 /* #region tuple */
 export function tuple<T extends HKT10>(
-  AB: AssociativeBoth10<T> & Covariant10<T>,
+  ABC: AssociativeBoth10<T> & Covariant10<T>,
 ): <
   AS extends NonEmptyArray<
     Kind10<
@@ -228,7 +250,7 @@ export function tuple<T extends HKT10>(
 >
 
 export function tuple<T extends HKT9>(
-  AB: AssociativeBoth9<T> & Covariant9<T>,
+  ABC: AssociativeBoth9<T> & Covariant9<T>,
 ): <
   AS extends NonEmptyArray<
     Kind9<
@@ -260,7 +282,7 @@ export function tuple<T extends HKT9>(
 >
 
 export function tuple<T extends HKT8>(
-  AB: AssociativeBoth8<T> & Covariant8<T>,
+  ABC: AssociativeBoth8<T> & Covariant8<T>,
 ): <
   AS extends NonEmptyArray<
     Kind8<
@@ -290,7 +312,7 @@ export function tuple<T extends HKT8>(
 >
 
 export function tuple<T extends HKT7>(
-  AB: AssociativeBoth7<T> & Covariant7<T>,
+  ABC: AssociativeBoth7<T> & Covariant7<T>,
 ): <
   AS extends NonEmptyArray<
     Kind7<
@@ -318,7 +340,7 @@ export function tuple<T extends HKT7>(
 >
 
 export function tuple<T extends HKT6>(
-  AB: AssociativeBoth6<T> & Covariant6<T>,
+  ABC: AssociativeBoth6<T> & Covariant6<T>,
 ): <
   AS extends NonEmptyArray<
     Kind6<
@@ -344,7 +366,7 @@ export function tuple<T extends HKT6>(
 >
 
 export function tuple<T extends HKT5>(
-  AB: AssociativeBoth5<T> & Covariant5<T>,
+  ABC: AssociativeBoth5<T> & Covariant5<T>,
 ): <
   AS extends NonEmptyArray<
     Kind5<
@@ -367,8 +389,86 @@ export function tuple<T extends HKT5>(
   { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
 >
 
+export function tuple<T extends HKT4, E>(
+  ABC: AssociativeBoth4EC<T, E> & Covariant4EC<T, E>,
+): <AS extends NonEmptyArray<Kind4<T, DefaultOf<T, Params.S>, DefaultOf<T, Params.R>, E, any>>>(
+  ...values: AS
+) => Kind4<
+  T,
+  ParamOf<T, AS[number], Params.S>,
+  ParamOf<T, AS[number], Params.R>,
+  E,
+  { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
+>
+
+export function tuple<T extends HKT4, R, E>(
+  ABC: AssociativeBoth4REC<T, R, E> & Covariant4REC<T, R, E>,
+): <AS extends NonEmptyArray<Kind4<T, DefaultOf<T, Params.S>, R, E, any>>>(
+  ...values: AS
+) => Kind4<
+  T,
+  ParamOf<T, AS[number], Params.S>,
+  R,
+  E,
+  { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
+>
+
+export function tuple<T extends HKT4, S, E>(
+  ABC: AssociativeBoth4SEC<T, S, E> & Covariant4SEC<T, S, E>,
+): <AS extends NonEmptyArray<Kind4<T, S, DefaultOf<T, Params.R>, E, any>>>(
+  ...values: AS
+) => Kind4<
+  T,
+  S,
+  ParamOf<T, AS[number], Params.R>,
+  E,
+  { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
+>
+
+export function tuple<T extends HKT4, R>(
+  ABC: AssociativeBoth4RC<T, R> & Covariant4RC<T, R>,
+): <AS extends NonEmptyArray<Kind4<T, DefaultOf<T, Params.S>, R, DefaultOf<T, Params.E>, any>>>(
+  ...values: AS
+) => Kind4<
+  T,
+  ParamOf<T, AS[number], Params.S>,
+  R,
+  ParamOf<T, AS[number], Params.E>,
+  { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
+>
+
+export function tuple<T extends HKT4, S, R>(
+  ABC: AssociativeBoth4SRC<T, S, R> & Covariant4SRC<T, S, R>,
+): <AS extends NonEmptyArray<Kind4<T, S, R, DefaultOf<T, Params.E>, any>>>(
+  ...values: AS
+) => Kind4<
+  T,
+  S,
+  R,
+  ParamOf<T, AS[number], Params.E>,
+  { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
+>
+
+export function tuple<T extends HKT4, S>(
+  ABC: AssociativeBoth4SC<T, S> & Covariant4SC<T, S>,
+): <AS extends NonEmptyArray<Kind4<T, S, DefaultOf<T, Params.R>, DefaultOf<T, Params.E>, any>>>(
+  ...values: AS
+) => Kind4<
+  T,
+  S,
+  ParamOf<T, AS[number], Params.R>,
+  ParamOf<T, AS[number], Params.E>,
+  { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
+>
+
+export function tuple<T extends HKT4, S, R, E>(
+  ABC: AssociativeBoth4SREC<T, S, R, E> & Covariant4SREC<T, S, R, E>,
+): <AS extends NonEmptyArray<Kind4<T, S, R, E, any>>>(
+  ...values: AS
+) => Kind4<T, S, R, E, { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }>
+
 export function tuple<T extends HKT4>(
-  AB: AssociativeBoth4<T> & Covariant4<T>,
+  ABC: AssociativeBoth4<T> & Covariant4<T>,
 ): <
   AS extends NonEmptyArray<
     Kind4<T, DefaultOf<T, Params.S>, DefaultOf<T, Params.R>, DefaultOf<T, Params.E>, any>
@@ -383,8 +483,36 @@ export function tuple<T extends HKT4>(
   { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
 >
 
+export function tuple<T extends HKT3, E>(
+  ABC: AssociativeBoth3EC<T, E> & Covariant3EC<T, E>,
+): <AS extends NonEmptyArray<Kind3<T, DefaultOf<T, Params.R>, E, any>>>(
+  ...values: AS
+) => Kind3<
+  T,
+  ParamOf<T, AS[number], Params.R>,
+  E,
+  { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
+>
+
+export function tuple<T extends HKT3, R, E>(
+  ABC: AssociativeBoth3REC<T, R, E> & Covariant3REC<T, R, E>,
+): <AS extends NonEmptyArray<Kind3<T, R, E, any>>>(
+  ...values: AS
+) => Kind3<T, R, E, { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }>
+
+export function tuple<T extends HKT3, R>(
+  ABC: AssociativeBoth3RC<T, R> & Covariant3RC<T, R>,
+): <AS extends NonEmptyArray<Kind3<T, R, DefaultOf<T, Params.E>, any>>>(
+  ...values: AS
+) => Kind3<
+  T,
+  R,
+  ParamOf<T, AS[number], Params.E>,
+  { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
+>
+
 export function tuple<T extends HKT3>(
-  AB: AssociativeBoth3<T> & Covariant3<T>,
+  ABC: AssociativeBoth3<T> & Covariant3<T>,
 ): <AS extends NonEmptyArray<Kind3<T, DefaultOf<T, Params.R>, DefaultOf<T, Params.E>, any>>>(
   ...values: AS
 ) => Kind3<
@@ -394,8 +522,14 @@ export function tuple<T extends HKT3>(
   { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }
 >
 
+export function tuple<T extends HKT2, E>(
+  ABC: AssociativeBoth2EC<T, E> & Covariant2EC<T, E>,
+): <AS extends NonEmptyArray<Kind2<T, E, any>>>(
+  ...values: AS
+) => Kind2<T, E, { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }>
+
 export function tuple<T extends HKT2>(
-  AB: AssociativeBoth2<T> & Covariant2<T>,
+  ABC: AssociativeBoth2<T> & Covariant2<T>,
 ): <AS extends NonEmptyArray<Kind2<T, DefaultOf<T, Params.E>, any>>>(
   ...values: AS
 ) => Kind2<
@@ -405,13 +539,13 @@ export function tuple<T extends HKT2>(
 >
 
 export function tuple<T extends HKT>(
-  AB: AssociativeBoth1<T> & Covariant1<T>,
+  ABC: AssociativeBoth1<T> & Covariant1<T>,
 ): <AS extends NonEmptyArray<Kind<T, any>>>(
   ...values: AS
 ) => Kind<T, { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }>
 
 export function tuple<T extends HKT>(
-  AB: AssociativeBoth<T> & Covariant<T>,
+  ABC: AssociativeBoth<T> & Covariant<T>,
 ): <AS extends NonEmptyArray<Kind<T, any>>>(
   ...values: AS
 ) => Kind<T, { readonly [K in keyof AS]: ParamOf<T, AS[K], Params.A> }>
@@ -473,15 +607,65 @@ export function zipRight<T extends HKT5>(
   second: Kind5<T, U, S, R, E, B>,
 ) => <A>(first: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, B>
 
+export function zipRight<T extends HKT4, E>(
+  ABC: AssociativeBoth4EC<T, E> & Covariant4EC<T, E>,
+): <S, R, B>(
+  second: Kind4<T, S, R, E, B>,
+) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function zipRight<T extends HKT4, R, E>(
+  ABC: AssociativeBoth4REC<T, R, E> & Covariant4REC<T, R, E>,
+): <S, B>(second: Kind4<T, S, R, E, B>) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function zipRight<T extends HKT4, S, E>(
+  ABC: AssociativeBoth4SEC<T, S, E> & Covariant4SEC<T, S, E>,
+): <R, B>(second: Kind4<T, S, R, E, B>) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function zipRight<T extends HKT4, R>(
+  ABC: AssociativeBoth4RC<T, R> & Covariant4RC<T, R>,
+): <S, E, B>(
+  second: Kind4<T, S, R, E, B>,
+) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function zipRight<T extends HKT4, S, R>(
+  ABC: AssociativeBoth4SRC<T, S, R> & Covariant4SRC<T, S, R>,
+): <E, B>(second: Kind4<T, S, R, E, B>) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function zipRight<T extends HKT4, S>(
+  ABC: AssociativeBoth4SC<T, S> & Covariant4SC<T, S>,
+): <R, E, B>(
+  second: Kind4<T, S, R, E, B>,
+) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function zipRight<T extends HKT4, S, R, E>(
+  ABC: AssociativeBoth4SREC<T, S, R, E> & Covariant4SREC<T, S, R, E>,
+): <B>(second: Kind4<T, S, R, E, B>) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
 export function zipRight<T extends HKT4>(
   ABC: AssociativeBoth4<T> & Covariant4<T>,
 ): <S, R, E, B>(
   second: Kind4<T, S, R, E, B>,
 ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 
+export function zipRight<T extends HKT3, E>(
+  ABC: AssociativeBoth3EC<T, E> & Covariant3EC<T, E>,
+): <R, B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function zipRight<T extends HKT3, R, E>(
+  ABC: AssociativeBoth3REC<T, R, E> & Covariant3REC<T, R, E>,
+): <B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function zipRight<T extends HKT3, R>(
+  ABC: AssociativeBoth3RC<T, R> & Covariant3RC<T, R>,
+): <E, B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
 export function zipRight<T extends HKT3>(
   ABC: AssociativeBoth3<T> & Covariant3<T>,
 ): <R, E, B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function zipRight<T extends HKT2, E>(
+  ABC: AssociativeBoth2EC<T, E> & Covariant2EC<T, E>,
+): <B>(second: Kind2<T, E, B>) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, B>
 
 export function zipRight<T extends HKT2>(
   ABC: AssociativeBoth2<T> & Covariant2<T>,
@@ -489,6 +673,10 @@ export function zipRight<T extends HKT2>(
 
 export function zipRight<T extends HKT>(
   ABC: AssociativeBoth1<T> & Covariant1<T>,
+): <B>(second: Kind<T, B>) => <A>(first: Kind<T, A>) => Kind<T, B>
+
+export function zipRight<T extends HKT>(
+  ABC: AssociativeBoth<T> & Covariant<T>,
 ): <B>(second: Kind<T, B>) => <A>(first: Kind<T, A>) => Kind<T, B>
 
 export function zipRight<T extends HKT>(
@@ -541,15 +729,65 @@ export function zipLeft<T extends HKT5>(
   second: Kind5<T, U, S, R, E, B>,
 ) => <A>(first: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, A>
 
+export function zipLeft<T extends HKT4, E>(
+  ABC: AssociativeBoth4EC<T, E> & Covariant4EC<T, E>,
+): <S, R, B>(
+  second: Kind4<T, S, R, E, B>,
+) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+
+export function zipLeft<T extends HKT4, R, E>(
+  ABC: AssociativeBoth4REC<T, R, E> & Covariant4REC<T, R, E>,
+): <S, B>(second: Kind4<T, S, R, E, B>) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+
+export function zipLeft<T extends HKT4, S, E>(
+  ABC: AssociativeBoth4SEC<T, S, E> & Covariant4SEC<T, S, E>,
+): <R, B>(second: Kind4<T, S, R, E, B>) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+
+export function zipLeft<T extends HKT4, R>(
+  ABC: AssociativeBoth4RC<T, R> & Covariant4RC<T, R>,
+): <S, E, B>(
+  second: Kind4<T, S, R, E, B>,
+) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+
+export function zipLeft<T extends HKT4, S, R>(
+  ABC: AssociativeBoth4SRC<T, S, R> & Covariant4SRC<T, S, R>,
+): <E, B>(second: Kind4<T, S, R, E, B>) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+
+export function zipLeft<T extends HKT4, S>(
+  ABC: AssociativeBoth4SC<T, S> & Covariant4SC<T, S>,
+): <R, E, B>(
+  second: Kind4<T, S, R, E, B>,
+) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+
+export function zipLeft<T extends HKT4, S, R, E>(
+  ABC: AssociativeBoth4SREC<T, S, R, E> & Covariant4SREC<T, S, R, E>,
+): <B>(second: Kind4<T, S, R, E, B>) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+
 export function zipLeft<T extends HKT4>(
   ABC: AssociativeBoth4<T> & Covariant4<T>,
 ): <S, R, E, B>(
   second: Kind4<T, S, R, E, B>,
 ) => <A>(first: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
 
+export function zipLeft<T extends HKT3, E>(
+  ABC: AssociativeBoth3EC<T, E> & Covariant3EC<T, E>,
+): <R, B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, A>
+
+export function zipLeft<T extends HKT3, R, E>(
+  ABC: AssociativeBoth3REC<T, R, E> & Covariant3REC<T, R, E>,
+): <B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, A>
+
+export function zipLeft<T extends HKT3, R>(
+  ABC: AssociativeBoth3RC<T, R> & Covariant3RC<T, R>,
+): <E, B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, A>
+
 export function zipLeft<T extends HKT3>(
   ABC: AssociativeBoth3<T> & Covariant3<T>,
 ): <R, E, B>(second: Kind3<T, R, E, B>) => <A>(first: Kind3<T, R, E, A>) => Kind3<T, R, E, A>
+
+export function zipLeft<T extends HKT2, E>(
+  ABC: AssociativeBoth2EC<T, E> & Covariant2EC<T, E>,
+): <B>(second: Kind2<T, E, B>) => <A>(first: Kind2<T, E, A>) => Kind2<T, E, A>
 
 export function zipLeft<T extends HKT2>(
   ABC: AssociativeBoth2<T> & Covariant2<T>,
@@ -578,7 +816,6 @@ export function zipLeft<T extends HKT>(
 /* #endregion */
 
 /* #region Contravariant */
-
 export function bothWith<T extends HKT10>(
   AB: AssociativeBoth10<T> & Contravariant10<T>,
 ): <Z, Y, X, W, V, U, S, R, E, B, C, A>(
@@ -621,6 +858,55 @@ export function bothWith<T extends HKT5>(
   f: (c: C) => readonly [A, B],
 ) => (a: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, C>
 
+export function bothWith<T extends HKT4, E>(
+  AB: AssociativeBoth4EC<T, E> & Contravariant4EC<T, E>,
+): <S, R, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function bothWith<T extends HKT4, R, E>(
+  AB: AssociativeBoth4REC<T, R, E> & Contravariant4REC<T, R, E>,
+): <S, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function bothWith<T extends HKT4, S, E>(
+  AB: AssociativeBoth4SEC<T, S, E> & Contravariant4SEC<T, S, E>,
+): <R, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function bothWith<T extends HKT4, R>(
+  AB: AssociativeBoth4RC<T, R> & Contravariant4RC<T, R>,
+): <S, E, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function bothWith<T extends HKT4, S, R>(
+  AB: AssociativeBoth4SRC<T, S, R> & Contravariant4SRC<T, S, R>,
+): <E, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function bothWith<T extends HKT4, S>(
+  AB: AssociativeBoth4SC<T, S> & Contravariant4SC<T, S>,
+): <R, E, B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
+export function bothWith<T extends HKT4, S, R, E>(
+  AB: AssociativeBoth4SREC<T, S, R, E> & Contravariant4SREC<T, S, R, E>,
+): <B, C, A>(
+  b: Kind4<T, S, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
+
 export function bothWith<T extends HKT4>(
   AB: AssociativeBoth4<T> & Contravariant4<T>,
 ): <S, R, E, B, C, A>(
@@ -628,12 +914,40 @@ export function bothWith<T extends HKT4>(
   f: (c: C) => readonly [A, B],
 ) => (a: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, C>
 
+export function bothWith<T extends HKT3, E>(
+  AB: AssociativeBoth3EC<T, E> & Contravariant3EC<T, E>,
+): <R, B, C, A>(
+  b: Kind3<T, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind3<T, R, E, A>) => Kind3<T, R, E, C>
+
+export function bothWith<T extends HKT3, R, E>(
+  AB: AssociativeBoth3REC<T, R, E> & Contravariant3REC<T, R, E>,
+): <B, C, A>(
+  b: Kind3<T, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind3<T, R, E, A>) => Kind3<T, R, E, C>
+
+export function bothWith<T extends HKT3, R>(
+  AB: AssociativeBoth3RC<T, R> & Contravariant3RC<T, R>,
+): <E, B, C, A>(
+  b: Kind3<T, R, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind3<T, R, E, A>) => Kind3<T, R, E, C>
+
 export function bothWith<T extends HKT3>(
   AB: AssociativeBoth3<T> & Contravariant3<T>,
 ): <R, E, B, C, A>(
   b: Kind3<T, R, E, B>,
   f: (c: C) => readonly [A, B],
 ) => (a: Kind3<T, R, E, A>) => Kind3<T, R, E, C>
+
+export function bothWith<T extends HKT2, E>(
+  AB: AssociativeBoth2EC<T, E> & Contravariant2EC<T, E>,
+): <B, C, A>(
+  b: Kind2<T, E, B>,
+  f: (c: C) => readonly [A, B],
+) => (a: Kind2<T, E, A>) => Kind2<T, E, C>
 
 export function bothWith<T extends HKT2>(
   AB: AssociativeBoth2<T> & Contravariant2<T>,

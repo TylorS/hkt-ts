@@ -1,17 +1,10 @@
-import { IntersectionNode } from '../AST'
-
 import { AssociativeFlatten } from './AssociativeFlatten'
 import { Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
 
-export const flatMap = fn_(
+export const flatMap = derived_(
   'flatMap',
-  [hkt],
-  [
-    new IntersectionNode(AssociativeFlatten.toTypeClass(hkt), Covariant.toTypeClass(hkt)).labeled(
-      'AFC',
-    ),
-  ],
+  [AssociativeFlatten, Covariant],
   fn_(
     '',
     [aTypeParam, placeholder, bTypeParam],

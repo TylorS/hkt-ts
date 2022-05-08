@@ -1,13 +1,12 @@
-import { IntersectionNode, Static } from '../AST'
+import { Static } from '../AST'
 
 import { Covariant } from './Covariant'
 import { Top } from './Top'
-import { aTypeParam, fn_, hkt, kindWithDefaults_, placeholderWithDefaults } from './common'
+import { aTypeParam, derived_, fn_, kindWithDefaults_, placeholderWithDefaults } from './common'
 
-export const makeFromLazy = fn_(
+export const makeFromLazy = derived_(
   'makeFromLazy',
-  [hkt],
-  [new IntersectionNode(Top.toTypeClass(hkt), Covariant.toTypeClass(hkt)).labeled('T')],
+  [Top, Covariant],
   fn_(
     '',
     [aTypeParam, placeholderWithDefaults],

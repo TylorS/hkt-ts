@@ -1,11 +1,11 @@
-import { HKTParam, IntersectionNode, Kind } from '../AST'
+import { HKTParam, Kind } from '../AST'
 
 import { Covariant } from './Covariant'
 import { IdentityBoth } from './IdentityBoth'
 import {
   aTypeParam,
   bTypeParam,
-  curriedPlaceholder_,
+  derived_,
   fnLabeled_,
   fn_,
   interface_,
@@ -19,15 +19,9 @@ const hkt2Placeholder = hkt2.toPlaceholder()
 export const ForEach = interface_(
   'ForEach',
   [
-    fnLabeled_(
-      'forEach',
-      [hkt2, curriedPlaceholder_(hkt2)],
-      [
-        new IntersectionNode(
-          IdentityBoth.toTypeClass(hkt2).setParams([curriedPlaceholder_(hkt2)]),
-          Covariant.toTypeClass(hkt2).setParams([curriedPlaceholder_(hkt2)]),
-        ).labeled('IB'),
-      ],
+    derived_(
+      '',
+      [IdentityBoth, Covariant],
       fn_(
         '',
         [aTypeParam, hkt2Placeholder, bTypeParam],
@@ -46,7 +40,7 @@ export const ForEach = interface_(
           new Kind(hkt2, [hkt2Placeholder, kind_([bTypeParam])]),
         ),
       ),
-    ),
+    ).labeled('forEach'),
   ],
   [Covariant],
 )

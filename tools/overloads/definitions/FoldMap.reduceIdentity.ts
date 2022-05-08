@@ -5,7 +5,7 @@ import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
 export const reduceIdentity = derived_(
   'reduceIdentity',
-  FoldMap,
+  [FoldMap],
   fn_(
     '',
     [aTypeParam],

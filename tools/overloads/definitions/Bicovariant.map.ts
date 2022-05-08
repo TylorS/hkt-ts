@@ -3,17 +3,16 @@ import {
   aTypeParam,
   bTypeParam,
   cTypeParam,
+  derived_,
   fnLabeled_,
   fn_,
-  hkt,
   kind_,
   placeholder,
 } from './common'
 
-export const node = fn_(
+export const node = derived_(
   'map',
-  [hkt],
-  [Bicovariant.toTypeClass(hkt).labeled('B')],
+  [Bicovariant],
   fn_(
     '',
     [aTypeParam, bTypeParam],

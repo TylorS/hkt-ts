@@ -5,7 +5,7 @@ import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
 export const reduceCommutative = derived_(
   'reduceCommutative',
-  FoldMap,
+  [FoldMap],
   fn_(
     '',
     [aTypeParam],

@@ -1,12 +1,11 @@
 import { Static } from '../AST'
 
 import { FoldMap } from './FoldMap'
-import { aTypeParam, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
-export const concat = fn_(
+export const concat = derived_(
   'concat',
-  [hkt],
-  [FoldMap.toTypeClass(hkt).labeled('FM')],
+  [FoldMap],
   fn_(
     '',
     [aTypeParam],

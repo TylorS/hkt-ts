@@ -1,13 +1,10 @@
-import { IntersectionNode } from '../AST'
-
 import { FoldMap } from './FoldMap'
 import { ForEach } from './ForEach'
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
 
-export const reduceRight = fn_(
+export const reduceRight = derived_(
   'reduceRight',
-  [hkt],
-  [new IntersectionNode(FoldMap.toTypeClass(hkt), ForEach.toTypeClass(hkt)).labeled('FM')],
+  [FoldMap, ForEach],
   fn_(
     'reduceRight',
     [bTypeParam, aTypeParam],

@@ -5,6 +5,7 @@ import {
   aTypeParam,
   bTypeParam,
   cTypeParam,
+  curriedPlaceholder_,
   fnLabeled_,
   fn_,
   hkt,
@@ -16,8 +17,12 @@ const kTypeParam = new Static('K')
 
 export const partitionMap = fn_(
   'partitionMap',
-  [hkt, kTypeParam],
-  [PartitionMapWithIndex.toTypeClass(hkt).setParams([kTypeParam]).labeled('PMI')],
+  [hkt, kTypeParam, curriedPlaceholder_(hkt)],
+  [
+    PartitionMapWithIndex.toTypeClass(hkt)
+      .setParams([kTypeParam, curriedPlaceholder_(hkt)])
+      .labeled('PMI'),
+  ],
   fn_(
     '',
     [aTypeParam, bTypeParam, cTypeParam],

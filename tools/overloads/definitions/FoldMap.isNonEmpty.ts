@@ -3,7 +3,7 @@ import { aTypeParam, boolean_, derived_, fn_, kind_, placeholder } from './commo
 
 export const isNonEmpty = derived_(
   'isNonEmpty',
-  FoldMap,
+  [FoldMap],
   fn_('', [placeholder, aTypeParam], [kind_([aTypeParam]).labeled()], boolean_),
 )
 

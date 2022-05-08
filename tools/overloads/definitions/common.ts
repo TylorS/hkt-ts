@@ -4,11 +4,13 @@ import {
   HKTCurriedPlaceholder,
   HKTParam,
   Interface,
+  IntersectionNode,
   Kind,
   KindParam,
   Labeled,
   Static,
   TypeParam,
+  Typeclass,
 } from '../AST'
 
 export const hkt = new HKTParam(Symbol('T'), 'T')
@@ -38,19 +40,45 @@ export const fn_ = (
   returnSignature: KindParam,
 ) => new FunctionSignature(name, typeParams, functionParams, returnSignature)
 
-export const derived_ = (name: string, i: Interface, returnSignature: KindParam) =>
-  new FunctionSignature(
+export const derived_ = (
+  name: string,
+  is: readonly Interface[],
+  returnSignature: KindParam,
+  hktParam: HKTParam = hkt,
+) => {
+  const typeclasses = is.map((i) =>
+    i
+      .toTypeClass(hktParam)
+      .setParams([
+        ...i.typeParams.filter((x) => x.tag !== HKTCurriedPlaceholder.tag),
+        curriedPlaceholder_(hktParam),
+      ]),
+  )
+  const derivedName = is
+    .map((i) =>
+      Array.from(i.name)
+        .filter((x) => x === x.toUpperCase())
+        .join(''),
+    )
+    .join('')
+
+  return new FunctionSignature(
     name,
-    [hkt],
+    [hktParam, curriedPlaceholder_(hktParam)],
     [
-      i.toTypeClass(hkt).labeled(
-        Array.from(i.name)
-          .filter((x) => x === x.toUpperCase())
-          .join(''),
-      ),
+      typeclasses.length > 1
+        ? typeclasses
+            .slice(1)
+            .reduce(
+              (acc, curr) => new IntersectionNode(acc, curr),
+              typeclasses[0] as Typeclass | IntersectionNode,
+            )
+            .labeled(derivedName)
+        : typeclasses[0].labeled(derivedName),
     ],
     returnSignature,
   )
+}
 
 export const fnLabeled_ = (
   name: string,

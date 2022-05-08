@@ -1,13 +1,10 @@
-import { IntersectionNode } from '../AST'
-
 import { FoldMap } from './FoldMap'
 import { ForEach } from './ForEach'
-import { aTypeParam, fn_, hkt, kind_, placeholder } from './common'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
-export const reverse = fn_(
+export const reverse = derived_(
   'reverse',
-  [hkt],
-  [new IntersectionNode(FoldMap.toTypeClass(hkt), ForEach.toTypeClass(hkt)).labeled('FM')],
+  [FoldMap, ForEach],
   fn_('', [placeholder, aTypeParam], [kind_([aTypeParam]).labeled()], kind_([aTypeParam])),
 )
 
