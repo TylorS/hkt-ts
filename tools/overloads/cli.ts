@@ -22,6 +22,9 @@ const program = yargs(process.argv, process.cwd())
   .option('printOutput', {
     type: 'boolean',
   })
+  .option('skipFormat', {
+    type: 'boolean',
+  })
 
 const HKT_IMPORTS = `import {
   HKT,
@@ -49,7 +52,7 @@ const HKT_IMPORTS = `import {
 } from './HKT'`
 
 async function main() {
-  const { definition, noImports, printOutput } = await program.argv
+  const { definition, noImports, printOutput, skipFormat } = await program.argv
   const filePath = join(
     __dirname,
     'definitions',
@@ -67,11 +70,10 @@ async function main() {
   )
 
   const input = (noImports ? '' : HKT_IMPORTS + '\n\n') + printed.join('\n\n')
-  const output = format(input, prettierConfig) + '\n'
+  const output = (skipFormat ? input : format(input, prettierConfig)) + '\n'
 
   if (printOutput) {
-    console.log(output + '\n')
-
+    console.log(output)
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { default: clipboard } = await import('clipboardy')

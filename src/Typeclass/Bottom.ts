@@ -22,6 +22,7 @@ import {
   Kind9,
   Params,
 } from '../HKT'
+
 export interface Bottom<T extends HKT> {
   readonly bottom: Kind<T, never>
 }

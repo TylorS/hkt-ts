@@ -1,33 +1,30 @@
-import { Dynamic, FunctionSignature, HKTParam, Kind } from '../AST'
+import { Dynamic } from '../AST'
 
 import { Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, curriedPlaceholder_ } from './common'
+import {
+  aTypeParam,
+  bTypeParam,
+  composed_,
+  fn_,
+  kindF_,
+  kindG_,
+  placeholderF,
+  placeholderG,
+} from './common'
 
-export const hktF = new HKTParam(Symbol('F'), 'F')
-export const hktG = new HKTParam(Symbol('G'), 'G')
-export const placeholderF = hktF.toPlaceholder()
-export const placeholderG = hktG.toPlaceholder()
-
-export const node = new FunctionSignature(
+export const map = composed_(
   'map',
-  [hktF, curriedPlaceholder_(hktF), hktG, curriedPlaceholder_(hktG)],
-  [
-    Covariant.toTypeClass(hktF)
-      .setParams([curriedPlaceholder_(hktF)])
-      .labeled('F'),
-    Covariant.toTypeClass(hktG)
-      .setParams([curriedPlaceholder_(hktG)])
-      .labeled('G'),
-  ],
-  new FunctionSignature(
+  [Covariant],
+  [Covariant],
+  fn_(
     '',
     [aTypeParam, bTypeParam],
     [new Dynamic([aTypeParam, bTypeParam] as const, ([a, b]) => `Unary<${a}, ${b}>`).labeled('f')],
-    new FunctionSignature(
+    fn_(
       '',
       [placeholderF, placeholderG],
-      [new Kind(hktF, [placeholderF, new Kind(hktG, [placeholderG, aTypeParam])]).labeled('kind')],
-      new Kind(hktF, [placeholderF, new Kind(hktG, [placeholderG, bTypeParam])]),
+      [kindF_([kindG_([aTypeParam])]).labeled()],
+      kindF_([kindG_([bTypeParam])]),
     ),
   ),
 )

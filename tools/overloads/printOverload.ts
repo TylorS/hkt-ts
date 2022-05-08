@@ -180,7 +180,9 @@ export function printFunctionSignature(
   if (node.typeParams.length) {
     manager.addContext('TypeParam')
 
-    const printed = pipe(node.typeParams.map((p) => printTypeParam(p, context, manager)))
+    const printed = pipe(
+      node.typeParams.map((p) => printTypeParam(p, context, manager)).filter((x) => x.length > 0),
+    )
 
     s += '<'
     s += printed.join(', ')
@@ -229,7 +231,7 @@ export function printTypeParam(
       const placeholders = context.placeholders.get(p.type.id)
 
       if (!placeholders) {
-        throw new Error(`There should always be a placeholder amount in the context!`)
+        return ''
       }
 
       return placeholders

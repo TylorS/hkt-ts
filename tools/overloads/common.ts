@@ -77,28 +77,3 @@ export function uniqBy<A, B>(array: ReadonlyArray<A>, by: (a: A) => B): Readonly
 
   return unique
 }
-
-export function permutations<A>(permutation: Array<A>): Array<Array<A>> {
-  let length = permutation.length,
-    result = [permutation.slice(0)],
-    c = new Array(length).fill(0),
-    i = 1,
-    k,
-    p
-
-  while (i < length) {
-    if (c[i] < i) {
-      k = i % 2 && c[i]
-      p = permutation[i]
-      permutation[i] = permutation[k]
-      permutation[k] = p
-      ++c[i]
-      i = 1
-      result.push(permutation.slice(0))
-    } else {
-      c[i] = 0
-      ++i
-    }
-  }
-  return result
-}

@@ -199,13 +199,57 @@ export function map<T extends HKT5, K>(
   CI: CovariantWithIndex5<T, K>,
 ): <A, B>(f: (a: A) => B) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, B>
 
+export function map<T extends HKT4, K, E>(
+  CI: CovariantWithIndex4EC<T, K, E>,
+): <A, B>(f: (a: A) => B) => <S, R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function map<T extends HKT4, K, R, E>(
+  CI: CovariantWithIndex4REC<T, K, R, E>,
+): <A, B>(f: (a: A) => B) => <S>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function map<T extends HKT4, K, S, E>(
+  CI: CovariantWithIndex4SEC<T, K, S, E>,
+): <A, B>(f: (a: A) => B) => <R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function map<T extends HKT4, K, R>(
+  CI: CovariantWithIndex4RC<T, K, R>,
+): <A, B>(f: (a: A) => B) => <S, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function map<T extends HKT4, K, S, R>(
+  CI: CovariantWithIndex4SRC<T, K, S, R>,
+): <A, B>(f: (a: A) => B) => <E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function map<T extends HKT4, K, S>(
+  CI: CovariantWithIndex4SC<T, K, S>,
+): <A, B>(f: (a: A) => B) => <R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function map<T extends HKT4, K, S, R, E>(
+  CI: CovariantWithIndex4SREC<T, K, S, R, E>,
+): <A, B>(f: (a: A) => B) => (kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
 export function map<T extends HKT4, K>(
   CI: CovariantWithIndex4<T, K>,
 ): <A, B>(f: (a: A) => B) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 
+export function map<T extends HKT3, K, E>(
+  CI: CovariantWithIndex3EC<T, K, E>,
+): <A, B>(f: (a: A) => B) => <R>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function map<T extends HKT3, K, R, E>(
+  CI: CovariantWithIndex3REC<T, K, R, E>,
+): <A, B>(f: (a: A) => B) => (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function map<T extends HKT3, K, R>(
+  CI: CovariantWithIndex3RC<T, K, R>,
+): <A, B>(f: (a: A) => B) => <E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
 export function map<T extends HKT3, K>(
   CI: CovariantWithIndex3<T, K>,
 ): <A, B>(f: (a: A) => B) => <R, E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function map<T extends HKT2, K, E>(
+  CI: CovariantWithIndex2EC<T, K, E>,
+): <A, B>(f: (a: A) => B) => (kind: Kind2<T, E, A>) => Kind2<T, E, B>
 
 export function map<T extends HKT2, K>(
   CI: CovariantWithIndex2<T, K>,

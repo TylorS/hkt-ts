@@ -95,3 +95,61 @@ export const interface_ = (
   properties: readonly Labeled<KindParam>[],
   extensions: readonly (Interface | KindParam)[] = [],
 ) => new Interface(name, [hkt, curriedPlaceholder_(hkt)], properties, extensions)
+
+export const hktF = new HKTParam(Symbol('F'), 'F')
+export const hktG = new HKTParam(Symbol('G'), 'G')
+export const placeholderF = hktF.toPlaceholder()
+export const placeholderG = hktG.toPlaceholder()
+
+export const kindF_ = (params: readonly KindParam[]) => new Kind(hktF, [placeholderF, ...params])
+export const kindG_ = (params: readonly KindParam[]) => new Kind(hktG, [placeholderG, ...params])
+
+export const composed_ = (
+  name: string,
+  isF: readonly Interface[],
+  isG: readonly Interface[],
+  returnSignature: KindParam,
+) => {
+  const typeclassesF = isF.map((i) =>
+    i
+      .toTypeClass(hktF)
+      .setParams([
+        ...i.typeParams.filter((x) => x.tag !== HKTCurriedPlaceholder.tag),
+        curriedPlaceholder_(hktF),
+      ]),
+  )
+  const typeclassesG = isG.map((i) =>
+    i
+      .toTypeClass(hktG)
+      .setParams([
+        ...i.typeParams.filter((x) => x.tag !== HKTCurriedPlaceholder.tag),
+        curriedPlaceholder_(hktG),
+      ]),
+  )
+
+  return new FunctionSignature(
+    name,
+    [hktF, curriedPlaceholder_(hktF), hktG, curriedPlaceholder_(hktG)],
+    [
+      typeclassesF.length > 1
+        ? typeclassesF
+            .slice(1)
+            .reduce(
+              (acc, curr) => new IntersectionNode(acc, curr),
+              typeclassesF[0] as Typeclass | IntersectionNode,
+            )
+            .labeled('F')
+        : typeclassesF[0].labeled('F'),
+      typeclassesG.length > 1
+        ? typeclassesG
+            .slice(1)
+            .reduce(
+              (acc, curr) => new IntersectionNode(acc, curr),
+              typeclassesG[0] as Typeclass | IntersectionNode,
+            )
+            .labeled('G')
+        : typeclassesG[0].labeled('G'),
+    ],
+    returnSignature,
+  )
+}

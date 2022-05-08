@@ -174,7 +174,7 @@ export function findPlaceholders(
       existing.length,
       Math.min(SUPPORTED_PLACEHOLDER_LENGTH, length),
     )
-    const possibleParams = possiblilties.map((p) => hktParamNames[p])
+    const possibleParams = possiblilties.map((p) => hktParamNames[p]).filter((x) => x !== Params.A)
     const params = uniqBy(combinations(possiblilties.map(() => possibleParams)).map(uniq), (x) =>
       x.slice().sort(),
     )

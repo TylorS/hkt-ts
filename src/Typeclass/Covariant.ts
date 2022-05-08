@@ -134,7 +134,6 @@ export interface Covariant10<T extends HKT10> {
 /* #endregion */
 
 /* #region Composition */
-
 export function map<F extends HKT10, G extends HKT10>(
   F: Covariant10<F>,
   G: Covariant10<G>,
@@ -201,6 +200,69 @@ export function map<F extends HKT5, G extends HKT10>(
   kind: Kind5<F, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT4, E1, G extends HKT10>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT10>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT10>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, G extends HKT10>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT10>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, G extends HKT10>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT10>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT4, G extends HKT10>(
   F: Covariant4<F>,
   G: Covariant10<G>,
@@ -210,6 +272,33 @@ export function map<F extends HKT4, G extends HKT10>(
   kind: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT3, E1, G extends HKT10>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT10>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, G extends HKT10>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT3, G extends HKT10>(
   F: Covariant3<F>,
   G: Covariant10<G>,
@@ -218,6 +307,15 @@ export function map<F extends HKT3, G extends HKT10>(
 ) => <R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
   kind: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT2, E1, G extends HKT10>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant10<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z2, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
 
 export function map<F extends HKT2, G extends HKT10>(
   F: Covariant2<F>,
@@ -300,6 +398,69 @@ export function map<F extends HKT5, G extends HKT9>(
   kind: Kind5<F, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT4, E1, G extends HKT9>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT9>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT9>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, G extends HKT9>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT9>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, G extends HKT9>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT9>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT4, G extends HKT9>(
   F: Covariant4<F>,
   G: Covariant9<G>,
@@ -309,6 +470,33 @@ export function map<F extends HKT4, G extends HKT9>(
   kind: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT3, E1, G extends HKT9>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT9>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, G extends HKT9>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT3, G extends HKT9>(
   F: Covariant3<F>,
   G: Covariant9<G>,
@@ -317,6 +505,15 @@ export function map<F extends HKT3, G extends HKT9>(
 ) => <R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2>(
   kind: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT2, E1, G extends HKT9>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant9<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y2, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>
 
 export function map<F extends HKT2, G extends HKT9>(
   F: Covariant2<F>,
@@ -399,6 +596,69 @@ export function map<F extends HKT5, G extends HKT8>(
   kind: Kind5<F, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT4, E1, G extends HKT8>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT8>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT8>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, G extends HKT8>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT8>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, G extends HKT8>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT8>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT4, G extends HKT8>(
   F: Covariant4<F>,
   G: Covariant8<G>,
@@ -408,6 +668,33 @@ export function map<F extends HKT4, G extends HKT8>(
   kind: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT3, E1, G extends HKT8>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT8>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, G extends HKT8>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT3, G extends HKT8>(
   F: Covariant3<F>,
   G: Covariant8<G>,
@@ -416,6 +703,15 @@ export function map<F extends HKT3, G extends HKT8>(
 ) => <R1, E1, X2, W2, V2, U2, S2, R2, E2>(
   kind: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT2, E1, G extends HKT8>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant8<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X2, W2, V2, U2, S2, R2, E2>(
+  kind: Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>
 
 export function map<F extends HKT2, G extends HKT8>(
   F: Covariant2<F>,
@@ -498,6 +794,69 @@ export function map<F extends HKT5, G extends HKT7>(
   kind: Kind5<F, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT4, E1, G extends HKT7>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT7>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT7>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, G extends HKT7>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT7>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, G extends HKT7>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT7>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W2, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT4, G extends HKT7>(
   F: Covariant4<F>,
   G: Covariant7<G>,
@@ -507,6 +866,33 @@ export function map<F extends HKT4, G extends HKT7>(
   kind: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT3, E1, G extends HKT7>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT7>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, G extends HKT7>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, W2, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT3, G extends HKT7>(
   F: Covariant3<F>,
   G: Covariant7<G>,
@@ -515,6 +901,15 @@ export function map<F extends HKT3, G extends HKT7>(
 ) => <R1, E1, W2, V2, U2, S2, R2, E2>(
   kind: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
 ) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT2, E1, G extends HKT7>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant7<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W2, V2, U2, S2, R2, E2>(
+  kind: Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>
 
 export function map<F extends HKT2, G extends HKT7>(
   F: Covariant2<F>,
@@ -597,6 +992,69 @@ export function map<F extends HKT5, G extends HKT6>(
   kind: Kind5<F, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT4, E1, G extends HKT6>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT6>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT6>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, G extends HKT6>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT6>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, G extends HKT6>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT6>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V2, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT4, G extends HKT6>(
   F: Covariant4<F>,
   G: Covariant6<G>,
@@ -606,6 +1064,33 @@ export function map<F extends HKT4, G extends HKT6>(
   kind: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
 ) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT3, E1, G extends HKT6>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT6>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, G extends HKT6>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, V2, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT3, G extends HKT6>(
   F: Covariant3<F>,
   G: Covariant6<G>,
@@ -614,6 +1099,15 @@ export function map<F extends HKT3, G extends HKT6>(
 ) => <R1, E1, V2, U2, S2, R2, E2>(
   kind: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
 ) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT2, E1, G extends HKT6>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant6<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V2, U2, S2, R2, E2>(
+  kind: Kind2<F, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind6<G, V2, U2, S2, R2, E2, B>>
 
 export function map<F extends HKT2, G extends HKT6>(
   F: Covariant2<F>,
@@ -696,6 +1190,69 @@ export function map<F extends HKT5, G extends HKT5>(
   kind: Kind5<F, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT4, E1, G extends HKT5>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT5>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT5>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, G extends HKT5>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT5>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, G extends HKT5>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT5>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U2, S2, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT4, G extends HKT5>(
   F: Covariant4<F>,
   G: Covariant5<G>,
@@ -705,6 +1262,33 @@ export function map<F extends HKT4, G extends HKT5>(
   kind: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
 ) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT3, E1, G extends HKT5>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT5>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, G extends HKT5>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, U2, S2, R2, E2>(
+  kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
 export function map<F extends HKT3, G extends HKT5>(
   F: Covariant3<F>,
   G: Covariant5<G>,
@@ -713,6 +1297,15 @@ export function map<F extends HKT3, G extends HKT5>(
 ) => <R1, E1, U2, S2, R2, E2>(
   kind: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
 ) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, B>>
+
+export function map<F extends HKT2, E1, G extends HKT5>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant5<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U2, S2, R2, E2>(
+  kind: Kind2<F, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind5<G, U2, S2, R2, E2, B>>
 
 export function map<F extends HKT2, G extends HKT5>(
   F: Covariant2<F>,
@@ -741,6 +1334,69 @@ export function map<F extends HKT, G extends HKT5>(
   kind: Kind<F, Kind5<G, U2, S2, R2, E2, A>>,
 ) => Kind<F, Kind5<G, U2, S2, R2, E2, B>>
 
+export function map<F extends HKT10, G extends HKT4, E2>(
+  F: Covariant10<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2, R2>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT4, R2, E2>(
+  F: Covariant10<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT4, S2, E2>(
+  F: Covariant10<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, R2>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT4, R2>(
+  F: Covariant10<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2, E2>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT4, S2, R2>(
+  F: Covariant10<F>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, E2>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT4, S2>(
+  F: Covariant10<F>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, R2, E2>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT4, S2, R2, E2>(
+  F: Covariant10<F>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
 export function map<F extends HKT10, G extends HKT4>(
   F: Covariant10<F>,
   G: Covariant4<G>,
@@ -749,6 +1405,69 @@ export function map<F extends HKT10, G extends HKT4>(
 ) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2, R2, E2>(
   kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT9, G extends HKT4, E2>(
+  F: Covariant9<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1, S2, R2>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT9, G extends HKT4, R2, E2>(
+  F: Covariant9<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1, S2>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT9, G extends HKT4, S2, E2>(
+  F: Covariant9<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1, R2>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT9, G extends HKT4, R2>(
+  F: Covariant9<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1, S2, E2>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT9, G extends HKT4, S2, R2>(
+  F: Covariant9<F>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1, E2>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT9, G extends HKT4, S2>(
+  F: Covariant9<F>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1, R2, E2>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT9, G extends HKT4, S2, R2, E2>(
+  F: Covariant9<F>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
 
 export function map<F extends HKT9, G extends HKT4>(
   F: Covariant9<F>,
@@ -759,6 +1478,69 @@ export function map<F extends HKT9, G extends HKT4>(
   kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
 
+export function map<F extends HKT8, G extends HKT4, E2>(
+  F: Covariant8<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1, S2, R2>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT8, G extends HKT4, R2, E2>(
+  F: Covariant8<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1, S2>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT8, G extends HKT4, S2, E2>(
+  F: Covariant8<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1, R2>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT8, G extends HKT4, R2>(
+  F: Covariant8<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1, S2, E2>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT8, G extends HKT4, S2, R2>(
+  F: Covariant8<F>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1, E2>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT8, G extends HKT4, S2>(
+  F: Covariant8<F>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1, R2, E2>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT8, G extends HKT4, S2, R2, E2>(
+  F: Covariant8<F>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
 export function map<F extends HKT8, G extends HKT4>(
   F: Covariant8<F>,
   G: Covariant4<G>,
@@ -767,6 +1549,69 @@ export function map<F extends HKT8, G extends HKT4>(
 ) => <X1, W1, V1, U1, S1, R1, E1, S2, R2, E2>(
   kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT7, G extends HKT4, E2>(
+  F: Covariant7<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1, S2, R2>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT7, G extends HKT4, R2, E2>(
+  F: Covariant7<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1, S2>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT7, G extends HKT4, S2, E2>(
+  F: Covariant7<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1, R2>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT7, G extends HKT4, R2>(
+  F: Covariant7<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1, S2, E2>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT7, G extends HKT4, S2, R2>(
+  F: Covariant7<F>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1, E2>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT7, G extends HKT4, S2>(
+  F: Covariant7<F>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1, R2, E2>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT7, G extends HKT4, S2, R2, E2>(
+  F: Covariant7<F>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
 
 export function map<F extends HKT7, G extends HKT4>(
   F: Covariant7<F>,
@@ -777,6 +1622,69 @@ export function map<F extends HKT7, G extends HKT4>(
   kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
 
+export function map<F extends HKT6, G extends HKT4, E2>(
+  F: Covariant6<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1, S2, R2>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT6, G extends HKT4, R2, E2>(
+  F: Covariant6<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1, S2>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT6, G extends HKT4, S2, E2>(
+  F: Covariant6<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1, R2>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT6, G extends HKT4, R2>(
+  F: Covariant6<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1, S2, E2>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT6, G extends HKT4, S2, R2>(
+  F: Covariant6<F>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1, E2>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT6, G extends HKT4, S2>(
+  F: Covariant6<F>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1, R2, E2>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT6, G extends HKT4, S2, R2, E2>(
+  F: Covariant6<F>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
 export function map<F extends HKT6, G extends HKT4>(
   F: Covariant6<F>,
   G: Covariant4<G>,
@@ -785,6 +1693,69 @@ export function map<F extends HKT6, G extends HKT4>(
 ) => <V1, U1, S1, R1, E1, S2, R2, E2>(
   kind: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT5, G extends HKT4, E2>(
+  F: Covariant5<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1, S2, R2>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT5, G extends HKT4, R2, E2>(
+  F: Covariant5<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1, S2>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT5, G extends HKT4, S2, E2>(
+  F: Covariant5<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1, R2>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT5, G extends HKT4, R2>(
+  F: Covariant5<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1, S2, E2>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT5, G extends HKT4, S2, R2>(
+  F: Covariant5<F>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1, E2>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT5, G extends HKT4, S2>(
+  F: Covariant5<F>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1, R2, E2>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT5, G extends HKT4, S2, R2, E2>(
+  F: Covariant5<F>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
 
 export function map<F extends HKT5, G extends HKT4>(
   F: Covariant5<F>,
@@ -795,6 +1766,69 @@ export function map<F extends HKT5, G extends HKT4>(
   kind: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
 
+export function map<F extends HKT4, E1, G extends HKT4, E2>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1, S2, R2>(
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT4, R2, E2>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, S2>(
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT4, S2, E2>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, R2>(
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT4, R1, G extends HKT4, R2>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1, S2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT4, S2, R2>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, G extends HKT4, S2>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT4, S2, R2, E2>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => (
+  kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
 export function map<F extends HKT4, G extends HKT4>(
   F: Covariant4<F>,
   G: Covariant4<G>,
@@ -803,6 +1837,69 @@ export function map<F extends HKT4, G extends HKT4>(
 ) => <S1, R1, E1, S2, R2, E2>(
   kind: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
 ) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT3, G extends HKT4, E2>(
+  F: Covariant3<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, S2, R2>(
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT3, G extends HKT4, R2, E2>(
+  F: Covariant3<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, S2>(
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT3, G extends HKT4, S2, E2>(
+  F: Covariant3<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, R2>(
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT3, G extends HKT4, R2>(
+  F: Covariant3<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, S2, E2>(
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT3, E1, G extends HKT4, S2, R2>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E2>(
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT4, S2>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R2, E2>(
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT3, R1, G extends HKT4, S2, R2, E2>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1>(
+  kind: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>
 
 export function map<F extends HKT3, G extends HKT4>(
   F: Covariant3<F>,
@@ -813,6 +1910,61 @@ export function map<F extends HKT3, G extends HKT4>(
   kind: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
 ) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>
 
+export function map<F extends HKT2, G extends HKT4, E2>(
+  F: Covariant2<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, S2, R2>(
+  kind: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT2, G extends HKT4, R2, E2>(
+  F: Covariant2<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, S2>(kind: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>) => Kind2<F, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT2, G extends HKT4, S2, E2>(
+  F: Covariant2<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, R2>(kind: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>) => Kind2<F, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT2, G extends HKT4, R2>(
+  F: Covariant2<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, S2, E2>(
+  kind: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT2, G extends HKT4, S2, R2>(
+  F: Covariant2<F>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, E2>(kind: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>) => Kind2<F, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT2, G extends HKT4, S2>(
+  F: Covariant2<F>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, R2, E2>(
+  kind: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT2, E1, G extends HKT4, S2, R2, E2>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => (kind: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>) => Kind2<F, E1, Kind4<G, S2, R2, E2, B>>
+
 export function map<F extends HKT2, G extends HKT4>(
   F: Covariant2<F>,
   G: Covariant4<G>,
@@ -822,6 +1974,55 @@ export function map<F extends HKT2, G extends HKT4>(
   kind: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
 ) => Kind2<F, E1, Kind4<G, S2, R2, E2, B>>
 
+export function map<F extends HKT, G extends HKT4, E2>(
+  F: Covariant1<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S2, R2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, R2, E2>(
+  F: Covariant1<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, S2, E2>(
+  F: Covariant1<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, R2>(
+  F: Covariant1<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S2, E2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, S2, R2>(
+  F: Covariant1<F>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, S2>(
+  F: Covariant1<F>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R2, E2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, S2, R2, E2>(
+  F: Covariant1<F>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => (kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
 export function map<F extends HKT, G extends HKT4>(
   F: Covariant1<F>,
   G: Covariant4<G>,
@@ -829,12 +2030,88 @@ export function map<F extends HKT, G extends HKT4>(
   f: Unary<A, B>,
 ) => <S2, R2, E2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
 
+export function map<F extends HKT, G extends HKT4, E2>(
+  F: Covariant<F>,
+  G: Covariant4EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S2, R2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, R2, E2>(
+  F: Covariant<F>,
+  G: Covariant4REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, S2, E2>(
+  F: Covariant<F>,
+  G: Covariant4SEC<G, S2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, R2>(
+  F: Covariant<F>,
+  G: Covariant4RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S2, E2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, S2, R2>(
+  F: Covariant<F>,
+  G: Covariant4SRC<G, S2, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, S2>(
+  F: Covariant<F>,
+  G: Covariant4SC<G, S2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R2, E2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT4, S2, R2, E2>(
+  F: Covariant<F>,
+  G: Covariant4SREC<G, S2, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => (kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
 export function map<F extends HKT, G extends HKT4>(
   F: Covariant<F>,
   G: Covariant4<G>,
 ): <A, B>(
   f: Unary<A, B>,
 ) => <S2, R2, E2>(kind: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT3, E2>(
+  F: Covariant10<F>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, R2>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT3, R2, E2>(
+  F: Covariant10<F>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT3, R2>(
+  F: Covariant10<F>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, E2>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
 
 export function map<F extends HKT10, G extends HKT3>(
   F: Covariant10<F>,
@@ -845,6 +2122,33 @@ export function map<F extends HKT10, G extends HKT3>(
   kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
 
+export function map<F extends HKT9, G extends HKT3, E2>(
+  F: Covariant9<F>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1, R2>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT9, G extends HKT3, R2, E2>(
+  F: Covariant9<F>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT9, G extends HKT3, R2>(
+  F: Covariant9<F>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1, E2>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
 export function map<F extends HKT9, G extends HKT3>(
   F: Covariant9<F>,
   G: Covariant3<G>,
@@ -853,6 +2157,33 @@ export function map<F extends HKT9, G extends HKT3>(
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, R2, E2>(
   kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT8, G extends HKT3, E2>(
+  F: Covariant8<F>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1, R2>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT8, G extends HKT3, R2, E2>(
+  F: Covariant8<F>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT8, G extends HKT3, R2>(
+  F: Covariant8<F>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1, E2>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
 
 export function map<F extends HKT8, G extends HKT3>(
   F: Covariant8<F>,
@@ -863,6 +2194,33 @@ export function map<F extends HKT8, G extends HKT3>(
   kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
 
+export function map<F extends HKT7, G extends HKT3, E2>(
+  F: Covariant7<F>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1, R2>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT7, G extends HKT3, R2, E2>(
+  F: Covariant7<F>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT7, G extends HKT3, R2>(
+  F: Covariant7<F>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1, E2>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
 export function map<F extends HKT7, G extends HKT3>(
   F: Covariant7<F>,
   G: Covariant3<G>,
@@ -871,6 +2229,33 @@ export function map<F extends HKT7, G extends HKT3>(
 ) => <W1, V1, U1, S1, R1, E1, R2, E2>(
   kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT6, G extends HKT3, E2>(
+  F: Covariant6<F>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1, R2>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT6, G extends HKT3, R2, E2>(
+  F: Covariant6<F>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT6, G extends HKT3, R2>(
+  F: Covariant6<F>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1, E2>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
 
 export function map<F extends HKT6, G extends HKT3>(
   F: Covariant6<F>,
@@ -881,6 +2266,33 @@ export function map<F extends HKT6, G extends HKT3>(
   kind: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
 
+export function map<F extends HKT5, G extends HKT3, E2>(
+  F: Covariant5<F>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1, R2>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT5, G extends HKT3, R2, E2>(
+  F: Covariant5<F>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT5, G extends HKT3, R2>(
+  F: Covariant5<F>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1, E2>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
 export function map<F extends HKT5, G extends HKT3>(
   F: Covariant5<F>,
   G: Covariant3<G>,
@@ -889,6 +2301,69 @@ export function map<F extends HKT5, G extends HKT3>(
 ) => <U1, S1, R1, E1, R2, E2>(
   kind: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT4, E1, G extends HKT3>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant3<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT3>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant3<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT3>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant3<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT4, R1, G extends HKT3>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant3<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1, R2, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT3, E2>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, R2>(
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT4, S1, G extends HKT3, R2, E2>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1>(
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT3, R2>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E2>(
+  kind: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>
 
 export function map<F extends HKT4, G extends HKT3>(
   F: Covariant4<F>,
@@ -899,6 +2374,27 @@ export function map<F extends HKT4, G extends HKT3>(
   kind: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
 ) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>
 
+export function map<F extends HKT3, E1, G extends HKT3, E2>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, R2>(kind: Kind3<F, R1, E1, Kind3<G, R2, E2, A>>) => Kind3<F, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT3, R2, E2>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => (kind: Kind3<F, R1, E1, Kind3<G, R2, E2, A>>) => Kind3<F, R1, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT3, R1, G extends HKT3, R2>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, E2>(kind: Kind3<F, R1, E1, Kind3<G, R2, E2, A>>) => Kind3<F, R1, E1, Kind3<G, R2, E2, B>>
+
 export function map<F extends HKT3, G extends HKT3>(
   F: Covariant3<F>,
   G: Covariant3<G>,
@@ -908,12 +2404,52 @@ export function map<F extends HKT3, G extends HKT3>(
   kind: Kind3<F, R1, E1, Kind3<G, R2, E2, A>>,
 ) => Kind3<F, R1, E1, Kind3<G, R2, E2, B>>
 
+export function map<F extends HKT2, G extends HKT3, E2>(
+  F: Covariant2<F>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, R2>(kind: Kind2<F, E1, Kind3<G, R2, E2, A>>) => Kind2<F, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT2, G extends HKT3, R2, E2>(
+  F: Covariant2<F>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1>(kind: Kind2<F, E1, Kind3<G, R2, E2, A>>) => Kind2<F, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT2, E1, G extends HKT3, R2>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E2>(kind: Kind2<F, E1, Kind3<G, R2, E2, A>>) => Kind2<F, E1, Kind3<G, R2, E2, B>>
+
 export function map<F extends HKT2, G extends HKT3>(
   F: Covariant2<F>,
   G: Covariant3<G>,
 ): <A, B>(
   f: Unary<A, B>,
 ) => <E1, R2, E2>(kind: Kind2<F, E1, Kind3<G, R2, E2, A>>) => Kind2<F, E1, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT3, E2>(
+  F: Covariant1<F>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R2>(kind: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT3, R2, E2>(
+  F: Covariant1<F>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(f: Unary<A, B>) => (kind: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT3, R2>(
+  F: Covariant1<F>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E2>(kind: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, B>>
 
 export function map<F extends HKT, G extends HKT3>(
   F: Covariant1<F>,
@@ -922,12 +2458,40 @@ export function map<F extends HKT, G extends HKT3>(
   f: Unary<A, B>,
 ) => <R2, E2>(kind: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, B>>
 
+export function map<F extends HKT, G extends HKT3, E2>(
+  F: Covariant<F>,
+  G: Covariant3EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R2>(kind: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT3, R2, E2>(
+  F: Covariant<F>,
+  G: Covariant3REC<G, R2, E2>,
+): <A, B>(f: Unary<A, B>) => (kind: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT, G extends HKT3, R2>(
+  F: Covariant<F>,
+  G: Covariant3RC<G, R2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E2>(kind: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, B>>
+
 export function map<F extends HKT, G extends HKT3>(
   F: Covariant<F>,
   G: Covariant3<G>,
 ): <A, B>(
   f: Unary<A, B>,
 ) => <R2, E2>(kind: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, B>>
+
+export function map<F extends HKT10, G extends HKT2, E2>(
+  F: Covariant10<F>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Z1, Y1, X1, W1, V1, U1, S1, R1, E1>(
+  kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
 
 export function map<F extends HKT10, G extends HKT2>(
   F: Covariant10<F>,
@@ -938,6 +2502,15 @@ export function map<F extends HKT10, G extends HKT2>(
   kind: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
 ) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
 
+export function map<F extends HKT9, G extends HKT2, E2>(
+  F: Covariant9<F>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <Y1, X1, W1, V1, U1, S1, R1, E1>(
+  kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
+
 export function map<F extends HKT9, G extends HKT2>(
   F: Covariant9<F>,
   G: Covariant2<G>,
@@ -946,6 +2519,15 @@ export function map<F extends HKT9, G extends HKT2>(
 ) => <Y1, X1, W1, V1, U1, S1, R1, E1, E2>(
   kind: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
 ) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT8, G extends HKT2, E2>(
+  F: Covariant8<F>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <X1, W1, V1, U1, S1, R1, E1>(
+  kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
 
 export function map<F extends HKT8, G extends HKT2>(
   F: Covariant8<F>,
@@ -956,6 +2538,15 @@ export function map<F extends HKT8, G extends HKT2>(
   kind: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
 ) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
 
+export function map<F extends HKT7, G extends HKT2, E2>(
+  F: Covariant7<F>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <W1, V1, U1, S1, R1, E1>(
+  kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
+
 export function map<F extends HKT7, G extends HKT2>(
   F: Covariant7<F>,
   G: Covariant2<G>,
@@ -964,6 +2555,15 @@ export function map<F extends HKT7, G extends HKT2>(
 ) => <W1, V1, U1, S1, R1, E1, E2>(
   kind: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
 ) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT6, G extends HKT2, E2>(
+  F: Covariant6<F>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <V1, U1, S1, R1, E1>(
+  kind: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
 
 export function map<F extends HKT6, G extends HKT2>(
   F: Covariant6<F>,
@@ -974,6 +2574,15 @@ export function map<F extends HKT6, G extends HKT2>(
   kind: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
 ) => Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, B>>
 
+export function map<F extends HKT5, G extends HKT2, E2>(
+  F: Covariant5<F>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <U1, S1, R1, E1>(
+  kind: Kind5<F, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind2<G, E2, B>>
+
 export function map<F extends HKT5, G extends HKT2>(
   F: Covariant5<F>,
   G: Covariant2<G>,
@@ -982,6 +2591,61 @@ export function map<F extends HKT5, G extends HKT2>(
 ) => <U1, S1, R1, E1, E2>(
   kind: Kind5<F, U1, S1, R1, E1, Kind2<G, E2, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT4, E1, G extends HKT2>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant2<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT2>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant2<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E2>(kind: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>) => Kind4<F, S1, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT2>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant2<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E2>(kind: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>) => Kind4<F, S1, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT4, R1, G extends HKT2>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant2<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT2>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant2<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1, E2>(kind: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>) => Kind4<F, S1, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT4, S1, G extends HKT2>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant2<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1, E2>(
+  kind: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT2, E2>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => (kind: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>) => Kind4<F, S1, R1, E1, Kind2<G, E2, B>>
 
 export function map<F extends HKT4, G extends HKT2>(
   F: Covariant4<F>,
@@ -992,12 +2656,38 @@ export function map<F extends HKT4, G extends HKT2>(
   kind: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
 ) => Kind4<F, S1, R1, E1, Kind2<G, E2, B>>
 
+export function map<F extends HKT3, E1, G extends HKT2>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant2<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E2>(kind: Kind3<F, R1, E1, Kind2<G, E2, A>>) => Kind3<F, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT2>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant2<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E2>(kind: Kind3<F, R1, E1, Kind2<G, E2, A>>) => Kind3<F, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT3, R1, G extends HKT2, E2>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1>(kind: Kind3<F, R1, E1, Kind2<G, E2, A>>) => Kind3<F, R1, E1, Kind2<G, E2, B>>
+
 export function map<F extends HKT3, G extends HKT2>(
   F: Covariant3<F>,
   G: Covariant2<G>,
 ): <A, B>(
   f: Unary<A, B>,
 ) => <R1, E1, E2>(kind: Kind3<F, R1, E1, Kind2<G, E2, A>>) => Kind3<F, R1, E1, Kind2<G, E2, B>>
+
+export function map<F extends HKT2, E1, G extends HKT2, E2>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(f: Unary<A, B>) => (kind: Kind2<F, E1, Kind2<G, E2, A>>) => Kind2<F, E1, Kind2<G, E2, B>>
 
 export function map<F extends HKT2, G extends HKT2>(
   F: Covariant2<F>,
@@ -1006,10 +2696,20 @@ export function map<F extends HKT2, G extends HKT2>(
   f: Unary<A, B>,
 ) => <E1, E2>(kind: Kind2<F, E1, Kind2<G, E2, A>>) => Kind2<F, E1, Kind2<G, E2, B>>
 
+export function map<F extends HKT, G extends HKT2, E2>(
+  F: Covariant1<F>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(f: Unary<A, B>) => (kind: Kind<F, Kind2<G, E2, A>>) => Kind<F, Kind2<G, E2, B>>
+
 export function map<F extends HKT, G extends HKT2>(
   F: Covariant1<F>,
   G: Covariant2<G>,
 ): <A, B>(f: Unary<A, B>) => <E2>(kind: Kind<F, Kind2<G, E2, A>>) => Kind<F, Kind2<G, E2, B>>
+
+export function map<F extends HKT, G extends HKT2, E2>(
+  F: Covariant<F>,
+  G: Covariant2EC<G, E2>,
+): <A, B>(f: Unary<A, B>) => (kind: Kind<F, Kind2<G, E2, A>>) => Kind<F, Kind2<G, E2, B>>
 
 export function map<F extends HKT, G extends HKT2>(
   F: Covariant<F>,
@@ -1070,6 +2770,55 @@ export function map<F extends HKT5, G extends HKT>(
   kind: Kind5<F, U1, S1, R1, E1, Kind<G, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind<G, B>>
 
+export function map<F extends HKT4, E1, G extends HKT>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant1<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant1<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant1<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, R1, G extends HKT>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant1<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant1<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, S1, G extends HKT>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant1<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant1<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => (kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
 export function map<F extends HKT4, G extends HKT>(
   F: Covariant4<F>,
   G: Covariant1<G>,
@@ -1077,12 +2826,36 @@ export function map<F extends HKT4, G extends HKT>(
   f: Unary<A, B>,
 ) => <S1, R1, E1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
 
+export function map<F extends HKT3, E1, G extends HKT>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant1<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1>(kind: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant1<G>,
+): <A, B>(f: Unary<A, B>) => (kind: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT3, R1, G extends HKT>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant1<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1>(kind: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, B>>
+
 export function map<F extends HKT3, G extends HKT>(
   F: Covariant3<F>,
   G: Covariant1<G>,
 ): <A, B>(
   f: Unary<A, B>,
 ) => <R1, E1>(kind: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT2, E1, G extends HKT>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant1<G>,
+): <A, B>(f: Unary<A, B>) => (kind: Kind2<F, E1, Kind<G, A>>) => Kind2<F, E1, Kind<G, B>>
 
 export function map<F extends HKT2, G extends HKT>(
   F: Covariant2<F>,
@@ -1153,6 +2926,55 @@ export function map<F extends HKT5, G extends HKT>(
   kind: Kind5<F, U1, S1, R1, E1, Kind<G, A>>,
 ) => Kind5<F, U1, S1, R1, E1, Kind<G, B>>
 
+export function map<F extends HKT4, E1, G extends HKT>(
+  F: Covariant4EC<F, E1>,
+  G: Covariant<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, R1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, R1, E1, G extends HKT>(
+  F: Covariant4REC<F, R1, E1>,
+  G: Covariant<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, S1, E1, G extends HKT>(
+  F: Covariant4SEC<F, S1, E1>,
+  G: Covariant<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, R1, G extends HKT>(
+  F: Covariant4RC<F, R1>,
+  G: Covariant<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <S1, E1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, S1, R1, G extends HKT>(
+  F: Covariant4SRC<F, S1, R1>,
+  G: Covariant<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, S1, G extends HKT>(
+  F: Covariant4SC<F, S1>,
+  G: Covariant<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1, E1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT4, S1, R1, E1, G extends HKT>(
+  F: Covariant4SREC<F, S1, R1, E1>,
+  G: Covariant<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => (kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
+
 export function map<F extends HKT4, G extends HKT>(
   F: Covariant4<F>,
   G: Covariant<G>,
@@ -1160,12 +2982,36 @@ export function map<F extends HKT4, G extends HKT>(
   f: Unary<A, B>,
 ) => <S1, R1, E1>(kind: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, B>>
 
+export function map<F extends HKT3, E1, G extends HKT>(
+  F: Covariant3EC<F, E1>,
+  G: Covariant<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <R1>(kind: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT3, R1, E1, G extends HKT>(
+  F: Covariant3REC<F, R1, E1>,
+  G: Covariant<G>,
+): <A, B>(f: Unary<A, B>) => (kind: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT3, R1, G extends HKT>(
+  F: Covariant3RC<F, R1>,
+  G: Covariant<G>,
+): <A, B>(
+  f: Unary<A, B>,
+) => <E1>(kind: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, B>>
+
 export function map<F extends HKT3, G extends HKT>(
   F: Covariant3<F>,
   G: Covariant<G>,
 ): <A, B>(
   f: Unary<A, B>,
 ) => <R1, E1>(kind: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, B>>
+
+export function map<F extends HKT2, E1, G extends HKT>(
+  F: Covariant2EC<F, E1>,
+  G: Covariant<G>,
+): <A, B>(f: Unary<A, B>) => (kind: Kind2<F, E1, Kind<G, A>>) => Kind2<F, E1, Kind<G, B>>
 
 export function map<F extends HKT2, G extends HKT>(
   F: Covariant2<F>,
@@ -1190,8 +3036,7 @@ export function map<F extends HKT, G extends HKT>(
 }
 /* #endregion */
 
-/* #region bindTo */
-export function bindTo<T extends HKT10>(
+/* #region bindTo */ export function bindTo<T extends HKT10>(
   C: Covariant10<T>,
 ): <N extends string>(
   name: N,
@@ -1308,6 +3153,116 @@ export function bindTo<T extends HKT5>(
   }
 >
 
+export function bindTo<T extends HKT4, E>(
+  C: Covariant4EC<T, E>,
+): <N extends string>(
+  name: N,
+) => <S, R, A>(
+  kind: Kind4<T, S, R, E, A>,
+) => Kind4<
+  T,
+  S,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
+export function bindTo<T extends HKT4, R, E>(
+  C: Covariant4REC<T, R, E>,
+): <N extends string>(
+  name: N,
+) => <S, A>(
+  kind: Kind4<T, S, R, E, A>,
+) => Kind4<
+  T,
+  S,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
+export function bindTo<T extends HKT4, S, E>(
+  C: Covariant4SEC<T, S, E>,
+): <N extends string>(
+  name: N,
+) => <R, A>(
+  kind: Kind4<T, S, R, E, A>,
+) => Kind4<
+  T,
+  S,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
+export function bindTo<T extends HKT4, R>(
+  C: Covariant4RC<T, R>,
+): <N extends string>(
+  name: N,
+) => <S, E, A>(
+  kind: Kind4<T, S, R, E, A>,
+) => Kind4<
+  T,
+  S,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
+export function bindTo<T extends HKT4, S, R>(
+  C: Covariant4SRC<T, S, R>,
+): <N extends string>(
+  name: N,
+) => <E, A>(
+  kind: Kind4<T, S, R, E, A>,
+) => Kind4<
+  T,
+  S,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
+export function bindTo<T extends HKT4, S>(
+  C: Covariant4SC<T, S>,
+): <N extends string>(
+  name: N,
+) => <R, E, A>(
+  kind: Kind4<T, S, R, E, A>,
+) => Kind4<
+  T,
+  S,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
+export function bindTo<T extends HKT4, S, R, E>(
+  C: Covariant4SREC<T, S, R, E>,
+): <N extends string>(
+  name: N,
+) => <A>(kind: Kind4<T, S, R, E, A>) => Kind4<
+  T,
+  S,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
 export function bindTo<T extends HKT4>(
   C: Covariant4<T>,
 ): <N extends string>(
@@ -1324,6 +3279,49 @@ export function bindTo<T extends HKT4>(
   }
 >
 
+export function bindTo<T extends HKT3, E>(
+  C: Covariant3EC<T, E>,
+): <N extends string>(
+  name: N,
+) => <R, A>(
+  kind: Kind3<T, R, E, A>,
+) => Kind3<
+  T,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
+export function bindTo<T extends HKT3, R, E>(
+  C: Covariant3REC<T, R, E>,
+): <N extends string>(
+  name: N,
+) => <A>(kind: Kind3<T, R, E, A>) => Kind3<
+  T,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
+export function bindTo<T extends HKT3, R>(
+  C: Covariant3RC<T, R>,
+): <N extends string>(
+  name: N,
+) => <E, A>(
+  kind: Kind3<T, R, E, A>,
+) => Kind3<
+  T,
+  R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
 export function bindTo<T extends HKT3>(
   C: Covariant3<T>,
 ): <N extends string>(
@@ -1333,6 +3331,18 @@ export function bindTo<T extends HKT3>(
 ) => Kind3<
   T,
   R,
+  E,
+  {
+    readonly [K in N]: A
+  }
+>
+
+export function bindTo<T extends HKT2, E>(
+  C: Covariant2EC<T, E>,
+): <N extends string>(
+  name: N,
+) => <A>(kind: Kind2<T, E, A>) => Kind2<
+  T,
   E,
   {
     readonly [K in N]: A
@@ -1385,12 +3395,11 @@ export function bindTo<T extends HKT>(
     readonly [K in N]: A
   }
 > {
-  return (name) => C.map((a) => ({ [name]: a }))
+  return (name) => C.map((a) => ({ [name]: a } as const))
 }
 /* #endregion */
 
-/* #region flap */
-export function flap<T extends HKT10>(
+/* #region flap */ export function flap<T extends HKT10>(
   C: Covariant10<T>,
 ): <A>(
   a: A,
@@ -1432,13 +3441,57 @@ export function flap<T extends HKT5>(
   C: Covariant5<T>,
 ): <A>(a: A) => <U, S, R, E, B>(kind: Kind5<T, U, S, R, E, (a: A) => B>) => Kind5<T, U, S, R, E, B>
 
+export function flap<T extends HKT4, E>(
+  C: Covariant4EC<T, E>,
+): <A>(a: A) => <S, R, B>(kind: Kind4<T, S, R, E, (a: A) => B>) => Kind4<T, S, R, E, B>
+
+export function flap<T extends HKT4, R, E>(
+  C: Covariant4REC<T, R, E>,
+): <A>(a: A) => <S, B>(kind: Kind4<T, S, R, E, (a: A) => B>) => Kind4<T, S, R, E, B>
+
+export function flap<T extends HKT4, S, E>(
+  C: Covariant4SEC<T, S, E>,
+): <A>(a: A) => <R, B>(kind: Kind4<T, S, R, E, (a: A) => B>) => Kind4<T, S, R, E, B>
+
+export function flap<T extends HKT4, R>(
+  C: Covariant4RC<T, R>,
+): <A>(a: A) => <S, E, B>(kind: Kind4<T, S, R, E, (a: A) => B>) => Kind4<T, S, R, E, B>
+
+export function flap<T extends HKT4, S, R>(
+  C: Covariant4SRC<T, S, R>,
+): <A>(a: A) => <E, B>(kind: Kind4<T, S, R, E, (a: A) => B>) => Kind4<T, S, R, E, B>
+
+export function flap<T extends HKT4, S>(
+  C: Covariant4SC<T, S>,
+): <A>(a: A) => <R, E, B>(kind: Kind4<T, S, R, E, (a: A) => B>) => Kind4<T, S, R, E, B>
+
+export function flap<T extends HKT4, S, R, E>(
+  C: Covariant4SREC<T, S, R, E>,
+): <A>(a: A) => <B>(kind: Kind4<T, S, R, E, (a: A) => B>) => Kind4<T, S, R, E, B>
+
 export function flap<T extends HKT4>(
   C: Covariant4<T>,
 ): <A>(a: A) => <S, R, E, B>(kind: Kind4<T, S, R, E, (a: A) => B>) => Kind4<T, S, R, E, B>
 
+export function flap<T extends HKT3, E>(
+  C: Covariant3EC<T, E>,
+): <A>(a: A) => <R, B>(kind: Kind3<T, R, E, (a: A) => B>) => Kind3<T, R, E, B>
+
+export function flap<T extends HKT3, R, E>(
+  C: Covariant3REC<T, R, E>,
+): <A>(a: A) => <B>(kind: Kind3<T, R, E, (a: A) => B>) => Kind3<T, R, E, B>
+
+export function flap<T extends HKT3, R>(
+  C: Covariant3RC<T, R>,
+): <A>(a: A) => <E, B>(kind: Kind3<T, R, E, (a: A) => B>) => Kind3<T, R, E, B>
+
 export function flap<T extends HKT3>(
   C: Covariant3<T>,
 ): <A>(a: A) => <R, E, B>(kind: Kind3<T, R, E, (a: A) => B>) => Kind3<T, R, E, B>
+
+export function flap<T extends HKT2, E>(
+  C: Covariant2EC<T, E>,
+): <A>(a: A) => <B>(kind: Kind2<T, E, (a: A) => B>) => Kind2<T, E, B>
 
 export function flap<T extends HKT2>(
   C: Covariant2<T>,
@@ -1493,13 +3546,57 @@ export function tupled<T extends HKT5>(
   C: Covariant5<T>,
 ): <U, S, R, E, A>(kind: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, readonly [A]>
 
+export function tupled<T extends HKT4, E>(
+  C: Covariant4EC<T, E>,
+): <S, R, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A]>
+
+export function tupled<T extends HKT4, R, E>(
+  C: Covariant4REC<T, R, E>,
+): <S, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A]>
+
+export function tupled<T extends HKT4, S, E>(
+  C: Covariant4SEC<T, S, E>,
+): <R, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A]>
+
+export function tupled<T extends HKT4, R>(
+  C: Covariant4RC<T, R>,
+): <S, E, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A]>
+
+export function tupled<T extends HKT4, S, R>(
+  C: Covariant4SRC<T, S, R>,
+): <E, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A]>
+
+export function tupled<T extends HKT4, S>(
+  C: Covariant4SC<T, S>,
+): <R, E, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A]>
+
+export function tupled<T extends HKT4, S, R, E>(
+  C: Covariant4SREC<T, S, R, E>,
+): <A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A]>
+
 export function tupled<T extends HKT4>(
   C: Covariant4<T>,
 ): <S, R, E, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, readonly [A]>
 
+export function tupled<T extends HKT3, E>(
+  C: Covariant3EC<T, E>,
+): <R, A>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, readonly [A]>
+
+export function tupled<T extends HKT3, R, E>(
+  C: Covariant3REC<T, R, E>,
+): <A>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, readonly [A]>
+
+export function tupled<T extends HKT3, R>(
+  C: Covariant3RC<T, R>,
+): <E, A>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, readonly [A]>
+
 export function tupled<T extends HKT3>(
   C: Covariant3<T>,
 ): <R, E, A>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, readonly [A]>
+
+export function tupled<T extends HKT2, E>(
+  C: Covariant2EC<T, E>,
+): <A>(kind: Kind2<T, E, A>) => Kind2<T, E, readonly [A]>
 
 export function tupled<T extends HKT2>(
   C: Covariant2<T>,
@@ -1559,13 +3656,57 @@ export function mapTo<T extends HKT5>(
   C: Covariant5<T>,
 ): <B>(b: B) => <U, S, R, E, A>(kind: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, B>
 
+export function mapTo<T extends HKT4, E>(
+  C: Covariant4EC<T, E>,
+): <B>(b: B) => <S, R, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function mapTo<T extends HKT4, R, E>(
+  C: Covariant4REC<T, R, E>,
+): <B>(b: B) => <S, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function mapTo<T extends HKT4, S, E>(
+  C: Covariant4SEC<T, S, E>,
+): <B>(b: B) => <R, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function mapTo<T extends HKT4, R>(
+  C: Covariant4RC<T, R>,
+): <B>(b: B) => <S, E, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function mapTo<T extends HKT4, S, R>(
+  C: Covariant4SRC<T, S, R>,
+): <B>(b: B) => <E, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function mapTo<T extends HKT4, S>(
+  C: Covariant4SC<T, S>,
+): <B>(b: B) => <R, E, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function mapTo<T extends HKT4, S, R, E>(
+  C: Covariant4SREC<T, S, R, E>,
+): <B>(b: B) => <A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
 export function mapTo<T extends HKT4>(
   C: Covariant4<T>,
 ): <B>(b: B) => <S, R, E, A>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
 
+export function mapTo<T extends HKT3, E>(
+  C: Covariant3EC<T, E>,
+): <B>(b: B) => <R, A>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function mapTo<T extends HKT3, R, E>(
+  C: Covariant3REC<T, R, E>,
+): <B>(b: B) => <A>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function mapTo<T extends HKT3, R>(
+  C: Covariant3RC<T, R>,
+): <B>(b: B) => <E, A>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
 export function mapTo<T extends HKT3>(
   C: Covariant3<T>,
 ): <B>(b: B) => <R, E, A>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function mapTo<T extends HKT2, E>(
+  C: Covariant2EC<T, E>,
+): <B>(b: B) => <A>(kind: Kind2<T, E, A>) => Kind2<T, E, B>
 
 export function mapTo<T extends HKT2>(
   C: Covariant2<T>,

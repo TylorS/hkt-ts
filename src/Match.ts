@@ -1,5 +1,5 @@
 import * as M from './Maybe'
-import { flow, pipe, unsafeCoerce } from './function'
+import { flow, pipe } from './function'
 
 export interface Match<A, B> {
   (a: A): M.Maybe<B>
@@ -29,19 +29,3 @@ export const getOrElse =
   <B>(orElse: () => B) =>
   <I, A>(match: Match<I, A>) =>
     flow(match, M.getOrElse(orElse))
-
-const PARTIAL_PLACEHOLDER = Symbol('PartialPlaceholder')
-
-const miss = <A>(): A => unsafeCoerce(PARTIAL_PLACEHOLDER)
-
-export function partial<A, B>(f: (miss: () => never) => (input: A) => B): Match<A, B> {
-  return (a) => {
-    const b = f(miss)(a)
-
-    if ((b as any) === PARTIAL_PLACEHOLDER) {
-      return M.Nothing
-    }
-
-    return M.Just(b)
-  }
-}

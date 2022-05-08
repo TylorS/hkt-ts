@@ -157,54 +157,100 @@ export interface FilterMap10<T extends HKT10> {
 }
 /* #endregion */
 
-/* #region makeCompact */
+/* #region compact */
 export function compact<T extends HKT10>(
-  F: FilterMap10<T>,
+  FM: FilterMap10<T>,
 ): <Z, Y, X, W, V, U, S, R, E, A>(
   kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, Maybe<A>>,
 ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, A>
 
 export function compact<T extends HKT9>(
-  F: FilterMap9<T>,
+  FM: FilterMap9<T>,
 ): <Y, X, W, V, U, S, R, E, A>(
   kind: Kind9<T, Y, X, W, V, U, S, R, E, Maybe<A>>,
 ) => Kind9<T, Y, X, W, V, U, S, R, E, A>
 
 export function compact<T extends HKT8>(
-  F: FilterMap8<T>,
+  FM: FilterMap8<T>,
 ): <X, W, V, U, S, R, E, A>(
   kind: Kind8<T, X, W, V, U, S, R, E, Maybe<A>>,
 ) => Kind8<T, X, W, V, U, S, R, E, A>
 
 export function compact<T extends HKT7>(
-  F: FilterMap7<T>,
+  FM: FilterMap7<T>,
 ): <W, V, U, S, R, E, A>(
   kind: Kind7<T, W, V, U, S, R, E, Maybe<A>>,
 ) => Kind7<T, W, V, U, S, R, E, A>
 
 export function compact<T extends HKT6>(
-  F: FilterMap6<T>,
+  FM: FilterMap6<T>,
 ): <V, U, S, R, E, A>(kind: Kind6<T, V, U, S, R, E, Maybe<A>>) => Kind6<T, V, U, S, R, E, A>
 
 export function compact<T extends HKT5>(
-  F: FilterMap5<T>,
+  FM: FilterMap5<T>,
 ): <U, S, R, E, A>(kind: Kind5<T, U, S, R, E, Maybe<A>>) => Kind5<T, U, S, R, E, A>
 
+export function compact<T extends HKT4, E>(
+  FM: FilterMap4EC<T, E>,
+): <S, R, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+
+export function compact<T extends HKT4, R, E>(
+  FM: FilterMap4REC<T, R, E>,
+): <S, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+
+export function compact<T extends HKT4, S, E>(
+  FM: FilterMap4SEC<T, S, E>,
+): <R, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+
+export function compact<T extends HKT4, R>(
+  FM: FilterMap4RC<T, R>,
+): <S, E, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+
+export function compact<T extends HKT4, S, R>(
+  FM: FilterMap4SRC<T, S, R>,
+): <E, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+
+export function compact<T extends HKT4, S>(
+  FM: FilterMap4SC<T, S>,
+): <R, E, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+
+export function compact<T extends HKT4, S, R, E>(
+  FM: FilterMap4SREC<T, S, R, E>,
+): <A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
+
 export function compact<T extends HKT4>(
-  F: FilterMap4<T>,
+  FM: FilterMap4<T>,
 ): <S, R, E, A>(kind: Kind4<T, S, R, E, Maybe<A>>) => Kind4<T, S, R, E, A>
 
+export function compact<T extends HKT3, E>(
+  FM: FilterMap3EC<T, E>,
+): <R, A>(kind: Kind3<T, R, E, Maybe<A>>) => Kind3<T, R, E, A>
+
+export function compact<T extends HKT3, R, E>(
+  FM: FilterMap3REC<T, R, E>,
+): <A>(kind: Kind3<T, R, E, Maybe<A>>) => Kind3<T, R, E, A>
+
+export function compact<T extends HKT3, R>(
+  FM: FilterMap3RC<T, R>,
+): <E, A>(kind: Kind3<T, R, E, Maybe<A>>) => Kind3<T, R, E, A>
+
 export function compact<T extends HKT3>(
-  F: FilterMap3<T>,
+  FM: FilterMap3<T>,
 ): <R, E, A>(kind: Kind3<T, R, E, Maybe<A>>) => Kind3<T, R, E, A>
 
+export function compact<T extends HKT2, E>(
+  FM: FilterMap2EC<T, E>,
+): <A>(kind: Kind2<T, E, Maybe<A>>) => Kind2<T, E, A>
+
 export function compact<T extends HKT2>(
-  F: FilterMap2<T>,
+  FM: FilterMap2<T>,
 ): <E, A>(kind: Kind2<T, E, Maybe<A>>) => Kind2<T, E, A>
 
-export function compact<T extends HKT>(F: FilterMap1<T>): <A>(kind: Kind<T, Maybe<A>>) => Kind<T, A>
+export function compact<T extends HKT>(
+  FM: FilterMap1<T>,
+): <A>(kind: Kind<T, Maybe<A>>) => Kind<T, A>
 
-export function compact<T extends HKT>(F: FilterMap<T>): <A>(kind: Kind<T, Maybe<A>>) => Kind<T, A>
+export function compact<T extends HKT>(FM: FilterMap<T>): <A>(kind: Kind<T, Maybe<A>>) => Kind<T, A>
 
 export function compact<T extends HKT>(
   F: FilterMap<T>,
@@ -268,6 +314,7 @@ export function filter<T extends HKT6>(
     kind: Kind6<T, V, U, S, R, E, A>,
   ) => Kind6<T, V, U, S, R, E, A>
 }
+
 export function filter<T extends HKT5>(
   FM: FilterMap5<T>,
 ): {
@@ -279,6 +326,69 @@ export function filter<T extends HKT5>(
   ) => Kind5<T, U, S, R, E, A>
 }
 
+export function filter<T extends HKT4, E>(
+  FM: FilterMap4EC<T, E>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): <S, R>(
+    kind: Kind4<T, S, R, E, A>,
+  ) => Kind4<T, S, R, E, B>
+  <A>(predicate: Predicate<A>): <S, R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+}
+
+export function filter<T extends HKT4, R, E>(
+  FM: FilterMap4REC<T, R, E>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): <S>(
+    kind: Kind4<T, S, R, E, A>,
+  ) => Kind4<T, S, R, E, B>
+  <A>(predicate: Predicate<A>): <S>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+}
+
+export function filter<T extends HKT4, S, E>(
+  FM: FilterMap4SEC<T, S, E>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): <R>(
+    kind: Kind4<T, S, R, E, A>,
+  ) => Kind4<T, S, R, E, B>
+  <A>(predicate: Predicate<A>): <R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+}
+
+export function filter<T extends HKT4, R>(
+  FM: FilterMap4RC<T, R>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): <S, E>(
+    kind: Kind4<T, S, R, E, A>,
+  ) => Kind4<T, S, R, E, B>
+  <A>(predicate: Predicate<A>): <S, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+}
+
+export function filter<T extends HKT4, S, R>(
+  FM: FilterMap4SRC<T, S, R>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): <E>(
+    kind: Kind4<T, S, R, E, A>,
+  ) => Kind4<T, S, R, E, B>
+  <A>(predicate: Predicate<A>): <E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+}
+
+export function filter<T extends HKT4, S>(
+  FM: FilterMap4SC<T, S>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): <R, E>(
+    kind: Kind4<T, S, R, E, A>,
+  ) => Kind4<T, S, R, E, B>
+  <A>(predicate: Predicate<A>): <R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+}
+
+export function filter<T extends HKT4, S, R, E>(
+  FM: FilterMap4SREC<T, S, R, E>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): (
+    kind: Kind4<T, S, R, E, A>,
+  ) => Kind4<T, S, R, E, B>
+  <A>(predicate: Predicate<A>): (kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
+}
+
 export function filter<T extends HKT4>(
   FM: FilterMap4<T>,
 ): {
@@ -288,6 +398,27 @@ export function filter<T extends HKT4>(
   <A>(predicate: Predicate<A>): <S, R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, A>
 }
 
+export function filter<T extends HKT3, E>(
+  FM: FilterMap3EC<T, E>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): <R>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+  <A>(predicate: Predicate<A>): <R>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, A>
+}
+
+export function filter<T extends HKT3, R, E>(
+  FM: FilterMap3REC<T, R, E>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+  <A>(predicate: Predicate<A>): (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, A>
+}
+
+export function filter<T extends HKT3, R>(
+  FM: FilterMap3RC<T, R>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): <E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+  <A>(predicate: Predicate<A>): <E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, A>
+}
+
 export function filter<T extends HKT3>(
   FM: FilterMap3<T>,
 ): {
@@ -295,6 +426,13 @@ export function filter<T extends HKT3>(
     kind: Kind3<T, R, E, A>,
   ) => Kind3<T, R, E, B>
   <A>(predicate: Predicate<A>): <R, E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, A>
+}
+
+export function filter<T extends HKT2, E>(
+  FM: FilterMap2EC<T, E>,
+): {
+  <A, B extends A>(refinement: Refinement<A, B>): (kind: Kind2<T, E, A>) => Kind2<T, E, B>
+  <A>(predicate: Predicate<A>): (kind: Kind2<T, E, A>) => Kind2<T, E, A>
 }
 
 export function filter<T extends HKT2>(

@@ -971,3 +971,3108 @@ export function bothWith<T extends HKT>(
 }
 
 /* #endregion */
+
+export function both<F extends HKT10, G extends HKT10>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth10<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind10<
+    F,
+    Z1,
+    Y1,
+    X1,
+    W1,
+    V1,
+    U1,
+    S1,
+    R1,
+    E1,
+    Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>
+  >,
+) => <A>(
+  first: Kind10<
+    F,
+    Z1,
+    Y1,
+    X1,
+    W1,
+    V1,
+    U1,
+    S1,
+    R1,
+    E1,
+    Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>
+  >,
+) => Kind10<
+  F,
+  Z1,
+  Y1,
+  X1,
+  W1,
+  V1,
+  U1,
+  S1,
+  R1,
+  E1,
+  Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>
+>
+
+export function both<F extends HKT9, G extends HKT10>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth10<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind9<
+    F,
+    Y1,
+    X1,
+    W1,
+    V1,
+    U1,
+    S1,
+    R1,
+    E1,
+    Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>
+  >,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind9<
+  F,
+  Y1,
+  X1,
+  W1,
+  V1,
+  U1,
+  S1,
+  R1,
+  E1,
+  Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>
+>
+
+export function both<F extends HKT8, G extends HKT10>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth10<G>,
+): <X1, W1, V1, U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind8<
+  F,
+  X1,
+  W1,
+  V1,
+  U1,
+  S1,
+  R1,
+  E1,
+  Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>
+>
+
+export function both<F extends HKT7, G extends HKT10>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth10<G>,
+): <W1, V1, U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind7<
+  F,
+  W1,
+  V1,
+  U1,
+  S1,
+  R1,
+  E1,
+  Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>
+>
+
+export function both<F extends HKT6, G extends HKT10>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth10<G>,
+): <V1, U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT10>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth10<G>,
+): <U1, S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT10>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth10<G>,
+): <S1, R1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT10>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth10<G>,
+): <S1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT10>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth10<G>,
+): <R1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT10>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth10<G>,
+): <S1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT10>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth10<G>,
+): <E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT10>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth10<G>,
+): <R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT10>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth10<G>,
+): <Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT10>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth10<G>,
+): <S1, R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT10>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth10<G>,
+): <R1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT10>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth10<G>,
+): <Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT10>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth10<G>,
+): <E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT10>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth10<G>,
+): <R1, E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT10>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth10<G>,
+): <Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT10>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth10<G>,
+): <E1, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT10>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth10<G>,
+): <Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT10>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth10<G>,
+): <Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind10<G, Z2, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT9>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth9<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind10<
+    F,
+    Z1,
+    Y1,
+    X1,
+    W1,
+    V1,
+    U1,
+    S1,
+    R1,
+    E1,
+    Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>
+  >,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind10<
+  F,
+  Z1,
+  Y1,
+  X1,
+  W1,
+  V1,
+  U1,
+  S1,
+  R1,
+  E1,
+  Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>
+>
+
+export function both<F extends HKT9, G extends HKT9>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth9<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind9<
+  F,
+  Y1,
+  X1,
+  W1,
+  V1,
+  U1,
+  S1,
+  R1,
+  E1,
+  Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>
+>
+
+export function both<F extends HKT8, G extends HKT9>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth9<G>,
+): <X1, W1, V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT9>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth9<G>,
+): <W1, V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT9>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth9<G>,
+): <V1, U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT9>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth9<G>,
+): <U1, S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT9>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth9<G>,
+): <S1, R1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT9>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth9<G>,
+): <S1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT9>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth9<G>,
+): <R1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT9>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth9<G>,
+): <S1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT9>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth9<G>,
+): <E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT9>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth9<G>,
+): <R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT9>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth9<G>,
+): <Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT9>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth9<G>,
+): <S1, R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT9>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth9<G>,
+): <R1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT9>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth9<G>,
+): <Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT9>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth9<G>,
+): <E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT9>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth9<G>,
+): <R1, E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT9>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth9<G>,
+): <Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT9>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth9<G>,
+): <E1, Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT9>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth9<G>,
+): <Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT9>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth9<G>,
+): <Y2, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind9<G, Y2, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT8>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth8<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind10<
+  F,
+  Z1,
+  Y1,
+  X1,
+  W1,
+  V1,
+  U1,
+  S1,
+  R1,
+  E1,
+  Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>
+>
+
+export function both<F extends HKT9, G extends HKT8>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth8<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT8>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth8<G>,
+): <X1, W1, V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT8>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth8<G>,
+): <W1, V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT8>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth8<G>,
+): <V1, U1, S1, R1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT8>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth8<G>,
+): <U1, S1, R1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT8>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth8<G>,
+): <S1, R1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT8>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth8<G>,
+): <S1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT8>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth8<G>,
+): <R1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT8>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth8<G>,
+): <S1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT8>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth8<G>,
+): <E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT8>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth8<G>,
+): <R1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT8>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth8<G>,
+): <X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT8>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth8<G>,
+): <S1, R1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT8>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth8<G>,
+): <R1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT8>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth8<G>,
+): <X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT8>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth8<G>,
+): <E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT8>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth8<G>,
+): <R1, E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT8>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth8<G>,
+): <X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT8>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth8<G>,
+): <E1, X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT8>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth8<G>,
+): <X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT8>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth8<G>,
+): <X2, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind8<G, X2, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT7>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth7<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind10<
+  F,
+  Z1,
+  Y1,
+  X1,
+  W1,
+  V1,
+  U1,
+  S1,
+  R1,
+  E1,
+  Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>
+>
+
+export function both<F extends HKT9, G extends HKT7>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth7<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT7>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth7<G>,
+): <X1, W1, V1, U1, S1, R1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT7>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth7<G>,
+): <W1, V1, U1, S1, R1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT7>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth7<G>,
+): <V1, U1, S1, R1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT7>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth7<G>,
+): <U1, S1, R1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT7>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth7<G>,
+): <S1, R1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT7>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth7<G>,
+): <S1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT7>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth7<G>,
+): <R1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT7>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth7<G>,
+): <S1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT7>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth7<G>,
+): <E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT7>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth7<G>,
+): <R1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT7>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth7<G>,
+): <W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT7>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth7<G>,
+): <S1, R1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT7>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth7<G>,
+): <R1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT7>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth7<G>,
+): <W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT7>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth7<G>,
+): <E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT7>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth7<G>,
+): <R1, E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT7>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth7<G>,
+): <W2, V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT7>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth7<G>,
+): <E1, W2, V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT7>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth7<G>,
+): <W2, V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT7>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth7<G>,
+): <W2, V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind7<G, W2, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind7<G, W2, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind7<G, W2, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT6>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth6<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT6>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth6<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT6>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth6<G>,
+): <X1, W1, V1, U1, S1, R1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT6>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth6<G>,
+): <W1, V1, U1, S1, R1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT6>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth6<G>,
+): <V1, U1, S1, R1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT6>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth6<G>,
+): <U1, S1, R1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT6>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth6<G>,
+): <S1, R1, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT6>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth6<G>,
+): <S1, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT6>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth6<G>,
+): <R1, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT6>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth6<G>,
+): <S1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT6>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth6<G>,
+): <E1, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT6>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth6<G>,
+): <R1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT6>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth6<G>,
+): <V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT6>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth6<G>,
+): <S1, R1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT6>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth6<G>,
+): <R1, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT6>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth6<G>,
+): <V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT6>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth6<G>,
+): <E1, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT6>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth6<G>,
+): <R1, E1, V2, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT6>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth6<G>,
+): <V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT6>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth6<G>,
+): <E1, V2, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT6>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth6<G>,
+): <V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT6>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth6<G>,
+): <V2, U2, S2, R2, E2, B>(
+  second: Kind<F, Kind6<G, V2, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind6<G, V2, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind6<G, V2, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT5>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth5<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, U2, S2, R2, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT5>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth5<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, U2, S2, R2, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT5>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth5<G>,
+): <X1, W1, V1, U1, S1, R1, E1, U2, S2, R2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT5>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth5<G>,
+): <W1, V1, U1, S1, R1, E1, U2, S2, R2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT5>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth5<G>,
+): <V1, U1, S1, R1, E1, U2, S2, R2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT5>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth5<G>,
+): <U1, S1, R1, E1, U2, S2, R2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT5>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth5<G>,
+): <S1, R1, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT5>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth5<G>,
+): <S1, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT5>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth5<G>,
+): <R1, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT5>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth5<G>,
+): <S1, E1, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT5>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth5<G>,
+): <E1, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT5>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth5<G>,
+): <R1, E1, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT5>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth5<G>,
+): <U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT5>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth5<G>,
+): <S1, R1, E1, U2, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT5>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth5<G>,
+): <R1, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT5>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth5<G>,
+): <U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT5>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth5<G>,
+): <E1, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT5>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth5<G>,
+): <R1, E1, U2, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT5>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth5<G>,
+): <U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT5>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth5<G>,
+): <E1, U2, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT5>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth5<G>,
+): <U2, S2, R2, E2, B>(
+  second: Kind<F, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT5>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth5<G>,
+): <U2, S2, R2, E2, B>(
+  second: Kind<F, Kind5<G, U2, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind<F, Kind5<G, U2, S2, R2, E2, A>>,
+) => Kind<F, Kind5<G, U2, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT4, E2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2, R2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT4, R2, E2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT4, S2, E2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, R2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT4, R2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT4, S2, R2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT4, S2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth4SC<G, S2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT4>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth4<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, S2, R2, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT4, E2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, S2, R2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT4, R2, E2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, S2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT4, S2, E2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, R2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT4, R2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, S2, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT4, S2, R2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT4, S2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth4SC<G, S2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT4>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth4<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, S2, R2, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT4, E2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <X1, W1, V1, U1, S1, R1, E1, S2, R2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT4, R2, E2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <X1, W1, V1, U1, S1, R1, E1, S2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT4, S2, E2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <X1, W1, V1, U1, S1, R1, E1, R2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT4, R2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <X1, W1, V1, U1, S1, R1, E1, S2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT4, S2, R2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <X1, W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT4, S2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth4SC<G, S2>,
+): <X1, W1, V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT4>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth4<G>,
+): <X1, W1, V1, U1, S1, R1, E1, S2, R2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT4, E2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <W1, V1, U1, S1, R1, E1, S2, R2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT4, R2, E2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <W1, V1, U1, S1, R1, E1, S2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT4, S2, E2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <W1, V1, U1, S1, R1, E1, R2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT4, R2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <W1, V1, U1, S1, R1, E1, S2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT4, S2, R2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT4, S2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth4SC<G, S2>,
+): <W1, V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <W1, V1, U1, S1, R1, E1, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT4>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth4<G>,
+): <W1, V1, U1, S1, R1, E1, S2, R2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT4, E2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <V1, U1, S1, R1, E1, S2, R2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT4, R2, E2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <V1, U1, S1, R1, E1, S2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT4, S2, E2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <V1, U1, S1, R1, E1, R2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT4, R2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <V1, U1, S1, R1, E1, S2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT4, S2, R2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <V1, U1, S1, R1, E1, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT4, S2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth4SC<G, S2>,
+): <V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <V1, U1, S1, R1, E1, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT4>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth4<G>,
+): <V1, U1, S1, R1, E1, S2, R2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT4, E2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <U1, S1, R1, E1, S2, R2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT4, R2, E2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <U1, S1, R1, E1, S2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT4, S2, E2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <U1, S1, R1, E1, R2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT4, R2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <U1, S1, R1, E1, S2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT4, S2, R2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <U1, S1, R1, E1, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT4, S2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth4SC<G, S2>,
+): <U1, S1, R1, E1, R2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <U1, S1, R1, E1, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT4>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth4<G>,
+): <U1, S1, R1, E1, S2, R2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT4, E2>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth4EC<G, E2>,
+): <S1, R1, S2, R2, B>(
+  second: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT4, R2, E2>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <S1, S2, B>(
+  second: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT4, S2, E2>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <R1, R2, B>(
+  second: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT4, R2>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth4RC<G, R2>,
+): <S1, E1, S2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT4, S2, R2>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <E1, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT4, S2>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth4SC<G, S2>,
+): <R1, E1, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <B>(
+  second: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT4>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth4<G>,
+): <S1, R1, E1, S2, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT4, E2>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <R1, E1, S2, R2, B>(
+  second: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT4, R2, E2>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <R1, E1, S2, B>(
+  second: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT4, S2, E2>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <R1, E1, R2, B>(
+  second: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT4, R2>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <R1, E1, S2, E2, B>(
+  second: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT4, S2, R2>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <R1, E2, B>(
+  second: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT4, S2>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth4SC<G, S2>,
+): <R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <E1, B>(
+  second: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT4>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth4<G>,
+): <R1, E1, S2, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT4, E2>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <E1, S2, R2, B>(
+  second: Kind2<F, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT4, R2, E2>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <E1, S2, B>(
+  second: Kind2<F, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT4, S2, E2>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <E1, R2, B>(
+  second: Kind2<F, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT4, R2>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <E1, S2, E2, B>(
+  second: Kind2<F, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT4, S2, R2>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <E1, E2, B>(
+  second: Kind2<F, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT4, S2>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth4SC<G, S2>,
+): <E1, R2, E2, B>(
+  second: Kind2<F, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <B>(
+  second: Kind2<F, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT4>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth4<G>,
+): <E1, S2, R2, E2, B>(
+  second: Kind2<F, E1, Kind4<G, S2, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind4<G, S2, R2, E2, A>>,
+) => Kind2<F, E1, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, E2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <S2, R2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, R2, E2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <S2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, S2, E2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <R2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, R2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <S2, E2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, S2, R2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <E2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, S2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth4SC<G, S2>,
+): <R2, E2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth4<G>,
+): <S2, R2, E2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, E2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth4EC<G, E2>,
+): <S2, R2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, R2, E2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth4REC<G, R2, E2>,
+): <S2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, S2, E2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth4SEC<G, S2, E2>,
+): <R2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, R2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth4RC<G, R2>,
+): <S2, E2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, S2, R2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth4SRC<G, S2, R2>,
+): <E2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, S2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth4SC<G, S2>,
+): <R2, E2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4, S2, R2, E2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth4SREC<G, S2, R2, E2>,
+): <B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT4>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth4<G>,
+): <S2, R2, E2, B>(
+  second: Kind<F, Kind4<G, S2, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind4<G, S2, R2, E2, A>>) => Kind<F, Kind4<G, S2, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT3, E2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth3EC<G, E2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, R2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT3, R2, E2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT3, R2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth3RC<G, R2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT3>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth3<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT3, E2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth3EC<G, E2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, R2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT3, R2, E2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT3, R2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth3RC<G, R2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT3>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth3<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT3, E2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth3EC<G, E2>,
+): <X1, W1, V1, U1, S1, R1, E1, R2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT3, R2, E2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT3, R2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth3RC<G, R2>,
+): <X1, W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT3>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth3<G>,
+): <X1, W1, V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT3, E2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth3EC<G, E2>,
+): <W1, V1, U1, S1, R1, E1, R2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT3, R2, E2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <W1, V1, U1, S1, R1, E1, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT3, R2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth3RC<G, R2>,
+): <W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT3>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth3<G>,
+): <W1, V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT3, E2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth3EC<G, E2>,
+): <V1, U1, S1, R1, E1, R2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT3, R2, E2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <V1, U1, S1, R1, E1, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT3, R2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth3RC<G, R2>,
+): <V1, U1, S1, R1, E1, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT3>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth3<G>,
+): <V1, U1, S1, R1, E1, R2, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT3, E2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth3EC<G, E2>,
+): <U1, S1, R1, E1, R2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT3, R2, E2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <U1, S1, R1, E1, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT3, R2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth3RC<G, R2>,
+): <U1, S1, R1, E1, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT3>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth3<G>,
+): <U1, S1, R1, E1, R2, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT3>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth3<G>,
+): <S1, R1, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT3>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth3<G>,
+): <S1, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT3>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth3<G>,
+): <R1, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT3>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth3<G>,
+): <S1, E1, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT3, E2>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth3EC<G, E2>,
+): <E1, R2, B>(
+  second: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT3, R2, E2>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <R1, E1, B>(
+  second: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT3, R2>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth3RC<G, R2>,
+): <E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT3>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth3<G>,
+): <S1, R1, E1, R2, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT3, E2>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth3EC<G, E2>,
+): <R1, R2, B>(
+  second: Kind3<F, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT3, R2, E2>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <B>(
+  second: Kind3<F, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT3, R2>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth3RC<G, R2>,
+): <E1, E2, B>(
+  second: Kind3<F, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT3>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth3<G>,
+): <R1, E1, R2, E2, B>(
+  second: Kind3<F, R1, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind3<G, R2, E2, A>>,
+) => Kind3<F, R1, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT3, E2>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth3EC<G, E2>,
+): <E1, R2, B>(
+  second: Kind2<F, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind3<G, R2, E2, A>>,
+) => Kind2<F, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT3, R2, E2>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <E1, B>(
+  second: Kind2<F, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind3<G, R2, E2, A>>,
+) => Kind2<F, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT3, R2>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth3RC<G, R2>,
+): <E2, B>(
+  second: Kind2<F, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind3<G, R2, E2, A>>,
+) => Kind2<F, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT3>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth3<G>,
+): <E1, R2, E2, B>(
+  second: Kind2<F, E1, Kind3<G, R2, E2, B>>,
+) => <A>(
+  first: Kind2<F, E1, Kind3<G, R2, E2, A>>,
+) => Kind2<F, E1, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT3, E2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth3EC<G, E2>,
+): <R2, B>(
+  second: Kind<F, Kind3<G, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT3, R2, E2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <B>(
+  second: Kind<F, Kind3<G, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT3, R2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth3RC<G, R2>,
+): <E2, B>(
+  second: Kind<F, Kind3<G, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT3>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth3<G>,
+): <R2, E2, B>(
+  second: Kind<F, Kind3<G, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT3, E2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth3EC<G, E2>,
+): <R2, B>(
+  second: Kind<F, Kind3<G, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT3, R2, E2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth3REC<G, R2, E2>,
+): <B>(
+  second: Kind<F, Kind3<G, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT3, R2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth3RC<G, R2>,
+): <E2, B>(
+  second: Kind<F, Kind3<G, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT3>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth3<G>,
+): <R2, E2, B>(
+  second: Kind<F, Kind3<G, R2, E2, B>>,
+) => <A>(first: Kind<F, Kind3<G, R2, E2, A>>) => Kind<F, Kind3<G, R2, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT2, E2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth2EC<G, E2>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT2>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth2<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT2, E2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth2EC<G, E2>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT2>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth2<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT2, E2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth2EC<G, E2>,
+): <X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT2>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth2<G>,
+): <X1, W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT2, E2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth2EC<G, E2>,
+): <W1, V1, U1, S1, R1, E1, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT2>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth2<G>,
+): <W1, V1, U1, S1, R1, E1, E2, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT2, E2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth2EC<G, E2>,
+): <V1, U1, S1, R1, E1, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT2>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth2<G>,
+): <V1, U1, S1, R1, E1, E2, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT2, E2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth2EC<G, E2>,
+): <U1, S1, R1, E1, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT2>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth2<G>,
+): <U1, S1, R1, E1, E2, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT2>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth2<G>,
+): <S1, R1, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT2>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth2<G>,
+): <S1, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT2>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth2<G>,
+): <R1, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT2>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth2<G>,
+): <S1, E1, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT2>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth2<G>,
+): <E1, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT2>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth2<G>,
+): <R1, E1, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT2, E2>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth2EC<G, E2>,
+): <B>(
+  second: Kind4<F, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT2>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth2<G>,
+): <S1, R1, E1, E2, B>(
+  second: Kind4<F, S1, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind4<F, S1, R1, E1, Kind2<G, E2, A>>,
+) => Kind4<F, S1, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT2>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth2<G>,
+): <R1, E2, B>(
+  second: Kind3<F, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind2<G, E2, A>>,
+) => Kind3<F, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT2>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth2<G>,
+): <E2, B>(
+  second: Kind3<F, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind2<G, E2, A>>,
+) => Kind3<F, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT2, E2>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth2EC<G, E2>,
+): <E1, B>(
+  second: Kind3<F, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind2<G, E2, A>>,
+) => Kind3<F, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT2>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth2<G>,
+): <R1, E1, E2, B>(
+  second: Kind3<F, R1, E1, Kind2<G, E2, B>>,
+) => <A>(
+  first: Kind3<F, R1, E1, Kind2<G, E2, A>>,
+) => Kind3<F, R1, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT2, E2>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth2EC<G, E2>,
+): <B>(
+  second: Kind2<F, E1, Kind2<G, E2, B>>,
+) => <A>(first: Kind2<F, E1, Kind2<G, E2, A>>) => Kind2<F, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT2>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth2<G>,
+): <E1, E2, B>(
+  second: Kind2<F, E1, Kind2<G, E2, B>>,
+) => <A>(first: Kind2<F, E1, Kind2<G, E2, A>>) => Kind2<F, E1, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT2, E2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth2EC<G, E2>,
+): <B>(
+  second: Kind<F, Kind2<G, E2, B>>,
+) => <A>(first: Kind<F, Kind2<G, E2, A>>) => Kind<F, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT2>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth2<G>,
+): <E2, B>(
+  second: Kind<F, Kind2<G, E2, B>>,
+) => <A>(first: Kind<F, Kind2<G, E2, A>>) => Kind<F, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT2, E2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth2EC<G, E2>,
+): <B>(
+  second: Kind<F, Kind2<G, E2, B>>,
+) => <A>(first: Kind<F, Kind2<G, E2, A>>) => Kind<F, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT2>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth2<G>,
+): <E2, B>(
+  second: Kind<F, Kind2<G, E2, B>>,
+) => <A>(first: Kind<F, Kind2<G, E2, A>>) => Kind<F, Kind2<G, E2, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth1<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth1<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth1<G>,
+): <X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth1<G>,
+): <W1, V1, U1, S1, R1, E1, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth1<G>,
+): <V1, U1, S1, R1, E1, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth1<G>,
+): <U1, S1, R1, E1, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth1<G>,
+): <S1, R1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth1<G>,
+): <S1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth1<G>,
+): <R1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth1<G>,
+): <S1, E1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth1<G>,
+): <E1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth1<G>,
+): <R1, E1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth1<G>,
+): <B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth1<G>,
+): <S1, R1, E1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth1<G>,
+): <R1, B>(
+  second: Kind3<F, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth1<G>,
+): <B>(
+  second: Kind3<F, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth1<G>,
+): <E1, B>(
+  second: Kind3<F, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth1<G>,
+): <R1, E1, B>(
+  second: Kind3<F, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth1<G>,
+): <B>(
+  second: Kind2<F, E1, Kind<G, B>>,
+) => <A>(first: Kind2<F, E1, Kind<G, A>>) => Kind2<F, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth1<G>,
+): <E1, B>(
+  second: Kind2<F, E1, Kind<G, B>>,
+) => <A>(first: Kind2<F, E1, Kind<G, A>>) => Kind2<F, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth1<G>,
+): <B>(
+  second: Kind<F, Kind<G, B>>,
+) => <A>(first: Kind<F, Kind<G, A>>) => Kind<F, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth1<G>,
+): <B>(
+  second: Kind<F, Kind<G, B>>,
+) => <A>(first: Kind<F, Kind<G, A>>) => Kind<F, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT10, G extends HKT>(
+  F: AssociativeBoth10<F> & Covariant10<F>,
+  G: AssociativeBoth<G>,
+): <Z1, Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind10<F, Z1, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT9, G extends HKT>(
+  F: AssociativeBoth9<F> & Covariant9<F>,
+  G: AssociativeBoth<G>,
+): <Y1, X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind9<F, Y1, X1, W1, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT8, G extends HKT>(
+  F: AssociativeBoth8<F> & Covariant8<F>,
+  G: AssociativeBoth<G>,
+): <X1, W1, V1, U1, S1, R1, E1, B>(
+  second: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind8<F, X1, W1, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT7, G extends HKT>(
+  F: AssociativeBoth7<F> & Covariant7<F>,
+  G: AssociativeBoth<G>,
+): <W1, V1, U1, S1, R1, E1, B>(
+  second: Kind7<F, W1, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind7<F, W1, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind7<F, W1, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT6, G extends HKT>(
+  F: AssociativeBoth6<F> & Covariant6<F>,
+  G: AssociativeBoth<G>,
+): <V1, U1, S1, R1, E1, B>(
+  second: Kind6<F, V1, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind6<F, V1, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind6<F, V1, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT5, G extends HKT>(
+  F: AssociativeBoth5<F> & Covariant5<F>,
+  G: AssociativeBoth<G>,
+): <U1, S1, R1, E1, B>(
+  second: Kind5<F, U1, S1, R1, E1, Kind<G, B>>,
+) => <A>(
+  first: Kind5<F, U1, S1, R1, E1, Kind<G, A>>,
+) => Kind5<F, U1, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, E1, G extends HKT>(
+  F: AssociativeBoth4EC<F, E1> & Covariant4EC<F, E1>,
+  G: AssociativeBoth<G>,
+): <S1, R1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, E1, G extends HKT>(
+  F: AssociativeBoth4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
+  G: AssociativeBoth<G>,
+): <S1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, E1, G extends HKT>(
+  F: AssociativeBoth4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
+  G: AssociativeBoth<G>,
+): <R1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, R1, G extends HKT>(
+  F: AssociativeBoth4RC<F, R1> & Covariant4RC<F, R1>,
+  G: AssociativeBoth<G>,
+): <S1, E1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, G extends HKT>(
+  F: AssociativeBoth4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
+  G: AssociativeBoth<G>,
+): <E1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, G extends HKT>(
+  F: AssociativeBoth4SC<F, S1> & Covariant4SC<F, S1>,
+  G: AssociativeBoth<G>,
+): <R1, E1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, S1, R1, E1, G extends HKT>(
+  F: AssociativeBoth4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
+  G: AssociativeBoth<G>,
+): <B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT4, G extends HKT>(
+  F: AssociativeBoth4<F> & Covariant4<F>,
+  G: AssociativeBoth<G>,
+): <S1, R1, E1, B>(
+  second: Kind4<F, S1, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind4<F, S1, R1, E1, Kind<G, A>>) => Kind4<F, S1, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT3, E1, G extends HKT>(
+  F: AssociativeBoth3EC<F, E1> & Covariant3EC<F, E1>,
+  G: AssociativeBoth<G>,
+): <R1, B>(
+  second: Kind3<F, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, E1, G extends HKT>(
+  F: AssociativeBoth3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
+  G: AssociativeBoth<G>,
+): <B>(
+  second: Kind3<F, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT3, R1, G extends HKT>(
+  F: AssociativeBoth3RC<F, R1> & Covariant3RC<F, R1>,
+  G: AssociativeBoth<G>,
+): <E1, B>(
+  second: Kind3<F, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT3, G extends HKT>(
+  F: AssociativeBoth3<F> & Covariant3<F>,
+  G: AssociativeBoth<G>,
+): <R1, E1, B>(
+  second: Kind3<F, R1, E1, Kind<G, B>>,
+) => <A>(first: Kind3<F, R1, E1, Kind<G, A>>) => Kind3<F, R1, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT2, E1, G extends HKT>(
+  F: AssociativeBoth2EC<F, E1> & Covariant2EC<F, E1>,
+  G: AssociativeBoth<G>,
+): <B>(
+  second: Kind2<F, E1, Kind<G, B>>,
+) => <A>(first: Kind2<F, E1, Kind<G, A>>) => Kind2<F, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT2, G extends HKT>(
+  F: AssociativeBoth2<F> & Covariant2<F>,
+  G: AssociativeBoth<G>,
+): <E1, B>(
+  second: Kind2<F, E1, Kind<G, B>>,
+) => <A>(first: Kind2<F, E1, Kind<G, A>>) => Kind2<F, E1, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT>(
+  F: AssociativeBoth1<F> & Covariant1<F>,
+  G: AssociativeBoth<G>,
+): <B>(
+  second: Kind<F, Kind<G, B>>,
+) => <A>(first: Kind<F, Kind<G, A>>) => Kind<F, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth<G>,
+): <B>(
+  second: Kind<F, Kind<G, B>>,
+) => <A>(first: Kind<F, Kind<G, A>>) => Kind<F, Kind<G, readonly [A, B]>>
+
+export function both<F extends HKT, G extends HKT>(
+  F: AssociativeBoth<F> & Covariant<F>,
+  G: AssociativeBoth<G>,
+): <B>(
+  second: Kind<F, Kind<G, B>>,
+) => <A>(first: Kind<F, Kind<G, A>>) => Kind<F, Kind<G, readonly [A, B]>> {
+  return <B>(second: Kind<F, Kind<G, B>>) =>
+    <A>(first: Kind<F, Kind<G, A>>) =>
+      pipe(
+        first,
+        F.both(second),
+        F.map(([f, s]) => pipe(f, G.both(s))),
+      )
+}

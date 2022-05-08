@@ -18,7 +18,7 @@ export const node = interface_('AssociativeCompose', [
       '',
       [aTypeParam],
       [kind_([aTypeParam, bTypeParam]).labeled('first')],
-      kind_([aTypeParam, bTypeParam]),
+      kind_([aTypeParam, cTypeParam]),
     ),
   ),
 ])

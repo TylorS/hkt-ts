@@ -24,6 +24,7 @@ import {
   AssociativeBoth8,
   AssociativeBoth9,
 } from './AssociativeBoth'
+
 export interface CommutativeBoth<T extends HKT> extends AssociativeBoth<T> {}
 
 export interface CommutativeBoth1<T extends HKT> extends AssociativeBoth1<T> {}
