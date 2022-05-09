@@ -21,7 +21,7 @@ import {
   Kind9,
 } from '../HKT'
 
-/* #region Typeclass */
+/* #region CovariantWithIndex */
 export interface CovariantWithIndex<T extends HKT, K> {
   readonly mapWithIndex: <A, B>(f: (index: K, a: A) => B) => (kind: Kind<T, A>) => Kind<T, B>
 }
