@@ -29,4 +29,4 @@ export const node = interface_('Divariant', [
   ),
 ])
 
-export const Bivariant = node
+export const Divariant = node
