@@ -216,17 +216,14 @@ export function generateHktPlaceholders(
   const placeholders = Array.from({ length: placeholderLength }, (_, i) => {
     const name = params[i]
     const base = multiple ? `${name}${position}` : name
+    const isCurried = curriedPlaceholders.includes(name)
 
-    if (curriedPlaceholders.includes(name)) {
-      return new Static(base)
-    }
-
-    if (p.extractFrom) {
+    if (p.extractFrom && !isCurried) {
       return new Static(`ParamOf<${p.type.name}, ${p.extractFrom}, Params.${name}>`)
     }
 
     const withExtension = p.useDefaults
-      ? `${base} = DefaultOf<${p.type.name}, Params.${name}>`
+      ? `${isCurried ? `` : `${base} = `}DefaultOf<${p.type.name}, Params.${name}>`
       : base
 
     return new Static(withExtension)
@@ -306,9 +303,15 @@ export function generateKindParam(
     case 'Array': {
       const isNonEmpty = param.isNonEmpty
 
-      return pipe(generateKindParam(param.member, context, manager), (_) =>
+      manager.addContext('Array')
+
+      const xs = pipe(generateKindParam(param.member, context, manager), (_) =>
         _.map((param) => new ArrayNode(param, isNonEmpty)),
       )
+
+      manager.popContext()
+
+      return xs
     }
     case 'Dynamic': {
       return [generateDynamic(param, context, manager)]

@@ -5,7 +5,12 @@ import * as AB from './Typeclass/AssociativeBoth'
 import * as AE from './Typeclass/AssociativeEither'
 import * as AF from './Typeclass/AssociativeFlatten'
 import * as BC from './Typeclass/Bicovariant'
+import * as B from './Typeclass/Bottom'
 import * as C from './Typeclass/Covariant'
+import * as IB from './Typeclass/IdentityBoth'
+import * as IE from './Typeclass/IdentityEither'
+import * as IF from './Typeclass/IdentityFlatten'
+import * as T from './Typeclass/Top'
 
 export type DataEither<E, A> = Kind_<[Data.DataHKT, Either.EitherHKT], [E, A]>
 
@@ -40,7 +45,6 @@ export const AssociativeBoth: AB.AssociativeBoth2<DataEitherHKT> = {
   both,
 }
 
-export const tuple = AB.tuple<DataEitherHKT>({ ...AssociativeBoth, ...Covariant })
 export const zipLeft = AB.zipLeft<DataEitherHKT>({ ...AssociativeBoth, ...Covariant })
 export const zipRight = AB.zipRight<DataEitherHKT>({ ...AssociativeBoth, ...Covariant })
 
@@ -54,6 +58,7 @@ export const AssociativeEither: AE.AssociativeEither2<DataEitherHKT> = {
 }
 
 export const orElse = AE.orElse<DataEitherHKT>({ ...AssociativeEither, ...Covariant })
+export const race = AE.tuple<DataEitherHKT>({ ...AssociativeEither, ...Covariant })
 
 export const flatten = AF.flatten<Data.DataHKT, Either.EitherHKT>(
   { ...Data.IdentityBoth, ...Data.IdentityFlatten, ...Data.Covariant },
@@ -66,3 +71,34 @@ export const Flatten: AF.AssociativeFlatten2<DataEitherHKT> = {
 
 export const flatMap = AF.flatMap<DataEitherHKT>({ ...Flatten, ...Covariant })
 export const bind = AF.bind<DataEitherHKT>({ ...Flatten, ...Covariant })
+
+export const top = T.top<Data.DataHKT, Either.EitherHKT>(
+  { ...Data.Top, ...Data.Covariant },
+  Either.Top,
+)
+
+export const Top: T.Top2<DataEitherHKT> = {
+  top,
+}
+
+export const Bottom: B.Bottom2<DataEitherHKT> = {
+  bottom: Data.NoData,
+}
+
+export const IdentityBoth: IB.IdentityBoth2<DataEitherHKT> = {
+  ...AssociativeBoth,
+  ...Top,
+}
+
+export const tuple = IB.tuple<DataEitherHKT>({ ...IdentityBoth, ...Covariant })
+export const struct = IB.struct<DataEitherHKT>({ ...IdentityBoth, ...Covariant })
+
+export const IdentityEither: IE.IdentityEither2<DataEitherHKT> = {
+  ...AssociativeEither,
+  ...Bottom,
+}
+
+export const IdentityFlatten: IF.IdentityFlatten2<DataEitherHKT> = {
+  ...Flatten,
+  ...Top,
+}

@@ -258,8 +258,9 @@ export function printTypeParam(
         placeholders && placeholders.length > 0 ? placeholders.join('') + 'C' : ''
       }<${p.type.name}${params.length > 0 ? ', ' : ''}${params.join(', ')}>`
     }
-    case Static.tag:
+    case Static.tag: {
       return printStatic(p, manager)
+    }
     case Dynamic.tag: {
       const printed = pipe(p.params.map((t) => printKindParam(t, context, manager)))
 
@@ -280,7 +281,7 @@ export function printKind(kind: Kind, context: Context, manager: PrintContextMan
   manager.addContext('Kind')
 
   const length = context.lengths.get(kind.type.id)!
-  const printed = pipe(kind.kindParams.map((p) => printKindParam(p, context, manager)))
+  const printed = kind.kindParams.map((p) => printKindParam(p, context, manager))
 
   const prefix = `Kind${length < 2 ? '' : length}<${kind.type.name}`
   const params = printed.length > 0 ? `, ${printed.join(', ')}` : ''
@@ -360,6 +361,12 @@ function printStatic(node: Static, manager: PrintContextManager) {
   const hasDefaultValue = node.type.includes('=')
   const hasExtension = node.type.includes('extends')
 
+  if (hasDefaultValue && manager.isWithinKind() && manager.isWithinReturn()) {
+    const x = node.type.split('= ')
+
+    return x[1] ? x[1] : x[0]
+  }
+
   // Allow printing default values inside of non-function returning kinds
   if (hasDefaultValue && (!manager.isWithinFunction() || manager.isWithinArray())) {
     return trimType(node.type, ['name', 'extension'])
@@ -394,6 +401,10 @@ function trimType(type: string, trim: ReadonlyArray<'name' | 'extension' | 'defa
     const name = type.split('extends')[0].split('=')[0].trim()
 
     type = type.replace(new RegExp(`${name}\\s+`), '')
+
+    if (type.trim().startsWith('= ')) {
+      type = type.split('= ')[1]
+    }
   }
 
   return type

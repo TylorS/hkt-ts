@@ -5,9 +5,11 @@ import * as AB from './Typeclass/AssociativeBoth'
 import * as AE from './Typeclass/AssociativeEither'
 import * as F from './Typeclass/AssociativeFlatten'
 import type { Bicovariant2 } from './Typeclass/Bicovariant'
+import { Bottom2EC } from './Typeclass/Bottom'
 import * as C from './Typeclass/Covariant'
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach'
+import { Identity } from './Typeclass/Identity'
 import * as IB from './Typeclass/IdentityBoth'
 import { Reduce2 } from './Typeclass/Reduce'
 import * as T from './Typeclass/Top'
@@ -228,6 +230,10 @@ export const makeAssociative = <E, A>(
 export const Top: T.Top2<EitherHKT> = {
   top: Right([]),
 }
+
+export const makeBottom = <E>(I: Identity<E>): Bottom2EC<EitherHKT, E> => ({
+  bottom: Left(I.id),
+})
 
 export const IdentityBoth: IB.IdentityBoth2<EitherHKT> = {
   ...AssociativeBoth,

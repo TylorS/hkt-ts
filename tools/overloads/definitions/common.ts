@@ -102,7 +102,12 @@ export const placeholderF = hktF.toPlaceholder()
 export const placeholderG = hktG.toPlaceholder()
 
 export const kindF_ = (params: readonly KindParam[]) => new Kind(hktF, [placeholderF, ...params])
+export const kindFWithDefaults_ = (params: readonly KindParam[]) =>
+  new Kind(hktF, [hktF.toPlaceholder(true), ...params])
 export const kindG_ = (params: readonly KindParam[]) => new Kind(hktG, [placeholderG, ...params])
+
+export const kindGWithDefaults_ = (params: readonly KindParam[]) =>
+  new Kind(hktG, [hktG.toPlaceholder(true), ...params])
 
 export const composed_ = (
   name: string,

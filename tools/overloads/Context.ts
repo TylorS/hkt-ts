@@ -3,8 +3,10 @@ import { Params } from '../../src/HKT'
 import {
   AST,
   FunctionSignature,
+  HKTParam,
   HKTPlaceholder,
   Interface,
+  Kind,
   KindParam,
   ParentNode,
   TypeAlias,
@@ -138,11 +140,12 @@ export function mergeContexts(a: Context, b: Context | Omit<Context, 'placeholde
 }
 
 export function findPlaceholders(
-  ast: ParentNode,
+  ast: ParentNode | Kind,
   context: Omit<Context, 'placeholders'>,
 ): ReadonlyArray<Context['placeholders']> {
   const placeholders: Array<Context['placeholders']> = []
-  const hktParams = findHKTParams(ast)
+  const hktParams =
+    ast.tag === Kind.tag ? ast.kindParams.filter((x) => x.tag === HKTParam.tag) : findHKTParams(ast)
 
   const addPlaceholder = (i: number, hkt: symbol, params: ReadonlyArray<Params>) => {
     if (!placeholders[i]) {
@@ -189,13 +192,16 @@ export function findPlaceholders(
 
     params.forEach((params, i) => addPlaceholder(i + (shouldAddAll ? 2 : 1), hkt.id, params))
 
+    const tags = [
+      FunctionSignature.tag,
+      Interface.tag,
+      TypeAlias.tag,
+      Kind.tag,
+    ] as readonly string[]
+
     const recurse = (node: AST) => {
-      if (
-        node.tag === FunctionSignature.tag ||
-        node.tag === Interface.tag ||
-        node.tag === TypeAlias.tag
-      ) {
-        findPlaceholders(node, context).forEach((map, i) =>
+      if (tags.includes(node.tag)) {
+        findPlaceholders(node as any, context).forEach((map, i) =>
           map.forEach((params, id) => addPlaceholder(i, id, params)),
         )
       }
