@@ -204,7 +204,8 @@ export function generateHktPlaceholders(
   const existing = findExistingParams(context, p.type.id)
   const position = context.positions.get(p.type.id)!
   const multiple = context.existing.size > 1
-  const shouldRemoveCurriedPlaceholders = manager.isWithinTypeParam() && !manager.isWithinKind()
+  const shouldRemoveCurriedPlaceholders =
+    manager.isWithinTypeParam() && !manager.isWithinKind() && curriedPlaceholders.length > 0
   const params = hktParamNames
     .slice(existing, length)
     .reverse()
