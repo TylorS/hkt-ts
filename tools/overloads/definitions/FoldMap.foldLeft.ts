@@ -3,8 +3,8 @@ import { Static } from '../AST'
 import { FoldMap } from './FoldMap'
 import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
 
-export const concat = derived_(
-  'concat',
+export const foldLeft = derived_(
+  'foldLeft',
   [FoldMap],
   fn_(
     '',
@@ -13,5 +13,3 @@ export const concat = derived_(
     fn_('', [placeholder], [kind_([aTypeParam]).labeled('kind')], aTypeParam),
   ),
 )
-
-export const node = concat

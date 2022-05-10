@@ -1,9 +1,9 @@
 import { FoldMap } from './FoldMap'
 import { FoldMapWithIndex } from './FoldMapWithIndex'
-import { derived_, hkt, number_ } from './common'
+import { curriedPlaceholder_, derived_, hkt, number_ } from './common'
 
 export const addIndex = derived_(
   'addIndex',
   [FoldMap],
-  FoldMapWithIndex.toTypeClass(hkt).setParams([number_]),
+  FoldMapWithIndex.toTypeClass(hkt).setParams([number_, curriedPlaceholder_(hkt)]),
 )
