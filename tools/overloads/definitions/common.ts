@@ -87,6 +87,8 @@ export const fnLabeled_ = (
   returnSignature: KindParam,
 ) => fn_(name, typeParams, functionParams, returnSignature).labeled()
 
+export const fab_ = fnLabeled_('f', [], [aTypeParam.labeled('a')], bTypeParam)
+
 export const curriedPlaceholder_ = (hkt: HKTParam, useDefaults?: boolean) =>
   new HKTCurriedPlaceholder(hkt, useDefaults)
 
