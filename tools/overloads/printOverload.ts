@@ -229,7 +229,7 @@ export function printTypeParam(
 
     case HKTParam.tag:
       return (manager.isWithinReturn() || manager.isWithinExtension()) &&
-        manager.isWithinTypeParam()
+        !manager.isWithinTypeParam()
         ? p.name
         : `${p.name} extends HKT${p.size < 2 ? '' : `${p.size}`}`
     case HKTCurriedPlaceholder.tag: {

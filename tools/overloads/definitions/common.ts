@@ -45,6 +45,7 @@ export const derived_ = (
   is: readonly Interface[],
   returnSignature: KindParam,
   hktParam: HKTParam = hkt,
+  additionalParams: readonly TypeParam[] = [],
 ) => {
   const typeclasses = is.map((i) =>
     i
@@ -64,7 +65,7 @@ export const derived_ = (
 
   return new FunctionSignature(
     name,
-    [hktParam, curriedPlaceholder_(hktParam)],
+    [hktParam, ...additionalParams, curriedPlaceholder_(hktParam)],
     [
       typeclasses.length > 1
         ? typeclasses

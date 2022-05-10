@@ -7,6 +7,8 @@ import * as AF from './Typeclass/AssociativeFlatten'
 import * as BC from './Typeclass/Bicovariant'
 import * as B from './Typeclass/Bottom'
 import * as C from './Typeclass/Covariant'
+import * as FE from './Typeclass/ForEach'
+import * as FM from './Typeclass/FoldMap'
 import * as IB from './Typeclass/IdentityBoth'
 import * as IE from './Typeclass/IdentityEither'
 import * as IF from './Typeclass/IdentityFlatten'
@@ -102,3 +104,29 @@ export const IdentityFlatten: IF.IdentityFlatten2<DataEitherHKT> = {
   ...Flatten,
   ...Top,
 }
+
+export const foldMap = FM.foldMap(Data.FoldMap, Either.FoldMap)
+
+export const FoldMap: FM.FoldMap2<DataEitherHKT> = {
+  foldMap,
+}
+
+export const forEach = FE.forEach(Data.ForEach, Either.ForEach)
+
+export const ForEach: FE.ForEach2<DataEitherHKT> = {
+  map,
+  forEach,
+}
+
+export const foldLeft = FM.foldLeft(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
+export const reverse = FM.reverse<DataEitherHKT>({ ...FoldMap, ...ForEach })
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const groupBy = FM.groupBy(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+export const isEmpty = FM.isEmpty(FoldMap)
+export const isNonEmpty = FM.isNonEmpty(FoldMap)
