@@ -23,7 +23,8 @@ import {
 } from '../HKT'
 import { identity } from '../function'
 
-/* #region  Typeclass */ export interface PartitionMap<T extends HKT> {
+/* #region PartitionMap */
+export interface PartitionMap<T extends HKT> {
   readonly partitionMap: <A, B, C>(
     f: (a: A) => Either<B, C>,
   ) => (kind: Kind<T, A>) => readonly [Kind<T, B>, Kind<T, C>]
@@ -170,6 +171,7 @@ export interface PartitionMap10<T extends HKT10> {
 }
 /* #endregion */
 
+/* #region separate */
 export function separate<T extends HKT10>(
   PM: PartitionMap10<T>,
 ): <Z, Y, X, W, V, U, S, R, E, A, B>(
@@ -206,17 +208,75 @@ export function separate<T extends HKT5>(
   kind: Kind5<T, U, S, R, E, Either<A, B>>,
 ) => readonly [Kind5<T, U, S, R, E, A>, Kind5<T, U, S, R, E, B>]
 
+export function separate<T extends HKT4, E>(
+  PM: PartitionMap4EC<T, E>,
+): <S, R, A, B>(
+  kind: Kind4<T, S, R, E, Either<A, B>>,
+) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+
+export function separate<T extends HKT4, R, E>(
+  PM: PartitionMap4REC<T, R, E>,
+): <S, A, B>(
+  kind: Kind4<T, S, R, E, Either<A, B>>,
+) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+
+export function separate<T extends HKT4, S, E>(
+  PM: PartitionMap4SEC<T, S, E>,
+): <R, A, B>(
+  kind: Kind4<T, S, R, E, Either<A, B>>,
+) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+
+export function separate<T extends HKT4, R>(
+  PM: PartitionMap4RC<T, R>,
+): <S, E, A, B>(
+  kind: Kind4<T, S, R, E, Either<A, B>>,
+) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+
+export function separate<T extends HKT4, S, R>(
+  PM: PartitionMap4SRC<T, S, R>,
+): <E, A, B>(
+  kind: Kind4<T, S, R, E, Either<A, B>>,
+) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+
+export function separate<T extends HKT4, S>(
+  PM: PartitionMap4SC<T, S>,
+): <R, E, A, B>(
+  kind: Kind4<T, S, R, E, Either<A, B>>,
+) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+
+export function separate<T extends HKT4, S, R, E>(
+  PM: PartitionMap4SREC<T, S, R, E>,
+): <A, B>(
+  kind: Kind4<T, S, R, E, Either<A, B>>,
+) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
+
 export function separate<T extends HKT4>(
   PM: PartitionMap4<T>,
 ): <S, R, E, A, B>(
   kind: Kind4<T, S, R, E, Either<A, B>>,
 ) => readonly [Kind4<T, S, R, E, A>, Kind4<T, S, R, E, B>]
 
+export function separate<T extends HKT3, E>(
+  PM: PartitionMap3EC<T, E>,
+): <R, A, B>(kind: Kind3<T, R, E, Either<A, B>>) => readonly [Kind3<T, R, E, A>, Kind3<T, R, E, B>]
+
+export function separate<T extends HKT3, R, E>(
+  PM: PartitionMap3REC<T, R, E>,
+): <A, B>(kind: Kind3<T, R, E, Either<A, B>>) => readonly [Kind3<T, R, E, A>, Kind3<T, R, E, B>]
+
+export function separate<T extends HKT3, R>(
+  PM: PartitionMap3RC<T, R>,
+): <E, A, B>(kind: Kind3<T, R, E, Either<A, B>>) => readonly [Kind3<T, R, E, A>, Kind3<T, R, E, B>]
+
 export function separate<T extends HKT3>(
   PM: PartitionMap3<T>,
 ): <R, E, A, B>(
   kind: Kind3<T, R, E, Either<A, B>>,
 ) => readonly [Kind3<T, R, E, A>, Kind3<T, R, E, B>]
+
+export function separate<T extends HKT2, E>(
+  PM: PartitionMap2EC<T, E>,
+): <A, B>(kind: Kind2<T, E, Either<A, B>>) => readonly [Kind2<T, E, A>, Kind2<T, E, B>]
 
 export function separate<T extends HKT2>(
   PM: PartitionMap2<T>,
@@ -235,3 +295,5 @@ export function separate<T extends HKT>(
 ): <A, B>(kind: Kind<T, Either<A, B>>) => readonly [Kind<T, A>, Kind<T, B>] {
   return PM.partitionMap(identity)
 }
+
+/* #endregion */
