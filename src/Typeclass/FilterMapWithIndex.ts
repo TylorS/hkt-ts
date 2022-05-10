@@ -22,6 +22,7 @@ import {
 } from '../HKT'
 import { Maybe } from '../Maybe'
 
+/* #region FilterMapWithIndex */
 export interface FilterMapWithIndex<T extends HKT, K> {
   readonly filterMapWithIndex: <A, B>(
     f: (k: K, a: A) => Maybe<B>,
@@ -159,3 +160,120 @@ export interface FilterMapWithIndex10<T extends HKT10, K> {
     kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
   ) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>
 }
+
+/* #endregion */
+
+/* #region filterMap */
+export function filterMap<T extends HKT10, K>(
+  FMWI: FilterMapWithIndex10<T, K>,
+): <A, B>(
+  f: (a: A) => Maybe<B>,
+) => <Z, Y, X, W, V, U, S, R, E>(
+  kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>,
+) => Kind10<T, Z, Y, X, W, V, U, S, R, E, B>
+
+export function filterMap<T extends HKT9, K>(
+  FMWI: FilterMapWithIndex9<T, K>,
+): <A, B>(
+  f: (a: A) => Maybe<B>,
+) => <Y, X, W, V, U, S, R, E>(
+  kind: Kind9<T, Y, X, W, V, U, S, R, E, A>,
+) => Kind9<T, Y, X, W, V, U, S, R, E, B>
+
+export function filterMap<T extends HKT8, K>(
+  FMWI: FilterMapWithIndex8<T, K>,
+): <A, B>(
+  f: (a: A) => Maybe<B>,
+) => <X, W, V, U, S, R, E>(
+  kind: Kind8<T, X, W, V, U, S, R, E, A>,
+) => Kind8<T, X, W, V, U, S, R, E, B>
+
+export function filterMap<T extends HKT7, K>(
+  FMWI: FilterMapWithIndex7<T, K>,
+): <A, B>(
+  f: (a: A) => Maybe<B>,
+) => <W, V, U, S, R, E>(kind: Kind7<T, W, V, U, S, R, E, A>) => Kind7<T, W, V, U, S, R, E, B>
+
+export function filterMap<T extends HKT6, K>(
+  FMWI: FilterMapWithIndex6<T, K>,
+): <A, B>(
+  f: (a: A) => Maybe<B>,
+) => <V, U, S, R, E>(kind: Kind6<T, V, U, S, R, E, A>) => Kind6<T, V, U, S, R, E, B>
+
+export function filterMap<T extends HKT5, K>(
+  FMWI: FilterMapWithIndex5<T, K>,
+): <A, B>(
+  f: (a: A) => Maybe<B>,
+) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => Kind5<T, U, S, R, E, B>
+
+export function filterMap<T extends HKT4, K, E>(
+  FMWI: FilterMapWithIndex4EC<T, K, E>,
+): <A, B>(f: (a: A) => Maybe<B>) => <S, R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function filterMap<T extends HKT4, K, R, E>(
+  FMWI: FilterMapWithIndex4REC<T, K, R, E>,
+): <A, B>(f: (a: A) => Maybe<B>) => <S>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function filterMap<T extends HKT4, K, S, E>(
+  FMWI: FilterMapWithIndex4SEC<T, K, S, E>,
+): <A, B>(f: (a: A) => Maybe<B>) => <R>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function filterMap<T extends HKT4, K, R>(
+  FMWI: FilterMapWithIndex4RC<T, K, R>,
+): <A, B>(f: (a: A) => Maybe<B>) => <S, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function filterMap<T extends HKT4, K, S, R>(
+  FMWI: FilterMapWithIndex4SRC<T, K, S, R>,
+): <A, B>(f: (a: A) => Maybe<B>) => <E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function filterMap<T extends HKT4, K, S>(
+  FMWI: FilterMapWithIndex4SC<T, K, S>,
+): <A, B>(f: (a: A) => Maybe<B>) => <R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function filterMap<T extends HKT4, K, S, R, E>(
+  FMWI: FilterMapWithIndex4SREC<T, K, S, R, E>,
+): <A, B>(f: (a: A) => Maybe<B>) => (kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function filterMap<T extends HKT4, K>(
+  FMWI: FilterMapWithIndex4<T, K>,
+): <A, B>(f: (a: A) => Maybe<B>) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => Kind4<T, S, R, E, B>
+
+export function filterMap<T extends HKT3, K, E>(
+  FMWI: FilterMapWithIndex3EC<T, K, E>,
+): <A, B>(f: (a: A) => Maybe<B>) => <R>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function filterMap<T extends HKT3, K, R, E>(
+  FMWI: FilterMapWithIndex3REC<T, K, R, E>,
+): <A, B>(f: (a: A) => Maybe<B>) => (kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function filterMap<T extends HKT3, K, R>(
+  FMWI: FilterMapWithIndex3RC<T, K, R>,
+): <A, B>(f: (a: A) => Maybe<B>) => <E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function filterMap<T extends HKT3, K>(
+  FMWI: FilterMapWithIndex3<T, K>,
+): <A, B>(f: (a: A) => Maybe<B>) => <R, E>(kind: Kind3<T, R, E, A>) => Kind3<T, R, E, B>
+
+export function filterMap<T extends HKT2, K, E>(
+  FMWI: FilterMapWithIndex2EC<T, K, E>,
+): <A, B>(f: (a: A) => Maybe<B>) => (kind: Kind2<T, E, A>) => Kind2<T, E, B>
+
+export function filterMap<T extends HKT2, K>(
+  FMWI: FilterMapWithIndex2<T, K>,
+): <A, B>(f: (a: A) => Maybe<B>) => <E>(kind: Kind2<T, E, A>) => Kind2<T, E, B>
+
+export function filterMap<T extends HKT, K>(
+  FMWI: FilterMapWithIndex1<T, K>,
+): <A, B>(f: (a: A) => Maybe<B>) => (kind: Kind<T, A>) => Kind<T, B>
+
+export function filterMap<T extends HKT, K>(
+  FMWI: FilterMapWithIndex<T, K>,
+): <A, B>(f: (a: A) => Maybe<B>) => (kind: Kind<T, A>) => Kind<T, B>
+
+export function filterMap<T extends HKT, K>(
+  FMWI: FilterMapWithIndex<T, K>,
+): <A, B>(f: (a: A) => Maybe<B>) => (kind: Kind<T, A>) => Kind<T, B> {
+  return <A, B>(f: (a: A) => Maybe<B>) => FMWI.filterMapWithIndex((_, a: A) => f(a))
+}
+
+/* #endregion */
