@@ -12,6 +12,7 @@ import * as FE from './Typeclass/ForEach'
 import { Identity } from './Typeclass/Identity'
 import * as IB from './Typeclass/IdentityBoth'
 import { Reduce2 } from './Typeclass/Reduce'
+import { ReduceRight2 } from './Typeclass/ReduceRight'
 import * as T from './Typeclass/Top'
 import { Lazy, flow, identity, pipe } from './function'
 
@@ -317,9 +318,13 @@ export const reduceCommutative = FM.reduceCommutative(FoldMap)
 export const reduceIdentity = FM.reduceIdentity(FoldMap)
 export const size = FM.size(FoldMap)
 export const toArray = FM.toArray(FoldMap)
+export const reduceRight = FM.reduceRight<EitherHKT>({ ...FoldMap, ...ForEach })
 
 export const Reduce: Reduce2<EitherHKT> = {
   reduce,
+}
+export const ReduceRight: ReduceRight2<EitherHKT> = {
+  reduceRight,
 }
 
 export const AssociativeEither: AE.AssociativeEither2<EitherHKT> = {

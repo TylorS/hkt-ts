@@ -11,7 +11,7 @@ const e2TypeParam = new Static(`E2`)
 const a1TypeParam = new Static(`A1`)
 const a2TypeParam = new Static(`A2`)
 
-export const node = interface_('Trivariant', [
+export const Trivariant = interface_('Trivariant', [
   fnLabeled_(
     'trimap',
     [r1TypeParam, r2TypeParam, e1TypeParam, e2TypeParam, a1TypeParam, a2TypeParam],
@@ -34,5 +34,3 @@ export const node = interface_('Trivariant', [
     ),
   ),
 ])
-
-export const Bivariant = node

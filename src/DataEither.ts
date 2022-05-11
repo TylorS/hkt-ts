@@ -12,6 +12,8 @@ import * as FE from './Typeclass/ForEach'
 import * as IB from './Typeclass/IdentityBoth'
 import * as IE from './Typeclass/IdentityEither'
 import * as IF from './Typeclass/IdentityFlatten'
+import * as RE from './Typeclass/Reduce'
+import * as RER from './Typeclass/ReduceRight'
 import * as T from './Typeclass/Top'
 
 export type DataEither<E, A> = Kind_<[Data.DataHKT, Either.EitherHKT], [E, A]>
@@ -130,3 +132,17 @@ export const groupBy = FM.groupBy(FoldMap)
 export const intercalate = FM.intercalate(FoldMap)
 export const isEmpty = FM.isEmpty(FoldMap)
 export const isNonEmpty = FM.isNonEmpty(FoldMap)
+
+export const reduce = RE.reduce<Data.DataHKT, Either.EitherHKT>(Data.Reduce, Either.Reduce)
+export const reduceRight = RER.reduceRight<Data.DataHKT, Either.EitherHKT>(
+  Data.ReduceRight,
+  Either.ReduceRight,
+)
+
+export const Reduce: RE.Reduce2<DataEitherHKT> = {
+  reduce,
+}
+
+export const ReduceRight: RER.ReduceRight2<DataEitherHKT> = {
+  reduceRight,
+}
