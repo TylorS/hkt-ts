@@ -1,6 +1,6 @@
 import type { Associative } from './Typeclass/Associative'
 import type { Identity } from './Typeclass/Identity'
-import { constFalse, flow, pipe } from './function'
+import { constFalse, constTrue, flow, pipe } from './function'
 
 export interface Predicate<A> {
   (a: A): boolean
@@ -38,7 +38,7 @@ export const makeAssociativeAll = <A = never>(): Associative<Predicate<A>> => ({
 
 export const makeIdentityAll = <A = never>(): Identity<Predicate<A>> => ({
   ...makeAssociativeAll<A>(),
-  id: constFalse,
+  id: constTrue,
 })
 
 export const contramap =

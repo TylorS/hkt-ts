@@ -14,6 +14,7 @@ import * as C from './Typeclass/Covariant'
 import { Debug } from './Typeclass/Debug'
 import { Eq, fromEquals } from './Typeclass/Eq'
 import * as FilterM from './Typeclass/FilterMap'
+import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach'
 import { Identity } from './Typeclass/Identity'
 import * as IB from './Typeclass/IdentityBoth'
@@ -410,22 +411,6 @@ export function filterWithIndex<K, A>(
   }
 }
 
-export const compact = <K, A>(fa: ReadonlyMap<K, Maybe<A>>): ReadonlyMap<K, A> => {
-  const m = new Map<K, A>()
-  const entries = fa.entries()
-  let e: Next<readonly [K, Maybe<A>]>
-
-  while (!(e = entries.next()).done) {
-    const [k, oa] = e.value
-
-    if (M.isJust(oa)) {
-      m.set(k, oa.value)
-    }
-  }
-
-  return m
-}
-
 export const filter: {
   <A, B extends A>(refinement: Refinement<A, B>): <K>(fa: ReadonlyMap<K, A>) => ReadonlyMap<K, B>
   <A>(predicate: Predicate<A>): <K, B extends A>(fb: ReadonlyMap<K, B>) => ReadonlyMap<K, B>
@@ -495,7 +480,7 @@ export const reduce = <K>(
   return (b, f) => reduceWithIndexO(b, (_, b, a) => f(b, a))
 }
 
-export const foldMap = <K>(
+export const foldMapOrd = <K>(
   O: Ord<K>,
 ): (<M>(M: Identity<M>) => <A>(f: (a: A) => M) => (m: ReadonlyMap<K, A>) => M) => {
   const foldMapWithIndexO = foldMapWithIndex(O)
@@ -713,10 +698,6 @@ export const IdentityEither: IE.IdentityEither2<MapHKT> = {
   ...Bottom,
 }
 
-export const Compact: Compact2<MapHKT> = {
-  compact,
-}
-
 export const Separate: Separate2<MapHKT> = {
   separate: <K, A, B>(kind: ReadonlyMap<K, Either<A, B>>) => {
     const lefts = new Map<K, A>()
@@ -736,13 +717,19 @@ export const Separate: Separate2<MapHKT> = {
 
 export const separate = Separate.separate
 
+export const FilterMap: FilterM.FilterMap2<MapHKT> = {
+  filterMap,
+}
+
+export const compact = FilterM.compact(FilterMap)
+
+export const Compact: Compact2<MapHKT> = {
+  compact,
+}
+
 export const Compactable: Compactable2<MapHKT> = {
   compact,
   separate,
-}
-
-export const FilterMap: FilterM.FilterMap2<MapHKT> = {
-  filterMap,
 }
 
 export const ForEach: FE.ForEach2<MapHKT> = {
@@ -759,13 +746,14 @@ export const ForEach: FE.ForEach2<MapHKT> = {
               kind,
               map(f),
               (x) =>
-                Array.from(x.entries()).map(([k, kind]) =>
-                  pipe(
-                    kind,
-                    IBC.map((a) => new Map([[k, a]])),
+                tuple(
+                  ...Array.from(x.entries()).map(([k, kind]) =>
+                    pipe(
+                      kind,
+                      IBC.map((a) => new Map([[k, a]])),
+                    ),
                   ),
                 ),
-              (x) => tuple(...x),
               IBC.map((maps) => {
                 const output = new Map()
 
@@ -782,6 +770,24 @@ export const ForEach: FE.ForEach2<MapHKT> = {
 export const forEach = ForEach.forEach
 export const sequence = FE.sequence(ForEach)
 export const mapAccum = FE.mapAccum(ForEach)
+export const foldMap = FE.foldMap(ForEach)
+
+export const FoldMap: FM.FoldMap2<MapHKT> = {
+  foldMap,
+}
+export const foldLeft = FM.foldLeft(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
+export const groupBy = FM.groupBy(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+export const reduceAssociative = FM.reduceAssociative(FoldMap)
+export const reduceCommutative = FM.reduceCommutative(FoldMap)
+export const reduceIdentity = FM.reduceIdentity(FoldMap)
+export const toArray = FM.toArray(FoldMap)
 
 export const PartitionMap: PM.PartitionMap2<MapHKT> = {
   partitionMap: (f) => flow(map(f), separate),

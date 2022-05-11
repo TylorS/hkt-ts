@@ -50,13 +50,13 @@ export const concat =
     [...first, ...second]
 
 export const makeAssociative = <A>(): Associative<ReadonlyArray<A>> => ({
-  concat: (a, b) => concat(b)(a),
+  concat: (a, b) => [...a, ...b],
 })
 
 export const makeDebug = <A>(D: Debug<A>): Debug<ReadonlyArray<A>> => ({
   debug: (a) => `[
-  ${a.map(D.debug).join(',\n  ')}]
-`,
+  ${a.map(D.debug).join(',\n  ')}
+]`,
 })
 
 export const empty: readonly [] = []
@@ -101,7 +101,6 @@ export const AssociativeEither: AE.AssociativeEither1<ArrayHKT> = {
 export const either = AssociativeEither.either
 
 export const orElse = AE.orElse<ArrayHKT>({ ...AssociativeEither, ...Covariant })
-export const eventually = AE.eventually<ArrayHKT>({ ...AssociativeEither, ...Covariant })
 
 export const AssociativeFlatten: AF.AssociativeFlatten1<ArrayHKT> = {
   flatten: (a) => a.flat(1),
