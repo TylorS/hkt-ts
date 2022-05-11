@@ -208,13 +208,57 @@ export function reduceRight<T extends HKT5, K>(
   RRI: ReduceRightWithIndex5<T, K>,
 ): <B, A>(b: B, f: (a: A, b: B) => B) => <U, S, R, E>(kind: Kind5<T, U, S, R, E, A>) => B
 
+export function reduceRight<T extends HKT4, K, E>(
+  RRI: ReduceRightWithIndex4EC<T, K, E>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <S, R>(kind: Kind4<T, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT4, K, R, E>(
+  RRI: ReduceRightWithIndex4REC<T, K, R, E>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <S>(kind: Kind4<T, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT4, K, S, E>(
+  RRI: ReduceRightWithIndex4SEC<T, K, S, E>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <R>(kind: Kind4<T, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT4, K, R>(
+  RRI: ReduceRightWithIndex4RC<T, K, R>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <S, E>(kind: Kind4<T, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT4, K, S, R>(
+  RRI: ReduceRightWithIndex4SRC<T, K, S, R>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <E>(kind: Kind4<T, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT4, K, S>(
+  RRI: ReduceRightWithIndex4SC<T, K, S>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <R, E>(kind: Kind4<T, S, R, E, A>) => B
+
+export function reduceRight<T extends HKT4, K, S, R, E>(
+  RRI: ReduceRightWithIndex4SREC<T, K, S, R, E>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind4<T, S, R, E, A>) => B
+
 export function reduceRight<T extends HKT4, K>(
   RRI: ReduceRightWithIndex4<T, K>,
 ): <B, A>(b: B, f: (a: A, b: B) => B) => <S, R, E>(kind: Kind4<T, S, R, E, A>) => B
 
+export function reduceRight<T extends HKT3, K, E>(
+  RRI: ReduceRightWithIndex3EC<T, K, E>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <R>(kind: Kind3<T, R, E, A>) => B
+
+export function reduceRight<T extends HKT3, K, R, E>(
+  RRI: ReduceRightWithIndex3REC<T, K, R, E>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind3<T, R, E, A>) => B
+
+export function reduceRight<T extends HKT3, K, R>(
+  RRI: ReduceRightWithIndex3RC<T, K, R>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => <E>(kind: Kind3<T, R, E, A>) => B
+
 export function reduceRight<T extends HKT3, K>(
   RRI: ReduceRightWithIndex3<T, K>,
 ): <B, A>(b: B, f: (a: A, b: B) => B) => <R, E>(kind: Kind3<T, R, E, A>) => B
+
+export function reduceRight<T extends HKT2, K, E>(
+  RRI: ReduceRightWithIndex2EC<T, K, E>,
+): <B, A>(b: B, f: (a: A, b: B) => B) => (kind: Kind2<T, E, A>) => B
 
 export function reduceRight<T extends HKT2, K>(
   RRI: ReduceRightWithIndex2<T, K>,
