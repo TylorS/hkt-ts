@@ -44,7 +44,8 @@
     "generate-overload": "node -r esbuild-register ./tools/overloads/cli.ts",
     "eslint": "eslint --ext .ts,.js,.json,.yaml --fix --cache src",
     "mocha": "mocha -r esbuild-register 'src/**/*.test.ts'",
-    "test": "concurrently npm:eslint npm:mocha",
+    "typecheck": "tsc --noEmit",
+    "test": "concurrently npm:eslint npm:mocha npm:typecheck",
     "preversion": "npm test",
     "postversion": "npm run build && npm publish"
   },

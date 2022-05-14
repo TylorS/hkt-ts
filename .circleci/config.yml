@@ -7,13 +7,13 @@ version: 2.1
 executors:
   lts:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
 
     working_directory: ~/repo
 
   latest:
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:latest
 
     working_directory: ~/repo
 
@@ -25,14 +25,15 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
 
-      - run: npm install
+      - run: corepack enable
+      - run: pnpm install
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
 
       - run: npm run test
 
@@ -43,14 +44,15 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
 
-      - run: npm install
+      - run: corepack enable
+      - run: pnpm install
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
 
       - run: npm run test
 
