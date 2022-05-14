@@ -12,9 +12,6 @@ export type Unary<A, B> = (a: A) => B
 
 export interface UnaryHKT extends HKT2 {
   readonly type: Unary<this[Params.E], this[Params.A]>
-  readonly defaults: {
-    readonly [Params.E]: any
-  }
 }
 
 export const Covariant: C.Covariant2<UnaryHKT> = {
