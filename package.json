@@ -65,414 +65,824 @@
   },
   "exports": {
     ".": {
-      "require": "./cjs/index.js",
-      "import": "./esm/index.js",
-      "types": "./esm/index.d.ts"
+      "require": {
+        "default": "./cjs/index.js",
+        "types": "./cjs/index.d.ts"
+      },
+      "import": {
+        "default": "./esm/index.js",
+        "types": "./esm/index.d.ts"
+      }
     },
     "./Array": {
-      "require": "./cjs/Array.js",
-      "import": "./esm/Array.js",
-      "types": "./esm/Array.d.ts"
+      "require": {
+        "default": "./cjs/Array.js",
+        "types": "./cjs/Array.d.ts"
+      },
+      "import": {
+        "default": "./esm/Array.js",
+        "types": "./esm/Array.d.ts"
+      }
     },
     "./Branded": {
-      "require": "./cjs/Branded.js",
-      "import": "./esm/Branded.js",
-      "types": "./esm/Branded.d.ts"
+      "require": {
+        "default": "./cjs/Branded.js",
+        "types": "./cjs/Branded.d.ts"
+      },
+      "import": {
+        "default": "./esm/Branded.js",
+        "types": "./esm/Branded.d.ts"
+      }
     },
     "./Data": {
-      "require": "./cjs/Data.js",
-      "import": "./esm/Data.js",
-      "types": "./esm/Data.d.ts"
+      "require": {
+        "default": "./cjs/Data.js",
+        "types": "./cjs/Data.d.ts"
+      },
+      "import": {
+        "default": "./esm/Data.js",
+        "types": "./esm/Data.d.ts"
+      }
     },
     "./DataEither": {
-      "require": "./cjs/DataEither.js",
-      "import": "./esm/DataEither.js",
-      "types": "./esm/DataEither.d.ts"
+      "require": {
+        "default": "./cjs/DataEither.js",
+        "types": "./cjs/DataEither.d.ts"
+      },
+      "import": {
+        "default": "./esm/DataEither.js",
+        "types": "./esm/DataEither.d.ts"
+      }
     },
     "./Either": {
-      "require": "./cjs/Either.js",
-      "import": "./esm/Either.js",
-      "types": "./esm/Either.d.ts"
+      "require": {
+        "default": "./cjs/Either.js",
+        "types": "./cjs/Either.d.ts"
+      },
+      "import": {
+        "default": "./esm/Either.js",
+        "types": "./esm/Either.d.ts"
+      }
     },
     "./Endomorphism": {
-      "require": "./cjs/Endomorphism.js",
-      "import": "./esm/Endomorphism.js",
-      "types": "./esm/Endomorphism.d.ts"
+      "require": {
+        "default": "./cjs/Endomorphism.js",
+        "types": "./cjs/Endomorphism.d.ts"
+      },
+      "import": {
+        "default": "./esm/Endomorphism.js",
+        "types": "./esm/Endomorphism.d.ts"
+      }
     },
     "./HKT": {
-      "require": "./cjs/HKT.js",
-      "import": "./esm/HKT.js",
-      "types": "./esm/HKT.d.ts"
+      "require": {
+        "default": "./cjs/HKT.js",
+        "types": "./cjs/HKT.d.ts"
+      },
+      "import": {
+        "default": "./esm/HKT.js",
+        "types": "./esm/HKT.d.ts"
+      }
     },
     "./Id": {
-      "require": "./cjs/Id.js",
-      "import": "./esm/Id.js",
-      "types": "./esm/Id.d.ts"
+      "require": {
+        "default": "./cjs/Id.js",
+        "types": "./cjs/Id.d.ts"
+      },
+      "import": {
+        "default": "./esm/Id.js",
+        "types": "./esm/Id.d.ts"
+      }
     },
     "./Json": {
-      "require": "./cjs/Json.js",
-      "import": "./esm/Json.js",
-      "types": "./esm/Json.d.ts"
+      "require": {
+        "default": "./cjs/Json.js",
+        "types": "./cjs/Json.d.ts"
+      },
+      "import": {
+        "default": "./esm/Json.js",
+        "types": "./esm/Json.d.ts"
+      }
     },
     "./Map": {
-      "require": "./cjs/Map.js",
-      "import": "./esm/Map.js",
-      "types": "./esm/Map.d.ts"
+      "require": {
+        "default": "./cjs/Map.js",
+        "types": "./cjs/Map.d.ts"
+      },
+      "import": {
+        "default": "./esm/Map.js",
+        "types": "./esm/Map.d.ts"
+      }
     },
     "./Match": {
-      "require": "./cjs/Match.js",
-      "import": "./esm/Match.js",
-      "types": "./esm/Match.d.ts"
+      "require": {
+        "default": "./cjs/Match.js",
+        "types": "./cjs/Match.d.ts"
+      },
+      "import": {
+        "default": "./esm/Match.js",
+        "types": "./esm/Match.d.ts"
+      }
     },
     "./Maybe": {
-      "require": "./cjs/Maybe.js",
-      "import": "./esm/Maybe.js",
-      "types": "./esm/Maybe.d.ts"
+      "require": {
+        "default": "./cjs/Maybe.js",
+        "types": "./cjs/Maybe.d.ts"
+      },
+      "import": {
+        "default": "./esm/Maybe.js",
+        "types": "./esm/Maybe.d.ts"
+      }
     },
     "./NonEmptyArray": {
-      "require": "./cjs/NonEmptyArray.js",
-      "import": "./esm/NonEmptyArray.js",
-      "types": "./esm/NonEmptyArray.d.ts"
+      "require": {
+        "default": "./cjs/NonEmptyArray.js",
+        "types": "./cjs/NonEmptyArray.d.ts"
+      },
+      "import": {
+        "default": "./esm/NonEmptyArray.js",
+        "types": "./esm/NonEmptyArray.d.ts"
+      }
     },
     "./Predicate": {
-      "require": "./cjs/Predicate.js",
-      "import": "./esm/Predicate.js",
-      "types": "./esm/Predicate.d.ts"
+      "require": {
+        "default": "./cjs/Predicate.js",
+        "types": "./cjs/Predicate.d.ts"
+      },
+      "import": {
+        "default": "./esm/Predicate.js",
+        "types": "./esm/Predicate.d.ts"
+      }
     },
     "./Progress": {
-      "require": "./cjs/Progress.js",
-      "import": "./esm/Progress.js",
-      "types": "./esm/Progress.d.ts"
+      "require": {
+        "default": "./cjs/Progress.js",
+        "types": "./cjs/Progress.d.ts"
+      },
+      "import": {
+        "default": "./esm/Progress.js",
+        "types": "./esm/Progress.d.ts"
+      }
     },
     "./Record": {
-      "require": "./cjs/Record.js",
-      "import": "./esm/Record.js",
-      "types": "./esm/Record.d.ts"
+      "require": {
+        "default": "./cjs/Record.js",
+        "types": "./cjs/Record.d.ts"
+      },
+      "import": {
+        "default": "./esm/Record.js",
+        "types": "./esm/Record.d.ts"
+      }
     },
     "./Refinement": {
-      "require": "./cjs/Refinement.js",
-      "import": "./esm/Refinement.js",
-      "types": "./esm/Refinement.d.ts"
+      "require": {
+        "default": "./cjs/Refinement.js",
+        "types": "./cjs/Refinement.d.ts"
+      },
+      "import": {
+        "default": "./esm/Refinement.js",
+        "types": "./esm/Refinement.d.ts"
+      }
     },
     "./RoseTree": {
-      "require": "./cjs/RoseTree.js",
-      "import": "./esm/RoseTree.js",
-      "types": "./esm/RoseTree.d.ts"
+      "require": {
+        "default": "./cjs/RoseTree.js",
+        "types": "./cjs/RoseTree.d.ts"
+      },
+      "import": {
+        "default": "./esm/RoseTree.js",
+        "types": "./esm/RoseTree.d.ts"
+      }
     },
     "./Set": {
-      "require": "./cjs/Set.js",
-      "import": "./esm/Set.js",
-      "types": "./esm/Set.d.ts"
+      "require": {
+        "default": "./cjs/Set.js",
+        "types": "./cjs/Set.d.ts"
+      },
+      "import": {
+        "default": "./esm/Set.js",
+        "types": "./esm/Set.d.ts"
+      }
     },
     "./These": {
-      "require": "./cjs/These.js",
-      "import": "./esm/These.js",
-      "types": "./esm/These.d.ts"
+      "require": {
+        "default": "./cjs/These.js",
+        "types": "./cjs/These.d.ts"
+      },
+      "import": {
+        "default": "./esm/These.js",
+        "types": "./esm/These.d.ts"
+      }
     },
     "./Tree": {
-      "require": "./cjs/Tree.js",
-      "import": "./esm/Tree.js",
-      "types": "./esm/Tree.d.ts"
+      "require": {
+        "default": "./cjs/Tree.js",
+        "types": "./cjs/Tree.d.ts"
+      },
+      "import": {
+        "default": "./esm/Tree.js",
+        "types": "./esm/Tree.d.ts"
+      }
     },
     "./Tuple": {
-      "require": "./cjs/Tuple.js",
-      "import": "./esm/Tuple.js",
-      "types": "./esm/Tuple.d.ts"
+      "require": {
+        "default": "./cjs/Tuple.js",
+        "types": "./cjs/Tuple.d.ts"
+      },
+      "import": {
+        "default": "./esm/Tuple.js",
+        "types": "./esm/Tuple.d.ts"
+      }
     },
     "./Typeclass": {
-      "require": "./cjs/Typeclass/index.js",
-      "import": "./esm/Typeclass/index.js",
-      "types": "./esm/Typeclass/index.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/index.js",
+        "types": "./cjs/Typeclass/index.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/index.js",
+        "types": "./esm/Typeclass/index.d.ts"
+      }
     },
     "./Typeclass/Associative": {
-      "require": "./cjs/Typeclass/Associative.js",
-      "import": "./esm/Typeclass/Associative.js",
-      "types": "./esm/Typeclass/Associative.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Associative.js",
+        "types": "./cjs/Typeclass/Associative.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Associative.js",
+        "types": "./esm/Typeclass/Associative.d.ts"
+      }
     },
     "./Typeclass/AssociativeBoth": {
-      "require": "./cjs/Typeclass/AssociativeBoth.js",
-      "import": "./esm/Typeclass/AssociativeBoth.js",
-      "types": "./esm/Typeclass/AssociativeBoth.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/AssociativeBoth.js",
+        "types": "./cjs/Typeclass/AssociativeBoth.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/AssociativeBoth.js",
+        "types": "./esm/Typeclass/AssociativeBoth.d.ts"
+      }
     },
     "./Typeclass/AssociativeCompose": {
-      "require": "./cjs/Typeclass/AssociativeCompose.js",
-      "import": "./esm/Typeclass/AssociativeCompose.js",
-      "types": "./esm/Typeclass/AssociativeCompose.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/AssociativeCompose.js",
+        "types": "./cjs/Typeclass/AssociativeCompose.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/AssociativeCompose.js",
+        "types": "./esm/Typeclass/AssociativeCompose.d.ts"
+      }
     },
     "./Typeclass/AssociativeEither": {
-      "require": "./cjs/Typeclass/AssociativeEither.js",
-      "import": "./esm/Typeclass/AssociativeEither.js",
-      "types": "./esm/Typeclass/AssociativeEither.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/AssociativeEither.js",
+        "types": "./cjs/Typeclass/AssociativeEither.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/AssociativeEither.js",
+        "types": "./esm/Typeclass/AssociativeEither.d.ts"
+      }
     },
     "./Typeclass/AssociativeFlatten": {
-      "require": "./cjs/Typeclass/AssociativeFlatten.js",
-      "import": "./esm/Typeclass/AssociativeFlatten.js",
-      "types": "./esm/Typeclass/AssociativeFlatten.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/AssociativeFlatten.js",
+        "types": "./cjs/Typeclass/AssociativeFlatten.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/AssociativeFlatten.js",
+        "types": "./esm/Typeclass/AssociativeFlatten.d.ts"
+      }
     },
     "./Typeclass/Bicovariant": {
-      "require": "./cjs/Typeclass/Bicovariant.js",
-      "import": "./esm/Typeclass/Bicovariant.js",
-      "types": "./esm/Typeclass/Bicovariant.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Bicovariant.js",
+        "types": "./cjs/Typeclass/Bicovariant.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Bicovariant.js",
+        "types": "./esm/Typeclass/Bicovariant.d.ts"
+      }
     },
     "./Typeclass/Bottom": {
-      "require": "./cjs/Typeclass/Bottom.js",
-      "import": "./esm/Typeclass/Bottom.js",
-      "types": "./esm/Typeclass/Bottom.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Bottom.js",
+        "types": "./cjs/Typeclass/Bottom.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Bottom.js",
+        "types": "./esm/Typeclass/Bottom.d.ts"
+      }
     },
     "./Typeclass/Bounded": {
-      "require": "./cjs/Typeclass/Bounded.js",
-      "import": "./esm/Typeclass/Bounded.js",
-      "types": "./esm/Typeclass/Bounded.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Bounded.js",
+        "types": "./cjs/Typeclass/Bounded.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Bounded.js",
+        "types": "./esm/Typeclass/Bounded.d.ts"
+      }
     },
     "./Typeclass/Commutative": {
-      "require": "./cjs/Typeclass/Commutative.js",
-      "import": "./esm/Typeclass/Commutative.js",
-      "types": "./esm/Typeclass/Commutative.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Commutative.js",
+        "types": "./cjs/Typeclass/Commutative.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Commutative.js",
+        "types": "./esm/Typeclass/Commutative.d.ts"
+      }
     },
     "./Typeclass/CommutativeBoth": {
-      "require": "./cjs/Typeclass/CommutativeBoth.js",
-      "import": "./esm/Typeclass/CommutativeBoth.js",
-      "types": "./esm/Typeclass/CommutativeBoth.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/CommutativeBoth.js",
+        "types": "./cjs/Typeclass/CommutativeBoth.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/CommutativeBoth.js",
+        "types": "./esm/Typeclass/CommutativeBoth.d.ts"
+      }
     },
     "./Typeclass/CommutativeEither": {
-      "require": "./cjs/Typeclass/CommutativeEither.js",
-      "import": "./esm/Typeclass/CommutativeEither.js",
-      "types": "./esm/Typeclass/CommutativeEither.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/CommutativeEither.js",
+        "types": "./cjs/Typeclass/CommutativeEither.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/CommutativeEither.js",
+        "types": "./esm/Typeclass/CommutativeEither.d.ts"
+      }
     },
     "./Typeclass/Compact": {
-      "require": "./cjs/Typeclass/Compact.js",
-      "import": "./esm/Typeclass/Compact.js",
-      "types": "./esm/Typeclass/Compact.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Compact.js",
+        "types": "./cjs/Typeclass/Compact.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Compact.js",
+        "types": "./esm/Typeclass/Compact.d.ts"
+      }
     },
     "./Typeclass/Compactable": {
-      "require": "./cjs/Typeclass/Compactable.js",
-      "import": "./esm/Typeclass/Compactable.js",
-      "types": "./esm/Typeclass/Compactable.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Compactable.js",
+        "types": "./cjs/Typeclass/Compactable.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Compactable.js",
+        "types": "./esm/Typeclass/Compactable.d.ts"
+      }
     },
     "./Typeclass/Concat": {
-      "require": "./cjs/Typeclass/Concat.js",
-      "import": "./esm/Typeclass/Concat.js",
-      "types": "./esm/Typeclass/Concat.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Concat.js",
+        "types": "./cjs/Typeclass/Concat.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Concat.js",
+        "types": "./esm/Typeclass/Concat.d.ts"
+      }
     },
     "./Typeclass/Contravariant": {
-      "require": "./cjs/Typeclass/Contravariant.js",
-      "import": "./esm/Typeclass/Contravariant.js",
-      "types": "./esm/Typeclass/Contravariant.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Contravariant.js",
+        "types": "./cjs/Typeclass/Contravariant.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Contravariant.js",
+        "types": "./esm/Typeclass/Contravariant.d.ts"
+      }
     },
     "./Typeclass/Covariant": {
-      "require": "./cjs/Typeclass/Covariant.js",
-      "import": "./esm/Typeclass/Covariant.js",
-      "types": "./esm/Typeclass/Covariant.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Covariant.js",
+        "types": "./cjs/Typeclass/Covariant.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Covariant.js",
+        "types": "./esm/Typeclass/Covariant.d.ts"
+      }
     },
     "./Typeclass/CovariantWithIndex": {
-      "require": "./cjs/Typeclass/CovariantWithIndex.js",
-      "import": "./esm/Typeclass/CovariantWithIndex.js",
-      "types": "./esm/Typeclass/CovariantWithIndex.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/CovariantWithIndex.js",
+        "types": "./cjs/Typeclass/CovariantWithIndex.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/CovariantWithIndex.js",
+        "types": "./esm/Typeclass/CovariantWithIndex.d.ts"
+      }
     },
     "./Typeclass/Debug": {
-      "require": "./cjs/Typeclass/Debug.js",
-      "import": "./esm/Typeclass/Debug.js",
-      "types": "./esm/Typeclass/Debug.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Debug.js",
+        "types": "./cjs/Typeclass/Debug.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Debug.js",
+        "types": "./esm/Typeclass/Debug.d.ts"
+      }
     },
     "./Typeclass/Divariant": {
-      "require": "./cjs/Typeclass/Divariant.js",
-      "import": "./esm/Typeclass/Divariant.js",
-      "types": "./esm/Typeclass/Divariant.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Divariant.js",
+        "types": "./cjs/Typeclass/Divariant.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Divariant.js",
+        "types": "./esm/Typeclass/Divariant.d.ts"
+      }
     },
     "./Typeclass/Eq": {
-      "require": "./cjs/Typeclass/Eq.js",
-      "import": "./esm/Typeclass/Eq.js",
-      "types": "./esm/Typeclass/Eq.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Eq.js",
+        "types": "./cjs/Typeclass/Eq.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Eq.js",
+        "types": "./esm/Typeclass/Eq.d.ts"
+      }
     },
     "./Typeclass/FilterMap": {
-      "require": "./cjs/Typeclass/FilterMap.js",
-      "import": "./esm/Typeclass/FilterMap.js",
-      "types": "./esm/Typeclass/FilterMap.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/FilterMap.js",
+        "types": "./cjs/Typeclass/FilterMap.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/FilterMap.js",
+        "types": "./esm/Typeclass/FilterMap.d.ts"
+      }
     },
     "./Typeclass/FilterMapWithIndex": {
-      "require": "./cjs/Typeclass/FilterMapWithIndex.js",
-      "import": "./esm/Typeclass/FilterMapWithIndex.js",
-      "types": "./esm/Typeclass/FilterMapWithIndex.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/FilterMapWithIndex.js",
+        "types": "./cjs/Typeclass/FilterMapWithIndex.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/FilterMapWithIndex.js",
+        "types": "./esm/Typeclass/FilterMapWithIndex.d.ts"
+      }
     },
     "./Typeclass/FoldMap": {
-      "require": "./cjs/Typeclass/FoldMap.js",
-      "import": "./esm/Typeclass/FoldMap.js",
-      "types": "./esm/Typeclass/FoldMap.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/FoldMap.js",
+        "types": "./cjs/Typeclass/FoldMap.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/FoldMap.js",
+        "types": "./esm/Typeclass/FoldMap.d.ts"
+      }
     },
     "./Typeclass/FoldMapWithIndex": {
-      "require": "./cjs/Typeclass/FoldMapWithIndex.js",
-      "import": "./esm/Typeclass/FoldMapWithIndex.js",
-      "types": "./esm/Typeclass/FoldMapWithIndex.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/FoldMapWithIndex.js",
+        "types": "./cjs/Typeclass/FoldMapWithIndex.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/FoldMapWithIndex.js",
+        "types": "./esm/Typeclass/FoldMapWithIndex.d.ts"
+      }
     },
     "./Typeclass/ForEachWithIndex": {
-      "require": "./cjs/Typeclass/ForEachWithIndex.js",
-      "import": "./esm/Typeclass/ForEachWithIndex.js",
-      "types": "./esm/Typeclass/ForEachWithIndex.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEachWithIndex.js",
+        "types": "./cjs/Typeclass/ForEachWithIndex.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEachWithIndex.js",
+        "types": "./esm/Typeclass/ForEachWithIndex.d.ts"
+      }
     },
     "./Typeclass/Identity": {
-      "require": "./cjs/Typeclass/Identity.js",
-      "import": "./esm/Typeclass/Identity.js",
-      "types": "./esm/Typeclass/Identity.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Identity.js",
+        "types": "./cjs/Typeclass/Identity.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Identity.js",
+        "types": "./esm/Typeclass/Identity.d.ts"
+      }
     },
     "./Typeclass/IdentityBoth": {
-      "require": "./cjs/Typeclass/IdentityBoth.js",
-      "import": "./esm/Typeclass/IdentityBoth.js",
-      "types": "./esm/Typeclass/IdentityBoth.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/IdentityBoth.js",
+        "types": "./cjs/Typeclass/IdentityBoth.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/IdentityBoth.js",
+        "types": "./esm/Typeclass/IdentityBoth.d.ts"
+      }
     },
     "./Typeclass/IdentityEither": {
-      "require": "./cjs/Typeclass/IdentityEither.js",
-      "import": "./esm/Typeclass/IdentityEither.js",
-      "types": "./esm/Typeclass/IdentityEither.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/IdentityEither.js",
+        "types": "./cjs/Typeclass/IdentityEither.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/IdentityEither.js",
+        "types": "./esm/Typeclass/IdentityEither.d.ts"
+      }
     },
     "./Typeclass/IdentityFlatten": {
-      "require": "./cjs/Typeclass/IdentityFlatten.js",
-      "import": "./esm/Typeclass/IdentityFlatten.js",
-      "types": "./esm/Typeclass/IdentityFlatten.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/IdentityFlatten.js",
+        "types": "./cjs/Typeclass/IdentityFlatten.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/IdentityFlatten.js",
+        "types": "./esm/Typeclass/IdentityFlatten.d.ts"
+      }
     },
     "./Typeclass/Invariant": {
-      "require": "./cjs/Typeclass/Invariant.js",
-      "import": "./esm/Typeclass/Invariant.js",
-      "types": "./esm/Typeclass/Invariant.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Invariant.js",
+        "types": "./cjs/Typeclass/Invariant.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Invariant.js",
+        "types": "./esm/Typeclass/Invariant.d.ts"
+      }
     },
     "./Typeclass/Inverse": {
-      "require": "./cjs/Typeclass/Inverse.js",
-      "import": "./esm/Typeclass/Inverse.js",
-      "types": "./esm/Typeclass/Inverse.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Inverse.js",
+        "types": "./cjs/Typeclass/Inverse.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Inverse.js",
+        "types": "./esm/Typeclass/Inverse.d.ts"
+      }
     },
     "./Typeclass/Ord": {
-      "require": "./cjs/Typeclass/Ord.js",
-      "import": "./esm/Typeclass/Ord.js",
-      "types": "./esm/Typeclass/Ord.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Ord.js",
+        "types": "./cjs/Typeclass/Ord.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Ord.js",
+        "types": "./esm/Typeclass/Ord.d.ts"
+      }
     },
     "./Typeclass/PartitionMap": {
-      "require": "./cjs/Typeclass/PartitionMap.js",
-      "import": "./esm/Typeclass/PartitionMap.js",
-      "types": "./esm/Typeclass/PartitionMap.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/PartitionMap.js",
+        "types": "./cjs/Typeclass/PartitionMap.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/PartitionMap.js",
+        "types": "./esm/Typeclass/PartitionMap.d.ts"
+      }
     },
     "./Typeclass/PartitionMapWithIndex": {
-      "require": "./cjs/Typeclass/PartitionMapWithIndex.js",
-      "import": "./esm/Typeclass/PartitionMapWithIndex.js",
-      "types": "./esm/Typeclass/PartitionMapWithIndex.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/PartitionMapWithIndex.js",
+        "types": "./cjs/Typeclass/PartitionMapWithIndex.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/PartitionMapWithIndex.js",
+        "types": "./esm/Typeclass/PartitionMapWithIndex.d.ts"
+      }
     },
     "./Typeclass/Reduce": {
-      "require": "./cjs/Typeclass/Reduce.js",
-      "import": "./esm/Typeclass/Reduce.js",
-      "types": "./esm/Typeclass/Reduce.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Reduce.js",
+        "types": "./cjs/Typeclass/Reduce.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Reduce.js",
+        "types": "./esm/Typeclass/Reduce.d.ts"
+      }
     },
     "./Typeclass/ReduceRight": {
-      "require": "./cjs/Typeclass/ReduceRight.js",
-      "import": "./esm/Typeclass/ReduceRight.js",
-      "types": "./esm/Typeclass/ReduceRight.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ReduceRight.js",
+        "types": "./cjs/Typeclass/ReduceRight.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ReduceRight.js",
+        "types": "./esm/Typeclass/ReduceRight.d.ts"
+      }
     },
     "./Typeclass/ReduceRightWithIndex": {
-      "require": "./cjs/Typeclass/ReduceRightWithIndex.js",
-      "import": "./esm/Typeclass/ReduceRightWithIndex.js",
-      "types": "./esm/Typeclass/ReduceRightWithIndex.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ReduceRightWithIndex.js",
+        "types": "./cjs/Typeclass/ReduceRightWithIndex.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ReduceRightWithIndex.js",
+        "types": "./esm/Typeclass/ReduceRightWithIndex.d.ts"
+      }
     },
     "./Typeclass/ReduceWithIndex": {
-      "require": "./cjs/Typeclass/ReduceWithIndex.js",
-      "import": "./esm/Typeclass/ReduceWithIndex.js",
-      "types": "./esm/Typeclass/ReduceWithIndex.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ReduceWithIndex.js",
+        "types": "./cjs/Typeclass/ReduceWithIndex.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ReduceWithIndex.js",
+        "types": "./esm/Typeclass/ReduceWithIndex.d.ts"
+      }
     },
     "./Typeclass/Separate": {
-      "require": "./cjs/Typeclass/Separate.js",
-      "import": "./esm/Typeclass/Separate.js",
-      "types": "./esm/Typeclass/Separate.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Separate.js",
+        "types": "./cjs/Typeclass/Separate.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Separate.js",
+        "types": "./esm/Typeclass/Separate.d.ts"
+      }
     },
     "./Typeclass/Top": {
-      "require": "./cjs/Typeclass/Top.js",
-      "import": "./esm/Typeclass/Top.js",
-      "types": "./esm/Typeclass/Top.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Top.js",
+        "types": "./cjs/Typeclass/Top.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Top.js",
+        "types": "./esm/Typeclass/Top.d.ts"
+      }
     },
     "./Typeclass/Trivariant": {
-      "require": "./cjs/Typeclass/Trivariant.js",
-      "import": "./esm/Typeclass/Trivariant.js",
-      "types": "./esm/Typeclass/Trivariant.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/Trivariant.js",
+        "types": "./cjs/Typeclass/Trivariant.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/Trivariant.js",
+        "types": "./esm/Typeclass/Trivariant.d.ts"
+      }
     },
     "./Typeclass/ForEach/ForEach": {
-      "require": "./cjs/Typeclass/ForEach/ForEach.js",
-      "import": "./esm/Typeclass/ForEach/ForEach.js",
-      "types": "./esm/Typeclass/ForEach/ForEach.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEach/ForEach.js",
+        "types": "./cjs/Typeclass/ForEach/ForEach.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEach/ForEach.js",
+        "types": "./esm/Typeclass/ForEach/ForEach.d.ts"
+      }
     },
     "./Typeclass/ForEach/compacted": {
-      "require": "./cjs/Typeclass/ForEach/compacted.js",
-      "import": "./esm/Typeclass/ForEach/compacted.js",
-      "types": "./esm/Typeclass/ForEach/compacted.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEach/compacted.js",
+        "types": "./cjs/Typeclass/ForEach/compacted.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEach/compacted.js",
+        "types": "./esm/Typeclass/ForEach/compacted.d.ts"
+      }
     },
     "./Typeclass/ForEach/composition": {
-      "require": "./cjs/Typeclass/ForEach/composition.js",
-      "import": "./esm/Typeclass/ForEach/composition.js",
-      "types": "./esm/Typeclass/ForEach/composition.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEach/composition.js",
+        "types": "./cjs/Typeclass/ForEach/composition.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEach/composition.js",
+        "types": "./esm/Typeclass/ForEach/composition.d.ts"
+      }
     },
     "./Typeclass/ForEach/foldMap": {
-      "require": "./cjs/Typeclass/ForEach/foldMap.js",
-      "import": "./esm/Typeclass/ForEach/foldMap.js",
-      "types": "./esm/Typeclass/ForEach/foldMap.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEach/foldMap.js",
+        "types": "./cjs/Typeclass/ForEach/foldMap.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEach/foldMap.js",
+        "types": "./esm/Typeclass/ForEach/foldMap.d.ts"
+      }
     },
     "./Typeclass/ForEach": {
-      "require": "./cjs/Typeclass/ForEach/index.js",
-      "import": "./esm/Typeclass/ForEach/index.js",
-      "types": "./esm/Typeclass/ForEach/index.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEach/index.js",
+        "types": "./cjs/Typeclass/ForEach/index.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEach/index.js",
+        "types": "./esm/Typeclass/ForEach/index.d.ts"
+      }
     },
     "./Typeclass/ForEach/map": {
-      "require": "./cjs/Typeclass/ForEach/map.js",
-      "import": "./esm/Typeclass/ForEach/map.js",
-      "types": "./esm/Typeclass/ForEach/map.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEach/map.js",
+        "types": "./cjs/Typeclass/ForEach/map.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEach/map.js",
+        "types": "./esm/Typeclass/ForEach/map.d.ts"
+      }
     },
     "./Typeclass/ForEach/mapAccum": {
-      "require": "./cjs/Typeclass/ForEach/mapAccum.js",
-      "import": "./esm/Typeclass/ForEach/mapAccum.js",
-      "types": "./esm/Typeclass/ForEach/mapAccum.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEach/mapAccum.js",
+        "types": "./cjs/Typeclass/ForEach/mapAccum.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEach/mapAccum.js",
+        "types": "./esm/Typeclass/ForEach/mapAccum.d.ts"
+      }
     },
     "./Typeclass/ForEach/separated": {
-      "require": "./cjs/Typeclass/ForEach/separated.js",
-      "import": "./esm/Typeclass/ForEach/separated.js",
-      "types": "./esm/Typeclass/ForEach/separated.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEach/separated.js",
+        "types": "./cjs/Typeclass/ForEach/separated.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEach/separated.js",
+        "types": "./esm/Typeclass/ForEach/separated.d.ts"
+      }
     },
     "./Typeclass/ForEach/sequence": {
-      "require": "./cjs/Typeclass/ForEach/sequence.js",
-      "import": "./esm/Typeclass/ForEach/sequence.js",
-      "types": "./esm/Typeclass/ForEach/sequence.d.ts"
+      "require": {
+        "default": "./cjs/Typeclass/ForEach/sequence.js",
+        "types": "./cjs/Typeclass/ForEach/sequence.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/ForEach/sequence.js",
+        "types": "./esm/Typeclass/ForEach/sequence.d.ts"
+      }
     },
     "./Unary": {
-      "require": "./cjs/Unary.js",
-      "import": "./esm/Unary.js",
-      "types": "./esm/Unary.d.ts"
+      "require": {
+        "default": "./cjs/Unary.js",
+        "types": "./cjs/Unary.d.ts"
+      },
+      "import": {
+        "default": "./esm/Unary.js",
+        "types": "./esm/Unary.d.ts"
+      }
     },
     "./boolean": {
-      "require": "./cjs/boolean.js",
-      "import": "./esm/boolean.js",
-      "types": "./esm/boolean.d.ts"
+      "require": {
+        "default": "./cjs/boolean.js",
+        "types": "./cjs/boolean.d.ts"
+      },
+      "import": {
+        "default": "./esm/boolean.js",
+        "types": "./esm/boolean.d.ts"
+      }
     },
     "./common": {
-      "require": "./cjs/common.js",
-      "import": "./esm/common.js",
-      "types": "./esm/common.d.ts"
+      "require": {
+        "default": "./cjs/common.js",
+        "types": "./cjs/common.d.ts"
+      },
+      "import": {
+        "default": "./esm/common.js",
+        "types": "./esm/common.d.ts"
+      }
     },
     "./function": {
-      "require": "./cjs/function.js",
-      "import": "./esm/function.js",
-      "types": "./esm/function.d.ts"
+      "require": {
+        "default": "./cjs/function.js",
+        "types": "./cjs/function.d.ts"
+      },
+      "import": {
+        "default": "./esm/function.js",
+        "types": "./esm/function.d.ts"
+      }
     },
     "./logical": {
-      "require": "./cjs/logical.js",
-      "import": "./esm/logical.js",
-      "types": "./esm/logical.d.ts"
+      "require": {
+        "default": "./cjs/logical.js",
+        "types": "./cjs/logical.d.ts"
+      },
+      "import": {
+        "default": "./esm/logical.js",
+        "types": "./esm/logical.d.ts"
+      }
     },
     "./number": {
-      "require": "./cjs/number.js",
-      "import": "./esm/number.js",
-      "types": "./esm/number.d.ts"
+      "require": {
+        "default": "./cjs/number.js",
+        "types": "./cjs/number.d.ts"
+      },
+      "import": {
+        "default": "./esm/number.js",
+        "types": "./esm/number.d.ts"
+      }
     },
     "./string": {
-      "require": "./cjs/string.js",
-      "import": "./esm/string.js",
-      "types": "./esm/string.d.ts"
+      "require": {
+        "default": "./cjs/string.js",
+        "types": "./cjs/string.d.ts"
+      },
+      "import": {
+        "default": "./esm/string.js",
+        "types": "./esm/string.d.ts"
+      }
     },
     "./struct": {
-      "require": "./cjs/struct.js",
-      "import": "./esm/struct.js",
-      "types": "./esm/struct.d.ts"
+      "require": {
+        "default": "./cjs/struct.js",
+        "types": "./cjs/struct.d.ts"
+      },
+      "import": {
+        "default": "./esm/struct.js",
+        "types": "./esm/struct.d.ts"
+      }
     }
   }
 }

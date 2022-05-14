@@ -10,12 +10,14 @@ executors:
       - image: cimg/node:lts
 
     working_directory: ~/repo
+    resource_class: large
 
   latest:
     docker:
       - image: cimg/node:current
 
     working_directory: ~/repo
+    resource_class: large
 
 jobs:
   test-lts:
