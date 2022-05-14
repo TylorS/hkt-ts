@@ -42,7 +42,7 @@
     "build:package-exports": "node -r esbuild-register ./tools/generatePackageExports.ts",
     "build": "concurrently npm:build:esm npm:build:cjs && npm run build:package-exports",
     "generate-overload": "node -r esbuild-register ./tools/overloads/cli.ts",
-    "eslint": "eslint --ext .ts,.js,.json,.yaml --fix --cache src",
+    "eslint": "NODE_OPTIONS=--max-old-space-size=4096 eslint --ext .ts,.js,.json,.yaml --fix --cache src",
     "mocha": "mocha -r esbuild-register 'src/**/*.test.ts'",
     "typecheck": "tsc --noEmit",
     "test": "concurrently npm:eslint npm:mocha npm:typecheck",
