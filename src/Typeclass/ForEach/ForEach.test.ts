@@ -1,12 +1,12 @@
 import { deepStrictEqual } from 'assert'
 
-import * as Array from '../Array'
-import * as Data from '../Data'
-import * as Either from '../Either'
-import { pipe } from '../function'
-import * as N from '../number'
+import * as Array from '../../Array'
+import * as Data from '../../Data'
+import * as Either from '../../Either'
+import { pipe } from '../../function'
+import * as N from '../../number'
 
-import * as ForEach from './ForEach'
+import * as ForEach from '.'
 
 describe(__filename, () => {
   describe(ForEach.foldMap.name, () => {
