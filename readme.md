@@ -29,6 +29,8 @@ HKT-TS is the culmination of my attempts to learn this new set of TypeClasses an
 
 ## Installation
 
+** NOTE: This version is not currently published to NPM **
+
 ```sh
 # NPM
 npm i --save hkt-ts
