@@ -1,4 +1,4 @@
-import { HKTParam, Kind, Static, Tuple } from '../AST'
+import { HKTParam, Kind, Static } from '../AST'
 
 import { Covariant } from './Covariant'
 import { ForEach } from './ForEach'
@@ -7,7 +7,6 @@ import { Compact } from './Compact'
 import {
   aTypeParam,
   bTypeParam,
-  cTypeParam,
   derived_,
   fnLabeled_,
   fn_,
