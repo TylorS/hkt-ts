@@ -29,7 +29,7 @@ HKT-TS is the culmination of my attempts to learn this new set of TypeClasses an
 
 ## Installation
 
-** NOTE: This version is not currently published to NPM **
+NOTE: For the best experience you'll want to use typescript@next to be able to use the `NodeNext` moduleResolution mode to support the package exports defined for this project.
 
 ```sh
 # NPM
