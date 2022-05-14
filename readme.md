@@ -1,12 +1,23 @@
 # HKT-TS
 
-`HKT-TS` is an encoding for Higher-Kinded-Types (HKT) in TypeScript. 
-It requires writing 0 overloads for your functions, and does not need to modify an existing package.
-This means the use of HKTs for your libraries can be opt-in, delivered by an external package, and 
-potentially from the community!
+`HKT-TS` is an encoding for Higher-Kinded Types (HKT) for TypeScript, with composable abstractions based on [Category Theory](https://en.wikipedia.org/wiki/Category_theory).
 
-The type-classes that are provided are primarily designed based on [Static Land](https://github.com/fantasyland/static-land).
-Adding additional type-classes is within scope of this project, but it is a goal to avoid any specific data-structures like Maybe or Either. It'd be preferred to push those concerns out to community-based packages.
+HKT-TS has been greatly influenced by numerous other open-source projects, the biggest being the Scala library [ZIO-Prelude](https://zio.github.io/zio-prelude/)
+which is the pioneer of a brand new way to blend Category Theory with programming languages that aren't Haskell.
+
+With the TyepScript space, I've been inspired and taken influence from [Effect-TS](https://github.com/Effect-TS/core) which offers a port of a larger portion of ZIO including ZIO-Prelude.
+When looking through their codebase I noticed that had many more Typeclasses than ZIO-Prelude. 
+
+I chose to replicate most of these Typeclasses to allow derived functions to ask for only what they need, and because some data types will have optimizations available to them for 
+certain operators that will be lost through deriving the implementation with another set of Typeclasses. 
+
+If you're interested in powerful effects that are built upon abstractions like these, with a strong standard library, check it out. Also if you love FP, then check out the amazing things they're doing with [TS+](https://dev.to/matechs/the-case-for-ts-18b3) for functional programmers. I look forward to seeing it continue to mature!
+
+Last but certainly not least, I have to give a huge shoutout to [fp-ts](https://github.com/gcanti/fp-ts), another HKT encoding for TypeScript that provides a Haskell-like 
+expression of Category Theory with a rich standard library and ecosystem, which I've been using for a few years now. It's helped me greatly to dive into the world of Category 
+Theory as it is applied to programming, but after seeing [this talk](https://www.youtube.com/watch?v=OwmHgL9F_9Q) during the beginning months of COVID, I've constantly been questioning if it's the right approach.
+
+HKT-TS is the culmination of my attempts to learn this new set of TypeClasses and what they're capable of.
 
 ## Installation
 
@@ -15,63 +26,16 @@ Adding additional type-classes is within scope of this project, but it is a goal
 npm i --save hkt-ts
 
 # Yarn
-yarn install hkt-ts
+yarn add hkt-ts
+
+# PNPM
+pnpm add hkt-ts
 ```
 
-## How to register a new HKT
+## Related Links
 
-```typescript
-import { Functor, TypeParams } from 'hkt-ts'
+- [zio-prelude](https://zio.github.io/zio-prelude/)
+- [Effect-TS](https://github.com/Effect-TS/core)
+- [fp-ts](https://github.com/gcanti/fp-ts)
+- 
 
-export const EitherUri = 'Either' // Must be a constant string
-export type Left<A> = { left: true, value: A }
-export type Right<A> = { left: false, value: A}
-export type Either<A, B> = Left<A> | Right<B>
-
-// The URI must match in both type-level maps to work correctly.
-declare module "hkt-ts" {
-  // Setup how to pass new type-parameters to a Type, looked up by the given URI.
-  export interface Hkts<Params> {
-    // TypeParams.First, TypeParams.Second,..., TypeParams.Fifth, are helpers for extracting
-    // type parameters from Values working from right-to-left.
-    [EitherUri]: Either<TypeParams.Second<Params>, TypeParams.First<Params>>
-  }
-  
-  // Setup how to extract a Tuple of type-parameters from a registered Type, looked up by the given URI.
-  export interface HktTypeParams<T> {
-    // Wrapping in a tuple helps to avoid returning an invalid union e.g. [A, unknown] | [unknown, B]
-    [EitherUri]: [T] extends [Either<infer A, infer B>] ? [A, B] : never
-  }
-}
-
-// Create a functor instance
-export const either: Functor<EitherUri> = {
-  map: <A, B, C>(f: (a: A) => B, either: Either<C, A>) => Either<C, B>
-}
-
-```
-
-## How to create a new type-class
-
-```typescript
-import { Type, TypeParams, Types } from 'hkt-ts'
-
-// All type-classes should use an a `extends Types` clause to ensure it's working with
-// registered types.
-export interface Functor<T extends Types> {
-  readonly map: {
-    // Depending on the length of type-parameters, create the signature you'd expect or want
-    1: <A, B>(f: (a: A) => B, functor: Type<T, [A]>) => Type<T, [B]>
-    2: <A, B, C>(f: (a: A) => B, functor: Type<T, [C, A]>) => Type<T, [C, B]>
-    3: <A, B, C, D>(f: (a: A) => B, functor: Type<T, [C, D, A]>) => Type<T, [C, D, B]>
-    4: <A, B, C, D, E>(f: (a: A) => B, functor: Type<T, [C, D, E, A]>) => Type<T, [C, D, E, B]>
-    5: <A, B, C, D, E, F>(
-      f: (a: A) => B,
-      functor: Type<T, [C, D, E, F, A]>,
-    ) => Type<T, [C, D, E, F, B]>
-  // Gets the number of type-params associated with a particular type T, and matches it to the appropriate signature
-  }[TypeParams.Length<T>] 
-}
-```
-
-For examples take a look within [source/type-classes](./source/type-classes)!
