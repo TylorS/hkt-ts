@@ -20,6 +20,7 @@ import * as PM from './Typeclass/PartitionMap'
 import { Separate2 } from './Typeclass/Separate'
 import { makeFromValue } from './Typeclass/Top'
 import { flow, pipe } from './function'
+import * as FM from './Typeclass/FoldMap'
 
 export type ReadonlyRecord<K extends string, T> = { readonly [_ in K]: T }
 
@@ -301,6 +302,24 @@ export const ForEach: FE.ForEach2<RecordHKT> = {
 export const forEach = ForEach.forEach
 export const sequence = FE.sequence(ForEach)
 export const mapAccum = FE.mapAccum(ForEach)
+export const foldMap = FE.foldMap(ForEach)
+
+export const FoldMap: FM.FoldMap2<RecordHKT> = {
+  foldMap,
+}
+export const foldLeft = FM.foldLeft(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
+export const groupBy = FM.groupBy(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+export const reduceAssociative = FM.reduceAssociative(FoldMap)
+export const reduceCommutative = FM.reduceCommutative(FoldMap)
+export const reduceIdentity = FM.reduceIdentity(FoldMap)
+export const toArray = FM.toArray(FoldMap)
 
 export const PartitionMap: PM.PartitionMap2<RecordHKT> = {
   partitionMap: (f) => flow(map(f), separate),
