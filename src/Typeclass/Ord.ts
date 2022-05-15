@@ -12,6 +12,7 @@ import type { Identity } from './Identity'
 import * as IB from './IdentityBoth'
 import * as IE from './IdentityEither'
 import { Top1 } from './Top'
+import { Include } from '../common'
 
 export interface Ord<A> extends Eq<A> {
   readonly compare: (first: A, second: A) => Ordering
@@ -45,6 +46,65 @@ export const tuple = <A extends ReadonlyArray<unknown>>(
 
     return ords[i].compare(first[i], second[i])
   })
+
+export const struct =
+  <A>(ords: {
+    readonly [K in keyof A]: Ord<A[K]>
+  }) =>
+  (K: Ord<keyof A>): Ord<Readonly<A>> =>
+    fromCompare((first, second) => {
+      let i = 0
+      const keys = (Object.keys(ords) as Array<keyof A>).sort(K.compare)
+      for (; i < keys.length - 1; i++) {
+        const k = keys[i]
+        const r = ords[k].compare(first[k], second[k])
+        if (r !== 0) {
+          return r
+        }
+      }
+
+      const k = keys[i]
+
+      return ords[k].compare(first[k], second[k])
+    })
+
+export const sum =
+  <A extends Readonly<Record<string, any>>>() =>
+  <T extends keyof A>(tag: T) =>
+  (tagOrd: Ord<A[T]>) =>
+  (ords: SumOrds<A, T>): Ord<A> =>
+    fromCompare((x, y) => {
+      if (x[tag] !== y[tag]) {
+        return tagOrd.compare(x[tag], y[tag])
+      }
+
+      return ords[x[tag] as keyof SumOrds<A, T>].compare(x as any, y as any)
+    })
+
+export const lazy = <A>(f: () => Ord<A>): Ord<A> => {
+  let memoed: Ord<A> | null = null
+
+  const get = () => {
+    if (!memoed) {
+      memoed = f()
+    }
+
+    return memoed
+  }
+
+  return {
+    equals: (a, b) => get().equals(a, b),
+    compare: (a, b) => get().compare(a, b),
+  }
+}
+
+export type SumOrds<A extends Readonly<Record<PropertyKey, any>>, T extends keyof A> = {
+  readonly [K in KeysOf<A, T>]: Ord<FindType<A, T, K>>
+}
+
+type KeysOf<A, T extends keyof A> = A[T] extends PropertyKey ? A[T] : never
+
+type FindType<A, T extends keyof A, K> = Include<A, { readonly [_ in T]: K }>
 
 export const reverse = <A>(O: Ord<A>): Ord<A> =>
   fromCompare((first, second) => O.compare(second, first))

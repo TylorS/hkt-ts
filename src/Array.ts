@@ -21,7 +21,7 @@ import { ForEachWithIndex1 } from './Typeclass/ForEachWithIndex'
 import { Identity } from './Typeclass/Identity'
 import * as IB from './Typeclass/IdentityBoth'
 import * as IF from './Typeclass/IdentityFlatten'
-import { Ord } from './Typeclass/Ord'
+import * as Ord from './Typeclass/Ord'
 import * as PM from './Typeclass/PartitionMap'
 import * as PMI from './Typeclass/PartitionMapWithIndex'
 import { Reduce1 } from './Typeclass/Reduce'
@@ -31,6 +31,7 @@ import * as RI from './Typeclass/ReduceWithIndex'
 import { Separate1 } from './Typeclass/Separate'
 import * as T from './Typeclass/Top'
 import { Arity2, pipe } from './function'
+import * as N from './number'
 
 export interface ArrayHKT extends HKT {
   readonly type: ReadonlyArray<this[Params.A]>
@@ -43,6 +44,30 @@ export const match =
 
 export const makeEq = <A>(E: Eq<A>): Eq<ReadonlyArray<A>> =>
   fromEquals((a, b) => a.length === b.length && a.every((a, i) => E.equals(a, b[i])))
+
+export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<ReadonlyArray<A>> =>
+  Ord.fromCompare((a, b) => {
+    const lengthOrdering = pipe(
+      N.Ord,
+      Ord.contramap((a: readonly A[]) => a.length),
+    ).compare(a, b)
+
+    if (lengthOrdering !== 0) {
+      return lengthOrdering
+    }
+
+    for (let i = 0; i < a.length; ++i) {
+      const ai = a[i]
+      const bi = b[i]
+      const iOrdering = O.compare(ai, bi)
+
+      if (iOrdering !== 0) {
+        return iOrdering
+      }
+    }
+
+    return 0
+  })
 
 export const concat =
   <A>(second: ReadonlyArray<A>) =>
@@ -285,6 +310,6 @@ export const Separate: Separate1<ArrayHKT> = {
 }
 
 export const sort =
-  <A>(O: Ord<A>) =>
+  <A>(O: Ord.Ord<A>) =>
   (array: ReadonlyArray<A>): ReadonlyArray<A> =>
     array.slice(0).sort(O.compare)
