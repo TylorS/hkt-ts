@@ -21,6 +21,12 @@ import { Separate2 } from './Typeclass/Separate'
 import { makeFromValue } from './Typeclass/Top'
 import { flow, pipe } from './function'
 import * as FM from './Typeclass/FoldMap'
+import { Reduce2 } from './Typeclass/Reduce'
+import { ReduceRight2 } from './Typeclass/ReduceRight'
+import { ReduceWithIndex2, ReduceWithIndex2EC } from './Typeclass/ReduceWithIndex'
+import { ReduceRightWithIndex2, ReduceRightWithIndex2EC } from './Typeclass/ReduceRightWithIndex'
+import { Identity } from './Typeclass/Identity'
+import { FoldMapWithIndex2, FoldMapWithIndex2EC } from './Typeclass/FoldMapWithIndex'
 
 export type ReadonlyRecord<K extends string, T> = { readonly [_ in K]: T }
 
@@ -320,6 +326,61 @@ export const reduceAssociative = FM.reduceAssociative(FoldMap)
 export const reduceCommutative = FM.reduceCommutative(FoldMap)
 export const reduceIdentity = FM.reduceIdentity(FoldMap)
 export const toArray = FM.toArray(FoldMap)
+export const reduce = FM.reduce(FoldMap)
+export const reverse = FM.reverse<RecordHKT>({ ...FoldMap, ...ForEach })
+
+export const foldMapWithIndex =
+  <B>(I: Identity<B>) =>
+  <K extends string, A>(f: (key: K, a: A) => B) =>
+  (r: ReadonlyRecord<K, A>): B =>
+    Object.entries<A>(r).reduce((b, [k, a]) => I.concat(b, f(k as K, a)), I.id)
+
+export const FoldMapWithIndex: FoldMapWithIndex2<RecordHKT, string> = {
+  foldMapWithIndex,
+}
+
+export const makeFoldMapWithIndex = <K extends string>(): FoldMapWithIndex2EC<RecordHKT, K, K> =>
+  FoldMapWithIndex as FoldMapWithIndex2EC<RecordHKT, K, K>
+
+export const Reduce: Reduce2<RecordHKT> = {
+  reduce,
+}
+
+export const ReduceWithIndex: ReduceWithIndex2<RecordHKT, string> = {
+  reduceWithIndex:
+    <B, A>(b: B, f: (k: string, b: B, a: A) => B) =>
+    <E>(k: ReadonlyRecord<Cast<E, string>, A>): B =>
+      Object.entries<A>(k).reduce((b, [k, v]) => f(k, b, v), b),
+}
+
+export const reduceWithIndex = ReduceWithIndex.reduceWithIndex
+
+export const makeReduceWithIndex = <K extends string>(): ReduceWithIndex2EC<RecordHKT, K, K> =>
+  ReduceWithIndex as ReduceWithIndex2EC<RecordHKT, K, K>
+
+export const ReduceRight: ReduceRight2<RecordHKT> = {
+  reduceRight:
+    <B, A>(b: B, f: (a: A, b: B) => B) =>
+    <E>(kind: ReadonlyRecord<Cast<E, string>, A>) =>
+      reduce(b, (b: B, a: A) => f(a, b))(reverse(kind)),
+}
+
+export const reduceRight = ReduceRight.reduceRight
+
+export const ReduceRightWithIndex: ReduceRightWithIndex2<RecordHKT, string> = {
+  reduceRightWithIndex:
+    <B, A>(b: B, f: (k: string, a: A, b: B) => B) =>
+    <E>(k: ReadonlyRecord<Cast<E, string>, A>): B =>
+      Object.entries<A>(k)
+        .reverse()
+        .reduce((b, [k, v]) => f(k, v, b), b),
+}
+
+export const makeReduceRightWithIndex = <K extends string>(): ReduceRightWithIndex2EC<
+  RecordHKT,
+  K,
+  K
+> => ReduceRightWithIndex as ReduceRightWithIndex2EC<RecordHKT, K, K>
 
 export const PartitionMap: PM.PartitionMap2<RecordHKT> = {
   partitionMap: (f) => flow(map(f), separate),
