@@ -32,6 +32,7 @@ import { Separate1 } from './Typeclass/Separate'
 import * as T from './Typeclass/Top'
 import { Arity2, pipe } from './function'
 import * as N from './number'
+import { Concat } from './Typeclass/Concat'
 
 export interface ArrayHKT extends HKT {
   readonly type: ReadonlyArray<this[Params.A]>
@@ -126,6 +127,7 @@ export const AssociativeEither: AE.AssociativeEither1<ArrayHKT> = {
 export const either = AssociativeEither.either
 
 export const orElse = AE.orElse<ArrayHKT>({ ...AssociativeEither, ...Covariant })
+export const race = AE.tuple<ArrayHKT>({ ...AssociativeEither, ...Covariant })
 
 export const AssociativeFlatten: AF.AssociativeFlatten1<ArrayHKT> = {
   flatten: (a) => a.flat(1),
@@ -313,3 +315,84 @@ export const sort =
   <A>(O: Ord.Ord<A>) =>
   (array: ReadonlyArray<A>): ReadonlyArray<A> =>
     array.slice(0).sort(O.compare)
+
+export const difference = <A>(E: Eq<A>) => {
+  const contain_ = contains(E)
+
+  return (second: ReadonlyArray<A>) =>
+    (first: ReadonlyArray<A>): ReadonlyArray<A> => {
+      if (first.length === 0) {
+        return second
+      }
+
+      if (second.length === 0) {
+        return first
+      }
+
+      const diff: A[] = []
+
+      for (const a of first) {
+        if (!pipe(second, contain_(a))) {
+          diff.push(a)
+        }
+      }
+
+      for (const a of second) {
+        if (!pipe(first, contain_(a))) {
+          diff.push(a)
+        }
+      }
+
+      return diff
+    }
+}
+
+export const intersection = <A>(E: Eq<A>) => {
+  const contain_ = contains(E)
+
+  return (second: ReadonlyArray<A>) =>
+    (first: ReadonlyArray<A>): ReadonlyArray<A> => {
+      if (first.length === 0 || second.length === 0) {
+        return []
+      }
+
+      const diff: A[] = []
+
+      for (const a of first) {
+        if (pipe(second, contain_(a))) {
+          diff.push(a)
+        }
+      }
+
+      for (const a of second) {
+        if (pipe(first, contain_(a))) {
+          diff.push(a)
+        }
+      }
+
+      return diff
+    }
+}
+
+export const union =
+  <A>(C: Concat<A>) =>
+  (second: ReadonlyArray<A>) =>
+  (first: ReadonlyArray<A>): ReadonlyArray<A> => {
+    const length = Math.max(first.length, second.length)
+    const out: A[] = Array(length)
+
+    for (let i = 0; i < length; ++i) {
+      const hasF = i in first
+      const hasS = i in second
+
+      if (hasF && hasS) {
+        out[i] = C.concat(first[i], second[i])
+      } else if (hasF) {
+        out[i] = first[i]
+      } else {
+        out[i] = second[i]
+      }
+    }
+
+    return out
+  }

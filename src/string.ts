@@ -95,4 +95,8 @@ export const padEnd =
 export const pad =
   (maxLength: number, fillString?: string) =>
   (s: string): string =>
-    pipe(s, padStart(maxLength / 2, fillString), padEnd(maxLength / 2, fillString))
+    pipe(
+      s,
+      padStart(Math.round(maxLength / 2), fillString),
+      padEnd(Math.floor(maxLength / 2), fillString),
+    )
