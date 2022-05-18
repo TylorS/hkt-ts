@@ -9,7 +9,7 @@ export function testCommutativity<A>(C: Commutative<A>, Eq: Eq<A> = DeepEquals) 
     pipe(
       Arbitrary.tuple(Arb, Arb, Arb),
       Arbitrary.assert(([a, b, c]) =>
-        Eq.equals(C.concat(a, C.concat(b, c)), C.concat(C.concat(c, b), a)),
+        Eq.equals(C.concat(a, C.concat(b, c)), C.concat(C.concat(b, c), a)),
       ),
     )
 }
