@@ -1,6 +1,18 @@
 import * as Either from './Either'
-import { NonEmptyArray } from './NonEmptyArray'
+import { HKT, HKT2, Kind, Params, Variance } from './HKT'
 import { Associative } from './Typeclass/Associative'
+import { AssociativeBoth2EC } from './Typeclass/AssociativeBoth'
+import * as AE from './Typeclass/AssociativeEither'
+import * as AF from './Typeclass/AssociativeFlatten'
+import * as BI from './Typeclass/Bicovariant'
+import * as C from './Typeclass/Covariant'
+import * as FM from './Typeclass/FoldMap'
+import * as FE from './Typeclass/ForEach'
+import { IdentityBoth, IdentityBoth2EC } from './Typeclass/IdentityBoth'
+import { IdentityEither2EC } from './Typeclass/IdentityEither'
+import { Reduce2 } from './Typeclass/Reduce'
+import { ReduceRight2 } from './Typeclass/ReduceRight'
+import * as T from './Typeclass/Top'
 import { constFalse, constTrue, flow, pipe } from './function'
 
 /**
@@ -110,106 +122,129 @@ export const makeFlatMap =
 /**
  * Apply a transformation to the success value contained within a These
  */
-export const map =
-  <A, B>(f: (a: A) => B) =>
-  <E>(these: These<E, A>): These<E, B> =>
+export const bimap =
+  <A, B, C, D>(f: (a: A) => B, g: (c: C) => D) =>
+  (these: These<A, C>): These<B, D> =>
     pipe(
       these,
-      match(Left, flow(f, Right), (e, a) => Both(e, f(a))),
+      match(flow(f, Left), flow(g, Right), (e, a) => Both(f(e), g(a))),
     )
+
+export interface TheseHKT extends HKT2 {
+  readonly type: These<this[Params.E], this[Params.A]>
+  readonly defaults: {
+    readonly [Params.E]: Variance.Covariant<never>
+  }
+}
+
+export const Bicovariant: BI.Bicovariant2<TheseHKT> = {
+  bimap,
+}
+
+/**
+ * Apply a transformation to the success value contained within a These
+ */
+export const map = BI.map(Bicovariant)
 
 /**
  * Apply a transformation to the errors of a These.
  */
-export const mapLeft =
-  <E1, E2>(f: (e: E1) => E2) =>
-  <A>(these: These<E1, A>): These<E2, A> =>
-    pipe(
-      these,
-      match(flow(f, Left), Right, (e, a) => Both(f(e), a)),
-    )
+export const mapLeft = BI.mapLeft(Bicovariant)
 
-/**
- * Compute a new These from any failures
- */
-export const orElse =
-  <E1, E2, B>(f: (e: E1) => These<E2, B>) =>
-  <A>(these: These<E1, A>): These<E2, A | B> =>
-    pipe(these, match(f, Right, f))
-
-export const struct = <TS extends Readonly<Record<string, These<any, any>>>>(
-  datas: TS,
-): These<
-  NonEmptyArray<{ readonly [K in keyof TS]: ErrorOf<TS[K]> }[keyof TS]>,
-  { readonly [K in keyof TS]: OutputOf<TS[K]> }
-> => {
-  const entries = Object.entries(datas)
-
-  return pipe(
-    tuple(
-      ...entries.map(([k, data]) =>
-        pipe(
-          data,
-          map((a) => [k, a] as const),
-        ),
-      ),
-    ),
-    map(Object.fromEntries),
-  )
+export const Covariant: C.Covariant2<TheseHKT> = {
+  map,
 }
 
-export const tupled = <E, A>(these: These<E, A>): These<E, readonly [A]> =>
-  pipe(
-    these,
-    map((a) => [a]),
-  )
+export const bindTo = C.bindTo(Covariant)
+export const flap = C.flap(Covariant)
+export const mapTo = C.mapTo(Covariant)
+export const tupled = C.tupled(Covariant)
 
-export const tuple = <TS extends ReadonlyArray<These<any, any>>>(...theses: TS) =>
-  theses.length === 0
-    ? Right([])
-    : theses.slice(1).reduce(
-        combine,
-        pipe(
-          theses[0],
-          tupled,
-          mapLeft((e) => [e] as const),
-        ),
-      )
-
-function combine<E1, A extends readonly any[], E2, B>(
-  left: These<NonEmptyArray<E1>, A>,
-  right: These<E2, B>,
-): These<NonEmptyArray<E1 | E2>, readonly [...A, B]> {
-  return pipe(
-    left,
-    match(
-      (e1) =>
-        pipe(
-          right,
-          match(
-            (e2) => Left([...e1, e2]),
-            () => Left(e1),
-            (e2) => Left([...e1, e2]),
-          ),
-        ),
-      (a) =>
-        pipe(
-          right,
-          match(
-            (e2) => Left([e2]),
-            (b) => Right([...a, b]),
-            (e2, b) => Both([e2], [...a, b]),
-          ),
-        ),
-      (e1, a) =>
-        pipe(
-          right,
-          match(
-            (e2) => Left([...e1, e2]),
-            (b) => Both(e1, [...a, b]),
-            (e2, b) => Both([...e1, e2], [...a, b]),
-          ),
-        ),
-    ),
-  )
+export const Top: T.Top2<TheseHKT> = {
+  top: Right([]),
 }
+
+export const fromLazy = T.makeFromLazy<TheseHKT>({ ...Top, ...Covariant })
+export const fromValue = T.makeFromValue<TheseHKT>({ ...Top, ...Covariant })
+
+export const makeAssociativeFlatten = <E>(
+  E: Associative<E>,
+): AF.AssociativeFlatten2EC<TheseHKT, E> => ({
+  flatten: makeFlatMap(E)(<A>(e: These<E, A>) => e),
+})
+
+export const AssociativeEither: AE.AssociativeEither2<TheseHKT> = {
+  either: (s) => (f) => isLeft(f) ? pipe(s, map(Either.Right)) : pipe(f, map(Either.Left)),
+}
+
+export const either = AssociativeEither.either
+export const orElse = AE.orElse<TheseHKT>({ ...AssociativeEither, ...Covariant })
+
+export const makeAssociativeBoth = <E>(E: Associative<E>): AssociativeBoth2EC<TheseHKT, E> =>
+  AF.makeAssociativeBoth<TheseHKT, E>({
+    ...makeAssociativeFlatten(E),
+    ...Covariant,
+  })
+
+export const makeIdentityBoth = <E>(E: Associative<E>): IdentityBoth2EC<TheseHKT, E> => ({
+  ...makeAssociativeBoth(E),
+  ...Top,
+})
+
+export const makeIdentityEither = <E>(id: E): IdentityEither2EC<TheseHKT, E> => ({
+  ...AssociativeEither,
+  bottom: Left(id),
+})
+
+export const ForEach: FE.ForEach2<TheseHKT> = {
+  map,
+  forEach: <T2 extends HKT>(IBC: IdentityBoth<T2> & C.Covariant<T2>) => {
+    const fromValue = T.makeFromValue(IBC)
+
+    return <A, B>(f: (a: A) => Kind<T2, B>) =>
+      <E1>(kind: These<E1, A>): Kind<T2, These<E1, B>> =>
+        pipe(
+          kind,
+          match(flow(Left, fromValue), flow(f, IBC.map(Right)), (e, a) =>
+            pipe(
+              a,
+              f,
+              IBC.map((b) => Both(e, b)),
+            ),
+          ),
+        )
+  },
+}
+
+export const forEach = ForEach.forEach
+export const sequence = FE.sequence(ForEach)
+export const foldMap = FE.foldMap(ForEach)
+export const mapAccum = FE.mapAccum(ForEach)
+
+export const FoldMap: FM.FoldMap2<TheseHKT> = {
+  foldMap,
+}
+
+export const foldLeft = FM.foldLeft(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
+export const reverse = FM.reverse<TheseHKT>({ ...FoldMap, ...ForEach })
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const groupBy = FM.groupBy(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+export const isEmpty = FM.isEmpty(FoldMap)
+export const isNonEmpty = FM.isNonEmpty(FoldMap)
+export const reduce = FM.reduce(FoldMap)
+
+export const Reduce: Reduce2<TheseHKT> = {
+  reduce,
+}
+
+export const ReduceRight: ReduceRight2<TheseHKT> = {
+  reduceRight: (b, f) => reduce(b, (b, a) => f(a, b)),
+}
+
+export const reduceRight = ReduceRight.reduceRight

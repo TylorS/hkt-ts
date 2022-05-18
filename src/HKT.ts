@@ -525,17 +525,17 @@ export type DefaultOf<H extends HKT, P extends Params> = P extends keyof H['defa
   ? DefaultForVariance<H['defaults'][P]>
   : unknown
 
-export type DefaultForVariance<V> = [V] extends [Variance.Contravariant<infer R>]
+export type DefaultForVariance<V> = [V] extends [Variance.Invariant<infer R>]
+  ? Equals<R, unknown> extends 1
+    ? any
+    : R
+  : [V] extends [Variance.Contravariant<infer R>]
   ? Equals<R, unknown> extends 1
     ? unknown
     : R
   : [V] extends [Variance.Covariant<infer R>]
   ? Equals<R, unknown> extends 1
     ? never
-    : R
-  : [V] extends [Variance.Invariant<infer R>]
-  ? Equals<R, unknown> extends 1
-    ? any
     : R
   : any
 
