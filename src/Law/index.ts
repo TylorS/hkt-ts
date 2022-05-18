@@ -1,0 +1,8 @@
+export * from './Arbitrary'
+export * as Associative from './Associative'
+export * as Commutative from './Commutative'
+export * as Covariant from './Covariant'
+export * as Eq from './Eq'
+export * as Identity from './Identity'
+export * as Inverse from './Inverse'
+export * as Ord from './Ord'
