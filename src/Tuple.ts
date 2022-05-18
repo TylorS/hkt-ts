@@ -1,9 +1,17 @@
-import { HKT2, Params } from './HKT'
+import { HKT, HKT2, Kind, Params } from './HKT'
 import { Associative } from './Typeclass/Associative'
 import { AssociativeBoth2EC } from './Typeclass/AssociativeBoth'
-import { Covariant2 } from './Typeclass/Covariant'
+import { AssociativeFlatten2EC } from './Typeclass/AssociativeFlatten'
+import { Bicovariant2 } from './Typeclass/Bicovariant'
+import * as C from './Typeclass/Covariant'
 import { Debug } from './Typeclass/Debug'
+import * as FM from './Typeclass/FoldMap'
+import * as FE from './Typeclass/ForEach'
 import { Identity } from './Typeclass/Identity'
+import { IdentityBoth } from './Typeclass/IdentityBoth'
+import { Reduce2 } from './Typeclass/Reduce'
+import { ReduceRight2 } from './Typeclass/ReduceRight'
+import { flow, pipe } from './function'
 
 export type Tuple<A, B> = readonly [first: A, second: B]
 
@@ -17,11 +25,6 @@ export function snd<A, E>(ea: Tuple<A, E>): E {
 
 export const swap = <A, E>(ea: Tuple<A, E>): Tuple<E, A> => [snd(ea), fst(ea)]
 
-export const bimap: <E, G, A, B>(
-  mapSnd: (e: E) => G,
-  mapFst: (a: A) => B,
-) => (fa: readonly [A, E]) => readonly [B, G] = (f, g) => (fa) => [g(fst(fa)), f(snd(fa))]
-
 export const mapFst: <A, B>(f: (a: A) => B) => <E>(fa: readonly [A, E]) => readonly [B, E] =
   (f) => (fa) =>
     [f(fst(fa)), snd(fa)]
@@ -33,17 +36,6 @@ export const mapSnd: <E, G>(f: (e: E) => G) => <A>(fa: readonly [A, E]) => reado
 export const compose: <A, B>(ab: readonly [B, A]) => <C>(bc: readonly [C, B]) => readonly [C, A] =
   (ab) => (bc) =>
     [fst(bc), snd(ab)]
-
-export const foldMap: <A, M>(f: (a: A) => M) => <E>(fa: readonly [A, E]) => M = (f) => (fa) =>
-  f(fst(fa))
-
-export const reduce: <A, B>(b: B, f: (b: B, a: A) => B) => <E>(fa: readonly [A, E]) => B =
-  (b, f) => (fa) =>
-    f(b, fst(fa))
-
-export const reduceRight: <A, B>(b: B, f: (a: A, b: B) => B) => <E>(fa: readonly [A, E]) => B =
-  (b, f) => (fa) =>
-    f(fst(fa), b)
 
 export function makeDebug<A, B>(A: Debug<A>, B: Debug<B>): Debug<Tuple<A, B>> {
   return {
@@ -67,10 +59,75 @@ export interface TupleHKT extends HKT2 {
   readonly type: Tuple<this[Params.E], this[Params.A]>
 }
 
-export const Covariant: Covariant2<TupleHKT> = {
+export const Bicovariant: Bicovariant2<TupleHKT> = {
+  bimap: (f, g) => flow(mapFst(f), mapSnd(g)),
+}
+
+export const bimap = Bicovariant.bimap
+
+export const Covariant: C.Covariant2<TupleHKT> = {
   map: mapSnd,
 }
+
+export const map = Covariant.map
+export const bindTo = C.bindTo(Covariant)
+export const flap = C.flap(Covariant)
+export const mapTo = C.mapTo(Covariant)
+export const tupled = C.tupled(Covariant)
 
 export const makeAssociativeBoth = <E>(E: Associative<E>): AssociativeBoth2EC<TupleHKT, E> => ({
   both: (second) => (first) => [E.concat(first[0], second[0]), [first[1], second[1]]],
 })
+
+export const makeAssociativeFlatten = <E>(
+  E: Associative<E>,
+): AssociativeFlatten2EC<TupleHKT, E> => ({
+  flatten: ([e, [e2, a]]) => [E.concat(e, e2), a],
+})
+
+export const ForEach: FE.ForEach2<TupleHKT> = {
+  map,
+  forEach:
+    <T2 extends HKT>(IBC: IdentityBoth<T2> & C.Covariant<T2>) =>
+    <A, B>(f: (a: A) => Kind<T2, B>) =>
+    <E1>(tuple: Tuple<E1, A>): Kind<T2, Tuple<E1, B>> =>
+      pipe(
+        tuple,
+        snd,
+        f,
+        IBC.map((b) => [fst(tuple), b] as const),
+      ),
+}
+
+export const forEach = ForEach.forEach
+export const sequence = FE.sequence(ForEach)
+export const foldMap = FE.foldMap(ForEach)
+export const mapAccum = FE.mapAccum(ForEach)
+
+export const FoldMap: FM.FoldMap2<TupleHKT> = {
+  foldMap,
+}
+
+export const foldLeft = FM.foldLeft(FoldMap)
+export const contains = FM.contains(FoldMap)
+export const count = FM.count(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
+export const reverse = FM.reverse<TupleHKT>({ ...FoldMap, ...ForEach })
+export const every = FM.every(FoldMap)
+export const some = FM.some(FoldMap)
+export const groupBy = FM.groupBy(FoldMap)
+export const intercalate = FM.intercalate(FoldMap)
+export const isEmpty = FM.isEmpty(FoldMap)
+export const isNonEmpty = FM.isNonEmpty(FoldMap)
+export const reduce = FM.reduce(FoldMap)
+
+export const Reduce: Reduce2<TupleHKT> = {
+  reduce,
+}
+
+export const ReduceRight: ReduceRight2<TupleHKT> = {
+  reduceRight: (b, f) => reduce(b, (b, a) => f(a, b)),
+}
+
+export const reduceRight = ReduceRight.reduceRight

@@ -25,7 +25,6 @@ import {
 import type * as M from '../Maybe'
 import type { NonEmptyArray } from '../NonEmptyArray'
 import { not } from '../Predicate'
-import { makeIdentity, snd } from '../Tuple'
 import * as B from '../boolean'
 import { makeStateIdentity } from '../common'
 import { constFalse, flow, pipe } from '../function'
@@ -1126,7 +1125,7 @@ export function reverse<T extends HKT>(
     return pipe(
       kind,
       mapAccum(reversed, (s) => [s.slice(1), s[0]]),
-      snd,
+      (x) => x[1],
     )
   }
 }
@@ -2445,14 +2444,18 @@ export function partitionMap<T extends HKT>(
   const bottom = F.bottom
   const makeEitherIdentity = fromIdentityEitherCovariant(F)
 
-  return <A, B, C>(f: (a: A) => Either.Either<B, C>) =>
-    F.foldMap<readonly [Kind<T, B>, Kind<T, C>]>(
-      makeIdentity(makeEitherIdentity<B>(), makeEitherIdentity<C>()),
-    )(
+  return <A, B, C>(f: (a: A) => Either.Either<B, C>) => {
+    const b = makeEitherIdentity<B>()
+    const c = makeEitherIdentity<C>()
+    return F.foldMap<readonly [Kind<T, B>, Kind<T, C>]>({
+      id: [b.id, c.id],
+      concat: ([e1, a1], [e2, a2]) => [b.concat(e1, e2), c.concat(a1, a2)],
+    })(
       flow(f, (e) =>
         e.tag === 'Left' ? [fromValue(e.left), bottom] : [bottom, fromValue(e.right)],
       ),
     )
+  }
 }
 
 /* #endregion */
@@ -2522,8 +2525,7 @@ export function addIndex<T extends HKT>(FM: FoldMap<T>): FoldMapWithIndex<T, num
 
         return flow(
           foldMap((a: A) => (n) => [n + 1, f(n, a)]),
-          (f) => f(0),
-          snd,
+          (f) => f(0)[1],
         )
       },
   }
