@@ -81,6 +81,10 @@ export class PrintContextManager {
     return !!this.context.contextStack.find((x) => x === 'TypeParam')
   }
 
+  isWithinFunctionParam(): boolean {
+    return !!this.context.contextStack.find((x) => x === 'FunctionParam')
+  }
+
   isWithinKind(): boolean {
     return !!this.context.contextStack.find((x) => x === 'Kind')
   }
@@ -90,7 +94,7 @@ export class PrintContextManager {
   }
 
   shouldPrintFunctionName(): boolean {
-    return !this.isWithinReturn() && !this.isWithinProperty()
+    return !this.isWithinReturn() && !this.isWithinProperty() && !this.isWithinFunctionParam()
   }
 
   shouldUseColon(): boolean {
@@ -100,7 +104,12 @@ export class PrintContextManager {
       return true
     }
 
-    return !this.isWithinProperty() && !this.isWithinReturn() && !this.isWithinExtension()
+    return (
+      !this.isWithinProperty() &&
+      !this.isWithinReturn() &&
+      !this.isWithinExtension() &&
+      !this.isWithinFunctionParam()
+    )
   }
 
   getParentNode() {

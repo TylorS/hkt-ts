@@ -161,7 +161,12 @@ export function printFunctionSignature(
 
   let s = ''
 
-  if (!manager.isWithinInterface() && !manager.isWithinTypeAlias() && !manager.isWithinReturn()) {
+  if (
+    !manager.isWithinInterface() &&
+    !manager.isWithinTypeAlias() &&
+    !manager.isWithinReturn() &&
+    !manager.isWithinFunctionParam()
+  ) {
     s += `export function `
   }
 
@@ -214,6 +219,8 @@ export function printFunctionSignature(
   manager.addContext('Return')
 
   s += printKindParam(node.returnSignature, context, manager)
+
+  manager.popContext()
 
   return s
 }
