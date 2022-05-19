@@ -28,6 +28,21 @@ describe(__filename, () => {
     })
   })
 
+  describe('Identity', () => {
+    describe('IdentitySum', () => {
+      it('is a valid instance', () =>
+        pipe(L.number(), L.Identity.testIdentity(N.IdentitySum, N.Eq))(fc))
+    })
+
+    describe('IdentityProduct', () => {
+      it('is a valid instance', () =>
+        pipe(
+          L.number({ min: 1, max: 10000 }), // JS is sorta bad a multiplication of really large numbers
+          L.Identity.testIdentity(N.IdentityProduct, N.Eq),
+        )(fc))
+    })
+  })
+
   describe('Commutative', () => {
     describe('CommutativeSum', () => {
       it('is a valid instance', () =>
