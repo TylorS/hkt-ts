@@ -15,6 +15,9 @@ export const Arbitrary = <A>(
   arbitrary,
 })
 
+export const number = (params?: import('fast-check').IntegerConstraints) =>
+  Arbitrary((fc) => (params ? fc.integer(params) : fc.integer()))
+
 export const toProperty =
   <A>(predicate: Predicate<A>) =>
   (a: Arbitrary<A>) =>
