@@ -8,6 +8,7 @@ import * as AE from './Typeclass/AssociativeEither'
 import * as AF from './Typeclass/AssociativeFlatten'
 import { Bottom1 } from './Typeclass/Bottom'
 import { Compact1 } from './Typeclass/Compact'
+import { Concat } from './Typeclass/Concat'
 import * as C from './Typeclass/Covariant'
 import * as CI from './Typeclass/CovariantWithIndex'
 import { Debug } from './Typeclass/Debug'
@@ -32,7 +33,6 @@ import { Separate1 } from './Typeclass/Separate'
 import * as T from './Typeclass/Top'
 import { Arity2, pipe } from './function'
 import * as N from './number'
-import { Concat } from './Typeclass/Concat'
 
 export interface ArrayHKT extends HKT {
   readonly type: ReadonlyArray<this[Params.A]>

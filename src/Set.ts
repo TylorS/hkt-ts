@@ -1,18 +1,18 @@
-import { HKT, Params } from './HKT'
-import * as C from './Typeclass/Covariant'
 import * as A from './Array'
-import * as Eq from './Typeclass/Eq'
-import { Concat } from './Typeclass/Concat'
-import * as AF from './Typeclass/AssociativeFlatten'
-import * as T from './Typeclass/Top'
-import * as IB from './Typeclass/IdentityBoth'
-import * as AE from './Typeclass/AssociativeEither'
 import { Left, Right } from './Either'
-import { pipe } from './function'
+import { HKT, Params } from './HKT'
+import * as AE from './Typeclass/AssociativeEither'
+import * as AF from './Typeclass/AssociativeFlatten'
 import { Bottom1 } from './Typeclass/Bottom'
+import { Concat } from './Typeclass/Concat'
+import * as C from './Typeclass/Covariant'
+import { Debug } from './Typeclass/Debug'
+import * as Eq from './Typeclass/Eq'
+import * as IB from './Typeclass/IdentityBoth'
 import { IdentityEither1 } from './Typeclass/IdentityEither'
 import * as Ord from './Typeclass/Ord'
-import { Debug } from './Typeclass/Debug'
+import * as T from './Typeclass/Top'
+import { pipe } from './function'
 
 export interface SetHKT extends HKT {
   readonly type: ReadonlySet<this[Params.A]>
@@ -98,11 +98,16 @@ export const makeEq = <A>(E: Eq.Eq<A>): Eq.Eq<ReadonlySet<A>> =>
   pipe(
     E,
     A.makeEq,
-    Eq.contramap(Array.from<A>),
+    Eq.contramap((a) => Array.from(a)),
   )
 
-export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<ReadonlySet<A>> => pipe(O, A.makeOrd, Ord.contramap(Array.from<A>))
+export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<ReadonlySet<A>> =>
+  pipe(
+    O,
+    A.makeOrd,
+    Ord.contramap((a) => Array.from(a)),
+  )
 
 export const makeDebug = <A>(D: Debug<A>): Debug<ReadonlySet<A>> => ({
-  debug: (set) => `Set ${A.makeDebug(D).debug(Array.from(set))}`
+  debug: (set) => `Set ${A.makeDebug(D).debug(Array.from(set))}`,
 })

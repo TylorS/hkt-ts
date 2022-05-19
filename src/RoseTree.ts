@@ -1,17 +1,17 @@
-import { pipe } from './function'
 import { HKT, Kind, Params } from './HKT'
 import * as Tree from './Tree'
+import { Associative } from './Typeclass/Associative'
 import * as AB from './Typeclass/AssociativeBoth'
 import * as AF from './Typeclass/AssociativeFlatten'
 import * as C from './Typeclass/Covariant'
-import * as FE from './Typeclass/ForEach'
-import * as IB from './Typeclass/IdentityBoth'
-import * as FM from './Typeclass/FoldMap'
 import { Debug } from './Typeclass/Debug'
 import { Eq } from './Typeclass/Eq'
-import { Associative } from './Typeclass/Associative'
+import * as FM from './Typeclass/FoldMap'
+import * as FE from './Typeclass/ForEach'
 import { Identity } from './Typeclass/Identity'
+import * as IB from './Typeclass/IdentityBoth'
 import { Ord } from './Typeclass/Ord'
+import { pipe } from './function'
 
 // A specialization of Tree which has the same parent + child nodes
 export type RoseTree<A> = Tree.Tree<A, A>
