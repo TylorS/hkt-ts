@@ -4,11 +4,12 @@ import { pipe } from '../function'
 import * as Arbitrary from './Arbitrary'
 
 export function testOrd<A>(O: Ord<A>) {
-  return (Arb: Arbitrary.Arbitrary<A>) =>
-    testOrdTotality(O)(Arb) &&
-    testOrdReflexivity(O)(Arb) &&
-    testOrdAntsymmetry(O)(Arb) &&
-    testOrdTransitivity(O)(Arb)
+  return (Arb: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => ({
+    totality: () => testOrdTotality(O)(Arb)(fc),
+    reflexivity: () => testOrdReflexivity(O)(Arb)(fc),
+    antisymmetry: () => testOrdAntisymmetry(O)(Arb)(fc),
+    transitivity: () => testOrdTransitivity(O)(Arb)(fc),
+  })
 }
 
 export function testOrdTotality<A>(O: Ord<A>) {
@@ -27,7 +28,7 @@ export function testOrdReflexivity<A>(O: Ord<A>) {
     )
 }
 
-export function testOrdAntsymmetry<A>(O: Ord<A>) {
+export function testOrdAntisymmetry<A>(O: Ord<A>) {
   return (Arb: Arbitrary.Arbitrary<A>) =>
     pipe(
       Arbitrary.tuple(Arb, Arb),

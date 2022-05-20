@@ -4,8 +4,11 @@ import { pipe } from '../function'
 import * as Arbitrary from './Arbitrary'
 
 export function testEq<A>(E: Eq<A>) {
-  return (Arb: Arbitrary.Arbitrary<A>) =>
-    testEqReflexivity(E)(Arb) && testEqSymmetry(E)(Arb) && testEqTransitivity(E)(Arb)
+  return (Arb: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => ({
+    reflexivity: () => testEqReflexivity(E)(Arb)(fc),
+    symmetry: () => testEqSymmetry(E)(Arb)(fc),
+    transitivity: () => testEqTransitivity(E)(Arb)(fc),
+  })
 }
 
 export function testEqReflexivity<A>(E: Eq<A>) {

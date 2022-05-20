@@ -2,41 +2,95 @@ import * as fc from 'fast-check'
 
 import * as A from './Array'
 import * as L from './Law'
-import { pipe } from './function'
+import { testAllDataLaws, testAllHKTLaws } from './Law/internal-test-all-laws.test'
 import * as N from './number'
+import * as S from './string'
 
 describe(__filename, () => {
-  describe('Instances', () => {
-    describe('Associative', () => {
-      it('has a valid instance', () =>
-        pipe(L.array(L.number()), L.Associative.testAssociativity(A.makeAssociative<number>()))(fc))
-    })
+  testAllDataLaws({
+    name: `Array<number> Instances`,
+    fc,
+    Arbitrary: L.array(L.number()),
+    Associative: {
+      array: [A.makeAssociative<number>(), A.makeEq(N.Eq)],
+    },
+    Identity: {
+      array: [A.makeIdentity<number>(), A.makeEq(N.Eq)],
+    },
+    Eq: {
+      array: A.makeEq(N.Eq),
+    },
+    Ord: {
+      array: A.makeOrd(N.Ord),
+    },
+  })
 
-    describe('Covariant', () => {
-      it('has a valid instance', () =>
-        pipe(
-          L.array(L.number()),
-          L.Covariant.testCovariant(
-            A.Covariant,
-            (n: number) => n + 1,
-            (n: number) => n * 2,
-            A.makeEq(N.Eq),
-          ),
-        )(fc))
-    })
+  testAllDataLaws({
+    name: `Array<string> Instances`,
+    fc,
+    Arbitrary: L.array(L.string()),
+    Associative: {
+      array: [A.makeAssociative<string>(), A.makeEq(S.Eq)],
+    },
+    Identity: {
+      array: [A.makeIdentity<string>(), A.makeEq(S.Eq)],
+    },
+    Eq: {
+      array: A.makeEq(S.Eq),
+    },
+    Ord: {
+      array: A.makeOrd(S.Ord),
+    },
+  })
 
-    describe('Eq', () => {
-      it('has a valid instance', () => pipe(L.array(L.number()), L.Eq.testEq(A.makeEq(N.Eq)))(fc))
-    })
+  testAllHKTLaws({
+    name: `Array<number> Instances`,
+    fc,
+    Arbitrary: L.nonEmptyArray(L.number()),
+    ArbitraryA: L.number(),
+    Covariant: {
+      array: [A.Covariant, (x: number) => x + 1, (x: number) => x * 2, A.makeEq(N.Eq)],
+    },
+    CovariantAssociativeBoth: {
+      array: [
+        { ...A.Covariant, ...A.AssociativeBoth },
+        [(x: number) => x + 1],
+        [(x: number) => x * 2],
+      ],
+    },
+    CovariantIdentityBoth: {
+      array: [
+        { ...A.Covariant, ...A.IdentityBoth },
+        (x: number) => String(x),
+        A.makeEq(N.Eq),
+        A.makeEq(S.Eq),
+      ],
+    },
+  })
 
-    describe('Identity', () => {
-      it('has a valid instance', () =>
-        pipe(L.array(L.number()), L.Identity.testIdentity(A.makeIdentity<number>()))(fc))
-    })
-
-    describe('Ord', () => {
-      it('has a valid instance', () =>
-        pipe(L.array(L.number()), L.Ord.testOrd(A.makeOrd(N.Ord)))(fc))
-    })
+  testAllHKTLaws({
+    name: `Array<string> Instances`,
+    fc,
+    Arbitrary: L.nonEmptyArray(L.string()),
+    ArbitraryA: L.string(),
+    Covariant: {
+      array: [A.Covariant, (x: string) => x + x, (x: string) => x.length * 2, A.makeEq(N.Eq)],
+    },
+    CovariantAssociativeBoth: {
+      array: [
+        { ...A.Covariant, ...A.AssociativeBoth },
+        [(x: string) => x + x],
+        [(x: string) => x.length * 2],
+        A.makeEq(N.Eq),
+      ],
+    },
+    CovariantIdentityBoth: {
+      array: [
+        { ...A.Covariant, ...A.IdentityBoth },
+        (x: string) => x.length,
+        A.makeEq(S.Eq),
+        A.makeEq(N.Eq),
+      ],
+    },
   })
 })

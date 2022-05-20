@@ -8,7 +8,10 @@ export function testIdentity<A>(I: Identity<A>, Eq: Eq<A> = DeepEquals) {
   const left = testLeftIdentity(I, Eq)
   const right = testRightIdentity(I, Eq)
 
-  return (Arb: Arbitrary.Arbitrary<A>) => left(Arb) && right(Arb)
+  return (Arb: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => ({
+    left: () => left(Arb)(fc),
+    right: () => right(Arb),
+  })
 }
 
 export function testLeftIdentity<A>(I: Identity<A>, Eq: Eq<A> = DeepEquals) {

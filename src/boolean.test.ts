@@ -1,37 +1,27 @@
 import * as fc from 'fast-check'
 
 import * as L from './Law'
+import { testAllDataLaws } from './Law/internal-test-all-laws.test'
 import * as B from './boolean'
-import { pipe } from './function'
 
 describe(__filename, () => {
-  describe('Eq', () => {
-    it('is a valid instance', () => pipe(L.boolean, L.Eq.testEq(B.Eq))(fc))
-  })
-
-  describe('Ord', () => {
-    it('is a valid instance', () => pipe(L.boolean, L.Ord.testOrd(B.Ord))(fc))
-  })
-
-  describe('Associative', () => {
-    describe('All', () => {
-      it('is a valid instance', () =>
-        pipe(L.boolean, L.Associative.testAssociativity(B.All, B.Eq))(fc))
-    })
-
-    describe('Any', () => {
-      it('is a valid instance', () =>
-        pipe(L.boolean, L.Associative.testAssociativity(B.Any, B.Eq))(fc))
-    })
-  })
-
-  describe('Identity', () => {
-    describe('All', () => {
-      it('is a valid instance', () => pipe(L.boolean, L.Identity.testIdentity(B.All, B.Eq))(fc))
-    })
-
-    describe('Any', () => {
-      it('is a valid instance', () => pipe(L.boolean, L.Identity.testIdentity(B.Any, B.Eq))(fc))
-    })
+  testAllDataLaws({
+    name: 'Boolean Instances',
+    fc,
+    Arbitrary: L.boolean,
+    Eq: {
+      boolean: B.Eq,
+    },
+    Ord: {
+      boolean: B.Ord,
+    },
+    Associative: {
+      All: [B.AssociativeAll, B.Eq],
+      Any: [B.AssociativeAny, B.Eq],
+    },
+    Identity: {
+      All: [B.All, B.Eq],
+      Any: [B.Any, B.Eq],
+    },
   })
 })
