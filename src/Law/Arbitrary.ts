@@ -6,7 +6,9 @@ import * as M from '../Maybe'
 import { NonEmptyArray } from '../NonEmptyArray'
 import { Predicate } from '../Predicate'
 import * as P from '../Progress'
+import * as RT from '../RoseTree'
 import * as TH from '../These'
+import * as TR from '../Tree'
 import * as AF from '../Typeclass/AssociativeFlatten'
 import * as C from '../Typeclass/Covariant'
 import * as IB from '../Typeclass/IdentityBoth'
@@ -209,3 +211,35 @@ export const Both = <E, A>(E: Arbitrary<E>, A: Arbitrary<A>): Arbitrary<TH.Both<
 
 export const These = <E, A>(E: Arbitrary<E>, A: Arbitrary<A>): Arbitrary<TH.These<E, A>> =>
   union(Left(E), Right(A), Both(E, A))
+
+export const lazy = <A>(f: () => Arbitrary<A>): Arbitrary<A> => {
+  let memoed: Arbitrary<A> | null = null
+
+  const get = () => {
+    if (!memoed) {
+      memoed = f()
+    }
+
+    return memoed
+  }
+
+  return Arbitrary((fc) => get().arbitrary(fc))
+}
+
+export const Parent = <P, C>(P: Arbitrary<P>, C: Arbitrary<C>): Arbitrary<TR.ParentNode<P, C>> =>
+  struct({
+    tag: constant('Parent'),
+    value: P,
+    forest: array(lazy(() => Tree(P, C))),
+  })
+
+export const Leaf = <C>(C: Arbitrary<C>): Arbitrary<TR.LeafNode<C>> =>
+  struct({
+    tag: constant('Leaf'),
+    value: C,
+  })
+
+export const Tree = <P, C>(P: Arbitrary<P>, C: Arbitrary<C>): Arbitrary<TR.Tree<P, C>> =>
+  union(Parent(P, C), Leaf(C))
+
+export const RoseTree = <A>(A: Arbitrary<A>): Arbitrary<RT.RoseTree<A>> => Tree(A, A)

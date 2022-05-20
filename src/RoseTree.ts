@@ -20,7 +20,7 @@ export type RoseForest<A> = Tree.Forest<A, A>
 
 export function RoseTree<A>(value: A, forest: RoseForest<A> = []): RoseTree<A> {
   return {
-    type: 'Parent',
+    tag: 'Parent',
     value,
     forest,
   }
@@ -59,7 +59,7 @@ export const ForEach: FE.ForEach1<RoseTreeHKT> = {
     const forEach_ =
       <A, B>(f: (a: A) => Kind<T2, B>) =>
       (kind: RoseTree<A>): Kind<T2, RoseTree<B>> => {
-        if (kind.type === 'Leaf') {
+        if (kind.tag === 'Leaf') {
           return pipe(kind.value, f, IBC.map(Tree.leaf))
         }
 

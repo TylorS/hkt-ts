@@ -21,7 +21,7 @@ export type Tree<Parent, Child> = ParentNode<Parent, Child> | LeafNode<Child>
 export type Forest<Parent, Child> = readonly Tree<Parent, Child>[]
 
 export interface ParentNode<Parent, Child> {
-  readonly type: 'Parent'
+  readonly tag: 'Parent'
   readonly value: Parent
   readonly forest: Forest<Parent, Child>
 }
@@ -30,25 +30,25 @@ export const parent = <Parent, Child>(
   value: Parent,
   forest: Forest<Parent, Child>,
 ): ParentNode<Parent, Child> => ({
-  type: 'Parent',
+  tag: 'Parent',
   value,
   forest,
 })
 
 export interface LeafNode<Child> {
-  readonly type: 'Leaf'
+  readonly tag: 'Leaf'
   readonly value: Child
 }
 
 export const leaf = <Child>(value: Child): LeafNode<Child> => ({
-  type: 'Leaf',
+  tag: 'Leaf',
   value,
 })
 
 export const match =
   <P, A, C, B>(f: (parent: P, forest: Forest<P, C>) => A, g: (child: C) => B) =>
   (tree: Tree<P, C>): A | B =>
-    tree.type === 'Leaf' ? g(tree.value) : f(tree.value, tree.forest)
+    tree.tag === 'Leaf' ? g(tree.value) : f(tree.value, tree.forest)
 
 export interface TreeHKT extends HKT2 {
   readonly type: Tree<this[Params.E], this[Params.A]>
@@ -84,7 +84,7 @@ export const tupled = C.tupled(Covariant)
 export const flatMap =
   <A, P2, B>(f: (a: A) => Tree<P2, B>) =>
   <P1>(tree: Tree<P1, A>): Tree<P1 | P2, B> => {
-    if (tree.type === 'Leaf') {
+    if (tree.tag === 'Leaf') {
       return f(tree.value)
     }
 
@@ -112,7 +112,7 @@ export const ForEach: FE.ForEach2<TreeHKT> = {
     const forEach_ =
       <A, B>(f: (a: A) => Kind<T2, B>) =>
       <E1>(kind: Tree<E1, A>): Kind<T2, Tree<E1, B>> => {
-        if (kind.type === 'Leaf') {
+        if (kind.tag === 'Leaf') {
           return pipe(kind.value, f, IBC.map(leaf))
         }
 
@@ -148,13 +148,13 @@ export const groupBy = FM.groupBy(FoldMap)
 export const intercalate = FM.intercalate(FoldMap)
 
 export const makeEq = <E, A>(EQE: EQ.Eq<E>, EQA: EQ.Eq<A>): EQ.Eq<Tree<E, A>> => {
-  const derived: EQ.Eq<Tree<E, A>> = EQ.sum<Tree<E, A>>()('type')({
+  const derived: EQ.Eq<Tree<E, A>> = EQ.sum<Tree<E, A>>()('tag')({
     Leaf: EQ.struct({
-      type: EQ.Strict,
+      tag: EQ.Strict,
       value: EQA,
     }),
     Parent: EQ.struct({
-      type: EQ.Strict,
+      tag: EQ.Strict,
       value: EQE,
       forest: A.makeEq(EQ.lazy(() => derived)),
     }),
@@ -164,29 +164,29 @@ export const makeEq = <E, A>(EQE: EQ.Eq<E>, EQA: EQ.Eq<A>): EQ.Eq<Tree<E, A>> =>
 }
 
 export const makeOrd = <E, A>(OrdE: Ord.Ord<E>, OrdA: Ord.Ord<A>): Ord.Ord<Tree<E, A>> => {
-  const derived: Ord.Ord<Tree<E, A>> = Ord.sum<Tree<E, A>>()('type')(
+  const derived: Ord.Ord<Tree<E, A>> = Ord.sum<Tree<E, A>>()('tag')(
     pipe(
       N.Ord,
       Ord.contramap((x) => (x === 'Leaf' ? 1 : 0)),
     ),
   )({
     Leaf: Ord.struct({
-      type: Ord.Static,
+      tag: Ord.Static,
       value: OrdA,
     })(
       pipe(
         N.Ord,
-        Ord.contramap((a) => (a === 'type' ? 1 : 0)),
+        Ord.contramap((a) => (a === 'tag' ? 1 : 0)),
       ),
     ),
     Parent: Ord.struct({
-      type: Ord.Static,
+      tag: Ord.Static,
       value: OrdE,
       forest: A.makeOrd(Ord.lazy(() => derived)),
     })(
       pipe(
         N.Ord,
-        Ord.contramap((a) => (a === 'type' ? 2 : a === 'forest' ? 1 : 0)),
+        Ord.contramap((a) => (a === 'tag' ? 2 : a === 'forest' ? 1 : 0)),
       ),
     ),
   })
@@ -240,7 +240,7 @@ const draw = (indentation: string, forest: Forest<string, string>): string => {
     const isLast = i === lastIndex
     r += indentation + (isLast ? '└' : '├') + '─ ' + tree.value
 
-    if (tree.type === 'Parent') {
+    if (tree.tag === 'Parent') {
       r += draw(indentation + (len > 1 && !isLast ? '│  ' : '   '), tree.forest)
     }
   }
@@ -252,7 +252,7 @@ export function drawForest(forest: Forest<string, string>): string {
 }
 
 export function drawTree(tree: Tree<string, string>): string {
-  if (tree.type === 'Leaf') {
+  if (tree.tag === 'Leaf') {
     return tree.value
   }
 
