@@ -22,6 +22,12 @@ import {
   IdentityBoth2,
   IdentityBoth2EC,
 } from '../Typeclass/IdentityBoth'
+import {
+  IdentityFlatten,
+  IdentityFlatten1,
+  IdentityFlatten2,
+  IdentityFlatten2EC,
+} from '../Typeclass/IdentityFlatten'
 import { Inverse } from '../Typeclass/Inverse'
 import { Ord } from '../Typeclass/Ord'
 import { pipe } from '../function'
@@ -35,6 +41,7 @@ import * as LCovariant from './Covariant'
 import * as LE from './Eq'
 import * as LI from './Identity'
 import * as LIB from './IdentityBoth'
+import * as LIF from './IdentityFlatten'
 import * as LIV from './Inverse'
 import * as LO from './Ord'
 
@@ -187,13 +194,28 @@ export function testAllHKTLaws<T extends HKT>() {
           for (const [name, args] of Object.entries(params.CovariantAssociativeFlatten)) {
             describe(`AssociativeFlatten & Covariant (${name})`, () => {
               const [AFC, f, g, Eq] = args
-              const { associativity } = pipe(
+              const { associativity, derivedAssociativeBoth } = pipe(
                 Arbitrary,
-                LAF.testCovariantAssociativeFlatten(AFC, f, g, Eq),
+                LAF.testCovariantAssociativeFlatten(AFC, f, g, Eq ?? DeepEquals),
               )(fc)
 
               it(`Associativity`, associativity)
-              it(`Derived AssociativeBoth`, associativity)
+              it(`Derived AssociativeBoth`, derivedAssociativeBoth)
+            })
+          }
+        }
+
+        if (params.CovariantIdentityFlatten) {
+          for (const [name, args] of Object.entries(params.CovariantIdentityFlatten)) {
+            describe(`IdentityFlatten & Covariant (${name})`, () => {
+              const [AFC, f, Eq] = args
+              const { leftIdentity, rightIdentity } = pipe(
+                ArbitraryA,
+                LIF.testCovariantIdentityFlatten(AFC, f, Eq ?? DeepEquals),
+              )(fc)
+
+              it(`Left Identity`, leftIdentity)
+              it(`Right Identity`, rightIdentity)
             })
           }
         }
@@ -214,19 +236,13 @@ export interface HKTLawTestParams2<T extends HKT2, E, A, B, C, D, F, G, H> {
   readonly CovariantAssociativeBoth?:
     | Record<
         string,
-        [
-          AssociativeBoth2<T> & Covariant2<T>,
-          Kind2<T, E, (a: A) => B>,
-          Kind2<T, E, (b: B) => C>,
-          Eq<Kind2<T, E, C>>?,
-        ]
+        [AssociativeBoth2<T> & Covariant2<T>, Kind2<T, E, (a: A) => B>, Eq<Kind2<T, E, C>>?]
       >
     | Record<
         string,
         [
           AssociativeBoth2EC<T, E> & Covariant2EC<T, E>,
           Kind2<T, E, (a: A) => B>,
-          Kind2<T, E, (b: B) => C>,
           Eq<Kind2<T, E, C>>?,
         ]
       >
@@ -246,17 +262,31 @@ export interface HKTLawTestParams2<T extends HKT2, E, A, B, C, D, F, G, H> {
         string,
         [
           AFC: AssociativeFlatten2<T> & Covariant2<T>,
-          f: (a: F) => Kind<T, G>,
-          g: (b: G) => Kind<T, H>,
-          Eq?: Eq<Kind<T, H>>,
+          f: (a: A) => Kind<T, F>,
+          g: (b: F) => Kind<T, G>,
+          Eq?: Eq<Kind<T, G>>,
         ]
       >
     | Record<
         string,
         [
           AFC: AssociativeFlatten2EC<T, E> & Covariant2EC<T, E>,
-          f: (a: F) => Kind<T, G>,
-          g: (b: G) => Kind<T, H>,
+          f: (a: A) => Kind<T, F>,
+          g: (b: F) => Kind<T, G>,
+          Eq?: Eq<Kind<T, G>>,
+        ]
+      >
+
+  readonly CovariantIdentityFlatten?:
+    | Record<
+        string,
+        [AFC: IdentityFlatten2<T> & Covariant2<T>, f: (a: A) => Kind<T, H>, Eq?: Eq<Kind<T, H>>]
+      >
+    | Record<
+        string,
+        [
+          AFC: IdentityFlatten2EC<T, E> & Covariant2EC<T, E>,
+          f: (a: A) => Kind<T, H>,
           Eq?: Eq<Kind<T, H>>,
         ]
       >
@@ -307,18 +337,28 @@ export interface HKTLawTestParams<T extends HKT, A, B, C, D, F, G, H> {
         string,
         [
           AFC: AssociativeFlatten<T> & Covariant<T>,
-          f: (a: F) => Kind<T, G>,
-          g: (b: G) => Kind<T, H>,
-          Eq?: Eq<Kind<T, H>>,
+          f: (a: A) => Kind<T, F>,
+          g: (b: F) => Kind<T, G>,
+          Eq?: Eq<Kind<T, G>>,
         ]
       >
     | Record<
         string,
         [
           AFC: AssociativeFlatten1<T> & Covariant1<T>,
-          f: (a: F) => Kind<T, G>,
-          g: (b: G) => Kind<T, H>,
-          Eq?: Eq<Kind<T, H>>,
+          f: (a: A) => Kind<T, F>,
+          g: (b: F) => Kind<T, G>,
+          Eq?: Eq<Kind<T, G>>,
         ]
+      >
+
+  readonly CovariantIdentityFlatten?:
+    | Record<
+        string,
+        [AFC: IdentityFlatten<T> & Covariant<T>, f: (a: A) => Kind<T, H>, Eq?: Eq<Kind<T, H>>]
+      >
+    | Record<
+        string,
+        [AFC: IdentityFlatten1<T> & Covariant1<T>, f: (a: A) => Kind<T, H>, Eq?: Eq<Kind<T, H>>]
       >
 }

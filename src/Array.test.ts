@@ -74,6 +74,9 @@ describe(__filename, () => {
         A.makeEq(N.Eq),
       ],
     },
+    CovariantIdentityFlatten: {
+      array: [{ ...A.IdentityFlatten, ...A.Covariant }, (x: number) => [x + 2], A.makeEq(N.Eq)],
+    },
   })
 
   testAllHKTLaws<A.ArrayHKT>()({
@@ -105,6 +108,13 @@ describe(__filename, () => {
         { ...A.AssociativeFlatten, ...A.Covariant },
         (x: string) => [x + x],
         (x: string) => [x.length * 2],
+        A.makeEq(N.Eq),
+      ],
+    },
+    CovariantIdentityFlatten: {
+      array: [
+        { ...A.IdentityFlatten, ...A.Covariant },
+        (x: string) => [x.length + 2],
         A.makeEq(N.Eq),
       ],
     },

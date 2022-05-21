@@ -184,7 +184,7 @@ export const Bottom: Bottom1<ArrayHKT> = {
 export const bottom = Bottom.bottom
 
 export const Top: T.Top1<ArrayHKT> = {
-  top: [{}],
+  top: [[]],
 }
 
 export const top = Top.top
