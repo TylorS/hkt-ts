@@ -43,7 +43,7 @@ describe(__filename, () => {
     },
   })
 
-  testAllHKTLaws({
+  testAllHKTLaws<A.ArrayHKT>()({
     name: `Array<number> Instances`,
     fc,
     Arbitrary: L.nonEmptyArray(L.number()),
@@ -66,9 +66,17 @@ describe(__filename, () => {
         A.makeEq(S.Eq),
       ],
     },
+    CovariantAssociativeFlatten: {
+      array: [
+        { ...A.AssociativeFlatten, ...A.Covariant },
+        (x: number) => [String(x)],
+        (s: string) => [s.length * 2],
+        A.makeEq(N.Eq),
+      ],
+    },
   })
 
-  testAllHKTLaws({
+  testAllHKTLaws<A.ArrayHKT>()({
     name: `Array<string> Instances`,
     fc,
     Arbitrary: L.nonEmptyArray(L.string()),
@@ -89,6 +97,14 @@ describe(__filename, () => {
         { ...A.Covariant, ...A.IdentityBoth },
         (x: string) => x.length,
         A.makeEq(S.Eq),
+        A.makeEq(N.Eq),
+      ],
+    },
+    CovariantAssociativeFlatten: {
+      array: [
+        { ...A.AssociativeFlatten, ...A.Covariant },
+        (x: string) => [x + x],
+        (x: string) => [x.length * 2],
         A.makeEq(N.Eq),
       ],
     },
