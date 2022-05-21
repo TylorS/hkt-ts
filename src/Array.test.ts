@@ -2,7 +2,7 @@ import * as fc from 'fast-check'
 
 import * as A from './Array'
 import * as L from './Law/index'
-import { testAllDataLaws, testAllHKTLaws } from './Law/internal-test-all-laws.test'
+import { testAllCovariantHKTLaws, testAllDataLaws } from './Law/internal-test-all-laws.test'
 import * as N from './number'
 import * as S from './string'
 
@@ -43,7 +43,7 @@ describe(__filename, () => {
     },
   })
 
-  testAllHKTLaws<A.ArrayHKT>()({
+  testAllCovariantHKTLaws<A.ArrayHKT>()({
     name: `Array<number> Instances`,
     fc,
     Arbitrary: L.nonEmptyArray(L.number()),
@@ -51,14 +51,14 @@ describe(__filename, () => {
     Covariant: {
       array: [A.Covariant, (x: number) => x + 1, (x: number) => x * 2, A.makeEq(N.Eq)],
     },
-    CovariantAssociativeBoth: {
+    AssociativeBoth: {
       array: [
         { ...A.Covariant, ...A.AssociativeBoth },
         [(x: number) => x + 1],
         [(x: number) => x * 2],
       ],
     },
-    CovariantIdentityBoth: {
+    IdentityBoth: {
       array: [
         { ...A.Covariant, ...A.IdentityBoth },
         (x: number) => String(x),
@@ -66,7 +66,7 @@ describe(__filename, () => {
         A.makeEq(S.Eq),
       ],
     },
-    CovariantAssociativeFlatten: {
+    AssociativeFlatten: {
       array: [
         { ...A.AssociativeFlatten, ...A.Covariant },
         (x: number) => [String(x)],
@@ -74,12 +74,20 @@ describe(__filename, () => {
         A.makeEq(N.Eq),
       ],
     },
-    CovariantIdentityFlatten: {
+    IdentityFlatten: {
       array: [{ ...A.IdentityFlatten, ...A.Covariant }, (x: number) => [x + 2], A.makeEq(N.Eq)],
+    },
+    AssociativeEither: {
+      array: [
+        { ...A.AssociativeEither, ...A.Covariant },
+        (x: number) => String(x),
+        A.makeEq(N.Eq),
+        A.makeEq(S.Eq),
+      ],
     },
   })
 
-  testAllHKTLaws<A.ArrayHKT>()({
+  testAllCovariantHKTLaws<A.ArrayHKT>()({
     name: `Array<string> Instances`,
     fc,
     Arbitrary: L.nonEmptyArray(L.string()),
@@ -87,7 +95,7 @@ describe(__filename, () => {
     Covariant: {
       array: [A.Covariant, (x: string) => x + x, (x: string) => x.length * 2, A.makeEq(N.Eq)],
     },
-    CovariantAssociativeBoth: {
+    AssociativeBoth: {
       array: [
         { ...A.Covariant, ...A.AssociativeBoth },
         [(x: string) => x + x],
@@ -95,7 +103,7 @@ describe(__filename, () => {
         A.makeEq(N.Eq),
       ],
     },
-    CovariantIdentityBoth: {
+    IdentityBoth: {
       array: [
         { ...A.Covariant, ...A.IdentityBoth },
         (x: string) => x.length,
@@ -103,7 +111,7 @@ describe(__filename, () => {
         A.makeEq(N.Eq),
       ],
     },
-    CovariantAssociativeFlatten: {
+    AssociativeFlatten: {
       array: [
         { ...A.AssociativeFlatten, ...A.Covariant },
         (x: string) => [x + x],
@@ -111,10 +119,18 @@ describe(__filename, () => {
         A.makeEq(N.Eq),
       ],
     },
-    CovariantIdentityFlatten: {
+    IdentityFlatten: {
       array: [
         { ...A.IdentityFlatten, ...A.Covariant },
         (x: string) => [x.length + 2],
+        A.makeEq(N.Eq),
+      ],
+    },
+    AssociativeEither: {
+      array: [
+        { ...A.AssociativeEither, ...A.Covariant },
+        (x: string) => x.length,
+        A.makeEq(S.Eq),
         A.makeEq(N.Eq),
       ],
     },
