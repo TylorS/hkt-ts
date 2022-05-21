@@ -48,7 +48,7 @@
     "@zoltu/typescript-transformer-append-js-extension": "^1.0.1",
     "c8": "^7.11.3",
     "clipboardy": "2.3.0",
-    "concurrently": "^6.5.1",
+    "concurrently": "^7.2.0",
     "esbuild": "^0.14.39",
     "esbuild-register": "^3.3.2",
     "eslint": "^8.15.0",
