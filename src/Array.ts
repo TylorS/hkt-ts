@@ -21,6 +21,7 @@ import * as FE from './Typeclass/ForEach'
 import { ForEachWithIndex1 } from './Typeclass/ForEachWithIndex'
 import { Identity } from './Typeclass/Identity'
 import * as IB from './Typeclass/IdentityBoth'
+import { IdentityEither1 } from './Typeclass/IdentityEither'
 import * as IF from './Typeclass/IdentityFlatten'
 import * as Ord from './Typeclass/Ord'
 import * as PM from './Typeclass/PartitionMap'
@@ -263,6 +264,11 @@ export const struct = IB.struct<ArrayHKT>({ ...IdentityBoth, ...Covariant })
 export const IdentityFlatten: IF.IdentityFlatten1<ArrayHKT> = {
   ...Top,
   ...AssociativeFlatten,
+}
+
+export const IdentityEither: IdentityEither1<ArrayHKT> = {
+  ...Bottom,
+  ...AssociativeEither,
 }
 
 export const PartitionMapWithIndex: PMI.PartitionMapWithIndex1<ArrayHKT, number> = {

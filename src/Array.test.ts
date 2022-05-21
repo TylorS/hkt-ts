@@ -134,5 +134,13 @@ describe(__filename, () => {
         A.makeEq(N.Eq),
       ],
     },
+    IdentityEither: {
+      array: [
+        { ...A.IdentityEither, ...A.Covariant },
+        (x: string) => x.length,
+        A.makeEq(S.Eq),
+        A.makeEq(N.Eq),
+      ],
+    },
   })
 })
