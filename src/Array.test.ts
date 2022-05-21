@@ -1,7 +1,7 @@
 import * as fc from 'fast-check'
 
 import * as A from './Array'
-import * as L from './Law'
+import * as L from './Law/index'
 import { testAllDataLaws, testAllHKTLaws } from './Law/internal-test-all-laws.test'
 import * as N from './number'
 import * as S from './string'
