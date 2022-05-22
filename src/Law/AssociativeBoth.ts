@@ -31,6 +31,6 @@ export function testCovariantAssociativeBoth<T extends HKT, A, B, C>(
           ),
         ] as const
       }),
-      Arbitrary.assert(([a, b]) => E.equals(a, b)),
+      Arbitrary.toProperty(([a, b]) => E.equals(a, b)),
     )
 }

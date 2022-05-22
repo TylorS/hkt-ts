@@ -327,9 +327,9 @@ export function testCovariantIdentityBoth<T extends HKT, A, B>(
   return (A: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
     return {
       identity: () =>
-        testCovariantIdentityBothIdentity(IBC, EA)(pipe(A, Arbitrary.map(fromValue)))(fc),
-      homomorphism: () => testCovariantIdentityBothHomomorphism(IBC, f, EB)(A)(fc),
-      interchange: () => testCovariantIdentityBothInterchange(IBC, f, EB)(A)(fc),
+        testCovariantIdentityBothIdentity(IBC, EA)(pipe(A, Arbitrary.map(fromValue))).property(fc),
+      homomorphism: () => testCovariantIdentityBothHomomorphism(IBC, f, EB)(A).property(fc),
+      interchange: () => testCovariantIdentityBothInterchange(IBC, f, EB)(A).property(fc),
     } as const
   }
 }
@@ -341,7 +341,7 @@ function testCovariantIdentityBothIdentity<T extends HKT, A>(
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       A,
-      Arbitrary.assert((a) =>
+      Arbitrary.toProperty((a) =>
         E.equals(
           a,
           pipe(
@@ -364,7 +364,7 @@ function testCovariantIdentityBothHomomorphism<T extends HKT, A, B>(
   return (A: Arbitrary.Arbitrary<A>) =>
     pipe(
       A,
-      Arbitrary.assert((a) =>
+      Arbitrary.toProperty((a) =>
         E.equals(
           fromValue(f(a)),
           pipe(
@@ -387,7 +387,7 @@ function testCovariantIdentityBothInterchange<T extends HKT, A, B>(
   return (A: Arbitrary.Arbitrary<A>) =>
     pipe(
       A,
-      Arbitrary.assert((a) =>
+      Arbitrary.toProperty((a) =>
         E.equals(
           pipe(
             fromValue(f),

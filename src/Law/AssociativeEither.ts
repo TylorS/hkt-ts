@@ -307,8 +307,8 @@ export function testCovariantAssociativeEither<T extends HKT, A, B>(
   EqB: Eq<Kind<T, B>>,
 ) {
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) => (fc: typeof import('fast-check')) => ({
-    associativity: () => testCovariantAssociativeEitherAssociativity(AE, EqA)(A)(fc),
-    distributivity: () => testCovariantAssociativeEitherDistributivity(AE, f, EqB)(A)(fc),
+    associativity: () => testCovariantAssociativeEitherAssociativity(AE, EqA)(A).property(fc),
+    distributivity: () => testCovariantAssociativeEitherDistributivity(AE, f, EqB)(A).property(fc),
   })
 }
 
@@ -321,7 +321,7 @@ function testCovariantAssociativeEitherAssociativity<T extends HKT, A>(
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       Arbitrary.tuple(A, A, A),
-      Arbitrary.assert(([a, b, c]) =>
+      Arbitrary.toProperty(([a, b, c]) =>
         E.equals(
           pipe(
             a,
@@ -350,7 +350,7 @@ function testCovariantAssociativeEitherDistributivity<T extends HKT, A, B>(
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       Arbitrary.tuple(A, A),
-      Arbitrary.assert(([a, b]) =>
+      Arbitrary.toProperty(([a, b]) =>
         EqB.equals(
           pipe(
             a,

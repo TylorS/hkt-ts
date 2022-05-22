@@ -67,7 +67,7 @@ export const testAllDataLaws = <A>(params: DataLawTestParams<A>) => {
       for (const [name, args] of Object.entries(params.Associative)) {
         describe(`Associative (${name})`, () => {
           it('has a valid instance', () =>
-            pipe(params.Arbitrary, LA.testAssociativity<A>(...args))(fc))
+            pipe(params.Arbitrary, LA.testAssociativity<A>(...args)).property(fc))
         })
       }
     }
@@ -76,7 +76,7 @@ export const testAllDataLaws = <A>(params: DataLawTestParams<A>) => {
       for (const [name, args] of Object.entries(params.Commutative)) {
         describe(`Commutative (${name})`, () => {
           it('has a valid instance', () =>
-            pipe(params.Arbitrary, LC.testCommutativity<A>(...args))(fc))
+            pipe(params.Arbitrary, LC.testCommutativity<A>(...args)).property(fc))
         })
       }
     }
@@ -110,7 +110,8 @@ export const testAllDataLaws = <A>(params: DataLawTestParams<A>) => {
     if (params.Inverse) {
       for (const [name, args] of Object.entries(params.Inverse)) {
         describe(`Inverse (${name})`, () => {
-          it('has a valid instance', () => pipe(params.Arbitrary, LIV.testInverse<A>(...args))(fc))
+          it('has a valid instance', () =>
+            pipe(params.Arbitrary, LIV.testInverse<A>(...args)).property(fc))
         })
       }
     }
@@ -218,7 +219,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
         for (const [name, args] of Object.entries(params.AssociativeBoth)) {
           describe(`AssociativeBoth & Covariant (${name})`, () => {
             it(`has a valid instance`, () =>
-              pipe(Arbitrary, LAB.testCovariantAssociativeBoth(...args))(fc))
+              pipe(Arbitrary, LAB.testCovariantAssociativeBoth(...args)).property(fc))
           })
         }
       }

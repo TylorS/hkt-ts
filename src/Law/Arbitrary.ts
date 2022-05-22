@@ -20,6 +20,20 @@ export interface Arbitrary<A> {
   readonly arbitrary: (fc: typeof import('fast-check')) => import('fast-check').Arbitrary<A>
 }
 
+export type Property<A> = SyncProperty<A> | AsyncProperty<A>
+
+export interface SyncProperty<A> {
+  readonly property: (
+    fc: typeof import('fast-check'),
+  ) => import('fast-check').IPropertyWithHooks<[A]>
+}
+
+export interface AsyncProperty<A> {
+  readonly property: (
+    fc: typeof import('fast-check'),
+  ) => import('fast-check').IAsyncPropertyWithHooks<[A]>
+}
+
 export type OutputOf<T> = [T] extends [Arbitrary<infer R>] ? R : never
 
 export const Arbitrary = <A>(
@@ -28,17 +42,24 @@ export const Arbitrary = <A>(
   arbitrary,
 })
 
+export const toAsyncProperty =
+  <A>(predicate: (a: A) => Promise<boolean>) =>
+  (a: Arbitrary<A>): AsyncProperty<A> => ({
+    property: (fc) => fc.asyncProperty(a.arbitrary(fc), predicate),
+  })
+
 export const toProperty =
   <A>(predicate: Predicate<A>) =>
-  (a: Arbitrary<A>) =>
-  (fc: typeof import('fast-check')): import('fast-check').IPropertyWithHooks<[A]> =>
-    fc.property(a.arbitrary(fc), predicate)
+  (a: Arbitrary<A>): SyncProperty<A> => ({
+    property: (fc) => fc.property(a.arbitrary(fc), predicate),
+  })
 
-export const assert =
-  <A>(predicate: Predicate<A>, params?: import('fast-check').Parameters<[A]>) =>
-  (a: Arbitrary<A>) =>
-  (fc: typeof import('fast-check')) =>
-    fc.assert(fc.property(a.arbitrary(fc), predicate), params)
+export function assert<A>(
+  property: Property<A>,
+  params?: import('fast-check').Parameters<[A]> | undefined,
+) {
+  return (fc: typeof import('fast-check')) => fc.assert(property.property(fc), params)
+}
 
 export interface ArbitraryHKT extends HKT {
   readonly type: Arbitrary<this[Params.A]>

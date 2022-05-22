@@ -344,12 +344,12 @@ export function testContravariant<T extends HKT, A, B, C, D>(
   Eq: Eq<D> = DeepEquals,
 ) {
   return (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => ({
-    identity: () => testContravarianIdentity(C, kindA, run, Eq)(AA)(fc),
-    associativity: () => testContravarianAssociativity(C, f, g, kindC, run, Eq)(AA)(fc),
+    identity: () => testContravariantIdentity(C, kindA, run, Eq)(AA).property(fc),
+    associativity: () => testContravarianAssociativity(C, f, g, kindC, run, Eq)(AA).property(fc),
   })
 }
 
-function testContravarianIdentity<T extends HKT, A, D>(
+function testContravariantIdentity<T extends HKT, A, D>(
   C: Contravariant<T>,
   kind: Kind<T, A>,
   run: <A>(kind: Kind<T, A>, a: A, b: A, c: A) => D,
@@ -358,7 +358,7 @@ function testContravarianIdentity<T extends HKT, A, D>(
   return (A: Arbitrary.Arbitrary<A>) =>
     pipe(
       Arbitrary.tuple(A, A, A),
-      Arbitrary.assert(([a, b, c]) =>
+      Arbitrary.toProperty(([a, b, c]) =>
         Eq.equals(run(kind, a, b, c), run(pipe(kind, C.contramap(identity)), a, b, c)),
       ),
     )
@@ -375,7 +375,7 @@ function testContravarianAssociativity<T extends HKT, A, B, C, D>(
   return (A: Arbitrary.Arbitrary<A>) =>
     pipe(
       Arbitrary.tuple(A, A, A),
-      Arbitrary.assert(([a, b, c]) =>
+      Arbitrary.toProperty(([a, b, c]) =>
         Eq.equals(
           run(pipe(kind, C.contramap(g), C.contramap(f)), a, b, c),
           run(

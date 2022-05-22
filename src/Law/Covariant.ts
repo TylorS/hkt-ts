@@ -284,8 +284,9 @@ export function testCovariant<T extends HKT, A, B, C>(
   Eq: Eq<Kind<T, C>> = DeepEquals,
 ) {
   return (Arb: Arbitrary.Arbitrary<Kind<T, A>>) => (fc: typeof import('fast-check')) => ({
-    identity: () => testCovariantIdentity(C, Eq)(pipe(Arb, Arbitrary.map(C.map(flow(f, g)))))(fc),
-    associativity: () => testCovariantAssociativity(C, f, g, Eq)(Arb),
+    identity: () =>
+      testCovariantIdentity(C, Eq)(pipe(Arb, Arbitrary.map(C.map(flow(f, g))))).property(fc),
+    associativity: () => testCovariantAssociativity(C, f, g, Eq)(Arb).property(fc),
   })
 }
 export const testCovariantIdentity = <T extends HKT, A>(
@@ -295,7 +296,7 @@ export const testCovariantIdentity = <T extends HKT, A>(
   return (Arb: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       Arb,
-      Arbitrary.assert((kind) =>
+      Arbitrary.toProperty((kind) =>
         Eq.equals(
           pipe(
             kind,
@@ -316,7 +317,7 @@ export const testCovariantAssociativity = <T extends HKT, A, B, C>(
   return (Arb: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       Arb,
-      Arbitrary.assert((kind) =>
+      Arbitrary.toProperty((kind) =>
         Eq.equals(pipe(kind, C.map(f), C.map(g)), pipe(kind, C.map(flow(f, g)))),
       ),
     )

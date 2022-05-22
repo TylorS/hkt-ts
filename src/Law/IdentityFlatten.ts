@@ -279,11 +279,12 @@ export function testCovariantIdentityFlatten<T extends HKT, A, B>(
   E: Eq<Kind<T, B>> = DeepEquals,
 ) {
   return (A: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => ({
-    leftIdentity: () => testCovariantIdentityFlattenLeftIdentity(IFC, f, E)(A)(fc),
+    leftIdentity: () => testCovariantIdentityFlattenLeftIdentity(IFC, f, E)(A).property(fc),
     rightIdentity: () =>
-      testCovariantIdentityFlattenRightIdentity(IFC, E)(pipe(A, Arbitrary.map(makeFromValue(IFC))))(
-        fc,
-      ),
+      testCovariantIdentityFlattenRightIdentity(
+        IFC,
+        E,
+      )(pipe(A, Arbitrary.map(makeFromValue(IFC)))).property(fc),
   })
 }
 
@@ -298,7 +299,7 @@ function testCovariantIdentityFlattenLeftIdentity<T extends HKT, A, B>(
   return (A: Arbitrary.Arbitrary<A>) =>
     pipe(
       A,
-      Arbitrary.assert((a) => E.equals(pipe(fromValue(a), flatMap(f)), f(a))),
+      Arbitrary.toProperty((a) => E.equals(pipe(fromValue(a), flatMap(f)), f(a))),
     )
 }
 
@@ -311,6 +312,6 @@ function testCovariantIdentityFlattenRightIdentity<T extends HKT, A, B>(
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       A,
-      Arbitrary.assert((kind) => E.equals(pipe(kind, flatMap(makeFromValue(IFC))), kind)),
+      Arbitrary.toProperty((kind) => E.equals(pipe(kind, flatMap(makeFromValue(IFC))), kind)),
     )
 }

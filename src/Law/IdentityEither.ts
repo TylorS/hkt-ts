@@ -352,9 +352,9 @@ export function testCovariantIdentityEither<T extends HKT, A, B>(
   EqB: Eq<Kind<T, B>>,
 ) {
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) => (fc: typeof import('fast-check')) => ({
-    distributivity: () => testCovariantIdentityEitherDistributivity(IEC, f, EqB)(A)(fc),
-    leftIdentity: () => testCovariantIdentityEitherLeftIdentity(IEC, EqA)(A)(fc),
-    rightIdentity: () => testCovariantIdentityEitherRightIdentity(IEC, EqA)(A)(fc),
+    distributivity: () => testCovariantIdentityEitherDistributivity(IEC, f, EqB)(A).property(fc),
+    leftIdentity: () => testCovariantIdentityEitherLeftIdentity(IEC, EqA)(A).property(fc),
+    rightIdentity: () => testCovariantIdentityEitherRightIdentity(IEC, EqA)(A).property(fc),
     annihilation: () => testCovariantIdentityEitherAnnihilation(IEC, EqA)(),
   })
 }
@@ -369,7 +369,7 @@ function testCovariantIdentityEitherDistributivity<T extends HKT, A, B>(
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       Arbitrary.tuple(A, A),
-      Arbitrary.assert(([a, b]) =>
+      Arbitrary.toProperty(([a, b]) =>
         EqB.equals(
           pipe(
             a,
@@ -395,7 +395,7 @@ function testCovariantIdentityEitherLeftIdentity<T extends HKT, A>(
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       A,
-      Arbitrary.assert((kind) =>
+      Arbitrary.toProperty((kind) =>
         E.equals(
           kind,
           pipe(
@@ -416,7 +416,7 @@ function testCovariantIdentityEitherRightIdentity<T extends HKT, A>(
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       A,
-      Arbitrary.assert((kind) =>
+      Arbitrary.toProperty((kind) =>
         E.equals(
           kind,
           pipe(

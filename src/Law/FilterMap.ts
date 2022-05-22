@@ -308,9 +308,9 @@ export function testFilterMap<T extends HKT, A>(
   EqA: Eq<Kind<T, A>> = DeepEquals,
 ) {
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) => (fc: typeof import('fast-check')) => ({
-    identity: () => testFilterMapIdentity(F, EqA)(A)(fc),
-    distributivity: () => testFilterMapDistributivity(F, EqA, predA, predB)(A)(fc),
-    annihilation: () => testFilterMapAnnihilation(F, EqA)(A)(fc),
+    identity: () => testFilterMapIdentity(F, EqA)(A).property(fc),
+    distributivity: () => testFilterMapDistributivity(F, EqA, predA, predB)(A).property(fc),
+    annihilation: () => testFilterMapAnnihilation(F, EqA)(A).property(fc),
   })
 }
 
@@ -318,7 +318,7 @@ function testFilterMapIdentity<T extends HKT, A>(F: FilterMap<T>, EqA: Eq<Kind<T
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       A,
-      Arbitrary.assert((k) => EqA.equals(k, pipe(k, F.filterMap(Maybe.Just)))),
+      Arbitrary.toProperty((k) => EqA.equals(k, pipe(k, F.filterMap(Maybe.Just)))),
     )
 }
 
@@ -331,7 +331,7 @@ function testFilterMapDistributivity<T extends HKT, A>(
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       A,
-      Arbitrary.assert((k) =>
+      Arbitrary.toProperty((k) =>
         EqA.equals(
           pipe(k, F.filterMap(Maybe.fromPredicate(predA)), F.filterMap(Maybe.fromPredicate(predB))),
           pipe(
@@ -349,7 +349,7 @@ function testFilterMapAnnihilation<T extends HKT, A>(F: FilterMap<T>, EqA: Eq<Ki
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       A,
-      Arbitrary.assert((k) =>
+      Arbitrary.toProperty((k) =>
         EqA.equals(
           pipe(
             k,

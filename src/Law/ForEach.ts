@@ -17,8 +17,8 @@ export function testForEach<T extends HKT, T2 extends HKT, T3 extends HKT, A>(
   E2: Eq<Kind<T2, Kind<T3, A>>>,
 ) {
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) => (fc: typeof import('fast-check')) => ({
-    identity: () => testForEachIdentity(FE, IBC1, E)(A)(fc),
-    associativity: () => testForEachAssociativity(FE, IBC1, IBC2, E2)(A)(fc),
+    identity: () => testForEachIdentity(FE, IBC1, E)(A).property(fc),
+    associativity: () => testForEachAssociativity(FE, IBC1, IBC2, E2)(A).property(fc),
   })
 }
 
@@ -30,7 +30,7 @@ function testForEachIdentity<T extends HKT, T2 extends HKT, A>(
   return (A: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       A,
-      Arbitrary.assert((kind) => {
+      Arbitrary.toProperty((kind) => {
         const l = FE.forEach(IBC)(T.makeFromValue(IBC))(kind)
         const r = T.makeFromValue(IBC)(kind)
 
@@ -60,7 +60,7 @@ function testForEachAssociativity<T extends HKT, T2 extends HKT, T3 extends HKT,
 
     return pipe(
       A,
-      Arbitrary.assert((kind) =>
+      Arbitrary.toProperty((kind) =>
         E.equals(
           pipe(kind, FE.forEach(IBC_)(T.makeFromValue<HKT_>(IBC_))),
           pipe(

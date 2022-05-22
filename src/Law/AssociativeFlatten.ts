@@ -276,11 +276,12 @@ export function testCovariantAssociativeFlatten<T extends HKT, A, B, C>(
   Eq: Eq<Kind<T, C>> = DeepEquals,
 ) {
   return (Arb: Arbitrary.Arbitrary<Kind<T, A>>) => (fc: typeof import('fast-check')) => ({
-    associativity: () => testCovariantAssociativeFlattenAssociativity(AFC, f, g, Eq)(Arb)(fc),
+    associativity: () =>
+      testCovariantAssociativeFlattenAssociativity(AFC, f, g, Eq)(Arb).property(fc),
     derivedAssociativeBoth: () =>
       pipe(
         Arb,
-        Arbitrary.assert((ka) => {
+        Arbitrary.toProperty((ka) => {
           testCovariantAssociativeBoth(
             { ...AssociativeFlatten.makeAssociativeBoth(AFC), ...AFC },
             pipe(
@@ -292,7 +293,7 @@ export function testCovariantAssociativeFlatten<T extends HKT, A, B, C>(
               AFC.map(() => g),
             ),
             pipe(Eq, contramap(AFC.flatten)),
-          )(Arb)(fc)
+          )(Arb).property(fc)
 
           return true
         }),
@@ -311,7 +312,7 @@ function testCovariantAssociativeFlattenAssociativity<T extends HKT, A, B, C>(
   return (Arb: Arbitrary.Arbitrary<Kind<T, A>>) =>
     pipe(
       Arb,
-      Arbitrary.assert((a) =>
+      Arbitrary.toProperty((a) =>
         Eq.equals(pipe(a, flatMap(f), flatMap(g)), pipe(a, flatMap(flow(f, flatMap(g))))),
       ),
     )
