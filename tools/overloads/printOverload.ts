@@ -100,7 +100,7 @@ export function printInterface(
     .filter((x) => x.length > 0)
 
   const prefix = `${manager.isWithinFunction() ? `` : `export interface `}${node.name}${
-    placeholders.length > 0 ? placeholders.join('') + 'C' : ''
+    placeholders.length > 0 ? 'C' : ''
   }${node.typeParams.length ? `<${printedTypeParams.join(', ')}>` : ''}`
 
   manager.popContext()
@@ -111,9 +111,9 @@ export function printInterface(
 
   manager.addContext('Property')
 
-  const printedProperties = pipe(
-    node.properties.map((p) => printLabeledKindParam(p, context, manager)),
-  )
+  const printedProperties = Array.isArray(node.properties)
+    ? pipe(node.properties.map((p) => printLabeledKindParam(p, context, manager)))
+    : [printFunctionSignature(node.properties as FunctionSignature, context, manager)]
 
   const postfix = ` {
   ${printedProperties.join('\n')}
@@ -235,8 +235,8 @@ export function printTypeParam(
       return printLabeledKindParam(p, context, manager)
 
     case HKTParam.tag:
-      return (manager.isWithinReturn() || manager.isWithinExtension()) &&
-        !manager.isWithinTypeParam()
+      return (manager.isWithinExtension() && manager.isWithinTypeParam()) ||
+        (manager.isWithinReturn() && !manager.isWithinTypeParam())
         ? p.name
         : `${p.name} extends HKT${p.size < 2 ? '' : `${p.size}`}`
     case HKTCurriedPlaceholder.tag: {

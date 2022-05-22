@@ -417,9 +417,26 @@ export function generateInterface(
   const typeParams = generateTypeParams(node.typeParams, context, manager)
   manager.popContext()
 
-  manager.addContext('Property')
-  const properties = generateLabeledKindParams(node.properties, context, manager)
-  manager.popContext()
+  if (Array.isArray(node.properties)) {
+    manager.addContext('Property')
+    const properties = generateLabeledKindParams(node.properties, context, manager)
+    manager.popContext()
+
+    manager.addContext('Extension')
+    const extensions: Array<Interface | KindParam> = []
+    for (const e of node.extensions) {
+      extensions.push(
+        ...(e.tag === Interface.tag
+          ? [generateInterface(e, context, manager)]
+          : generateKindParam(e, context, manager)),
+      )
+    }
+    manager.popContext()
+
+    return new Interface(generateTypeName(node, context), typeParams, properties, extensions)
+  }
+
+  const fn = generateFunctionSignature(node.properties as FunctionSignature, context, manager)
 
   manager.addContext('Extension')
   const extensions: Array<Interface | KindParam> = []
@@ -432,7 +449,7 @@ export function generateInterface(
   }
   manager.popContext()
 
-  return new Interface(generateTypeName(node, context), typeParams, properties, extensions)
+  return new Interface(generateTypeName(node, context), typeParams, fn, extensions)
 }
 
 function generateTypeName(node: Interface | TypeAlias, context: Context): string {
@@ -440,11 +457,16 @@ function generateTypeName(node: Interface | TypeAlias, context: Context): string
 }
 
 function generatePostfix(hktParams: readonly HKTParam[], context: Context) {
+  const multiple = hktParams.length > 1
+
   return hktParams
     .map((p) => {
-      return `${context.lengths.get(p.id) === 0 ? '' : context.lengths.get(p.id) ?? ''}`
+      const placeholders = (context.placeholders.get(p.id) ?? []).filter((x) => x.length > 0)
+      const length = `${context.lengths.get(p.id) === 0 ? '' : context.lengths.get(p.id) ?? ''}`
+
+      return `${length}${placeholders.length > 0 ? placeholders.join('') : ''}`
     })
-    .join('')
+    .join(multiple ? '_' : '')
 }
 
 export function generateTypeAlias(

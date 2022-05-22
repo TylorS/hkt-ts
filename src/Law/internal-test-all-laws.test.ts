@@ -21,6 +21,7 @@ import {
 import { Commutative } from '../Typeclass/Commutative'
 import { Covariant, Covariant1, Covariant2, Covariant2EC } from '../Typeclass/Covariant'
 import { DeepEquals, Eq } from '../Typeclass/Eq'
+import { FilterMap, FilterMap1, FilterMap2, FilterMap2EC } from '../Typeclass/FilterMap'
 import { Identity } from '../Typeclass/Identity'
 import {
   IdentityBoth,
@@ -43,6 +44,7 @@ import {
 import { Inverse } from '../Typeclass/Inverse'
 import { Ord } from '../Typeclass/Ord'
 import { pipe } from '../function'
+import { Predicate } from '../index'
 
 import { Arbitrary } from './Arbitrary'
 import * as LA from './Associative'
@@ -52,6 +54,7 @@ import * as LAF from './AssociativeFlatten'
 import * as LC from './Commutative'
 import * as LCovariant from './Covariant'
 import * as LE from './Eq'
+import * as LFM from './FilterMap'
 import * as LI from './Identity'
 import * as LIB from './IdentityBoth'
 import * as LIE from './IdentityEither'
@@ -265,6 +268,22 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
             })
           }
         }
+
+        if (params.FilterMap) {
+          for (const [name, args] of Object.entries(params.FilterMap)) {
+            describe(`IFilterMap (${name})`, () => {
+              const [AEC, predA, predB, E = DeepEquals] = args
+              const { identity, distributivity, annihilation } = pipe(
+                Arbitrary,
+                LFM.testFilterMap(AEC, predA, predB, E),
+              )(fc)
+
+              it(`Identity`, identity)
+              it(`Distributivity`, distributivity)
+              it(`Annihilation`, annihilation)
+            })
+          }
+        }
       }
     })
   }
@@ -376,6 +395,26 @@ export interface CovariantHKTLawTestParams2<T extends HKT2, E, A, B, C, D, F, G,
           EqB?: Eq<Kind<T, J>>,
         ]
       >
+
+  readonly FilterMap?:
+    | Record<
+        string,
+        [
+          FM: FilterMap2<T>,
+          A: Predicate.Predicate<A>,
+          B: Predicate.Predicate<A>,
+          EqA?: Eq<Kind2<T, E, A>>,
+        ]
+      >
+    | Record<
+        string,
+        [
+          FM: FilterMap2EC<T, E>,
+          A: Predicate.Predicate<A>,
+          B: Predicate.Predicate<A>,
+          EqA?: Eq<Kind2<T, E, A>>,
+        ]
+      >
 }
 
 export interface CovariantHKTLawTestParams<T extends HKT, A, B, C, D, F, G, H, I, J> {
@@ -485,6 +524,26 @@ export interface CovariantHKTLawTestParams<T extends HKT, A, B, C, D, F, G, H, I
           f: (a: A) => J,
           EqA?: Eq<Kind<T, A>>,
           EqB?: Eq<Kind<T, J>>,
+        ]
+      >
+
+  readonly FilterMap?:
+    | Record<
+        string,
+        [
+          FM: FilterMap<T>,
+          A: Predicate.Predicate<A>,
+          B: Predicate.Predicate<A>,
+          EqA?: Eq<Kind<T, A>>,
+        ]
+      >
+    | Record<
+        string,
+        [
+          FM: FilterMap1<T>,
+          A: Predicate.Predicate<A>,
+          B: Predicate.Predicate<A>,
+          EqA?: Eq<Kind<T, A>>,
         ]
       >
 }

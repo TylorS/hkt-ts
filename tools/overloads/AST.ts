@@ -42,7 +42,7 @@ export class Interface extends ast('Interface') {
   constructor(
     readonly name: string,
     readonly typeParams: ReadonlyArray<TypeParam>,
-    readonly properties: ReadonlyArray<Labeled<KindParam>>,
+    readonly properties: ReadonlyArray<Labeled<KindParam>> | FunctionSignature,
     readonly extensions: ReadonlyArray<KindParam | Interface> = [],
   ) {
     super()
@@ -165,7 +165,7 @@ export class Typeclass extends ast('Typeclass') {
   labeled(label: string = this.name) {
     return new Labeled(
       Array.from(label)
-        .filter((x) => x === x.toUpperCase())
+        .filter((x) => (label === this.name ? x === x.toUpperCase() : true))
         .join(''),
       this,
     )

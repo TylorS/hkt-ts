@@ -8,6 +8,7 @@ describe(__filename, () => {
   testAllDataLaws({
     name: 'Number Instances',
     fc,
+    // Only constrained because really large numbers used in multiplication w/ JavaScript aren't exactly deterministic
     Arbitrary: L.number({ min: -10000, max: 10000 }),
     Eq: {
       number: N.Eq,

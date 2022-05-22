@@ -85,6 +85,17 @@ describe(__filename, () => {
         A.makeEq(S.Eq),
       ],
     },
+    IdentityEither: {
+      array: [
+        { ...A.IdentityEither, ...A.Covariant },
+        (x: number) => String(x),
+        A.makeEq(N.Eq),
+        A.makeEq(S.Eq),
+      ],
+    },
+    FilterMap: {
+      array: [A.FilterMap, (x: number) => x > 2, (x: number) => x < 10, A.makeEq(N.Eq)],
+    },
   })
 
   testAllCovariantHKTLaws<A.ArrayHKT>()({
@@ -140,6 +151,14 @@ describe(__filename, () => {
         (x: string) => x.length,
         A.makeEq(S.Eq),
         A.makeEq(N.Eq),
+      ],
+    },
+    FilterMap: {
+      array: [
+        A.FilterMap,
+        (x: string) => x.length > 2,
+        (x: string) => x.length < 10,
+        A.makeEq(S.Eq),
       ],
     },
   })
