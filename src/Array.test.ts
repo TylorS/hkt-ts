@@ -1,8 +1,10 @@
 import * as fc from 'fast-check'
 
 import * as A from './Array'
+import * as E from './Either'
 import * as L from './Law/index'
 import { testAllCovariantHKTLaws, testAllDataLaws } from './Law/internal-test-all-laws.test'
+import * as M from './Maybe'
 import * as N from './number'
 import * as S from './string'
 
@@ -43,7 +45,7 @@ describe(__filename, () => {
     },
   })
 
-  testAllCovariantHKTLaws<A.ArrayHKT>()({
+  testAllCovariantHKTLaws<A.ArrayHKT, E.EitherHKT, M.MaybeHKT>()({
     name: `Array<number> Instances`,
     fc,
     Arbitrary: L.nonEmptyArray(L.number()),
@@ -96,9 +98,16 @@ describe(__filename, () => {
     FilterMap: {
       array: [A.FilterMap, (x: number) => x > 2, (x: number) => x < 10, A.makeEq(N.Eq)],
     },
+    ForEach: {
+      array: [
+        A.ForEach,
+        { ...E.IdentityBoth, ...E.Covariant },
+        { ...M.IdentityBoth, ...M.Covariant },
+      ],
+    },
   })
 
-  testAllCovariantHKTLaws<A.ArrayHKT>()({
+  testAllCovariantHKTLaws<A.ArrayHKT, E.EitherHKT, M.MaybeHKT>()({
     name: `Array<string> Instances`,
     fc,
     Arbitrary: L.nonEmptyArray(L.string()),

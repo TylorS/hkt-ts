@@ -22,13 +22,9 @@ import { Commutative } from '../Typeclass/Commutative'
 import { Covariant, Covariant1, Covariant2, Covariant2EC } from '../Typeclass/Covariant'
 import { DeepEquals, Eq } from '../Typeclass/Eq'
 import { FilterMap, FilterMap1, FilterMap2, FilterMap2EC } from '../Typeclass/FilterMap'
+import * as FE from '../Typeclass/ForEach'
 import { Identity } from '../Typeclass/Identity'
-import {
-  IdentityBoth,
-  IdentityBoth1,
-  IdentityBoth2,
-  IdentityBoth2EC,
-} from '../Typeclass/IdentityBoth'
+import * as IB from '../Typeclass/IdentityBoth'
 import {
   IdentityEither,
   IdentityEither1,
@@ -55,6 +51,7 @@ import * as LC from './Commutative'
 import * as LCovariant from './Covariant'
 import * as LE from './Eq'
 import * as LFM from './FilterMap'
+import * as LFE from './ForEach'
 import * as LI from './Identity'
 import * as LIB from './IdentityBoth'
 import * as LIE from './IdentityEither'
@@ -149,23 +146,57 @@ export interface DataLawTestParams<A> {
   readonly Ord?: Record<string, Ord<A>>
 }
 
-function assertIsCovariantParams<T extends HKT, A, B, C, D, F, G, H, I, J>(
+function assertIsCovariantParams<
+  T extends HKT,
+  A,
+  B,
+  C,
+  D,
+  F,
+  G,
+  H,
+  I,
+  J,
+  T2 extends HKT,
+  T3 extends HKT,
+>(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _x: any,
-): asserts _x is CovariantHKTLawTestParams<T, A, B, C, D, F, G, H, I, J> {
+): asserts _x is CovariantHKTLawTestParams<T, A, B, C, D, F, G, H, I, J, T2, T3> {
   //
 }
 
-export function testAllCovariantHKTLaws<T extends HKT2>(): <E, A, B, C, D, F, G, H, I, J>(
-  params: CovariantHKTLawTestParams2<T, E, A, B, C, D, F, G, H, I, J>,
+export function testAllCovariantHKTLaws<T extends HKT2, T2 extends HKT2, T3 extends HKT2>(): <
+  E,
+  A,
+  B,
+  C,
+  D,
+  F,
+  G,
+  H,
+  I,
+  J,
+>(
+  params: CovariantHKTLawTestParams2<T, E, A, B, C, D, F, G, H, I, J, T2, T3>,
 ) => void
-export function testAllCovariantHKTLaws<T extends HKT>(): <A, B, C, D, F, G, H, I, J>(
-  params: CovariantHKTLawTestParams<T, A, B, C, D, F, G, H, I, J>,
+export function testAllCovariantHKTLaws<T extends HKT, T2 extends HKT, T3 extends HKT>(): <
+  A,
+  B,
+  C,
+  D,
+  F,
+  G,
+  H,
+  I,
+  J,
+>(
+  params: CovariantHKTLawTestParams<T, A, B, C, D, F, G, H, I, J, T2, T3>,
 ) => void
 
 export function testAllCovariantHKTLaws<T extends HKT>() {
-  return <A, B, C, D, F, G, H, I, J>(params: any): void => {
-    assertIsCovariantParams<T, A, B, C, D, F, G, H, I, J>(params)
+  return <A, B, C, D, F, G, H, I, J, T2 extends HKT, T3 extends HKT>(params: any): void => {
+    assertIsCovariantParams<T, A, B, C, D, F, G, H, I, J, T2, T3>(params)
     const { name, fc, Arbitrary, ArbitraryA } = params
 
     describe(`${name} (HKT)`, () => {
@@ -271,7 +302,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
 
         if (params.FilterMap) {
           for (const [name, args] of Object.entries(params.FilterMap)) {
-            describe(`IFilterMap (${name})`, () => {
+            describe(`FilterMap (${name})`, () => {
               const [AEC, predA, predB, E = DeepEquals] = args
               const { identity, distributivity, annihilation } = pipe(
                 Arbitrary,
@@ -284,12 +315,41 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
             })
           }
         }
+
+        if (params.ForEach) {
+          for (const [name, args] of Object.entries(params.ForEach)) {
+            describe(`ForEach (${name})`, () => {
+              const [FE, IBC1, IBC2, E = DeepEquals, E2 = DeepEquals] = args
+              const { identity, associativity } = pipe(
+                Arbitrary,
+                LFE.testForEach(FE, IBC1, IBC2, E, E2),
+              )(fc)
+
+              it(`Identity`, identity)
+              it(`Associativity`, associativity)
+            })
+          }
+        }
       }
     })
   }
 }
 
-export interface CovariantHKTLawTestParams2<T extends HKT2, E, A, B, C, D, F, G, H, I, J> {
+export interface CovariantHKTLawTestParams2<
+  T extends HKT2,
+  E,
+  A,
+  B,
+  C,
+  D,
+  F,
+  G,
+  H,
+  I,
+  J,
+  T2 extends HKT2,
+  T3 extends HKT2,
+> {
   readonly name: string
   readonly fc: typeof import('fast-check')
   readonly Arbitrary: Arbitrary<Kind2<T, E, A>>
@@ -315,11 +375,16 @@ export interface CovariantHKTLawTestParams2<T extends HKT2, E, A, B, C, D, F, G,
   readonly IdentityBoth?:
     | Record<
         string,
-        [IdentityBoth2<T> & Covariant2<T>, (a: A) => D, Eq<Kind<T, A>>?, Eq<Kind<T, D>>?]
+        [IB.IdentityBoth2<T> & Covariant2<T>, (a: A) => D, Eq<Kind<T, A>>?, Eq<Kind<T, D>>?]
       >
     | Record<
         string,
-        [IdentityBoth2EC<T, E> & Covariant2EC<T, E>, (a: A) => D, Eq<Kind<T, A>>?, Eq<Kind<T, D>>?]
+        [
+          IB.IdentityBoth2EC<T, E> & Covariant2EC<T, E>,
+          (a: A) => D,
+          Eq<Kind<T, A>>?,
+          Eq<Kind<T, D>>?,
+        ]
       >
 
   readonly AssociativeFlatten?:
@@ -415,9 +480,44 @@ export interface CovariantHKTLawTestParams2<T extends HKT2, E, A, B, C, D, F, G,
           EqA?: Eq<Kind2<T, E, A>>,
         ]
       >
+
+  readonly ForEach?:
+    | Record<
+        string,
+        [
+          FE: FE.ForEach2<T>,
+          IBC1: IB.IdentityBoth2<T2> & Covariant2<T2>,
+          IBC2: IB.IdentityBoth2<T3> & Covariant2<T3>,
+          E?: Eq<Kind2<T, E, A>>,
+          E2?: Eq<Kind2<T2, E, Kind2<T3, E, A>>>,
+        ]
+      >
+    | Record<
+        string,
+        [
+          FE: FE.ForEach1<T>,
+          IBC1: IB.IdentityBoth2EC<T2, E> & Covariant2EC<T2, E>,
+          IBC2: IB.IdentityBoth2EC<T3, E> & Covariant2EC<T3, E>,
+          E?: Eq<Kind2<T, E, A>>,
+          E2?: Eq<Kind2<T2, E, Kind2<T3, E, A>>>,
+        ]
+      >
 }
 
-export interface CovariantHKTLawTestParams<T extends HKT, A, B, C, D, F, G, H, I, J> {
+export interface CovariantHKTLawTestParams<
+  T extends HKT,
+  A,
+  B,
+  C,
+  D,
+  F,
+  G,
+  H,
+  I,
+  J,
+  T2 extends HKT,
+  T3 extends HKT,
+> {
   readonly name: string
   readonly fc: typeof import('fast-check')
   readonly Arbitrary: Arbitrary<Kind<T, A>>
@@ -450,11 +550,11 @@ export interface CovariantHKTLawTestParams<T extends HKT, A, B, C, D, F, G, H, I
   readonly IdentityBoth?:
     | Record<
         string,
-        [IdentityBoth<T> & Covariant<T>, (a: A) => D, Eq<Kind<T, A>>?, Eq<Kind<T, D>>?]
+        [IB.IdentityBoth<T> & Covariant<T>, (a: A) => D, Eq<Kind<T, A>>?, Eq<Kind<T, D>>?]
       >
     | Record<
         string,
-        [IdentityBoth1<T> & Covariant1<T>, (a: A) => D, Eq<Kind<T, A>>?, Eq<Kind<T, D>>?]
+        [IB.IdentityBoth1<T> & Covariant1<T>, (a: A) => D, Eq<Kind<T, A>>?, Eq<Kind<T, D>>?]
       >
 
   readonly AssociativeFlatten?:
@@ -544,6 +644,28 @@ export interface CovariantHKTLawTestParams<T extends HKT, A, B, C, D, F, G, H, I
           A: Predicate.Predicate<A>,
           B: Predicate.Predicate<A>,
           EqA?: Eq<Kind<T, A>>,
+        ]
+      >
+
+  readonly ForEach?:
+    | Record<
+        string,
+        [
+          FE: FE.ForEach<T>,
+          IBC1: IB.IdentityBoth<T2> & Covariant<T2>,
+          IBC2: IB.IdentityBoth<T3> & Covariant<T3>,
+          E?: Eq<Kind<T2, Kind<T, A>>>,
+          E2?: Eq<Kind<T2, Kind<T3, A>>>,
+        ]
+      >
+    | Record<
+        string,
+        [
+          FE: FE.ForEach1<T>,
+          IBC1: IB.IdentityBoth1<T2> & Covariant1<T2>,
+          IBC2: IB.IdentityBoth1<T3> & Covariant1<T3>,
+          E?: Eq<Kind<T2, Kind<T, A>>>,
+          E2?: Eq<Kind<T2, Kind<T3, A>>>,
         ]
       >
 }
