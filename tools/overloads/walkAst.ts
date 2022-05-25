@@ -70,8 +70,12 @@ export function walkAst(node: AST, visitors: Visitors): void {
         walkAst(e, visitors)
       }
 
-      for (const p of node.properties) {
-        walkAst(p, visitors)
+      if (Array.isArray(node.properties)) {
+        for (const p of node.properties) {
+          walkAst(p, visitors)
+        }
+      } else {
+        walkAst(node.properties as FunctionSignature, visitors)
       }
 
       break

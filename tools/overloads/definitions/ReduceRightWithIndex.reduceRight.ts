@@ -1,4 +1,4 @@
-import { Static } from '../AST'
+import { KindParam, Labeled, Static } from '../AST'
 
 import { ReduceRight } from './ReduceRight'
 import { ReduceRightWithIndex } from './ReduceRightWithIndex'
@@ -14,7 +14,7 @@ export const reduceRight = fn_(
       .setParams([k, curriedPlaceholder_(hkt)])
       .labeled('RRI'),
   ],
-  ReduceRight.properties[0].param,
+  (ReduceRight.properties as readonly Labeled<KindParam>[])[0].param,
 )
 
 export const node = reduceRight

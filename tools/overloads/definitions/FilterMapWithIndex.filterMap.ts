@@ -1,4 +1,4 @@
-import { Static } from '../AST'
+import { KindParam, Labeled, Static } from '../AST'
 
 import { FilterMap } from './FilterMap'
 import { FilterMapWithIndex } from './FilterMapWithIndex'
@@ -14,5 +14,5 @@ export const filterMap = fn_(
       .setParams([k, curriedPlaceholder_(hkt)])
       .labeled(),
   ],
-  FilterMap.properties[0].param,
+  (FilterMap.properties as readonly Labeled<KindParam>[])[0].param,
 )
