@@ -171,6 +171,186 @@
         "types": "./esm/Json.d.ts"
       }
     },
+    "./Law": {
+      "require": {
+        "default": "./cjs/Law/index.js",
+        "types": "./cjs/Law/index.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/index.js",
+        "types": "./esm/Law/index.d.ts"
+      }
+    },
+    "./Law/Arbitrary": {
+      "require": {
+        "default": "./cjs/Law/Arbitrary.js",
+        "types": "./cjs/Law/Arbitrary.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/Arbitrary.js",
+        "types": "./esm/Law/Arbitrary.d.ts"
+      }
+    },
+    "./Law/Associative": {
+      "require": {
+        "default": "./cjs/Law/Associative.js",
+        "types": "./cjs/Law/Associative.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/Associative.js",
+        "types": "./esm/Law/Associative.d.ts"
+      }
+    },
+    "./Law/AssociativeBoth": {
+      "require": {
+        "default": "./cjs/Law/AssociativeBoth.js",
+        "types": "./cjs/Law/AssociativeBoth.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/AssociativeBoth.js",
+        "types": "./esm/Law/AssociativeBoth.d.ts"
+      }
+    },
+    "./Law/AssociativeEither": {
+      "require": {
+        "default": "./cjs/Law/AssociativeEither.js",
+        "types": "./cjs/Law/AssociativeEither.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/AssociativeEither.js",
+        "types": "./esm/Law/AssociativeEither.d.ts"
+      }
+    },
+    "./Law/AssociativeFlatten": {
+      "require": {
+        "default": "./cjs/Law/AssociativeFlatten.js",
+        "types": "./cjs/Law/AssociativeFlatten.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/AssociativeFlatten.js",
+        "types": "./esm/Law/AssociativeFlatten.d.ts"
+      }
+    },
+    "./Law/Commutative": {
+      "require": {
+        "default": "./cjs/Law/Commutative.js",
+        "types": "./cjs/Law/Commutative.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/Commutative.js",
+        "types": "./esm/Law/Commutative.d.ts"
+      }
+    },
+    "./Law/Contravariant": {
+      "require": {
+        "default": "./cjs/Law/Contravariant.js",
+        "types": "./cjs/Law/Contravariant.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/Contravariant.js",
+        "types": "./esm/Law/Contravariant.d.ts"
+      }
+    },
+    "./Law/Covariant": {
+      "require": {
+        "default": "./cjs/Law/Covariant.js",
+        "types": "./cjs/Law/Covariant.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/Covariant.js",
+        "types": "./esm/Law/Covariant.d.ts"
+      }
+    },
+    "./Law/Eq": {
+      "require": {
+        "default": "./cjs/Law/Eq.js",
+        "types": "./cjs/Law/Eq.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/Eq.js",
+        "types": "./esm/Law/Eq.d.ts"
+      }
+    },
+    "./Law/FilterMap": {
+      "require": {
+        "default": "./cjs/Law/FilterMap.js",
+        "types": "./cjs/Law/FilterMap.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/FilterMap.js",
+        "types": "./esm/Law/FilterMap.d.ts"
+      }
+    },
+    "./Law/ForEach": {
+      "require": {
+        "default": "./cjs/Law/ForEach.js",
+        "types": "./cjs/Law/ForEach.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/ForEach.js",
+        "types": "./esm/Law/ForEach.d.ts"
+      }
+    },
+    "./Law/Identity": {
+      "require": {
+        "default": "./cjs/Law/Identity.js",
+        "types": "./cjs/Law/Identity.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/Identity.js",
+        "types": "./esm/Law/Identity.d.ts"
+      }
+    },
+    "./Law/IdentityBoth": {
+      "require": {
+        "default": "./cjs/Law/IdentityBoth.js",
+        "types": "./cjs/Law/IdentityBoth.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/IdentityBoth.js",
+        "types": "./esm/Law/IdentityBoth.d.ts"
+      }
+    },
+    "./Law/IdentityEither": {
+      "require": {
+        "default": "./cjs/Law/IdentityEither.js",
+        "types": "./cjs/Law/IdentityEither.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/IdentityEither.js",
+        "types": "./esm/Law/IdentityEither.d.ts"
+      }
+    },
+    "./Law/IdentityFlatten": {
+      "require": {
+        "default": "./cjs/Law/IdentityFlatten.js",
+        "types": "./cjs/Law/IdentityFlatten.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/IdentityFlatten.js",
+        "types": "./esm/Law/IdentityFlatten.d.ts"
+      }
+    },
+    "./Law/Inverse": {
+      "require": {
+        "default": "./cjs/Law/Inverse.js",
+        "types": "./cjs/Law/Inverse.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/Inverse.js",
+        "types": "./esm/Law/Inverse.d.ts"
+      }
+    },
+    "./Law/Ord": {
+      "require": {
+        "default": "./cjs/Law/Ord.js",
+        "types": "./cjs/Law/Ord.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/Ord.js",
+        "types": "./esm/Law/Ord.d.ts"
+      }
+    },
     "./Map": {
       "require": {
         "default": "./cjs/Map.js",
@@ -619,6 +799,16 @@
       "import": {
         "default": "./esm/Typeclass/Inverse.js",
         "types": "./esm/Typeclass/Inverse.d.ts"
+      }
+    },
+    "./Typeclass/NaturalTransformation": {
+      "require": {
+        "default": "./cjs/Typeclass/NaturalTransformation.js",
+        "types": "./cjs/Typeclass/NaturalTransformation.d.ts"
+      },
+      "import": {
+        "default": "./esm/Typeclass/NaturalTransformation.js",
+        "types": "./esm/Typeclass/NaturalTransformation.d.ts"
       }
     },
     "./Typeclass/Ord": {
