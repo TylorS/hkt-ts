@@ -215,9 +215,14 @@ export function findPlaceholders(
         break
       }
       case Interface.tag: {
-        for (const prop of ast.properties) {
-          recurse(prop.param)
+        if (Array.isArray(ast.properties)) {
+          for (const prop of ast.properties) {
+            recurse(prop.param)
+          }
+        } else {
+          recurse(ast.properties as FunctionSignature)
         }
+
         break
       }
       case TypeAlias.tag: {
