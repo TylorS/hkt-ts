@@ -972,6 +972,7 @@ export function bothWith<T extends HKT>(
 
 /* #endregion */
 
+/* #region both */
 export function both<F extends HKT10, G extends HKT10>(
   F: AssociativeBoth10<F> & Covariant10<F>,
   G: AssociativeBoth10<G>,
@@ -4076,3 +4077,5 @@ export function both<F extends HKT, G extends HKT>(
         F.map(([f, s]) => pipe(f, G.both(s))),
       )
 }
+
+/* #endregion */
