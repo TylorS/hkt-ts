@@ -81,7 +81,7 @@ import type {
   FoldMapWithIndex8,
   FoldMapWithIndex9,
 } from './FoldMapWithIndex'
-import * as FE from './ForEach'
+import * as FE from './ForEach/index'
 import { Identity, fromIdentityEitherCovariant } from './Identity'
 import {
   IdentityEither,

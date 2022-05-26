@@ -94,7 +94,7 @@ import {
   ForEach8,
   ForEach9,
   sequence,
-} from './ForEach'
+} from './ForEach/index'
 import {
   IdentityBoth,
   IdentityBoth1,
