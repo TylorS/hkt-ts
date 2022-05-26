@@ -7,6 +7,22 @@
   "types": "esm/index.d.ts",
   "typings": "esm/index.d.ts",
   "main:ts": "src/index.ts",
+  "files": [
+    "cjs",
+    "esm",
+    "src",
+    "package.json",
+    "pnpm-lock.yaml",
+    "readme.md",
+    "tsconfig.base.json",
+    "tsconfig.build.json",
+    "tsconfig.json"
+  ],
+  "keywords": [
+    "Higher-Kinded Types",
+    "TypeScript",
+    "Category Theory"
+  ],
   "scripts": {
     "build:cjs": "rm -rf cjs && tsc -p ./tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "rm -rf esm && ttsc -p ./tsconfig.build.json --outDir esm",
