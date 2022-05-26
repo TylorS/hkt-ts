@@ -29,7 +29,7 @@ HKT-TS is the culmination of my attempts to learn this new set of TypeClasses an
 
 ## Installation
 
-NOTE: For the best experience you'll want to use typescript@next to be able to use the `NodeNext` moduleResolution mode to support the package exports defined for this project.
+NOTE: For the best experience you'll want to use typescript >= 4.7 to be able to use the `NodeNext` moduleResolution mode to support the package exports defined for this project. All examples are written in this format. Otherwise `hkt-ts/cjs` or `hkt-ts/esm` will be needed to have type-safe imports with TypeScript.
 
 ```sh
 # NPM
