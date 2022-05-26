@@ -181,6 +181,20 @@ export function testAllCovariantHKTLaws<T extends HKT2, T2 extends HKT2, T3 exte
 >(
   params: CovariantHKTLawTestParams2<T, E, A, B, C, D, F, G, H, I, J, T2, T3>,
 ) => void
+export function testAllCovariantHKTLaws<T extends HKT2, T2 extends HKT, T3 extends HKT>(): <
+  E,
+  A,
+  B,
+  C,
+  D,
+  F,
+  G,
+  H,
+  I,
+  J,
+>(
+  params: CovariantHKTLawTestParams2<T, E, A, B, C, D, F, G, H, I, J, T2, T3>,
+) => void
 export function testAllCovariantHKTLaws<T extends HKT, T2 extends HKT, T3 extends HKT>(): <
   A,
   B,
@@ -348,12 +362,13 @@ export interface CovariantHKTLawTestParams2<
   H,
   I,
   J,
-  T2 extends HKT2,
-  T3 extends HKT2,
+  T2 extends HKT,
+  T3 extends HKT,
 > {
   readonly name: string
   readonly fc: typeof import('fast-check')
   readonly Arbitrary: Arbitrary<Kind2<T, E, A>>
+  readonly ArbitraryA: Arbitrary<A>
 
   readonly Covariant?:
     | Record<string, [Covariant2<T>, (a: A) => B, (b: B) => C, Eq<Kind2<T, E, C>>?]>
@@ -487,20 +502,44 @@ export interface CovariantHKTLawTestParams2<
         string,
         [
           FE: FE.ForEach2<T>,
-          IBC1: IB.IdentityBoth2<T2> & Covariant2<T2>,
-          IBC2: IB.IdentityBoth2<T3> & Covariant2<T3>,
+          IBC1: T2 extends HKT2
+            ? IB.IdentityBoth2<T2> & Covariant2<T2>
+            : IB.IdentityBoth1<T2> & Covariant1<T2>,
+          IBC2: T3 extends HKT2
+            ? IB.IdentityBoth2<T3> & Covariant2<T3>
+            : IB.IdentityBoth1<T3> & Covariant1<T3>,
           E?: Eq<Kind2<T, E, A>>,
-          E2?: Eq<Kind2<T2, E, Kind2<T3, E, A>>>,
+          E2?: Eq<
+            T2 extends HKT2
+              ? T3 extends HKT2
+                ? Kind2<T2, E, Kind2<T3, E, A>>
+                : Kind2<T2, E, Kind<T3, A>>
+              : T3 extends HKT2
+              ? Kind<T2, Kind2<T3, E, A>>
+              : Kind<T2, Kind<T3, A>>
+          >,
         ]
       >
     | Record<
         string,
         [
           FE: FE.ForEach1<T>,
-          IBC1: IB.IdentityBoth2EC<T2, E> & Covariant2EC<T2, E>,
-          IBC2: IB.IdentityBoth2EC<T3, E> & Covariant2EC<T3, E>,
+          IBC1: T2 extends HKT2
+            ? IB.IdentityBoth2EC<T2, E> & Covariant2EC<T2, E>
+            : IB.IdentityBoth1<T2> & Covariant1<T2>,
+          IBC2: T3 extends HKT2
+            ? IB.IdentityBoth2EC<T3, E> & Covariant2EC<T3, E>
+            : IB.IdentityBoth1<T3> & Covariant1<T3>,
           E?: Eq<Kind2<T, E, A>>,
-          E2?: Eq<Kind2<T2, E, Kind2<T3, E, A>>>,
+          E2?: Eq<
+            T2 extends HKT2
+              ? T3 extends HKT2
+                ? Kind2<T2, E, Kind2<T3, E, A>>
+                : Kind2<T2, E, Kind<T3, A>>
+              : T3 extends HKT2
+              ? Kind<T2, Kind2<T3, E, A>>
+              : Kind<T2, Kind<T3, A>>
+          >,
         ]
       >
 }

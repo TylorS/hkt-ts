@@ -61,7 +61,8 @@ export const sum =
   <A extends Readonly<Record<PropertyKey, any>>>() =>
   <T extends keyof A>(tag: T) =>
   (eqs: SumEqs<A, T>): Eq<A> => ({
-    equals: (a, b) => (a[tag] === b[tag] ? (eqs as any)[tag](a, b) : false),
+    equals: (a, b) =>
+      a[tag] === b[tag] ? eqs[a.tag as keyof typeof eqs].equals(a as any, b as any) : false,
   })
 
 export type SumEqs<A extends Readonly<Record<PropertyKey, any>>, T extends keyof A> = {

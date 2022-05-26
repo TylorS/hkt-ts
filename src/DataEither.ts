@@ -1,20 +1,27 @@
 import * as Data from './Data'
 import * as Either from './Either'
 import { HKT2, Kind_, Params } from './HKT'
+import * as M from './Maybe'
+import { Progress } from './Progress'
+import { Associative } from './Typeclass/Associative'
 import * as AB from './Typeclass/AssociativeBoth'
 import * as AE from './Typeclass/AssociativeEither'
 import * as AF from './Typeclass/AssociativeFlatten'
 import * as BC from './Typeclass/Bicovariant'
 import * as B from './Typeclass/Bottom'
 import * as C from './Typeclass/Covariant'
+import { Eq } from './Typeclass/Eq'
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach/index'
+import { Identity } from './Typeclass/Identity'
 import * as IB from './Typeclass/IdentityBoth'
 import * as IE from './Typeclass/IdentityEither'
 import * as IF from './Typeclass/IdentityFlatten'
+import { Ord } from './Typeclass/Ord'
 import * as RE from './Typeclass/Reduce'
 import * as RER from './Typeclass/ReduceRight'
 import * as T from './Typeclass/Top'
+import { flow } from './function'
 
 export type DataEither<E, A> = Kind_<[Data.DataHKT, Either.EitherHKT], [E, A]>
 
@@ -146,3 +153,31 @@ export const Reduce: RE.Reduce2<DataEitherHKT> = {
 export const ReduceRight: RER.ReduceRight2<DataEitherHKT> = {
   reduceRight,
 }
+
+export const makeAssociative = <E, A>(
+  E: Associative<E>,
+  A: Associative<A>,
+): Associative<DataEither<E, A>> => Data.makeAssociative(Either.makeAssociative(E, A))
+
+export const makeEq = <E, A>(E: Eq<E>, A: Eq<A>): Eq<DataEither<E, A>> =>
+  Data.makeEq(Either.makeEq(E, A))
+
+export const makeIdentity = <E, A>(E: Associative<E>, A: Identity<A>): Identity<DataEither<E, A>> =>
+  Data.makeIdentity(Either.makeIdentity(E, A))
+
+export const makeOrd: <E, A>(E: Ord<E>, A: Ord<A>) => Ord<DataEither<E, A>> = flow(
+  Either.makeOrd,
+  Data.makeOrd,
+)
+
+export const makeDebug = flow(Either.makeDebug, Data.makeDebug)
+
+export const Success = flow(Either.Right, Data.Replete)
+export const Failure = flow(Either.Left, Data.Replete)
+export const RefreshingFailure = <E>(error: E, progress?: M.Maybe<Progress>) =>
+  Data.Refreshing(Either.Left(error), progress)
+export const RefreshingSuccess = <A>(value: A, progress?: M.Maybe<Progress>) =>
+  Data.Refreshing(Either.Right(value), progress)
+export const NoData = Data.NoData
+export const Pending = Data.Pending
+export const fromProgress = Data.fromProgress

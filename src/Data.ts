@@ -11,6 +11,7 @@ import { Commutative } from './Typeclass/Commutative'
 import * as C from './Typeclass/Covariant'
 import { Debug } from './Typeclass/Debug'
 import * as EQ from './Typeclass/Eq'
+import * as FIM from './Typeclass/FilterMap'
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach/index'
 import { Identity } from './Typeclass/Identity'
@@ -440,3 +441,25 @@ export const Reduce: Reduce1<DataHKT> = {
 export const ReduceRight: ReduceRight1<DataHKT> = {
   reduceRight,
 }
+
+export const FilterMap: FIM.FilterMap1<DataHKT> = {
+  filterMap: (f) =>
+    match(
+      () => NoData,
+      M.match(constant(Pending), fromProgress),
+      (a, progress) =>
+        pipe(
+          a,
+          f,
+          M.match(
+            () => NoData,
+            (b) => Refreshing(b, progress),
+          ),
+        ),
+      flow(f, M.match(constant(NoData), Replete)),
+    ),
+}
+
+export const filterMap = FilterMap
+export const compact = FIM.compact(FilterMap)
+export const filter = FIM.filter(FilterMap)

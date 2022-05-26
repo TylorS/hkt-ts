@@ -7,10 +7,14 @@ import * as F from './Typeclass/AssociativeFlatten'
 import type { Bicovariant2 } from './Typeclass/Bicovariant'
 import { Bottom2EC } from './Typeclass/Bottom'
 import * as C from './Typeclass/Covariant'
+import { Debug } from './Typeclass/Debug'
+import type { Eq } from './Typeclass/Eq'
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach/index'
 import { Identity } from './Typeclass/Identity'
 import * as IB from './Typeclass/IdentityBoth'
+import { IdentityFlatten2 } from './Typeclass/IdentityFlatten'
+import type { Ord } from './Typeclass/Ord'
 import { Reduce2 } from './Typeclass/Reduce'
 import { ReduceRight2 } from './Typeclass/ReduceRight'
 import * as T from './Typeclass/Top'
@@ -228,6 +232,57 @@ export const makeAssociative = <E, A>(
     ),
 })
 
+export const makeEq = <E, A>(E: Eq<E>, A: Eq<A>): Eq<Either<E, A>> => {
+  return {
+    equals: (a, b) =>
+      a.tag === b.tag
+        ? a.tag === 'Left'
+          ? E.equals(a.left, (b as Left<E>).left)
+          : A.equals(a.right, (b as Right<A>).right)
+        : false,
+  }
+}
+
+export const makeOrd = <E, A>(E: Ord<E>, A: Ord<A>): Ord<Either<E, A>> => {
+  return {
+    ...makeEq(E, A),
+    compare: (f, s) =>
+      pipe(
+        f,
+        match(
+          (e1) =>
+            pipe(
+              s,
+              match(
+                (e2) => E.compare(e1, e2),
+                () => -1,
+              ),
+            ),
+          (a1) =>
+            pipe(
+              s,
+              match(
+                () => 1,
+                (a2) => A.compare(a1, a2),
+              ),
+            ),
+        ),
+      ),
+  }
+}
+
+export const makeIdentity = <E, A>(E: Associative<E>, A: Identity<A>): Identity<Either<E, A>> => ({
+  ...makeAssociative(E, A),
+  id: Right(A.id),
+})
+
+export const makeDebug = <E, A>(E: Debug<E>, A: Debug<A>): Debug<Either<E, A>> => ({
+  debug: match(
+    (e) => `Left<${E.debug(e)}>`,
+    (a) => `Right<${A.debug(a)}>`,
+  ),
+})
+
 export const Top: T.Top2<EitherHKT> = {
   top: Right([]),
 }
@@ -238,6 +293,11 @@ export const makeBottom = <E>(I: Identity<E>): Bottom2EC<EitherHKT, E> => ({
 
 export const IdentityBoth: IB.IdentityBoth2<EitherHKT> = {
   ...AssociativeBoth,
+  ...Top,
+}
+
+export const IdentityFlatten: IdentityFlatten2<EitherHKT> = {
+  ...Flatten,
   ...Top,
 }
 
