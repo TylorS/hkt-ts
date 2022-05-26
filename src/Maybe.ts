@@ -8,9 +8,11 @@ import * as AE from './Typeclass/AssociativeEither'
 import * as AF from './Typeclass/AssociativeFlatten'
 import * as B from './Typeclass/Bottom'
 import type { Commutative } from './Typeclass/Commutative'
+import type { Compact1 } from './Typeclass/Compact'
 import * as C from './Typeclass/Covariant'
 import * as Debug from './Typeclass/Debug'
 import type * as Eq from './Typeclass/Eq'
+import type * as FIM from './Typeclass/FilterMap'
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach/index'
 import * as I from './Typeclass/Identity'
@@ -201,6 +203,7 @@ export const AssociativeFlatten: AF.AssociativeFlatten1<MaybeHKT> = {
   flatten: (k) => (isJust(k) ? k.value : Nothing),
 }
 
+export const flatten = AssociativeFlatten.flatten
 export const bind = AF.bind<MaybeHKT>({ ...AssociativeFlatten, ...Covariant })
 
 export const Bottom: B.Bottom1<MaybeHKT> = {
@@ -274,3 +277,15 @@ export const reduceRight = FM.reduceRight<MaybeHKT>({ ...FoldMap, ...ForEach })
 export const reverse = FM.reverse<MaybeHKT>({ ...FoldMap, ...ForEach })
 export const size = FM.size(FoldMap)
 export const toArray = FM.toArray(FoldMap)
+
+export const FilterMap: FIM.FilterMap1<MaybeHKT> = {
+  filterMap: flatMap,
+}
+
+export const filterMap = FilterMap.filterMap
+
+export const Compact: Compact1<MaybeHKT> = {
+  compact: flatten,
+}
+
+export const compact = Compact.compact
