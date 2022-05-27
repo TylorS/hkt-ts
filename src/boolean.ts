@@ -91,10 +91,10 @@ export const Debug: D.Debug<boolean> = {
 
 export const InverseAny: I.Inverse<boolean> = {
   ...Any,
-  inverse: (a, b) => (a ? !b : b),
+  inverse: (a, b) => (a === Any.id ? !b : a),
 }
 
 export const InverseAll: I.Inverse<boolean> = {
   ...All,
-  inverse: (a, b) => (a ? !b : b),
+  inverse: (a, b) => (a === All.id ? !b : a),
 }
