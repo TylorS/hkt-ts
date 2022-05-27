@@ -1,4 +1,8 @@
+import { HKT, Params } from './HKT'
 import type { Associative } from './Typeclass/Associative'
+import * as AB from './Typeclass/AssociativeBoth'
+import * as AE from './Typeclass/AssociativeEither'
+import * as Contra from './Typeclass/Contravariant'
 import type { Identity } from './Typeclass/Identity'
 import { constFalse, constTrue, flow, pipe } from './function'
 
@@ -45,3 +49,27 @@ export const contramap =
   <B, A>(f: (b: B) => A) =>
   (predicate: Predicate<A>): Predicate<B> =>
     flow(f, predicate)
+
+export interface PredicateHKT extends HKT {
+  readonly type: Predicate<this[Params.A]>
+}
+
+export const Contravariant: Contra.Contravariant1<PredicateHKT> = {
+  contramap,
+}
+
+export const AssociativeBoth: AB.AssociativeBoth1<PredicateHKT> = {
+  both:
+    (s) =>
+    (f) =>
+    ([a, b]) =>
+      f(a) && s(b),
+}
+
+export const bothWith = AB.bothWith<PredicateHKT>({ ...Contravariant, ...AssociativeBoth })
+
+export const AssociativeEither: AE.AssociativeEither1<PredicateHKT> = {
+  either: (s) => (f) => (either) => either.tag === 'Left' ? f(either.left) : s(either.right),
+}
+
+export const eitherWith = AE.eitherWith<PredicateHKT>({ ...Contravariant, ...AssociativeEither })

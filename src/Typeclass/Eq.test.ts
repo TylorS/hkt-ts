@@ -11,7 +11,7 @@ describe(__filename, () => {
   describe('Contravariant', () => {
     const { identity, associativity } = pipe(
       L.number(),
-      L.Contravariant.testContravariant(
+      L.Contravariant.testContravariant<E.EqHKT>()(
         E.Contravariant,
         (a: number) => String(a),
         (s: string) => s.length % 2 === 0,

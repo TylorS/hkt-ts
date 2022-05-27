@@ -48,7 +48,7 @@ import { DeepEquals, Eq } from '../Typeclass/Eq'
 import { identity, pipe } from '../function'
 
 import * as Arbitrary from './Arbitrary'
-export function testContravariant<T extends HKT10, A, B, C, Z, Y, X, W, V, U, S, R, E, D>(
+export function testContravariant<T extends HKT10>(): <A, B, C, Z, Y, X, W, V, U, S, R, E, D>(
   C: Contravariant10<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -56,12 +56,12 @@ export function testContravariant<T extends HKT10, A, B, C, Z, Y, X, W, V, U, S,
   kindC: Kind10<T, Z, Y, X, W, V, U, S, R, E, C>,
   run: <A>(kind: Kind10<T, Z, Y, X, W, V, U, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT9, A, B, C, Y, X, W, V, U, S, R, E, D>(
+export function testContravariant<T extends HKT9>(): <A, B, C, Y, X, W, V, U, S, R, E, D>(
   C: Contravariant9<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -69,12 +69,12 @@ export function testContravariant<T extends HKT9, A, B, C, Y, X, W, V, U, S, R, 
   kindC: Kind9<T, Y, X, W, V, U, S, R, E, C>,
   run: <A>(kind: Kind9<T, Y, X, W, V, U, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT8, A, B, C, X, W, V, U, S, R, E, D>(
+export function testContravariant<T extends HKT8>(): <A, B, C, X, W, V, U, S, R, E, D>(
   C: Contravariant8<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -82,12 +82,12 @@ export function testContravariant<T extends HKT8, A, B, C, X, W, V, U, S, R, E, 
   kindC: Kind8<T, X, W, V, U, S, R, E, C>,
   run: <A>(kind: Kind8<T, X, W, V, U, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT7, A, B, C, W, V, U, S, R, E, D>(
+export function testContravariant<T extends HKT7>(): <A, B, C, W, V, U, S, R, E, D>(
   C: Contravariant7<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -95,12 +95,12 @@ export function testContravariant<T extends HKT7, A, B, C, W, V, U, S, R, E, D>(
   kindC: Kind7<T, W, V, U, S, R, E, C>,
   run: <A>(kind: Kind7<T, W, V, U, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT6, A, B, C, V, U, S, R, E, D>(
+export function testContravariant<T extends HKT6>(): <A, B, C, V, U, S, R, E, D>(
   C: Contravariant6<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -108,12 +108,12 @@ export function testContravariant<T extends HKT6, A, B, C, V, U, S, R, E, D>(
   kindC: Kind6<T, V, U, S, R, E, C>,
   run: <A>(kind: Kind6<T, V, U, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT5, A, B, C, U, S, R, E, D>(
+export function testContravariant<T extends HKT5>(): <A, B, C, U, S, R, E, D>(
   C: Contravariant5<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -121,12 +121,12 @@ export function testContravariant<T extends HKT5, A, B, C, U, S, R, E, D>(
   kindC: Kind5<T, U, S, R, E, C>,
   run: <A>(kind: Kind5<T, U, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT4, E, A, B, C, S, R, D>(
+export function testContravariant<T extends HKT4>(): <E, A, B, C, S, R, D>(
   C: Contravariant4EC<T, E>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -134,12 +134,12 @@ export function testContravariant<T extends HKT4, E, A, B, C, S, R, D>(
   kindC: Kind4<T, S, R, E, C>,
   run: <A>(kind: Kind4<T, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT4, R, E, A, B, C, S, D>(
+export function testContravariant<T extends HKT4>(): <R, E, A, B, C, S, D>(
   C: Contravariant4REC<T, R, E>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -147,12 +147,12 @@ export function testContravariant<T extends HKT4, R, E, A, B, C, S, D>(
   kindC: Kind4<T, S, R, E, C>,
   run: <A>(kind: Kind4<T, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT4, S, E, A, B, C, R, D>(
+export function testContravariant<T extends HKT4>(): <S, E, A, B, C, R, D>(
   C: Contravariant4SEC<T, S, E>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -160,12 +160,12 @@ export function testContravariant<T extends HKT4, S, E, A, B, C, R, D>(
   kindC: Kind4<T, S, R, E, C>,
   run: <A>(kind: Kind4<T, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT4, R, A, B, C, S, E, D>(
+export function testContravariant<T extends HKT4>(): <R, A, B, C, S, E, D>(
   C: Contravariant4RC<T, R>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -173,12 +173,12 @@ export function testContravariant<T extends HKT4, R, A, B, C, S, E, D>(
   kindC: Kind4<T, S, R, E, C>,
   run: <A>(kind: Kind4<T, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT4, S, R, A, B, C, E, D>(
+export function testContravariant<T extends HKT4>(): <S, R, A, B, C, E, D>(
   C: Contravariant4SRC<T, S, R>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -186,12 +186,12 @@ export function testContravariant<T extends HKT4, S, R, A, B, C, E, D>(
   kindC: Kind4<T, S, R, E, C>,
   run: <A>(kind: Kind4<T, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT4, S, A, B, C, R, E, D>(
+export function testContravariant<T extends HKT4>(): <S, A, B, C, R, E, D>(
   C: Contravariant4SC<T, S>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -199,12 +199,12 @@ export function testContravariant<T extends HKT4, S, A, B, C, R, E, D>(
   kindC: Kind4<T, S, R, E, C>,
   run: <A>(kind: Kind4<T, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT4, S, R, E, A, B, C, D>(
+export function testContravariant<T extends HKT4>(): <S, R, E, A, B, C, D>(
   C: Contravariant4SREC<T, S, R, E>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -212,12 +212,12 @@ export function testContravariant<T extends HKT4, S, R, E, A, B, C, D>(
   kindC: Kind4<T, S, R, E, C>,
   run: <A>(kind: Kind4<T, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT4, A, B, C, S, R, E, D>(
+export function testContravariant<T extends HKT4>(): <A, B, C, S, R, E, D>(
   C: Contravariant4<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -225,12 +225,12 @@ export function testContravariant<T extends HKT4, A, B, C, S, R, E, D>(
   kindC: Kind4<T, S, R, E, C>,
   run: <A>(kind: Kind4<T, S, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT3, E, A, B, C, R, D>(
+export function testContravariant<T extends HKT3>(): <E, A, B, C, R, D>(
   C: Contravariant3EC<T, E>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -238,12 +238,12 @@ export function testContravariant<T extends HKT3, E, A, B, C, R, D>(
   kindC: Kind3<T, R, E, C>,
   run: <A>(kind: Kind3<T, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT3, R, E, A, B, C, D>(
+export function testContravariant<T extends HKT3>(): <R, E, A, B, C, D>(
   C: Contravariant3REC<T, R, E>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -251,12 +251,12 @@ export function testContravariant<T extends HKT3, R, E, A, B, C, D>(
   kindC: Kind3<T, R, E, C>,
   run: <A>(kind: Kind3<T, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT3, R, A, B, C, E, D>(
+export function testContravariant<T extends HKT3>(): <R, A, B, C, E, D>(
   C: Contravariant3RC<T, R>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -264,12 +264,12 @@ export function testContravariant<T extends HKT3, R, A, B, C, E, D>(
   kindC: Kind3<T, R, E, C>,
   run: <A>(kind: Kind3<T, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT3, A, B, C, R, E, D>(
+export function testContravariant<T extends HKT3>(): <A, B, C, R, E, D>(
   C: Contravariant3<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -277,12 +277,12 @@ export function testContravariant<T extends HKT3, A, B, C, R, E, D>(
   kindC: Kind3<T, R, E, C>,
   run: <A>(kind: Kind3<T, R, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT2, E, A, B, C, D>(
+export function testContravariant<T extends HKT2>(): <E, A, B, C, D>(
   C: Contravariant2EC<T, E>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -290,12 +290,12 @@ export function testContravariant<T extends HKT2, E, A, B, C, D>(
   kindC: Kind2<T, E, C>,
   run: <A>(kind: Kind2<T, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT2, A, B, C, E, D>(
+export function testContravariant<T extends HKT2>(): <A, B, C, E, D>(
   C: Contravariant2<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -303,12 +303,12 @@ export function testContravariant<T extends HKT2, A, B, C, E, D>(
   kindC: Kind2<T, E, C>,
   run: <A>(kind: Kind2<T, E, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT, A, B, C, D>(
+export function testContravariant<T extends HKT>(): <A, B, C, D>(
   C: Contravariant1<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -316,12 +316,12 @@ export function testContravariant<T extends HKT, A, B, C, D>(
   kindC: Kind<T, C>,
   run: <A>(kind: Kind<T, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT, A, B, C, D>(
+export function testContravariant<T extends HKT>(): <A, B, C, D>(
   C: Contravariant<T>,
   f: (a: A) => B,
   g: (b: B) => C,
@@ -329,24 +329,26 @@ export function testContravariant<T extends HKT, A, B, C, D>(
   kindC: Kind<T, C>,
   run: <A>(kind: Kind<T, A>, a: A, b: A, c: A) => D,
   Eq?: Eq<D>,
-): (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
+) => (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => {
   readonly identity: () => void
   readonly associativity: () => void
 }
 
-export function testContravariant<T extends HKT, A, B, C, D>(
-  C: Contravariant<T>,
-  f: (a: A) => B,
-  g: (b: B) => C,
-  kindA: Kind<T, A>,
-  kindC: Kind<T, C>,
-  run: <A>(kind: Kind<T, A>, a: A, b: A, c: A) => D,
-  Eq: Eq<D> = DeepEquals,
-) {
-  return (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => ({
-    identity: () => testContravariantIdentity(C, kindA, run, Eq)(AA).property(fc),
-    associativity: () => testContravarianAssociativity(C, f, g, kindC, run, Eq)(AA).property(fc),
-  })
+export function testContravariant<T extends HKT>() {
+  return <A, B, C, D>(
+    C: Contravariant<T>,
+    f: (a: A) => B,
+    g: (b: B) => C,
+    kindA: Kind<T, A>,
+    kindC: Kind<T, C>,
+    run: <A>(kind: Kind<T, A>, a: A, b: A, c: A) => D,
+    Eq: Eq<D> = DeepEquals,
+  ) => {
+    return (AA: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => ({
+      identity: () => testContravariantIdentity(C, kindA, run, Eq)(AA).property(fc),
+      associativity: () => testContravarianAssociativity(C, f, g, kindC, run, Eq)(AA).property(fc),
+    })
+  }
 }
 
 function testContravariantIdentity<T extends HKT, A, D>(
