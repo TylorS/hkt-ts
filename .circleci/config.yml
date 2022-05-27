@@ -30,6 +30,7 @@ jobs:
             - v1-dependencies-{{ checksum "pnpm-lock.yaml" }}
 
       - run: corepack enable
+      - run: pnpm add -g pnpm
       - run: pnpm install
 
       - save_cache:
