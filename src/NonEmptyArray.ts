@@ -9,10 +9,13 @@ import { Debug } from './Typeclass/Debug'
 import { Eq, fromEquals } from './Typeclass/Eq'
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach/index'
+import { Identity } from './Typeclass/Identity'
 import * as IB from './Typeclass/IdentityBoth'
+import { IdentityFlatten1 } from './Typeclass/IdentityFlatten'
 import * as Ord from './Typeclass/Ord'
 import * as T from './Typeclass/Top'
 import { identity, pipe } from './function'
+import * as N from './number'
 
 /**
  * A NonEmptyArray<A> is an ReadonlyArray<A> with at least 1 item.
@@ -195,6 +198,35 @@ export const makeUnionAssociative = <A>(E: Eq<A>): Associative.Associative<NonEm
     concat: (f, s) => unionE(s)(f),
   }
 }
+
+export const makeIdentity = <A>(I: Identity<A>): Identity<NonEmptyArray<A>> => ({
+  ...makeAssociative<A>(),
+  id: [I.id],
+})
+
+export const makeOrd = <A>(O: Ord.Ord<A>): Ord.Ord<NonEmptyArray<A>> =>
+  Ord.fromCompare((a, b) => {
+    const lengthOrdering = pipe(
+      N.Ord,
+      Ord.contramap((a: readonly A[]) => a.length),
+    ).compare(a, b)
+
+    if (lengthOrdering !== 0) {
+      return lengthOrdering
+    }
+
+    for (let i = 0; i < a.length; ++i) {
+      const ai = a[i]
+      const bi = b[i]
+      const iOrdering = O.compare(ai, bi)
+
+      if (iOrdering !== 0) {
+        return iOrdering
+      }
+    }
+
+    return 0
+  })
 
 /**
  * Transform the values contained within an NonEmptyArray
@@ -382,6 +414,11 @@ export const IdentityBoth: IB.IdentityBoth1<NonEmptyArrayHKT> = {
 
 export const tuple = IB.tuple<NonEmptyArrayHKT>({ ...IdentityBoth, ...Covariant })
 export const struct = IB.struct<NonEmptyArrayHKT>({ ...IdentityBoth, ...Covariant })
+
+export const IdentityFlatten: IdentityFlatten1<NonEmptyArrayHKT> = {
+  ...AssociativeFlatten,
+  ...Top,
+}
 
 export const ForEach: FE.ForEach1<NonEmptyArrayHKT> = {
   map,
