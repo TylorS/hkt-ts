@@ -1,5 +1,7 @@
 import { deepStrictEqual, throws } from 'assert'
 
+import * as fc from 'fast-check'
+
 import * as L from './Law/index'
 import {
   absurd,
@@ -30,7 +32,7 @@ describe(__filename, () => {
         L.tuple(L.unknown, L.nonEmptyArray(L.unknown)),
         L.toProperty(([a, args]) => constant(a)(...args) === a),
         L.assert,
-      )
+      )(fc)
 
       deepStrictEqual(constVoid(), undefined)
       deepStrictEqual(constUndefined(), undefined)
@@ -44,24 +46,24 @@ describe(__filename, () => {
     it('allows composing functions left-to-right', () =>
       pipe(
         L.tuple(
-          L.Arbitrary((fc) => fc.array(fc.constant(add(1)), 1, 20)),
+          L.Arbitrary((fc) => fc.array(fc.constant(add(1)), 1, 9)),
           L.number(),
         ),
-        L.toProperty(([fns, n]) => fns.reduce(flow)(n) === n + fns.length),
-        (x) => L.assert(x, { numRuns: 1000 }),
-      ))
+        L.toProperty(([fns, n]) => flow(...(fns as [(n: number) => number]))(n) === n + fns.length),
+        (x) => L.assert(x, { numRuns: 10000 }),
+      )(fc))
   })
 
   describe('pipe', () => {
     it('allows applying a composition functions left-to-right with a value', () =>
       pipe(
         L.tuple(
-          L.Arbitrary((fc) => fc.array(fc.constant(add(1)), 1, 20)),
+          L.Arbitrary((fc) => fc.array(fc.constant(add(1)), 1, 19)),
           L.number(),
         ),
         L.toProperty(([fns, n]) => pipe(n, ...(fns as [(n: number) => number])) === n + fns.length),
-        (x) => L.assert(x, { numRuns: 1000 }),
-      ))
+        (x) => L.assert(x, { numRuns: 10000 }),
+      )(fc))
   })
 
   describe('identity', () => {
