@@ -176,11 +176,6 @@ export interface Lazy<A> {
 }
 
 /**
- * A function which does nothing
- */
-export const noOp = Function.prototype as (...args: readonly any[]) => void
-
-/**
  * Pipes the value of an expression into a pipeline of functions.
  *
  * @example

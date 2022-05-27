@@ -264,3 +264,5 @@ export const Tree = <P, C>(P: Arbitrary<P>, C: Arbitrary<C>): Arbitrary<TR.Tree<
   union(Parent(P, C), Leaf(C))
 
 export const RoseTree = <A>(A: Arbitrary<A>): Arbitrary<RT.RoseTree<A>> => Tree(A, A)
+
+export const unknown = Arbitrary((fc) => fc.anything())
