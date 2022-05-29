@@ -11,12 +11,18 @@ export interface Debug<A> {
   readonly debug: (a: A) => string
 }
 
+export function Debug<A>(debug: Debug<A>['debug']): Debug<A> {
+  return {
+    debug,
+  }
+}
+
 export type InputOf<T> = [T] extends [Debug<infer R>] ? R : never
 
 export const struct = <A>(shows: { readonly [K in keyof A]: Debug<A[K]> }): Debug<{
   readonly [K in keyof A]: A[K]
-}> => ({
-  debug: (a) => {
+}> =>
+  Debug((a) => {
     let s = '{'
     for (const k in shows) {
       s += `"${k}":${shows[k].debug(a[k])},`
@@ -26,21 +32,17 @@ export const struct = <A>(shows: { readonly [K in keyof A]: Debug<A[K]> }): Debu
     }
     s += '}'
     return s
-  },
-})
+  })
 
 export const tuple = <A extends ReadonlyArray<unknown>>(
   ...shows: { readonly [K in keyof A]: Debug<A[K]> }
-): Debug<Readonly<A>> => ({
-  debug: (t) => `[${t.map((a, i) => shows[i].debug(a)).join(', ')}]`,
-})
+): Debug<Readonly<A>> => Debug((t) => `[${t.map((a, i) => shows[i].debug(a)).join(', ')}]`)
 
 export const sum =
   <A extends Readonly<Record<PropertyKey, any>>>() =>
   <T extends keyof A>(tag: T) =>
-  (eqs: SumDebugs<A, T>): Debug<A> => ({
-    debug: (a) => (eqs as any)[a[tag]].debug(a),
-  })
+  (eqs: SumDebugs<A, T>): Debug<A> =>
+    Debug((a) => (eqs as any)[a[tag]].debug(a))
 
 export type SumDebugs<A extends Readonly<Record<PropertyKey, any>>, T extends keyof A> = {
   readonly [K in KeysOf<A, T>]: Debug<FindType<A, T, K>>
@@ -58,17 +60,13 @@ export const lazy = <A>(f: () => Debug<A>): Debug<A> => {
   }
 }
 
-export const nullable = <A>(debug: Debug<A>): Debug<A | null> => ({
-  debug: (a) => (a === null ? 'null' : debug.debug(a)),
-})
+export const nullable = <A>(debug: Debug<A>): Debug<A | null> =>
+  Debug((a) => (a === null ? 'null' : debug.debug(a)))
 
-export const optional = <A>(debug: Debug<A>): Debug<A | undefined> => ({
-  debug: (a) => (a === undefined ? 'undefined' : debug.debug(a)),
-})
+export const optional = <A>(debug: Debug<A>): Debug<A | undefined> =>
+  Debug((a) => (a === undefined ? 'undefined' : debug.debug(a)))
 
-export const Stringify: Debug<Json> = {
-  debug: (x) => JSON.stringify(x),
-}
+export const Stringify: Debug<Json> = Debug((x) => JSON.stringify(x))
 
 export const string: Debug<string> = Stringify
 export const number: Debug<number> = Stringify
