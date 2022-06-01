@@ -7,6 +7,7 @@
   "types": "esm/index.d.ts",
   "typings": "esm/index.d.ts",
   "main:ts": "src/index.ts",
+  "sideEffects": false,
   "files": [
     "cjs",
     "esm",
