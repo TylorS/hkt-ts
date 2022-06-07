@@ -94,14 +94,23 @@ export const Inverse: I.Inverse<number> = {
 }
 
 // Number types
-export type Integer = Branded<{ readonly Integer: unique symbol }, number>
+export const INTEGER = Symbol('INTEGER')
+export type INTEGER = typeof INTEGER
+
+export type Integer = Branded<{ readonly [INTEGER]: INTEGER }, number>
 export const Integer = Branded<Integer>()
 
-export type Float = Branded<{ readonly Float: unique symbol }, number>
+export const FLOAT = Symbol('FLOAT')
+export type FLOAT = typeof FLOAT
+
+export type Float = Branded<{ readonly [FLOAT]: FLOAT }, number>
 export const Float = Branded<Float>()
 
 // Number base categories
-export type Negative = Branded<{ readonly Negative: unique symbol }, number>
+export const NEGATIVE = Symbol('NEGATIVE')
+export type NEGATIVE = typeof NEGATIVE
+
+export type Negative = Branded<{ readonly [NEGATIVE]: NEGATIVE }, number>
 export const Negative = Branded<Negative>()
 export const NegativeAssociativeSum = Negative.makeAssociative(AssociativeSum)
 export const NegativeAssociativeProduct = Negative.makeAssociative(AssociativeProduct)
@@ -114,7 +123,10 @@ export const NegativeIdentityProduct = Negative.makeIdentity(IdentityProduct)
 export const NegativeOrd = Negative.makeOrd(Ord)
 export const NegativeInverse = Negative.makeInverse(Inverse)
 
-export type NonNegative = Branded<{ readonly NonNegative: unique symbol }, number>
+export const NON_NEGATIVE = Symbol('NON_NEGATIVE')
+export type NON_NEGATIVE = typeof NON_NEGATIVE
+
+export type NonNegative = Branded<{ readonly [NON_NEGATIVE]: NON_NEGATIVE }, number>
 export const NonNegative = Branded<NonNegative>()
 export const NonNegativeAssociativeSum = NonNegative.makeAssociative(AssociativeSum)
 export const NonNegativeAssociativeProduct = NonNegative.makeAssociative(AssociativeProduct)
@@ -127,7 +139,10 @@ export const NonNegativeIdentityProduct = NonNegative.makeIdentity(IdentityProdu
 export const NonNegativeOrd = NonNegative.makeOrd(Ord)
 export const NonNegativeInverse = NonNegative.makeInverse(Inverse)
 
-export type NonPositive = Branded<{ readonly NonPositive: unique symbol }, number>
+export const NON_POSITIVE = Symbol('NON_POSITIVE')
+export type NON_POSITIVE = typeof NON_POSITIVE
+
+export type NonPositive = Branded<{ readonly [NON_POSITIVE]: NON_POSITIVE }, number>
 export const NonPositive = Branded<NonPositive>()
 export const NonPositiveAssociativeSum = NonPositive.makeAssociative(AssociativeSum)
 export const NonPositiveAssociativeProduct = NonPositive.makeAssociative(AssociativeProduct)
@@ -140,7 +155,10 @@ export const NonPositiveIdentityProduct = NonPositive.makeIdentity(IdentityProdu
 export const NonPositiveOrd = NonPositive.makeOrd(Ord)
 export const NonPositiveInverse = NonPositive.makeInverse(Inverse)
 
-export type NonZero = Branded<{ readonly NonZero: unique symbol }, number>
+export const NON_ZERO = Symbol('NON_ZERO')
+export type NON_ZERO = typeof NON_ZERO
+
+export type NonZero = Branded<{ readonly [NON_ZERO]: NON_ZERO }, number>
 export const NonZero = Branded<NonZero>()
 export const NonZeroAssociativeSum = NonZero.makeAssociative(AssociativeSum)
 export const NonZeroAssociativeProduct = NonZero.makeAssociative(AssociativeProduct)
@@ -153,7 +171,10 @@ export const NonZeroIdentityProduct = NonZero.makeIdentity(IdentityProduct)
 export const NonZeroOrd = NonZero.makeOrd(Ord)
 export const NonZeroInverse = NonZero.makeInverse(Inverse)
 
-export type Positive = Branded<{ readonly Positive: unique symbol }, number>
+export const POSITIVE = Symbol('POSITIVE')
+export type POSITIVE = typeof POSITIVE
+
+export type Positive = Branded<{ readonly [POSITIVE]: POSITIVE }, number>
 export const Positive = Branded<Positive>()
 export const PositiveAssociativeSum = Positive.makeAssociative(AssociativeSum)
 export const PositiveAssociativeProduct = Positive.makeAssociative(AssociativeProduct)
