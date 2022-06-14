@@ -32,6 +32,36 @@ export function fromCompare<A>(compare: Ord<A>['compare']): Ord<A> {
 
 export const Static: Ord<unknown> = fromCompare(constant(0))
 
+export const array = <A>(ord: Ord<A>): Ord<ReadonlyArray<A>> =>
+  fromCompare((first, second) => {
+    // Fast Path: First compare based on lengths
+    const fl = first.length
+    const sl = second.length
+
+    if (fl < sl) {
+      return -1
+    }
+
+    if (fl > sl) {
+      return 1
+    }
+
+    // Slow path: for array of the same length
+    // ollect a sum by comparing the values at each
+    // index and adding them together
+    const sum = first
+      .map((a, i) => ord.compare(a, second[i]))
+      .reduce((x: number, y: number) => x + y, 0)
+
+    // If they're considered equal, return 0
+    if (sum === 0) {
+      return 0
+    }
+
+    // If we're more negative return -1, otherwise 1
+    return sum < 0 ? -1 : 1
+  })
+
 export const tuple = <A extends ReadonlyArray<unknown>>(
   ...ords: { readonly [K in keyof A]: Ord<A[K]> }
 ): Ord<Readonly<A>> =>
