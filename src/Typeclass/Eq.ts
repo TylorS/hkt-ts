@@ -34,6 +34,9 @@ export const NeverEquals: Eq<unknown> = {
   equals: constFalse,
 }
 
+export const array = <A>(eq: Eq<A>): Eq<ReadonlyArray<A>> =>
+  fromEquals((a, b) => a.every((ax, i) => eq.equals(ax, b[i])))
+
 export const tuple = <A extends ReadonlyArray<any>>(
   ...eqs: { readonly [K in keyof A]: Eq<A[K]> }
 ): Eq<A> =>
