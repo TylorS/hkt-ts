@@ -58,7 +58,7 @@ describe(__filename, () => {
     it('allows applying a composition functions left-to-right with a value', () =>
       pipe(
         L.tuple(
-          L.Arbitrary((fc) => fc.array(fc.constant(add(1)), 1, 19)),
+          L.Arbitrary((fc) => fc.array(fc.constant(add(1)), { minLength: 1, maxLength: 19 })),
           L.number(),
         ),
         L.toProperty(([fns, n]) => pipe(n, ...(fns as [(n: number) => number])) === n + fns.length),
