@@ -6,6 +6,8 @@ import { flow } from '../function'
 import * as AB from './AssociativeBoth'
 import * as AE from './AssociativeEither'
 import { Contravariant1 } from './Contravariant'
+import * as IB from './IdentityBoth'
+import { Top1 } from './Top'
 
 export interface Debug<A> {
   readonly debug: (a: A) => string
@@ -33,6 +35,9 @@ export const struct = <A>(shows: { readonly [K in keyof A]: Debug<A[K]> }): Debu
     s += '}'
     return s
   })
+
+export const array = <A>(debug: Debug<A>): Debug<ReadonlyArray<A>> =>
+  Debug((t) => `[${t.map((a) => debug.debug(a)).join(', ')}]`)
 
 export const tuple = <A extends ReadonlyArray<unknown>>(
   ...shows: { readonly [K in keyof A]: Debug<A[K]> }
@@ -100,3 +105,12 @@ export const AssociativeEither: AE.AssociativeEither1<DebugHKT> = {
 export const eitherWith = AE.eitherWith<DebugHKT>({ ...AssociativeEither, ...Contravariant })
 
 export const either = AssociativeEither.either
+
+export const Top: Top1<DebugHKT> = {
+  top: Stringify as Debug<unknown>,
+}
+
+export const IdentityBoth: IB.IdentityBoth1<DebugHKT> = {
+  ...AssociativeBoth,
+  ...Top,
+}
