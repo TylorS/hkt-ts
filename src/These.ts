@@ -6,14 +6,20 @@ import * as AE from './Typeclass/AssociativeEither'
 import * as AF from './Typeclass/AssociativeFlatten'
 import * as BI from './Typeclass/Bicovariant'
 import * as C from './Typeclass/Covariant'
+import * as D from './Typeclass/Debug'
+import * as EQ from './Typeclass/Eq'
 import * as FM from './Typeclass/FoldMap'
 import * as FE from './Typeclass/ForEach/index'
+import { Identity } from './Typeclass/Identity'
 import { IdentityBoth, IdentityBoth2EC } from './Typeclass/IdentityBoth'
 import { IdentityEither2EC } from './Typeclass/IdentityEither'
+import * as O from './Typeclass/Ord'
 import { Reduce2 } from './Typeclass/Reduce'
 import { ReduceRight2 } from './Typeclass/ReduceRight'
 import * as T from './Typeclass/Top'
 import { constFalse, constTrue, flow, pipe } from './function'
+import * as N from './number'
+import * as S from './string'
 
 /**
  * These is a data structure for representing an either-or relationship or the possibility of
@@ -228,15 +234,16 @@ export const FoldMap: FM.FoldMap2<TheseHKT> = {
 export const foldLeft = FM.foldLeft(FoldMap)
 export const contains = FM.contains(FoldMap)
 export const count = FM.count(FoldMap)
-export const exists = FM.exists(FoldMap)
-export const find = FM.find(FoldMap)
-export const reverse = FM.reverse<TheseHKT>({ ...FoldMap, ...ForEach })
 export const every = FM.every(FoldMap)
 export const some = FM.some(FoldMap)
+export const exists = FM.exists(FoldMap)
+export const find = FM.find(FoldMap)
 export const groupBy = FM.groupBy(FoldMap)
 export const intercalate = FM.intercalate(FoldMap)
-export const isEmpty = FM.isEmpty(FoldMap)
-export const isNonEmpty = FM.isNonEmpty(FoldMap)
+export const reduceAssociative = FM.reduceAssociative(FoldMap)
+export const reduceCommutative = FM.reduceCommutative(FoldMap)
+export const reduceIdentity = FM.reduceIdentity(FoldMap)
+export const toArray = FM.toArray(FoldMap)
 export const reduce = FM.reduce(FoldMap)
 
 export const Reduce: Reduce2<TheseHKT> = {
@@ -248,3 +255,86 @@ export const ReduceRight: ReduceRight2<TheseHKT> = {
 }
 
 export const reduceRight = ReduceRight.reduceRight
+
+export const makeAssociative = <E, A>(
+  E: Associative<E>,
+  A: Associative<A>,
+): Associative<These<E, A>> => {
+  const flatMap = makeFlatMap(E)
+
+  return {
+    concat: (first, second) =>
+      pipe(
+        first,
+        flatMap((a) =>
+          pipe(
+            second,
+            flatMap((a2) => Right(A.concat(a, a2))),
+          ),
+        ),
+      ),
+  }
+}
+
+export const makeIdentity = <E, A>(E: Associative<E>, A: Identity<A>): Identity<These<E, A>> => {
+  return {
+    ...makeAssociative(E, A),
+    id: Right(A.id),
+  }
+}
+
+export const makeEq = <E, A>(E: EQ.Eq<E>, A: EQ.Eq<A>): EQ.Eq<These<E, A>> =>
+  EQ.sum<These<E, A>>()('tag')({
+    Left: EQ.struct({
+      tag: EQ.string,
+      left: E,
+    }),
+    Right: EQ.struct({
+      tag: EQ.string,
+      right: A,
+    }),
+    Both: EQ.struct({
+      tag: EQ.string,
+      left: E,
+      right: A,
+    }),
+  })
+
+export const makeDebug = <E, A>(E: D.Debug<E>, A: D.Debug<A>): D.Debug<These<E, A>> =>
+  D.sum<These<E, A>>()('tag')({
+    Left: D.struct({
+      tag: D.string,
+      left: E,
+    }),
+    Right: D.struct({
+      tag: D.string,
+      right: A,
+    }),
+    Both: D.struct({
+      tag: D.string,
+      left: E,
+      right: A,
+    }),
+  })
+
+export const makeOrd = <E, A>(E: O.Ord<E>, A: O.Ord<A>): O.Ord<These<E, A>> =>
+  O.sum<These<E, A>>()('tag')(
+    pipe(
+      N.Ord,
+      O.contramap((a) => (a === 'Left' ? -1 : a === 'Both' ? 0 : 1)),
+    ),
+  )({
+    Left: O.struct<Left<E>>({
+      tag: O.Static,
+      left: E,
+    })(S.Ord),
+    Right: O.struct<Right<A>>({
+      tag: O.Static,
+      right: A,
+    })(S.Ord),
+    Both: O.struct<Both<E, A>>({
+      tag: O.Static,
+      left: E,
+      right: A,
+    })(S.Ord),
+  })
