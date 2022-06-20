@@ -19,6 +19,13 @@ export type RoseTree<A> = Tree.Tree<A, A>
 export type RoseForest<A> = Tree.Forest<A, A>
 
 export function RoseTree<A>(value: A, forest: RoseForest<A> = []): RoseTree<A> {
+  if (forest.length === 0) {
+    return {
+      tag: 'Leaf',
+      value,
+    }
+  }
+
   return {
     tag: 'Parent',
     value,
