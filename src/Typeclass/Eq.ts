@@ -39,7 +39,7 @@ export const array = <A>(eq: Eq<A>): Eq<ReadonlyArray<A>> =>
 
 export const tuple = <A extends ReadonlyArray<any>>(
   ...eqs: { readonly [K in keyof A]: Eq<A[K]> }
-): Eq<A> =>
+): Eq<Readonly<A>> =>
   fromEquals(
     (a, b) =>
       a.length === b.length &&
@@ -49,7 +49,8 @@ export const tuple = <A extends ReadonlyArray<any>>(
 
 export const struct = <A extends Readonly<Record<string, any>>>(eqs: {
   readonly [K in keyof A]: Eq<A[K]>
-}): Eq<A> => fromEquals((a, b) => Object.entries(a).every(([k, v]) => eqs[k].equals(v, b[k])))
+}): Eq<Readonly<A>> =>
+  fromEquals((a, b) => Object.entries(a).every(([k, v]) => eqs[k].equals(v, b[k])))
 
 export const contramap =
   <B, A>(f: (b: B) => A) =>
