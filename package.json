@@ -1,6 +1,6 @@
 {
   "name": "hkt-ts",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "A Generic HKT encoding for TypeScript",
   "main": "cjs/index.js",
   "module": "esm/index.js",
