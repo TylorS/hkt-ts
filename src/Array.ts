@@ -406,3 +406,13 @@ export const union =
 export const uniq = NEA.uniq as unknown as <A>(
   E: Eq<A>,
 ) => (as: ReadonlyArray<A>) => ReadonlyArray<A>
+
+export const append =
+  <A>(value: A) =>
+  (values: ReadonlyArray<A>): ReadonlyArray<A> =>
+    [...values, value]
+
+export const prepend =
+  <A>(value: A) =>
+  (values: ReadonlyArray<A>): ReadonlyArray<A> =>
+    [value, ...values]
