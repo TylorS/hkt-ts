@@ -402,3 +402,7 @@ export const union =
 
     return out
   }
+
+export const uniq = NEA.uniq as unknown as <A>(
+  E: Eq<A>,
+) => (as: ReadonlyArray<A>) => ReadonlyArray<A>
