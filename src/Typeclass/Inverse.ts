@@ -6,18 +6,21 @@ export interface Inverse<A> extends Identity<A> {
 
 export function multiply<A>(I: Inverse<A>) {
   return (a: A, amount: number) => {
-    const multiply_ = (seed: A, n: number): A => {
-      if (n === 0) {
-        return seed
-      }
-
-      if (n > 0) {
-        return multiply_(I.concat(seed, a), n - 1)
-      }
-
-      return multiply_(I.inverse(seed, a), n + 1)
+    if (amount === 0) {
+      return I.id
     }
 
-    return multiply_(I.id, amount)
+    let i = amount
+    let r = I.id
+
+    const multiply_ = amount > 0 ? () => (r = I.concat(r, a)) : () => (r = I.inverse(r, a))
+    const updateIndex = amount > 0 ? () => (i -= 1) : () => (i += 1)
+
+    while (i !== 0) {
+      multiply_()
+      updateIndex()
+    }
+
+    return r
   }
 }
