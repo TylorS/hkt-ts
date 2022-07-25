@@ -19,21 +19,15 @@ if (require.main === module) {
 }
 
 type ExportMap = {
-  require: { default: string; types: string }
-  import: { default: string; types: string }
+  require: string
+  import: string
 }
 
 export function createExports() {
   const exports: Record<string, ExportMap> = {
     '.': {
-      require: {
-        default: './cjs/index.js',
-        types: './cjs/index.d.ts',
-      },
-      import: {
-        default: './esm/index.js',
-        types: './esm/index.d.ts',
-      },
+      require: './cjs/index.js',
+      import: './esm/index.js',
     },
   }
 
@@ -43,22 +37,10 @@ export function createExports() {
     const name = module.replace(TSX_REGEX, '')
 
     exports[`./${name}`] = {
-      require: {
-        default:
-          './' +
-          (isDirectory ? path.join('cjs', name, 'index.js') : path.join('cjs', `${name}.js`)),
-        types:
-          './' +
-          (isDirectory ? path.join('cjs', name, 'index.js') : path.join('cjs', `${name}.d.ts`)),
-      },
-      import: {
-        default:
-          './' +
-          (isDirectory ? path.join('esm', name, 'index.js') : path.join('esm', `${name}.js`)),
-        types:
-          './' +
-          (isDirectory ? path.join('esm', name, 'index.js') : path.join('esm', `${name}.d.ts`)),
-      },
+      require:
+        './' + (isDirectory ? path.join('cjs', name, 'index.js') : path.join('cjs', `${name}.js`)),
+      import:
+        './' + (isDirectory ? path.join('esm', name, 'index.js') : path.join('esm', `${name}.js`)),
     }
 
     if (!isDirectory) {
@@ -79,16 +61,9 @@ export function createExports() {
       }
 
       const jsPath = relativePath.replace('.ts', '.js')
-      const dtsPath = relativePath.replace('.ts', '.d.ts')
       const map: ExportMap = {
-        require: {
-          default: './' + path.join('cjs', name, jsPath),
-          types: './' + path.join('cjs', name, dtsPath),
-        },
-        import: {
-          default: './' + path.join('esm', name, jsPath),
-          types: './' + path.join('esm', name, dtsPath),
-        },
+        require: './' + path.join('cjs', name, jsPath),
+        import: './' + path.join('esm', name, jsPath),
       }
 
       const relativeName = relativePath.replace(TSX_REGEX, '').replace(INDEX_REGEX, '')
