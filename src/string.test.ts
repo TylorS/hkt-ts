@@ -1,10 +1,11 @@
 import * as fc from 'fast-check'
+import { describe } from 'vitest'
 
-import * as L from './Law/index'
-import { testAllDataLaws } from './Law/internal-test-all-laws.test'
-import * as S from './string'
+import * as L from './Law/index.js'
+import { testAllDataLaws } from './Law/internal-test-all-laws.js'
+import * as S from './string.js'
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   testAllDataLaws({
     name: 'String Instances',
     fc,

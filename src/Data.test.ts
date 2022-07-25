@@ -1,14 +1,15 @@
 import * as fc from 'fast-check'
+import { describe } from 'vitest'
 
 import * as D from './Data.js'
 import * as E from './Either.js'
 import * as L from './Law/index.js'
-import { testAllCovariantHKTLaws, testAllDataLaws } from './Law/internal-test-all-laws.test.js'
+import { testAllCovariantHKTLaws, testAllDataLaws } from './Law/internal-test-all-laws.js'
 import * as M from './Maybe.js'
 import * as N from './number.js'
 import * as S from './string.js'
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   testAllDataLaws({
     name: `Data<number> Instances`,
     fc,

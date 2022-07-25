@@ -1,10 +1,11 @@
 import * as fc from 'fast-check'
+import { describe } from 'vitest'
 
 import * as L from './Law/index.js'
-import { testAllDataLaws } from './Law/internal-test-all-laws.test.js'
+import { testAllDataLaws } from './Law/internal-test-all-laws.js'
 import * as N from './number.js'
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   testAllDataLaws({
     name: 'Number Instances',
     fc,

@@ -1,8 +1,10 @@
 import { deepStrictEqual } from 'node:assert'
 
+import { describe, it } from 'vitest'
+
 import * as C from './Concat.js'
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   describe('First', () => {
     it('is a Concat instance that always returns the first value', () => {
       deepStrictEqual(C.First.concat(1, 2), 1)

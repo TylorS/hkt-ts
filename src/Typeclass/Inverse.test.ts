@@ -1,11 +1,13 @@
 import { deepStrictEqual } from 'node:assert'
 
+import { describe, it } from 'vitest'
+
 import { InverseAll, InverseAny } from '../boolean.js'
 import { Inverse } from '../number.js'
 
 import { multiply } from './Inverse.js'
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   describe(multiply.name, () => {
     it('allows multiplying a value', () => {
       deepStrictEqual(multiply(Inverse)(2, 2), 4)

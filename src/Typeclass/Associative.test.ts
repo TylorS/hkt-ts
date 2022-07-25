@@ -1,8 +1,10 @@
 import { deepStrictEqual } from 'node:assert'
 
-import * as A from './Associative'
+import { describe, it } from 'vitest'
 
-describe(__filename, () => {
+import * as A from './Associative.js'
+
+describe(import.meta.url, () => {
   describe('constant', () => {
     it('creates an Associative instance which always returns a paraticular value', () => {
       deepStrictEqual(A.constant(3).concat(1, 2), 3)

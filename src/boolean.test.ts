@@ -1,10 +1,11 @@
 import * as fc from 'fast-check'
+import { describe } from 'vitest'
 
-import * as L from './Law/index'
-import { testAllDataLaws } from './Law/internal-test-all-laws.test'
-import * as B from './boolean'
+import * as L from './Law/index.js'
+import { testAllDataLaws } from './Law/internal-test-all-laws.js'
+import * as B from './boolean.js'
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   testAllDataLaws({
     name: 'Boolean Instances',
     fc,

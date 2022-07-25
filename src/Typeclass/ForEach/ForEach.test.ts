@@ -1,5 +1,7 @@
 import { deepStrictEqual } from 'node:assert'
 
+import { describe, it } from 'vitest'
+
 import * as Array from '../../Array.js'
 import * as Data from '../../Data.js'
 import * as Either from '../../Either.js'
@@ -8,7 +10,7 @@ import * as N from '../../number.js'
 
 import * as ForEach from './index.js'
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   describe(ForEach.foldMap.name, () => {
     it('derives foldMap from ForEach instance', () => {
       const foldMapArray = ForEach.foldMap(Array.ForEach)(N.IdentitySum)

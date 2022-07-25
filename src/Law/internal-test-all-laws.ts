@@ -1,3 +1,5 @@
+import { describe, it } from 'vitest'
+
 import { HKT, HKT2, Kind, Kind2 } from '../HKT.js'
 import { Associative } from '../Typeclass/Associative.js'
 import {
@@ -62,72 +64,75 @@ import * as LO from './Ord.js'
 export const testAllDataLaws = <A>(params: DataLawTestParams<A>) => {
   const { fc } = params
 
-  describe(`${params.name} (Data)`, () => {
+  describe.concurrent(`${params.name} (Data)`, () => {
     if (params.Associative) {
       for (const [name, args] of Object.entries(params.Associative)) {
-        describe(`Associative (${name})`, () => {
-          it('has a valid instance', () =>
-            pipe(params.Arbitrary, LA.testAssociativity<A>(...args)).property(fc))
+        describe.concurrent(`Associative (${name})`, () => {
+          it.concurrent('has a valid instance', () =>
+            pipe(params.Arbitrary, LA.testAssociativity<A>(...args)).property(fc),
+          )
         })
       }
     }
 
     if (params.Commutative) {
       for (const [name, args] of Object.entries(params.Commutative)) {
-        describe(`Commutative (${name})`, () => {
-          it('has a valid instance', () =>
-            pipe(params.Arbitrary, LC.testCommutativity<A>(...args)).property(fc))
+        describe.concurrent(`Commutative (${name})`, () => {
+          it.concurrent('has a valid instance', () =>
+            pipe(params.Arbitrary, LC.testCommutativity<A>(...args)).property(fc),
+          )
         })
       }
     }
 
     if (params.Eq) {
       for (const [name, eq] of Object.entries(params.Eq)) {
-        describe(`Eq (${name})`, () => {
+        describe.concurrent(`Eq (${name})`, () => {
           const { reflexivity, symmetry, transitivity } = pipe(
             params.Arbitrary,
             LE.testEq<A>(eq),
           )(fc)
 
-          it('Reflexivity', reflexivity)
-          it('Symmetry', symmetry)
-          it('Transitivity', transitivity)
+          it.concurrent('Reflexivity', reflexivity)
+          it.concurrent('Symmetry', symmetry)
+          it.concurrent('Transitivity', transitivity)
         })
       }
     }
 
     if (params.Identity) {
       for (const [name, args] of Object.entries(params.Identity)) {
-        describe(`Identity (${name})`, () => {
+        describe.concurrent(`Identity (${name})`, () => {
           const { left, right } = pipe(params.Arbitrary, LI.testIdentity<A>(...args))(fc)
 
-          it('Left Identity', left)
-          it('Right Identity', right)
+          it.concurrent('Left Identity', left)
+          it.concurrent('Right Identity', right)
         })
       }
     }
 
     if (params.Inverse) {
       for (const [name, args] of Object.entries(params.Inverse)) {
-        describe(`Inverse (${name})`, () => {
-          it('has a valid instance', () =>
-            pipe(params.Arbitrary, LIV.testInverse<A>(...args)).property(fc))
+        describe.concurrent(`Inverse (${name})`, () => {
+          it.concurrent('has a valid instance', () =>
+            pipe(params.Arbitrary, LIV.testInverse<A>(...args)).property(fc),
+          )
         })
       }
     }
 
     if (params.Ord) {
       for (const [name, ord] of Object.entries(params.Ord)) {
-        describe(`Ord (${name})`, () => {
+        describe.concurrent(`Ord (${name})`, () => {
           const { totality, reflexivity, antisymmetry, transitivity } = pipe(
             params.Arbitrary,
             LO.testOrd<A>(ord),
           )(fc)
 
-          it('Totality', totality)
-          it('Reflexivity', reflexivity)
-          it('Antisymmetry', antisymmetry)
-          it('Transitivity', transitivity)
+          it.concurrent('Totality', totality)
+          it.concurrent('Reflexivity', reflexivity)
+          it.concurrent('Antisymmetry', antisymmetry)
+          it.concurrent('Transitivity', transitivity)
         })
       }
     }
@@ -214,10 +219,10 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
     assertIsCovariantParams<T, A, B, C, D, F, G, H, I, J, T2, T3>(params)
     const { name, fc, Arbitrary, ArbitraryA } = params
 
-    describe(`${name} (HKT)`, () => {
+    describe.concurrent(`${name} (HKT)`, () => {
       if (params.Covariant) {
         for (const [name, args] of Object.entries(params.Covariant)) {
-          describe(`Covariant (${name})`, () => {
+          describe.concurrent(`Covariant (${name})`, () => {
             const { identity, associativity } = pipe(
               Arbitrary,
               LCovariant.testCovariant(...args),
@@ -231,7 +236,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
 
       if (params.AssociativeBoth) {
         for (const [name, args] of Object.entries(params.AssociativeBoth)) {
-          describe(`AssociativeBoth & Covariant (${name})`, () => {
+          describe.concurrent(`AssociativeBoth & Covariant (${name})`, () => {
             it(`has a valid instance`, () =>
               pipe(Arbitrary, LAB.testCovariantAssociativeBoth(...args)).property(fc))
           })
@@ -240,7 +245,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
 
       if (params.IdentityBoth) {
         for (const [name, args] of Object.entries(params.IdentityBoth)) {
-          describe(`IdentityBoth & Covariant (${name})`, () => {
+          describe.concurrent(`IdentityBoth & Covariant (${name})`, () => {
             const [IBC, f, EqA, EqC] = args
             const { identity, homomorphism, interchange } = pipe(
               ArbitraryA,
@@ -255,7 +260,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
 
         if (params.AssociativeFlatten) {
           for (const [name, args] of Object.entries(params.AssociativeFlatten)) {
-            describe(`AssociativeFlatten & Covariant (${name})`, () => {
+            describe.concurrent(`AssociativeFlatten & Covariant (${name})`, () => {
               const [AFC, f, g, Eq] = args
               const { associativity, derivedAssociativeBoth } = pipe(
                 Arbitrary,
@@ -270,7 +275,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
 
         if (params.IdentityFlatten) {
           for (const [name, args] of Object.entries(params.IdentityFlatten)) {
-            describe(`IdentityFlatten & Covariant (${name})`, () => {
+            describe.concurrent(`IdentityFlatten & Covariant (${name})`, () => {
               const [AFC, f, Eq] = args
               const { leftIdentity, rightIdentity } = pipe(
                 ArbitraryA,
@@ -285,7 +290,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
 
         if (params.AssociativeEither) {
           for (const [name, args] of Object.entries(params.AssociativeEither)) {
-            describe(`AssociativeEither & Covariant (${name})`, () => {
+            describe.concurrent(`AssociativeEither & Covariant (${name})`, () => {
               const [AEC, f, EqA = DeepEquals, EqB = DeepEquals] = args
               const { associativity, distributivity } = pipe(
                 Arbitrary,
@@ -300,7 +305,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
 
         if (params.IdentityEither) {
           for (const [name, args] of Object.entries(params.IdentityEither)) {
-            describe(`IdentityEither & Covariant (${name})`, () => {
+            describe.concurrent(`IdentityEither & Covariant (${name})`, () => {
               const [AEC, f, EqA = DeepEquals, EqB = DeepEquals] = args
               const { leftIdentity, rightIdentity, distributivity, annihilation } = pipe(
                 Arbitrary,
@@ -317,7 +322,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
 
         if (params.FilterMap) {
           for (const [name, args] of Object.entries(params.FilterMap)) {
-            describe(`FilterMap (${name})`, () => {
+            describe.concurrent(`FilterMap (${name})`, () => {
               const [AEC, predA, predB, E = DeepEquals] = args
               const { identity, distributivity, annihilation } = pipe(
                 Arbitrary,
@@ -333,7 +338,7 @@ export function testAllCovariantHKTLaws<T extends HKT>() {
 
         if (params.ForEach) {
           for (const [name, args] of Object.entries(params.ForEach)) {
-            describe(`ForEach (${name})`, () => {
+            describe.concurrent(`ForEach (${name})`, () => {
               const [FE, IBC1, IBC2, E = DeepEquals, E2 = DeepEquals] = args
               const { identity, associativity } = pipe(
                 Arbitrary,

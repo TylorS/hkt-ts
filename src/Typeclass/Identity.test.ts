@@ -1,4 +1,5 @@
 import * as fc from 'fast-check'
+import { describe, it } from 'vitest'
 
 import * as L from '../Law/index.js'
 import * as M from '../Maybe.js'
@@ -8,7 +9,7 @@ import * as S from '../string.js'
 
 import { fromIdentityEitherCovariant } from './Identity.js'
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   describe(fromIdentityEitherCovariant.name, () => {
     it('creates an Identity instance', () => {
       const makeIdentity = fromIdentityEitherCovariant<M.MaybeHKT>({

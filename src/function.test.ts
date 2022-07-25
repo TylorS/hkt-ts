@@ -1,8 +1,9 @@
 import { deepStrictEqual, throws } from 'node:assert'
 
 import * as fc from 'fast-check'
+import { describe, it } from 'vitest'
 
-import * as L from './Law/index'
+import * as L from './Law/index.js'
 import {
   absurd,
   constFalse,
@@ -17,11 +18,11 @@ import {
   second,
   tupled,
   unsafeCoerce,
-} from './function'
+} from './function.js'
 
 const add = (x: number) => (y: number) => x + y
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   describe(absurd.name, () => {
     it('always throws', () => throws(absurd))
   })

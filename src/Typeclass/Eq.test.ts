@@ -1,4 +1,5 @@
 import * as fc from 'fast-check'
+import { describe, it } from 'vitest'
 
 import * as L from '../Law/index.js'
 import * as B from '../boolean.js'
@@ -7,7 +8,7 @@ import * as N from '../number.js'
 
 import * as E from './Eq.js'
 
-describe(__filename, () => {
+describe(import.meta.url, () => {
   describe('Contravariant', () => {
     const { identity, associativity } = pipe(
       L.number(),
