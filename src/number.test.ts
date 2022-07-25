@@ -1,8 +1,8 @@
 import * as fc from 'fast-check'
 
-import * as L from './Law/index'
-import { testAllDataLaws } from './Law/internal-test-all-laws.test'
-import * as N from './number'
+import * as L from './Law/index.js'
+import { testAllDataLaws } from './Law/internal-test-all-laws.test.js'
+import * as N from './number.js'
 
 describe(__filename, () => {
   testAllDataLaws({

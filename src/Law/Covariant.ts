@@ -19,7 +19,7 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
+} from '../HKT.js'
 import {
   Covariant,
   Covariant1,
@@ -43,11 +43,11 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from '../Typeclass/Covariant'
-import { DeepEquals, Eq } from '../Typeclass/Eq'
-import { flow, pipe } from '../function'
+} from '../Typeclass/Covariant.js'
+import { DeepEquals, Eq } from '../Typeclass/Eq.js'
+import { flow, pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testCovariant<T extends HKT10, A, B, C, Z, Y, X, W, V, U, S, R, E>(
   C: Covariant10<T>,

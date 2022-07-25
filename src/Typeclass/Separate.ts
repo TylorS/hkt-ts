@@ -1,4 +1,4 @@
-import { Either } from '../Either'
+import { Either } from '../Either.js'
 import {
   HKT,
   HKT10,
@@ -20,7 +20,7 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
+} from '../HKT.js'
 
 export interface Separate<T extends HKT> {
   readonly separate: <A, B>(kind: Kind<T, Either<A, B>>) => readonly [Kind<T, A>, Kind<T, B>]

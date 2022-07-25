@@ -1,8 +1,8 @@
-import { Dynamic } from '../AST'
+import { Dynamic } from '../AST.js'
 
-import { Compact } from './Compact'
-import { Covariant } from './Covariant'
-import { aTypeParam, composed_, fn_, kindF_, kindG_, placeholderF, placeholderG } from './common'
+import { Compact } from './Compact.js'
+import { Covariant } from './Covariant.js'
+import { aTypeParam, composed_, fn_, kindF_, kindG_, placeholderF, placeholderG } from './common.js'
 
 export const compact = composed_(
   'compact',

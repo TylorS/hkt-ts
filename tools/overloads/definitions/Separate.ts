@@ -1,6 +1,6 @@
-import { Dynamic, Tuple } from '../AST'
+import { Dynamic, Tuple } from '../AST.js'
 
-import { aTypeParam, bTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common.js'
 
 export const node = interface_('Separate', [
   fnLabeled_(

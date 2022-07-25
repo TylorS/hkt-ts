@@ -1,6 +1,6 @@
-import { AssociativeEither } from './AssociativeEither'
-import { Covariant } from './Covariant'
-import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
+import { AssociativeEither } from './AssociativeEither.js'
+import { Covariant } from './Covariant.js'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common.js'
 
 export const eventually = derived_(
   'eventually',

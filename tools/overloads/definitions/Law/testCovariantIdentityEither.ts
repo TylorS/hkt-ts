@@ -1,6 +1,6 @@
-import { Dynamic, IntersectionNode, ObjectNode, Static } from '../../AST'
-import { Covariant } from '../Covariant'
-import { IdentityEither } from '../IdentityEither'
+import { Dynamic, IntersectionNode, ObjectNode, Static } from '../../AST.js'
+import { Covariant } from '../Covariant.js'
+import { IdentityEither } from '../IdentityEither.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -10,7 +10,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from '../common'
+} from '../common.js'
 
 export const testCovariantIdentityEither = fn_(
   'testCovariantIdentityEither',

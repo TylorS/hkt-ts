@@ -1,4 +1,4 @@
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common.js'
 
 export const ReduceRight = interface_(
   'ReduceRight',

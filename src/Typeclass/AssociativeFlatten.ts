@@ -19,8 +19,8 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import { flow } from '../function'
+} from '../HKT.js'
+import { flow } from '../function.js'
 
 import {
   AssociativeBoth,
@@ -45,7 +45,7 @@ import {
   AssociativeBoth7,
   AssociativeBoth8,
   AssociativeBoth9,
-} from './AssociativeBoth'
+} from './AssociativeBoth.js'
 import {
   Covariant,
   Covariant1,
@@ -69,7 +69,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 import {
   ForEach,
   ForEach1,
@@ -94,7 +94,7 @@ import {
   ForEach8,
   ForEach9,
   sequence,
-} from './ForEach/index'
+} from './ForEach/index.js'
 import {
   IdentityBoth,
   IdentityBoth1,
@@ -118,7 +118,7 @@ import {
   IdentityBoth7,
   IdentityBoth8,
   IdentityBoth9,
-} from './IdentityBoth'
+} from './IdentityBoth.js'
 
 /* #region AssociativeFlatten */
 export interface AssociativeFlatten<T extends HKT> {

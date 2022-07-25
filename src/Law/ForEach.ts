@@ -1,13 +1,13 @@
-import { HKT, Kind, Params } from '../HKT'
-import * as AB from '../Typeclass/AssociativeBoth'
-import { Covariant, map } from '../Typeclass/Covariant'
-import { Eq } from '../Typeclass/Eq'
-import * as FE from '../Typeclass/ForEach/index'
-import * as IB from '../Typeclass/IdentityBoth'
-import * as T from '../Typeclass/Top'
-import { pipe } from '../function'
+import { HKT, Kind, Params } from '../HKT.js'
+import * as AB from '../Typeclass/AssociativeBoth.js'
+import { Covariant, map } from '../Typeclass/Covariant.js'
+import { Eq } from '../Typeclass/Eq.js'
+import * as FE from '../Typeclass/ForEach/index.js'
+import * as IB from '../Typeclass/IdentityBoth.js'
+import * as T from '../Typeclass/Top.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testForEach<T extends HKT, T2 extends HKT, T3 extends HKT, A>(
   FE: FE.ForEach<T>,

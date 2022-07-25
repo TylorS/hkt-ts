@@ -1,6 +1,6 @@
-import { Covariant } from './Covariant'
-import { Top } from './Top'
-import { aTypeParam, derived_, fn_, kindWithDefaults_, placeholderWithDefaults } from './common'
+import { Covariant } from './Covariant.js'
+import { Top } from './Top.js'
+import { aTypeParam, derived_, fn_, kindWithDefaults_, placeholderWithDefaults } from './common.js'
 
 export const makeFromValue = derived_(
   'makeFromValue',

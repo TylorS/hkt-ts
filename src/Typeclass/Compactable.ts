@@ -1,4 +1,4 @@
-import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../HKT'
+import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../HKT.js'
 
 import {
   Compact,
@@ -23,7 +23,7 @@ import {
   Compact7,
   Compact8,
   Compact9,
-} from './Compact'
+} from './Compact.js'
 import {
   Separate,
   Separate1,
@@ -47,7 +47,7 @@ import {
   Separate7,
   Separate8,
   Separate9,
-} from './Separate'
+} from './Separate.js'
 
 export interface Compactable<T extends HKT> extends Compact<T>, Separate<T> {}
 

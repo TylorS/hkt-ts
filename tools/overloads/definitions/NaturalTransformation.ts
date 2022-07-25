@@ -1,4 +1,4 @@
-import { Interface } from '../AST'
+import { Interface } from '../AST.js'
 
 import {
   aTypeParam,
@@ -10,7 +10,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const NaturalTransformation = new Interface(
   'NaturalTransformation',

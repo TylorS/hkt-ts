@@ -1,7 +1,7 @@
-import { AssociativeBoth } from './AssociativeBoth'
-import { AssociativeFlatten } from './AssociativeFlatten'
-import { Covariant } from './Covariant'
-import { derived_, hkt } from './common'
+import { AssociativeBoth } from './AssociativeBoth.js'
+import { AssociativeFlatten } from './AssociativeFlatten.js'
+import { Covariant } from './Covariant.js'
+import { derived_, hkt } from './common.js'
 
 export const makeAssociativeBoth = derived_(
   'makeAssociativeBoth',

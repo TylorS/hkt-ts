@@ -15,9 +15,9 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import type { Unary } from '../Unary'
-import { identity } from '../function'
+} from '../HKT.js'
+import type { Unary } from '../Unary.js'
+import { identity } from '../function.js'
 
 /* #region Trivariant */
 export interface Trivariant<T extends HKT3> {

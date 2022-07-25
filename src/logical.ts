@@ -1,5 +1,5 @@
-import { Predicate } from './Predicate'
-import { Refinement } from './Refinement'
+import { Predicate } from './Predicate.js'
+import { Refinement } from './Refinement.js'
 
 export function ifElse<A, A1 extends A, B, C>(
   refinement: Refinement<A, A1>,

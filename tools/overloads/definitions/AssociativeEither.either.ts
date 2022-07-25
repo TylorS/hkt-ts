@@ -1,8 +1,8 @@
-import { Dynamic } from '../AST'
+import { Dynamic } from '../AST.js'
 
-import { AssociativeEither } from './AssociativeEither'
-import { AssociativeFlatten } from './AssociativeFlatten'
-import { Covariant } from './Covariant'
+import { AssociativeEither } from './AssociativeEither.js'
+import { AssociativeFlatten } from './AssociativeFlatten.js'
+import { Covariant } from './Covariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -12,7 +12,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const either = composed_(
   'either',

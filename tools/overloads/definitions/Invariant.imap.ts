@@ -1,5 +1,5 @@
-import { Covariant } from './Covariant'
-import { Invariant } from './Invariant'
+import { Covariant } from './Covariant.js'
+import { Invariant } from './Invariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -11,7 +11,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const imap = composed_(
   'imap',

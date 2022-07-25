@@ -1,4 +1,4 @@
-import { Static, Tuple } from '../AST'
+import { Static, Tuple } from '../AST.js'
 
 import {
   aTypeParam,
@@ -9,7 +9,7 @@ import {
   interface_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const PartitionMap = interface_(
   'PartitionMap',

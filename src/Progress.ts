@@ -1,12 +1,12 @@
-import * as M from './Maybe'
-import * as A from './Typeclass/Associative'
-import * as C from './Typeclass/Commutative'
-import * as D from './Typeclass/Debug'
-import * as EQ from './Typeclass/Eq'
-import * as I from './Typeclass/Identity'
-import * as O from './Typeclass/Ord'
-import { pipe } from './function'
-import * as N from './number'
+import * as M from './Maybe.js'
+import * as A from './Typeclass/Associative.js'
+import * as C from './Typeclass/Commutative.js'
+import * as D from './Typeclass/Debug.js'
+import * as EQ from './Typeclass/Eq.js'
+import * as I from './Typeclass/Identity.js'
+import * as O from './Typeclass/Ord.js'
+import { pipe } from './function.js'
+import * as N from './number.js'
 
 export interface Progress {
   readonly loaded: N.NonNegativeFloat

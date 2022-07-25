@@ -1,11 +1,17 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import { Params } from '../../src/HKT'
-import { DeepEquals } from '../../src/Typeclass/Eq'
+import { dirname } from 'node:path'
+
+import { Params } from '../../src/HKT.js'
+import { DeepEquals } from '../../src/Typeclass/Eq.js'
 
 export const possibleLengths: ReadonlyArray<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 export type PossibleLength = typeof possibleLengths[number]
+
+export function getDirname(x: string) {
+  return dirname(new URL(x).pathname)
+}
 
 export const hktParamNames = [
   Params.A,

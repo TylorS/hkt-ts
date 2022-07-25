@@ -19,8 +19,8 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import * as AF from '../Typeclass/AssociativeFlatten'
+} from '../HKT.js'
+import * as AF from '../Typeclass/AssociativeFlatten.js'
 import {
   Covariant,
   Covariant1,
@@ -44,8 +44,8 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from '../Typeclass/Covariant'
-import { DeepEquals, Eq } from '../Typeclass/Eq'
+} from '../Typeclass/Covariant.js'
+import { DeepEquals, Eq } from '../Typeclass/Eq.js'
 import {
   IdentityFlatten,
   IdentityFlatten1,
@@ -69,11 +69,11 @@ import {
   IdentityFlatten7,
   IdentityFlatten8,
   IdentityFlatten9,
-} from '../Typeclass/IdentityFlatten'
-import { makeFromValue } from '../Typeclass/Top'
-import { pipe } from '../function'
+} from '../Typeclass/IdentityFlatten.js'
+import { makeFromValue } from '../Typeclass/Top.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testCovariantIdentityFlatten<T extends HKT10, Z, Y, X, W, V, U, S, R, E, A, B, C>(
   AFC: Covariant10<T> & IdentityFlatten10<T>,

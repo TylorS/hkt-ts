@@ -1,6 +1,6 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { CovariantWithIndex } from './CovariantWithIndex'
+import { CovariantWithIndex } from './CovariantWithIndex.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -10,7 +10,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 const kTypeParam = new Static('K')
 

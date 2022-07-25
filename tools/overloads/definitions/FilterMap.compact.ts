@@ -1,7 +1,7 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { FilterMap } from './FilterMap'
-import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
+import { FilterMap } from './FilterMap.js'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common.js'
 
 export const makeCompact = derived_(
   'makeCompact',

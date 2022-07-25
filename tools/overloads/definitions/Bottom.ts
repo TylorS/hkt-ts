@@ -1,6 +1,6 @@
-import { Kind, Static } from '../AST'
+import { Kind, Static } from '../AST.js'
 
-import { hkt, interface_, placeholderWithDefaults } from './common'
+import { hkt, interface_, placeholderWithDefaults } from './common.js'
 
 const neverType = new Static('never')
 

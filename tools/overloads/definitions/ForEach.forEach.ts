@@ -1,6 +1,6 @@
-import { Covariant } from './Covariant'
-import { ForEach } from './ForEach'
-import { IdentityBoth } from './IdentityBoth'
+import { Covariant } from './Covariant.js'
+import { ForEach } from './ForEach.js'
+import { IdentityBoth } from './IdentityBoth.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -14,7 +14,7 @@ import {
   placeholder,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const forEach = composed_(
   'forEach',

@@ -19,8 +19,8 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import { Maybe } from '../Maybe'
+} from '../HKT.js'
+import { Maybe } from '../Maybe.js'
 
 /* #region FilterMapWithIndex */
 export interface FilterMapWithIndex<T extends HKT, K> {

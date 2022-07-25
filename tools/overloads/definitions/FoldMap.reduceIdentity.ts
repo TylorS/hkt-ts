@@ -1,7 +1,7 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { FoldMap } from './FoldMap'
-import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
+import { FoldMap } from './FoldMap.js'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common.js'
 
 export const reduceIdentity = derived_(
   'reduceIdentity',

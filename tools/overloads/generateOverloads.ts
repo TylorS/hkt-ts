@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { pipe } from '../../src/function'
+import { pipe } from '../../src/function.js'
 
 import {
   ArrayNode,
@@ -21,17 +21,17 @@ import {
   TypeParam,
   Typeclass,
   UnionNode,
-} from './AST'
+} from './AST.js'
 import {
   Context,
   buildContext,
   findPlaceholders,
   findPossibilities,
   mergeContexts,
-} from './Context'
-import { PrintContextManager } from './PrintManagerContext'
-import { hktParamNames } from './common'
-import { findHKTParams } from './findHKTParams'
+} from './Context.js'
+import { PrintContextManager } from './PrintManagerContext.js'
+import { hktParamNames } from './common.js'
+import { findHKTParams } from './findHKTParams.js'
 
 const emptyContext = (node: ParentNode): Context => ({
   parent: node,

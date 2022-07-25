@@ -1,4 +1,4 @@
-import { Interface, Static, Tuple } from '../AST'
+import { Interface, Static, Tuple } from '../AST.js'
 
 import {
   aTypeParam,
@@ -10,7 +10,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const PartitionMapWithIndex = new Interface(
   'PartitionMapWithIndex',

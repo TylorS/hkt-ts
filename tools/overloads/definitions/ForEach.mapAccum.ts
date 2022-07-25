@@ -1,7 +1,7 @@
-import { Static, Tuple } from '../AST'
+import { Static, Tuple } from '../AST.js'
 
-import { ForEach } from './ForEach'
-import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
+import { ForEach } from './ForEach.js'
+import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common.js'
 
 const sTypeParam = new Static(`S`)
 

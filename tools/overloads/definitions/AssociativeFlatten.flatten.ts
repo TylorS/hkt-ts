@@ -1,8 +1,8 @@
-import { AssociativeFlatten } from './AssociativeFlatten'
-import { Covariant } from './Covariant'
-import { ForEach } from './ForEach'
-import { IdentityBoth } from './IdentityBoth'
-import { aTypeParam, composed_, fn_, kindF_, kindG_, placeholderF, placeholderG } from './common'
+import { AssociativeFlatten } from './AssociativeFlatten.js'
+import { Covariant } from './Covariant.js'
+import { ForEach } from './ForEach.js'
+import { IdentityBoth } from './IdentityBoth.js'
+import { aTypeParam, composed_, fn_, kindF_, kindG_, placeholderF, placeholderG } from './common.js'
 
 export const flatten = composed_(
   'flatten',

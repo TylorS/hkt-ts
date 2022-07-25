@@ -1,4 +1,4 @@
-import { aTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common'
+import { aTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common.js'
 
 export const AssociativeFlatten = interface_(
   'AssociativeFlatten',

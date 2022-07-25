@@ -1,12 +1,12 @@
 import * as fc from 'fast-check'
 
-import * as L from '../Law/index'
-import * as M from '../Maybe'
-import * as B from '../boolean'
-import * as N from '../number'
-import * as S from '../string'
+import * as L from '../Law/index.js'
+import * as M from '../Maybe.js'
+import * as B from '../boolean.js'
+import * as N from '../number.js'
+import * as S from '../string.js'
 
-import { fromIdentityEitherCovariant } from './Identity'
+import { fromIdentityEitherCovariant } from './Identity.js'
 
 describe(__filename, () => {
   describe(fromIdentityEitherCovariant.name, () => {

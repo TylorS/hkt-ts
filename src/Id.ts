@@ -1,8 +1,8 @@
-import { HKT, Params } from './HKT'
-import { AssociativeBoth1 } from './Typeclass/AssociativeBoth'
-import { Covariant1 } from './Typeclass/Covariant'
-import { IdentityBoth1 } from './Typeclass/IdentityBoth'
-import { Top1 } from './Typeclass/Top'
+import { HKT, Params } from './HKT.js'
+import { AssociativeBoth1 } from './Typeclass/AssociativeBoth.js'
+import { Covariant1 } from './Typeclass/Covariant.js'
+import { IdentityBoth1 } from './Typeclass/IdentityBoth.js'
+import { Top1 } from './Typeclass/Top.js'
 
 export type Id<A> = A
 

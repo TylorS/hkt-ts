@@ -15,7 +15,7 @@ import {
   Tuple,
   TypeAlias,
   Typeclass,
-} from './AST'
+} from './AST.js'
 
 type Visitors = {
   readonly [K in AST['tag']]: (node: FindAstNode<K>) => void

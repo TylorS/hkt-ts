@@ -1,8 +1,8 @@
-import { Dynamic, Static } from '../AST'
+import { Dynamic, Static } from '../AST.js'
 
-import { AssociativeFlatten } from './AssociativeFlatten'
-import { Covariant } from './Covariant'
-import { bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
+import { AssociativeFlatten } from './AssociativeFlatten.js'
+import { Covariant } from './Covariant.js'
+import { bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common.js'
 
 const aTypeParam = new Static(`A extends Readonly<Record<string, any>>`)
 

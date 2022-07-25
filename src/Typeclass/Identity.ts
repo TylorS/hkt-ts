@@ -19,11 +19,11 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import { constant, pipe } from '../function'
+} from '../HKT.js'
+import { constant, pipe } from '../function.js'
 
-import { Associative } from './Associative'
-import { orElse } from './AssociativeEither'
+import { Associative } from './Associative.js'
+import { orElse } from './AssociativeEither.js'
 import {
   Covariant,
   Covariant1,
@@ -36,7 +36,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 import {
   IdentityEither,
   IdentityEither1,
@@ -49,7 +49,7 @@ import {
   IdentityEither7,
   IdentityEither8,
   IdentityEither9,
-} from './IdentityEither'
+} from './IdentityEither.js'
 
 export interface Identity<A> extends Associative<A> {
   readonly id: A

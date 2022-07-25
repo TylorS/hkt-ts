@@ -2,7 +2,6 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "module": "ES2015",
     "plugins": [
       {
         "transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",

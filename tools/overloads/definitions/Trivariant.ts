@@ -1,6 +1,6 @@
-import { Dynamic, Static } from '../AST'
+import { Dynamic, Static } from '../AST.js'
 
-import { fnLabeled_, fn_, interface_, kind_, placeholder } from './common'
+import { fnLabeled_, fn_, interface_, kind_, placeholder } from './common.js'
 
 const r1TypeParam = new Static(`R1`)
 const r2TypeParam = new Static(`R2`)

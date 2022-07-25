@@ -1,6 +1,6 @@
-import { deepStrictEqual } from 'assert'
+import { deepStrictEqual } from 'node:assert'
 
-import * as C from './Concat'
+import * as C from './Concat.js'
 
 describe(__filename, () => {
   describe('First', () => {

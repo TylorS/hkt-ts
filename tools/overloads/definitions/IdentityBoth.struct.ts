@@ -1,8 +1,8 @@
-import { Dynamic, Kind, Static } from '../AST'
+import { Dynamic, Kind, Static } from '../AST.js'
 
-import { Covariant } from './Covariant'
-import { IdentityBoth } from './IdentityBoth'
-import { derived_, fn_, hkt, placeholder, placeholderWithDefaults } from './common'
+import { Covariant } from './Covariant.js'
+import { IdentityBoth } from './IdentityBoth.js'
+import { derived_, fn_, hkt, placeholder, placeholderWithDefaults } from './common.js'
 
 export const struct = derived_(
   'struct',

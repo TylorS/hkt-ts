@@ -1,9 +1,9 @@
-import { deepStrictEqual } from 'assert'
+import { deepStrictEqual } from 'node:assert'
 
-import { InverseAll, InverseAny } from '../boolean'
-import { Inverse } from '../number'
+import { InverseAll, InverseAny } from '../boolean.js'
+import { Inverse } from '../number.js'
 
-import { multiply } from './Inverse'
+import { multiply } from './Inverse.js'
 
 describe(__filename, () => {
   describe(multiply.name, () => {

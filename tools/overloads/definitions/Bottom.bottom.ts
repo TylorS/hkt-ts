@@ -1,9 +1,9 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { Bottom } from './Bottom'
-import { Covariant } from './Covariant'
-import { Top } from './Top'
-import { composed_, kindFWithDefaults_, kindGWithDefaults_ } from './common'
+import { Bottom } from './Bottom.js'
+import { Covariant } from './Covariant.js'
+import { Top } from './Top.js'
+import { composed_, kindFWithDefaults_, kindGWithDefaults_ } from './common.js'
 
 export const bottom = composed_(
   'bottom',

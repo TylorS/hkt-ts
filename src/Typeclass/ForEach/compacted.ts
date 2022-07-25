@@ -19,9 +19,9 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../../HKT'
-import type { Maybe } from '../../Maybe'
-import { flow } from '../../function'
+} from '../../HKT.js'
+import type { Maybe } from '../../Maybe.js'
+import { flow } from '../../function.js'
 import type {
   Compact,
   Compact1,
@@ -45,7 +45,7 @@ import type {
   Compact7,
   Compact8,
   Compact9,
-} from '../Compact'
+} from '../Compact.js'
 import {
   Covariant,
   Covariant1,
@@ -69,7 +69,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from '../Covariant'
+} from '../Covariant.js'
 import {
   IdentityBoth,
   IdentityBoth1,
@@ -93,7 +93,7 @@ import {
   IdentityBoth7,
   IdentityBoth8,
   IdentityBoth9,
-} from '../IdentityBoth'
+} from '../IdentityBoth.js'
 
 import {
   ForEach,
@@ -118,7 +118,7 @@ import {
   ForEach7,
   ForEach8,
   ForEach9,
-} from './ForEach'
+} from './ForEach.js'
 
 /* #region compacted */
 export function compacted<T extends HKT10>(

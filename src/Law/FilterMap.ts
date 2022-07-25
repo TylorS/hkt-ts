@@ -19,10 +19,10 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import * as Maybe from '../Maybe'
-import { Predicate } from '../Predicate'
-import { DeepEquals, Eq } from '../Typeclass/Eq'
+} from '../HKT.js'
+import * as Maybe from '../Maybe.js'
+import { Predicate } from '../Predicate.js'
+import { DeepEquals, Eq } from '../Typeclass/Eq.js'
 import {
   FilterMap,
   FilterMap1,
@@ -46,10 +46,10 @@ import {
   FilterMap7,
   FilterMap8,
   FilterMap9,
-} from '../Typeclass/FilterMap'
-import { flow, pipe } from '../function'
+} from '../Typeclass/FilterMap.js'
+import { flow, pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testFilterMap<T extends HKT10, A, Z, Y, X, W, V, U, S, R, E>(
   FM: FilterMap10<T>,

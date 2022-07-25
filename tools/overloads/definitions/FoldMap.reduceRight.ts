@@ -1,6 +1,6 @@
-import { FoldMap } from './FoldMap'
-import { ForEach } from './ForEach'
-import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
+import { FoldMap } from './FoldMap.js'
+import { ForEach } from './ForEach.js'
+import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common.js'
 
 export const reduceRight = derived_(
   'reduceRight',

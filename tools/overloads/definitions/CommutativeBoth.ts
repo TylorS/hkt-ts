@@ -1,5 +1,5 @@
-import { AssociativeBoth } from './AssociativeBoth'
-import { interface_ } from './common'
+import { AssociativeBoth } from './AssociativeBoth.js'
+import { interface_ } from './common.js'
 
 export const CommutativeBoth = interface_('CommutativeBoth', [], [AssociativeBoth])
 

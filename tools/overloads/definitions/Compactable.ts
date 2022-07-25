@@ -1,6 +1,6 @@
-import { Compact } from './Compact'
-import { Separate } from './Separate'
-import { interface_ } from './common'
+import { Compact } from './Compact.js'
+import { Separate } from './Separate.js'
+import { interface_ } from './common.js'
 
 export const node = interface_('Compactable', [], [Compact, Separate])
 

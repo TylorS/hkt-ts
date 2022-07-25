@@ -1,5 +1,5 @@
-import { Dynamic, Static } from '../../AST'
-import { Covariant } from '../Covariant'
+import { Dynamic, Static } from '../../AST.js'
+import { Covariant } from '../Covariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -10,7 +10,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from '../common'
+} from '../common.js'
 
 export const testCovariant = fn_(
   'testCovariant',

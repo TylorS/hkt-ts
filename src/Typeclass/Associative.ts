@@ -1,4 +1,4 @@
-import * as C from './Concat'
+import * as C from './Concat.js'
 
 /**
  * Associative is a typeclass for conrete values that support a concatenation that is associative.

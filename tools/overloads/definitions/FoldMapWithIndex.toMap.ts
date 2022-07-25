@@ -1,7 +1,7 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { FoldMapWithIndex } from './FoldMapWithIndex'
-import { aTypeParam, curriedPlaceholder_, fn_, hkt, kind_, placeholder } from './common'
+import { FoldMapWithIndex } from './FoldMapWithIndex.js'
+import { aTypeParam, curriedPlaceholder_, fn_, hkt, kind_, placeholder } from './common.js'
 
 const k = new Static(`K`)
 

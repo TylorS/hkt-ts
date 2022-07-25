@@ -1,5 +1,5 @@
-import { Contravariant } from './Contravariant'
-import { Covariant } from './Covariant'
+import { Contravariant } from './Contravariant.js'
+import { Covariant } from './Covariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -10,7 +10,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const contramap = composed_(
   'contramapC',

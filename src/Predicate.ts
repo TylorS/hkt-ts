@@ -1,10 +1,10 @@
-import { HKT, Params } from './HKT'
-import type { Associative } from './Typeclass/Associative'
-import * as AB from './Typeclass/AssociativeBoth'
-import * as AE from './Typeclass/AssociativeEither'
-import * as Contra from './Typeclass/Contravariant'
-import type { Identity } from './Typeclass/Identity'
-import { constFalse, constTrue, flow, pipe } from './function'
+import { HKT, Params } from './HKT.js'
+import type { Associative } from './Typeclass/Associative.js'
+import * as AB from './Typeclass/AssociativeBoth.js'
+import * as AE from './Typeclass/AssociativeEither.js'
+import * as Contra from './Typeclass/Contravariant.js'
+import type { Identity } from './Typeclass/Identity.js'
+import { constFalse, constTrue, flow, pipe } from './function.js'
 
 export interface Predicate<A> {
   (a: A): boolean

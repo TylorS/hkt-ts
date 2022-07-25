@@ -1,7 +1,7 @@
-import { IntersectionNode, Tuple } from '../AST'
+import { IntersectionNode, Tuple } from '../AST.js'
 
-import { AssociativeBoth } from './AssociativeBoth'
-import { Contravariant } from './Contravariant'
+import { AssociativeBoth } from './AssociativeBoth.js'
+import { Contravariant } from './Contravariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -12,7 +12,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const bothWith = fn_(
   'bothWith',

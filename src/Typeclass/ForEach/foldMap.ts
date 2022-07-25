@@ -19,9 +19,9 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../../HKT'
-import { pipe } from '../../function'
-import type { Identity } from '../Identity'
+} from '../../HKT.js'
+import { pipe } from '../../function.js'
+import type { Identity } from '../Identity.js'
 
 import {
   ForEach,
@@ -46,8 +46,8 @@ import {
   ForEach7,
   ForEach8,
   ForEach9,
-} from './ForEach'
-import { mapAccum } from './mapAccum'
+} from './ForEach.js'
+import { mapAccum } from './mapAccum.js'
 
 /* #region foldMap */
 export function foldMap<T extends HKT10>(

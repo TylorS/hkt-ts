@@ -1,6 +1,6 @@
-import { FoldMap } from './FoldMap'
-import { FoldMapWithIndex } from './FoldMapWithIndex'
-import { curriedPlaceholder_, derived_, hkt, number_ } from './common'
+import { FoldMap } from './FoldMap.js'
+import { FoldMapWithIndex } from './FoldMapWithIndex.js'
+import { curriedPlaceholder_, derived_, hkt, number_ } from './common.js'
 
 export const addIndex = derived_(
   'addIndex',

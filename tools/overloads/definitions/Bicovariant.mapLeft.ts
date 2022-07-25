@@ -1,4 +1,4 @@
-import { Bicovariant } from './Bicovariant'
+import { Bicovariant } from './Bicovariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -8,7 +8,7 @@ import {
   fn_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const node = derived_(
   'mapLeft',

@@ -1,6 +1,6 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { FoldMap } from './FoldMap'
+import { FoldMap } from './FoldMap.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -11,7 +11,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const foldMap = composed_(
   'foldMap',

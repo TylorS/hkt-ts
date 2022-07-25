@@ -1,4 +1,4 @@
-import { Divariant } from './Divariant'
+import { Divariant } from './Divariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -8,7 +8,7 @@ import {
   fn_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const map = derived_(
   'map',

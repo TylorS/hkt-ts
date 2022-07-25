@@ -1,7 +1,7 @@
-import { Dynamic, Static } from '../AST'
+import { Dynamic, Static } from '../AST.js'
 
-import { FilterMap } from './FilterMap'
-import { aTypeParam, bTypeParam, derived_, fn_, kind_, placeholder } from './common'
+import { FilterMap } from './FilterMap.js'
+import { aTypeParam, bTypeParam, derived_, fn_, kind_, placeholder } from './common.js'
 
 const pred = fn_(
   '',

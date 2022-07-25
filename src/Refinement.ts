@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Cast } from 'ts-toolbelt/out/Any/Cast'
+import { Cast } from 'ts-toolbelt/out/Any/Cast.js'
 
-import type { Branded, Combine } from './Branded'
-import type { Either } from './Either'
-import type { Maybe } from './Maybe'
+import type { Branded, Combine } from './Branded.js'
+import type { Either } from './Either.js'
+import type { Maybe } from './Maybe.js'
 
 export interface Refinement<A, B extends A> {
   (a: A): a is B

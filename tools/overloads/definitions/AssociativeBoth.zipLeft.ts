@@ -1,6 +1,6 @@
-import { AssociativeBoth } from './AssociativeBoth'
-import { Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, derived_, fn_, kind_, placeholder } from './common'
+import { AssociativeBoth } from './AssociativeBoth.js'
+import { Covariant } from './Covariant.js'
+import { aTypeParam, bTypeParam, derived_, fn_, kind_, placeholder } from './common.js'
 
 export const zipLeft = derived_(
   'zipLeft',

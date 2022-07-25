@@ -1,5 +1,5 @@
-import * as M from './Maybe'
-import { flow, pipe } from './function'
+import * as M from './Maybe.js'
+import { flow, pipe } from './function.js'
 
 export interface Match<A, B> {
   (a: A): M.Maybe<B>

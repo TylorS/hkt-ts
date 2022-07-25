@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { pipe } from '../../src/function'
+import { pipe } from '../../src/function.js'
 
 import {
   ArrayNode,
@@ -22,11 +22,11 @@ import {
   TypeParam,
   Typeclass,
   UnionNode,
-} from './AST'
-import { Context } from './Context'
-import { PrintContextManager } from './PrintManagerContext'
-import { findHKTParams } from './findHKTParams'
-import { generateFunctionSignatureOverloads } from './generateOverloads'
+} from './AST.js'
+import { Context } from './Context.js'
+import { PrintContextManager } from './PrintManagerContext.js'
+import { findHKTParams } from './findHKTParams.js'
+import { generateFunctionSignatureOverloads } from './generateOverloads.js'
 
 export function printOverload(
   node: ParentNode,

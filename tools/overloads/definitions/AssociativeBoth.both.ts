@@ -1,7 +1,7 @@
-import { Tuple } from '../AST'
+import { Tuple } from '../AST.js'
 
-import { AssociativeBoth } from './AssociativeBoth'
-import { Covariant } from './Covariant'
+import { AssociativeBoth } from './AssociativeBoth.js'
+import { Covariant } from './Covariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -11,7 +11,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const both = composed_(
   'both',

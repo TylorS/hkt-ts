@@ -1,8 +1,8 @@
-import { HKT, Params } from './HKT'
-import type { Associative } from './Typeclass/Associative'
-import type { Identity } from './Typeclass/Identity'
-import type * as I from './Typeclass/Invariant'
-import { flow, identity } from './function'
+import { HKT, Params } from './HKT.js'
+import type { Associative } from './Typeclass/Associative.js'
+import type { Identity } from './Typeclass/Identity.js'
+import type * as I from './Typeclass/Invariant.js'
+import { flow, identity } from './function.js'
 
 export interface Endomorphism<A> {
   (a: A): A

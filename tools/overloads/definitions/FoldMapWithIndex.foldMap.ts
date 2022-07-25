@@ -1,9 +1,9 @@
-import { KindParam, Labeled } from '../AST'
+import { KindParam, Labeled } from '../AST.js'
 
-import { kTypeParam } from './CovariantWithIndex'
-import { FoldMap } from './FoldMap'
-import { FoldMapWithIndex } from './FoldMapWithIndex'
-import { derived_ } from './common'
+import { kTypeParam } from './CovariantWithIndex.js'
+import { FoldMap } from './FoldMap.js'
+import { FoldMapWithIndex } from './FoldMapWithIndex.js'
+import { derived_ } from './common.js'
 
 export const foldMapWithIndex = derived_(
   'foldMap',

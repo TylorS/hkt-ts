@@ -19,8 +19,8 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import { pipe } from '../function'
+} from '../HKT.js'
+import { pipe } from '../function.js'
 
 /* #region Reduce */
 export interface Reduce<T extends HKT> {

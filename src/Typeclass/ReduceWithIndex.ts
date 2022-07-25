@@ -19,7 +19,7 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
+} from '../HKT.js'
 
 /* #region ReduceWithIndex */
 export interface ReduceWithIndex<T extends HKT, K> {

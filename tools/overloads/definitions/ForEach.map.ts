@@ -1,6 +1,6 @@
-import { Dynamic } from '../AST'
+import { Dynamic } from '../AST.js'
 
-import { ForEach } from './ForEach'
+import { ForEach } from './ForEach.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -10,7 +10,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const map = fn_(
   'map',

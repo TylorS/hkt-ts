@@ -1,6 +1,6 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { Trivariant } from './Trivariant'
+import { Trivariant } from './Trivariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -12,7 +12,7 @@ import {
   fn_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 const rTypeParam = new Static(`R`)
 

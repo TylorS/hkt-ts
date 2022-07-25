@@ -22,8 +22,8 @@ import {
   Kind9,
   ParamOf,
   Params,
-} from '../HKT'
-import { pipe } from '../function'
+} from '../HKT.js'
+import { pipe } from '../function.js'
 
 import {
   AssociativeBoth,
@@ -48,7 +48,7 @@ import {
   AssociativeBoth7,
   AssociativeBoth8,
   AssociativeBoth9,
-} from './AssociativeBoth'
+} from './AssociativeBoth.js'
 import {
   Covariant,
   Covariant1,
@@ -61,7 +61,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 import {
   Top,
   Top1,
@@ -86,7 +86,7 @@ import {
   Top8,
   Top9,
   makeFromValue,
-} from './Top'
+} from './Top.js'
 
 /* #region IdentityBoth */
 export interface IdentityBoth<T extends HKT> extends AssociativeBoth<T>, Top<T> {}

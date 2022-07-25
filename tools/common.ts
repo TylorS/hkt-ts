@@ -1,9 +1,9 @@
-import { readFileSync, readdirSync } from 'fs'
-import { dirname, isAbsolute, join } from 'path'
+import { readFileSync, readdirSync } from 'node:fs'
+import { dirname, isAbsolute, join } from 'node:path'
 
-import * as fastGlob from 'fast-glob'
+import fastGlob from 'fast-glob'
 
-export const ROOT_DIR = dirname(__dirname)
+export const ROOT_DIR = dirname(dirname(new URL(import.meta.url).pathname))
 export const SOURCE_DIR = join(ROOT_DIR, 'src')
 
 export const ROOT_FILES = ['exports']
@@ -33,6 +33,7 @@ export function readRelativeFile(directory: string, fileName: string) {
 }
 
 export function findFilePaths(directory: string, fileGlobs: readonly string[]): string[] {
+  // eslint-disable-next-line import/no-named-as-default-member
   return fastGlob
     .sync(Array.from(fileGlobs), { cwd: directory, onlyFiles: true })
     .map((x) => makeAbsolute(directory, x.toString()))

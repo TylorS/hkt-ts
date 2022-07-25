@@ -1,6 +1,6 @@
-import { AssociativeFlatten } from './AssociativeFlatten'
-import { Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
+import { AssociativeFlatten } from './AssociativeFlatten.js'
+import { Covariant } from './Covariant.js'
+import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common.js'
 
 export const flatMap = derived_(
   'flatMap',

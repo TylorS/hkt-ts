@@ -1,5 +1,5 @@
-import { Cast } from 'ts-toolbelt/out/Any/Cast'
-import { Equals } from 'ts-toolbelt/out/Any/Equals'
+import { Cast } from 'ts-toolbelt/out/Any/Cast.js'
+import { Equals } from 'ts-toolbelt/out/Any/Equals.js'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export enum Params {

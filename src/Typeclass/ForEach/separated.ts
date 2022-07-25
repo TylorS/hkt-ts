@@ -1,4 +1,4 @@
-import type { Either } from '../../Either'
+import type { Either } from '../../Either.js'
 import {
   HKT,
   HKT10,
@@ -20,8 +20,8 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../../HKT'
-import { flow } from '../../function'
+} from '../../HKT.js'
+import { flow } from '../../function.js'
 import {
   Covariant,
   Covariant1,
@@ -45,7 +45,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from '../Covariant'
+} from '../Covariant.js'
 import {
   IdentityBoth,
   IdentityBoth1,
@@ -69,7 +69,7 @@ import {
   IdentityBoth7,
   IdentityBoth8,
   IdentityBoth9,
-} from '../IdentityBoth'
+} from '../IdentityBoth.js'
 import type {
   Separate,
   Separate1,
@@ -93,7 +93,7 @@ import type {
   Separate7,
   Separate8,
   Separate9,
-} from '../Separate'
+} from '../Separate.js'
 
 import {
   ForEach,
@@ -118,7 +118,7 @@ import {
   ForEach7,
   ForEach8,
   ForEach9,
-} from './ForEach'
+} from './ForEach.js'
 
 export function separated<T extends HKT10>(
   FES: ForEach10<T> & Separate10<T>,

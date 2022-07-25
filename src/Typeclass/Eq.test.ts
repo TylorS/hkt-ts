@@ -1,11 +1,11 @@
 import * as fc from 'fast-check'
 
-import * as L from '../Law/index'
-import * as B from '../boolean'
-import { pipe } from '../function'
-import * as N from '../number'
+import * as L from '../Law/index.js'
+import * as B from '../boolean.js'
+import { pipe } from '../function.js'
+import * as N from '../number.js'
 
-import * as E from './Eq'
+import * as E from './Eq.js'
 
 describe(__filename, () => {
   describe('Contravariant', () => {

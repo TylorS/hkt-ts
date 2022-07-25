@@ -21,8 +21,8 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../../HKT'
-import * as Id from '../../Id'
+} from '../../HKT.js'
+import * as Id from '../../Id.js'
 
 import {
   ForEach,
@@ -47,7 +47,7 @@ import {
   ForEach7,
   ForEach8,
   ForEach9,
-} from './ForEach'
+} from './ForEach.js'
 
 /**
  * Derive map from your ForEach['forEach'] function, proving ForEach is a valid extension

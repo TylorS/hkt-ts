@@ -1,8 +1,8 @@
-import { KindParam, Labeled, Static } from '../AST'
+import { KindParam, Labeled, Static } from '../AST.js'
 
-import { Reduce } from './Reduce'
-import { ReduceWithIndex } from './ReduceWithIndex'
-import { curriedPlaceholder_, fn_, hkt } from './common'
+import { Reduce } from './Reduce.js'
+import { ReduceWithIndex } from './ReduceWithIndex.js'
+import { curriedPlaceholder_, fn_, hkt } from './common.js'
 
 const k = new Static(`K`)
 

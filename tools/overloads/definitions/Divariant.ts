@@ -1,4 +1,4 @@
-import { Dynamic } from '../AST'
+import { Dynamic } from '../AST.js'
 
 import {
   aTypeParam,
@@ -10,7 +10,7 @@ import {
   interface_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const node = interface_('Divariant', [
   fnLabeled_(

@@ -19,9 +19,9 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import type { Unary } from '../Unary'
-import { identity } from '../function'
+} from '../HKT.js'
+import type { Unary } from '../Unary.js'
+import { identity } from '../function.js'
 
 import {
   Covariant,
@@ -46,7 +46,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 
 /* #region Bicovariant */
 export interface Bicovariant<T extends HKT2> {

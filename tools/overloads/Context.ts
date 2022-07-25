@@ -1,4 +1,4 @@
-import { Params } from '../../src/HKT'
+import { Params } from '../../src/HKT.js'
 
 import {
   AST,
@@ -10,10 +10,10 @@ import {
   KindParam,
   ParentNode,
   TypeAlias,
-} from './AST'
-import { combinations, hktParamNames, possibleLengths, uniq, uniqBy } from './common'
-import { findHKTParams } from './findHKTParams'
-import { defaultVisitors, walkAst } from './walkAst'
+} from './AST.js'
+import { combinations, hktParamNames, possibleLengths, uniq, uniqBy } from './common.js'
+import { findHKTParams } from './findHKTParams.js'
+import { defaultVisitors, walkAst } from './walkAst.js'
 
 const SUPPORTED_PLACEHOLDER_LENGTH = 4
 

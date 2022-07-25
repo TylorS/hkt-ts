@@ -19,9 +19,9 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import type { Unary } from '../Unary'
-import { flow } from '../function'
+} from '../HKT.js'
+import type { Unary } from '../Unary.js'
+import { flow } from '../function.js'
 
 import type {
   Covariant,
@@ -46,7 +46,7 @@ import type {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 
 /* #region Invariant */
 export interface Invariant<T extends HKT> {

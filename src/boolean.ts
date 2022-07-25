@@ -1,12 +1,12 @@
-import type { Refinement } from './Refinement'
-import { Associative } from './Typeclass/Associative'
-import { Commutative } from './Typeclass/Commutative'
-import type * as D from './Typeclass/Debug'
-import type * as E from './Typeclass/Eq'
-import { Identity } from './Typeclass/Identity'
-import * as I from './Typeclass/Inverse'
-import type * as O from './Typeclass/Ord'
-import { Lazy } from './function'
+import type { Refinement } from './Refinement.js'
+import { Associative } from './Typeclass/Associative.js'
+import { Commutative } from './Typeclass/Commutative.js'
+import type * as D from './Typeclass/Debug.js'
+import type * as E from './Typeclass/Eq.js'
+import { Identity } from './Typeclass/Identity.js'
+import * as I from './Typeclass/Inverse.js'
+import type * as O from './Typeclass/Ord.js'
+import { Lazy } from './function.js'
 
 export const isBoolean: Refinement<unknown, boolean> = (u: unknown): u is boolean =>
   typeof u === 'boolean'
@@ -29,7 +29,7 @@ export const Eq: E.Eq<boolean> = {
  * `boolean` Associative under conjunction.
  *
  * @example
- * import { AssociativeAll } from 'hkt-ts/boolean'
+ * import { AssociativeAll } from 'hkt-ts/boolean.js'
  *
  * assert.deepStrictEqual(AssociativeAll.concat(true, true), true)
  * assert.deepStrictEqual(AssociativeAll.concat(true, false), false)
@@ -46,7 +46,7 @@ export const CommutativeAll: Commutative<boolean> = AssociativeAll
  * `boolean` Associative under disjunction.
  *
  * @example
- * import { AssociativeAny } from 'hkt-ts/boolean'
+ * import { AssociativeAny } from 'hkt-ts/boolean.js'
  *
  * assert.deepStrictEqual(AssociativeAny.concat(true, true), true)
  * assert.deepStrictEqual(AssociativeAny.concat(true, false), true)

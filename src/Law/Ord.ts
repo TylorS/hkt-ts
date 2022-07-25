@@ -1,7 +1,7 @@
-import { Ord } from '../Typeclass/Ord'
-import { pipe } from '../function'
+import { Ord } from '../Typeclass/Ord.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testOrd<A>(O: Ord<A>) {
   return (Arb: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => ({

@@ -1,6 +1,6 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common.js'
 
 export const FilterMap = interface_(
   'FilterMap',

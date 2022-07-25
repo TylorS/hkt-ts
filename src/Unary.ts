@@ -1,12 +1,12 @@
-import type { HKT2, Params } from './HKT'
-import * as AB from './Typeclass/AssociativeBoth'
-import * as AC from './Typeclass/AssociativeCompose'
-import * as AF from './Typeclass/AssociativeFlatten'
-import * as C from './Typeclass/Covariant'
-import * as D from './Typeclass/Divariant'
-import * as IB from './Typeclass/IdentityBoth'
-import * as T from './Typeclass/Top'
-import { flow, identity } from './function'
+import type { HKT2, Params } from './HKT.js'
+import * as AB from './Typeclass/AssociativeBoth.js'
+import * as AC from './Typeclass/AssociativeCompose.js'
+import * as AF from './Typeclass/AssociativeFlatten.js'
+import * as C from './Typeclass/Covariant.js'
+import * as D from './Typeclass/Divariant.js'
+import * as IB from './Typeclass/IdentityBoth.js'
+import * as T from './Typeclass/Top.js'
+import { flow, identity } from './function.js'
 
 export type Unary<A, B> = (a: A) => B
 

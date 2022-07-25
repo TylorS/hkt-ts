@@ -19,7 +19,7 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
+} from '../HKT.js'
 import {
   AssociativeEither,
   AssociativeEither1,
@@ -44,7 +44,7 @@ import {
   AssociativeEither8,
   AssociativeEither9,
   orElse,
-} from '../Typeclass/AssociativeEither'
+} from '../Typeclass/AssociativeEither.js'
 import {
   Covariant,
   Covariant1,
@@ -68,11 +68,11 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from '../Typeclass/Covariant'
-import { Eq } from '../Typeclass/Eq'
-import { pipe } from '../function'
+} from '../Typeclass/Covariant.js'
+import { Eq } from '../Typeclass/Eq.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testCovariantAssociativeEither<T extends HKT10, Z, Y, X, W, V, U, S, R, E, A, B>(
   IBC: Covariant10<T> & AssociativeEither10<T>,

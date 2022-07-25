@@ -22,9 +22,9 @@ import {
   Kind9,
   ParamOf,
   Params,
-} from '../HKT'
-import type { NonEmptyArray } from '../NonEmptyArray'
-import { flow, pipe } from '../function'
+} from '../HKT.js'
+import type { NonEmptyArray } from '../NonEmptyArray.js'
+import { flow, pipe } from '../function.js'
 
 import type {
   Contravariant,
@@ -49,7 +49,7 @@ import type {
   Contravariant7,
   Contravariant8,
   Contravariant9,
-} from './Contravariant'
+} from './Contravariant.js'
 import {
   Covariant,
   Covariant1,
@@ -74,7 +74,7 @@ import {
   Covariant8,
   Covariant9,
   tupled,
-} from './Covariant'
+} from './Covariant.js'
 
 /* #region TypeClass */
 export interface AssociativeBoth<T extends HKT> {

@@ -19,9 +19,9 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../../HKT'
-import { CovariantState, IdentityBothState, StateHKT } from '../../common'
-import { flow } from '../../function'
+} from '../../HKT.js'
+import { CovariantState, IdentityBothState, StateHKT } from '../../common.js'
+import { flow } from '../../function.js'
 
 import {
   ForEach,
@@ -35,7 +35,7 @@ import {
   ForEach7,
   ForEach8,
   ForEach9,
-} from './ForEach'
+} from './ForEach.js'
 
 /* #region mapAccum */
 export function mapAccum<T extends HKT10>(

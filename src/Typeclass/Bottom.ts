@@ -21,7 +21,7 @@ import {
   Kind8,
   Kind9,
   Params,
-} from '../HKT'
+} from '../HKT.js'
 
 import {
   Covariant,
@@ -46,7 +46,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 import {
   Top,
   Top1,
@@ -70,7 +70,7 @@ import {
   Top7,
   Top8,
   Top9,
-} from './Top'
+} from './Top.js'
 
 export interface Bottom<T extends HKT> {
   readonly bottom: Kind<T, never>

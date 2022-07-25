@@ -1,4 +1,4 @@
-import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../HKT'
+import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../HKT.js'
 
 import {
   AssociativeBoth,
@@ -23,7 +23,7 @@ import {
   AssociativeBoth7,
   AssociativeBoth8,
   AssociativeBoth9,
-} from './AssociativeBoth'
+} from './AssociativeBoth.js'
 
 export interface CommutativeBoth<T extends HKT> extends AssociativeBoth<T> {}
 

@@ -1,7 +1,7 @@
-import { Dynamic } from '../AST'
+import { Dynamic } from '../AST.js'
 
-import { AssociativeEither } from './AssociativeEither'
-import { Contravariant } from './Contravariant'
+import { AssociativeEither } from './AssociativeEither.js'
+import { Contravariant } from './Contravariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -11,7 +11,7 @@ import {
   fn_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const eitherWith = derived_(
   'eitherWith',

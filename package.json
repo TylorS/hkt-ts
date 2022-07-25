@@ -2,12 +2,11 @@
   "name": "hkt-ts",
   "version": "2.0.13",
   "description": "A Generic HKT encoding for TypeScript",
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
+  "sideEffects": false,
+  "type": "module",
+  "main": "esm/index.js",
   "types": "esm/index.d.ts",
   "typings": "esm/index.d.ts",
-  "main:ts": "src/index.ts",
-  "sideEffects": false,
   "files": [
     "cjs",
     "esm",
@@ -27,10 +26,10 @@
   "scripts": {
     "build:cjs": "rm -rf cjs && tsc -p ./tsconfig.build.json --module commonjs --outDir cjs",
     "build:esm": "rm -rf esm && ttsc -p ./tsconfig.build.json --outDir esm",
-    "build:package-exports": "node -r esbuild-register ./tools/generatePackageExports.ts",
+    "build:package-exports": "node --loader @esbuild-kit/esm-loader ./tools/generatePackageExports.ts",
     "build": "concurrently npm:build:esm npm:build:cjs && npm run build:package-exports",
     "coverage": "c8 --include 'src/**/*' --all npm run mocha",
-    "generate-overload": "node -r esbuild-register ./tools/overloads/cli.ts",
+    "generate-overload": "node --loader @esbuild-kit/esm-loader ./tools/overloads/cli.ts",
     "eslint": "NODE_OPTIONS=--max-old-space-size=4096 eslint --ext .ts,.js,.json,.yaml --fix --cache src",
     "mocha": "mocha -r esbuild-register -r source-map-support/register 'src/**/*.test.ts'",
     "typecheck": "tsc --noEmit",
@@ -59,6 +58,7 @@
     "fast-check": "^3.0.0"
   },
   "devDependencies": {
+    "@esbuild-kit/esm-loader": "^2.4.2",
     "@types/mocha": "^9.1.1",
     "@types/node": "^17.0.43",
     "@types/prettier": "^2.6.3",

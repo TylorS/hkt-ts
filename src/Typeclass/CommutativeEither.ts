@@ -1,4 +1,4 @@
-import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../HKT'
+import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../HKT.js'
 
 import {
   AssociativeEither,
@@ -23,7 +23,7 @@ import {
   AssociativeEither7,
   AssociativeEither8,
   AssociativeEither9,
-} from './AssociativeEither'
+} from './AssociativeEither.js'
 
 export interface CommutativeEither<T extends HKT> extends AssociativeEither<T> {}
 

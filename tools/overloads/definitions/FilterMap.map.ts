@@ -1,5 +1,5 @@
-import { FilterMap } from './FilterMap'
-import { aTypeParam, bTypeParam, derived_, fab_, fn_, kind_, placeholder } from './common'
+import { FilterMap } from './FilterMap.js'
+import { aTypeParam, bTypeParam, derived_, fab_, fn_, kind_, placeholder } from './common.js'
 
 export const map = derived_(
   'map',

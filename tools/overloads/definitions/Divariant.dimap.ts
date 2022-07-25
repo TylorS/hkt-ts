@@ -1,5 +1,5 @@
-import { Covariant } from './Covariant'
-import { Divariant } from './Divariant'
+import { Covariant } from './Covariant.js'
+import { Divariant } from './Divariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -12,7 +12,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const dimap = composed_(
   'dimap',

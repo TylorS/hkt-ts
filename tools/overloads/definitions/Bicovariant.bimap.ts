@@ -1,7 +1,7 @@
-import { Dynamic } from '../AST'
+import { Dynamic } from '../AST.js'
 
-import { Bicovariant } from './Bicovariant'
-import { Covariant } from './Covariant'
+import { Bicovariant } from './Bicovariant.js'
+import { Covariant } from './Covariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -13,7 +13,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const bimap = composed_(
   'bimap',

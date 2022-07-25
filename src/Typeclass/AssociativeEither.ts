@@ -1,4 +1,4 @@
-import type { Either } from '../Either'
+import type { Either } from '../Either.js'
 import {
   DefaultOf,
   HKT,
@@ -23,9 +23,9 @@ import {
   Kind9,
   ParamOf,
   Params,
-} from '../HKT'
-import type { NonEmptyArray } from '../NonEmptyArray'
-import { flow, pipe } from '../function'
+} from '../HKT.js'
+import type { NonEmptyArray } from '../NonEmptyArray.js'
+import { flow, pipe } from '../function.js'
 
 import {
   AssociativeFlatten,
@@ -50,7 +50,7 @@ import {
   AssociativeFlatten7,
   AssociativeFlatten8,
   AssociativeFlatten9,
-} from './AssociativeFlatten'
+} from './AssociativeFlatten.js'
 import {
   Contravariant,
   Contravariant1,
@@ -74,7 +74,7 @@ import {
   Contravariant7,
   Contravariant8,
   Contravariant9,
-} from './Contravariant'
+} from './Contravariant.js'
 import {
   Covariant,
   Covariant1,
@@ -98,7 +98,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 
 /* #region AssociativeEither */
 export interface AssociativeEither<T extends HKT> {

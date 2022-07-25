@@ -7,7 +7,7 @@ import {
   interface_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const node = interface_('AssociativeCompose', [
   fnLabeled_(

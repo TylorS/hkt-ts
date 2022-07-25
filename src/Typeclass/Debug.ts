@@ -1,13 +1,13 @@
-import { HKT, Params } from '../HKT'
-import { Json } from '../Json'
-import { Include } from '../common'
-import { flow } from '../function'
+import { HKT, Params } from '../HKT.js'
+import { Json } from '../Json.js'
+import { Include } from '../common.js'
+import { flow } from '../function.js'
 
-import * as AB from './AssociativeBoth'
-import * as AE from './AssociativeEither'
-import { Contravariant1 } from './Contravariant'
-import * as IB from './IdentityBoth'
-import { Top1 } from './Top'
+import * as AB from './AssociativeBoth.js'
+import * as AE from './AssociativeEither.js'
+import { Contravariant1 } from './Contravariant.js'
+import * as IB from './IdentityBoth.js'
+import { Top1 } from './Top.js'
 
 export interface Debug<A> {
   readonly debug: (a: A) => string

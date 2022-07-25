@@ -1,6 +1,6 @@
-import { Tuple } from '../AST'
+import { Tuple } from '../AST.js'
 
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common.js'
 
 export const AssociativeBoth = interface_(
   'AssociativeBoth',

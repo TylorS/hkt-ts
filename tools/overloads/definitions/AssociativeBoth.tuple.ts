@@ -1,8 +1,8 @@
-import { ArrayNode, Dynamic, Kind, Static } from '../AST'
+import { ArrayNode, Dynamic, Kind, Static } from '../AST.js'
 
-import { AssociativeBoth } from './AssociativeBoth'
-import { Covariant } from './Covariant'
-import { derived_, fn_, hkt, kindWithDefaults_, placeholder } from './common'
+import { AssociativeBoth } from './AssociativeBoth.js'
+import { Covariant } from './Covariant.js'
+import { derived_, fn_, hkt, kindWithDefaults_, placeholder } from './common.js'
 
 export const tuple = derived_(
   'tuple',

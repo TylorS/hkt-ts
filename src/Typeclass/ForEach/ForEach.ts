@@ -19,7 +19,7 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../../HKT'
+} from '../../HKT.js'
 import {
   Covariant,
   Covariant1,
@@ -43,7 +43,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from '../Covariant'
+} from '../Covariant.js'
 import {
   IdentityBoth,
   IdentityBoth1,
@@ -67,7 +67,7 @@ import {
   IdentityBoth7,
   IdentityBoth8,
   IdentityBoth9,
-} from '../IdentityBoth'
+} from '../IdentityBoth.js'
 
 /* #region Typeclass */
 export interface ForEach<T extends HKT> extends Covariant<T> {

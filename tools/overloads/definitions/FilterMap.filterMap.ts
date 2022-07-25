@@ -1,7 +1,7 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { Covariant } from './Covariant'
-import { FilterMap } from './FilterMap'
+import { Covariant } from './Covariant.js'
+import { FilterMap } from './FilterMap.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -12,7 +12,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const filterMap = composed_(
   'filterMap',

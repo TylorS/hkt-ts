@@ -1,4 +1,4 @@
-import { Dynamic, FunctionSignature, Interface, Static } from '../AST'
+import { Dynamic, FunctionSignature, Interface, Static } from '../AST.js'
 
 import {
   aTypeParam,
@@ -8,7 +8,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const kTypeParam = new Static('K')
 

@@ -1,7 +1,7 @@
-import { Dynamic, Static } from '../AST'
+import { Dynamic, Static } from '../AST.js'
 
-import { Covariant } from './Covariant'
-import { aTypeParam, bTypeParam, derived_, fn_, kind_, placeholder } from './common'
+import { Covariant } from './Covariant.js'
+import { aTypeParam, bTypeParam, derived_, fn_, kind_, placeholder } from './common.js'
 
 export const node = derived_(
   'flap',

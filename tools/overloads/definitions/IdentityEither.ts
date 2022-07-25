@@ -1,6 +1,6 @@
-import { AssociativeEither } from './AssociativeEither'
-import { Bottom } from './Bottom'
-import { interface_ } from './common'
+import { AssociativeEither } from './AssociativeEither.js'
+import { Bottom } from './Bottom.js'
+import { interface_ } from './common.js'
 
 export const IdentityEither = interface_('IdentityEither', [], [AssociativeEither, Bottom])
 

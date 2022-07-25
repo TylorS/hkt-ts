@@ -1,5 +1,5 @@
-import type * as Either from '../Either'
-import * as Endo from '../Endomorphism'
+import type * as Either from '../Either.js'
+import * as Endo from '../Endomorphism.js'
 import {
   HKT,
   HKT10,
@@ -21,17 +21,17 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import type * as M from '../Maybe'
-import type { NonEmptyArray } from '../NonEmptyArray'
-import { not } from '../Predicate'
-import * as B from '../boolean'
-import { makeStateIdentity } from '../common'
-import { constFalse, flow, pipe } from '../function'
-import * as N from '../number'
+} from '../HKT.js'
+import type * as M from '../Maybe.js'
+import type { NonEmptyArray } from '../NonEmptyArray.js'
+import { not } from '../Predicate.js'
+import * as B from '../boolean.js'
+import { makeStateIdentity } from '../common.js'
+import { constFalse, flow, pipe } from '../function.js'
+import * as N from '../number.js'
 
-import * as A from './Associative'
-import { Commutative } from './Commutative'
+import * as A from './Associative.js'
+import { Commutative } from './Commutative.js'
 import type {
   Covariant,
   Covariant1,
@@ -55,8 +55,8 @@ import type {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
-import type { Eq } from './Eq'
+} from './Covariant.js'
+import type { Eq } from './Eq.js'
 import type {
   FoldMapWithIndex,
   FoldMapWithIndex1,
@@ -80,9 +80,9 @@ import type {
   FoldMapWithIndex7,
   FoldMapWithIndex8,
   FoldMapWithIndex9,
-} from './FoldMapWithIndex'
-import * as FE from './ForEach/index'
-import { Identity, fromIdentityEitherCovariant } from './Identity'
+} from './FoldMapWithIndex.js'
+import * as FE from './ForEach/index.js'
+import { Identity, fromIdentityEitherCovariant } from './Identity.js'
 import {
   IdentityEither,
   IdentityEither1,
@@ -106,7 +106,7 @@ import {
   IdentityEither7,
   IdentityEither8,
   IdentityEither9,
-} from './IdentityEither'
+} from './IdentityEither.js'
 import {
   Top,
   Top1,
@@ -131,7 +131,7 @@ import {
   Top8,
   Top9,
   makeFromValue,
-} from './Top'
+} from './Top.js'
 
 const Nothing: M.Nothing = {
   tag: 'Nothing',

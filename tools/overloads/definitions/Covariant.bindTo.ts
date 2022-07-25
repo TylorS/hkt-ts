@@ -1,7 +1,7 @@
-import { ObjectNode, Static } from '../AST'
+import { ObjectNode, Static } from '../AST.js'
 
-import { Covariant } from './Covariant'
-import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
+import { Covariant } from './Covariant.js'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common.js'
 
 export const nameTypeParam = new Static('N extends string')
 

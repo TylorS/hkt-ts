@@ -1,5 +1,5 @@
-import { ObjectNode, Static } from '../../AST'
-import { Contravariant } from '../Contravariant'
+import { ObjectNode, Static } from '../../AST.js'
+import { Contravariant } from '../Contravariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -11,7 +11,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from '../common'
+} from '../common.js'
 
 export const testContravariant = fn_(
   'testContravariant',

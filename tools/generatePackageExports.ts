@@ -3,31 +3,35 @@
 import fs from 'fs'
 import path, { extname } from 'path'
 
-import { MODULES, ROOT_DIR, SOURCE_DIR, findFilePaths } from './common'
+import { MODULES, ROOT_DIR, SOURCE_DIR, findFilePaths } from './common.js'
 
 const TSX_REGEX = /.tsx?$/
 const INDEX_REGEX = /\/?index$/
 
-if (require.main === module) {
-  const packageJsonPath = path.join(ROOT_DIR, 'package.json')
-  const packageJsonContents = fs.readFileSync(packageJsonPath).toString()
-  const packageJson = JSON.parse(packageJsonContents)
+const packageJsonPath = path.join(ROOT_DIR, 'package.json')
+const packageJsonContents = fs.readFileSync(packageJsonPath).toString()
+const packageJson = JSON.parse(packageJsonContents)
 
-  packageJson.exports = createExports()
+packageJson.exports = createExports()
 
-  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2).trim() + `\n`)
-}
+fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2).trim() + `\n`)
 
 type ExportMap = {
-  require: string
-  import: string
+  require: { default: string; types: string }
+  import: { default: string; types: string }
 }
 
 export function createExports() {
   const exports: Record<string, ExportMap> = {
     '.': {
-      require: './cjs/index.js',
-      import: './esm/index.js',
+      require: {
+        default: './cjs/index.js',
+        types: './cjs/index.d.ts',
+      },
+      import: {
+        default: './esm/index.js',
+        types: './esm/index.d.ts',
+      },
     },
   }
 
@@ -37,10 +41,22 @@ export function createExports() {
     const name = module.replace(TSX_REGEX, '')
 
     exports[`./${name}`] = {
-      require:
-        './' + (isDirectory ? path.join('cjs', name, 'index.js') : path.join('cjs', `${name}.js`)),
-      import:
-        './' + (isDirectory ? path.join('esm', name, 'index.js') : path.join('esm', `${name}.js`)),
+      require: {
+        default:
+          './' +
+          (isDirectory ? path.join('cjs', name, 'index.js') : path.join('cjs', `${name}.js`)),
+        types:
+          './' +
+          (isDirectory ? path.join('cjs', name, 'index.js') : path.join('cjs', `${name}.d.ts`)),
+      },
+      import: {
+        default:
+          './' +
+          (isDirectory ? path.join('esm', name, 'index.js') : path.join('esm', `${name}.js`)),
+        types:
+          './' +
+          (isDirectory ? path.join('esm', name, 'index.js') : path.join('esm', `${name}.d.ts`)),
+      },
     }
 
     if (!isDirectory) {
@@ -61,9 +77,16 @@ export function createExports() {
       }
 
       const jsPath = relativePath.replace('.ts', '.js')
+      const dtsPath = relativePath.replace('.ts', '.d.ts')
       const map: ExportMap = {
-        require: './' + path.join('cjs', name, jsPath),
-        import: './' + path.join('esm', name, jsPath),
+        require: {
+          default: './' + path.join('cjs', name, jsPath),
+          types: './' + path.join('cjs', name, dtsPath),
+        },
+        import: {
+          default: './' + path.join('esm', name, jsPath),
+          types: './' + path.join('esm', name, dtsPath),
+        },
       }
 
       const relativeName = relativePath.replace(TSX_REGEX, '').replace(INDEX_REGEX, '')

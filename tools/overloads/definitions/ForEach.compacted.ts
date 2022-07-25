@@ -1,9 +1,9 @@
-import { HKTParam, Kind, Static } from '../AST'
+import { HKTParam, Kind, Static } from '../AST.js'
 
-import { Covariant } from './Covariant'
-import { ForEach } from './ForEach'
-import { IdentityBoth } from './IdentityBoth'
-import { Compact } from './Compact'
+import { Covariant } from './Covariant.js'
+import { ForEach } from './ForEach.js'
+import { IdentityBoth } from './IdentityBoth.js'
+import { Compact } from './Compact.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -12,7 +12,7 @@ import {
   fn_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 const hkt2 = new HKTParam(Symbol('T2'), 'T2')
 

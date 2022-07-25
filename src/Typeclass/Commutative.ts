@@ -1,4 +1,4 @@
-import * as A from './Associative'
+import * as A from './Associative.js'
 
 export interface Commutative<A> extends A.Associative<A> {}
 

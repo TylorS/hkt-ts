@@ -1,5 +1,5 @@
-import { Dynamic, ObjectNode, Static } from '../../AST'
-import { FilterMap } from '../FilterMap'
+import { Dynamic, ObjectNode, Static } from '../../AST.js'
+import { FilterMap } from '../FilterMap.js'
 import {
   aTypeParam,
   boolean_,
@@ -9,7 +9,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from '../common'
+} from '../common.js'
 
 export const testFilterMap = fn_(
   'testFilterMap',

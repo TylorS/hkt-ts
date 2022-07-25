@@ -19,7 +19,7 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
+} from '../HKT.js'
 import {
   Covariant,
   Covariant1,
@@ -43,8 +43,8 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from '../Typeclass/Covariant'
-import { Eq } from '../Typeclass/Eq'
+} from '../Typeclass/Covariant.js'
+import { Eq } from '../Typeclass/Eq.js'
 import {
   IdentityBoth,
   IdentityBoth1,
@@ -68,11 +68,11 @@ import {
   IdentityBoth7,
   IdentityBoth8,
   IdentityBoth9,
-} from '../Typeclass/IdentityBoth'
-import { makeFromValue } from '../Typeclass/Top'
-import { pipe } from '../function'
+} from '../Typeclass/IdentityBoth.js'
+import { makeFromValue } from '../Typeclass/Top.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testCovariantIdentityBoth<T extends HKT10, Z, Y, X, W, V, U, S, R, E, A, B>(
   IBC: Covariant10<T> & IdentityBoth10<T>,

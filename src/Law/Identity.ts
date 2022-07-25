@@ -1,8 +1,8 @@
-import { DeepEquals, Eq } from '../Typeclass/Eq'
-import { Identity } from '../Typeclass/Identity'
-import { pipe } from '../function'
+import { DeepEquals, Eq } from '../Typeclass/Eq.js'
+import { Identity } from '../Typeclass/Identity.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testIdentity<A>(I: Identity<A>, Eq: Eq<A> = DeepEquals) {
   const left = testLeftIdentity(I, Eq)

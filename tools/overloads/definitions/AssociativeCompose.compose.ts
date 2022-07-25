@@ -1,6 +1,6 @@
-import { AssociativeCompose } from './AssociativeCompose'
-import { AssociativeFlatten } from './AssociativeFlatten'
-import { Covariant } from './Covariant'
+import { AssociativeCompose } from './AssociativeCompose.js'
+import { AssociativeFlatten } from './AssociativeFlatten.js'
+import { Covariant } from './Covariant.js'
 import {
   bTypeParam,
   cTypeParam,
@@ -11,7 +11,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const compose = composed_(
   'compose',

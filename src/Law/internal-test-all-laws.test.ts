@@ -1,63 +1,63 @@
-import { HKT, HKT2, Kind, Kind2 } from '../HKT'
-import { Associative } from '../Typeclass/Associative'
+import { HKT, HKT2, Kind, Kind2 } from '../HKT.js'
+import { Associative } from '../Typeclass/Associative.js'
 import {
   AssociativeBoth,
   AssociativeBoth1,
   AssociativeBoth2,
   AssociativeBoth2EC,
-} from '../Typeclass/AssociativeBoth'
+} from '../Typeclass/AssociativeBoth.js'
 import {
   AssociativeEither,
   AssociativeEither1,
   AssociativeEither2,
   AssociativeEither2EC,
-} from '../Typeclass/AssociativeEither'
+} from '../Typeclass/AssociativeEither.js'
 import {
   AssociativeFlatten,
   AssociativeFlatten1,
   AssociativeFlatten2,
   AssociativeFlatten2EC,
-} from '../Typeclass/AssociativeFlatten'
-import { Commutative } from '../Typeclass/Commutative'
-import { Covariant, Covariant1, Covariant2, Covariant2EC } from '../Typeclass/Covariant'
-import { DeepEquals, Eq } from '../Typeclass/Eq'
-import { FilterMap, FilterMap1, FilterMap2, FilterMap2EC } from '../Typeclass/FilterMap'
-import * as FE from '../Typeclass/ForEach/index'
-import { Identity } from '../Typeclass/Identity'
-import * as IB from '../Typeclass/IdentityBoth'
+} from '../Typeclass/AssociativeFlatten.js'
+import { Commutative } from '../Typeclass/Commutative.js'
+import { Covariant, Covariant1, Covariant2, Covariant2EC } from '../Typeclass/Covariant.js'
+import { DeepEquals, Eq } from '../Typeclass/Eq.js'
+import { FilterMap, FilterMap1, FilterMap2, FilterMap2EC } from '../Typeclass/FilterMap.js'
+import * as FE from '../Typeclass/ForEach/index.js'
+import { Identity } from '../Typeclass/Identity.js'
+import * as IB from '../Typeclass/IdentityBoth.js'
 import {
   IdentityEither,
   IdentityEither1,
   IdentityEither2,
   IdentityEither2EC,
-} from '../Typeclass/IdentityEither'
+} from '../Typeclass/IdentityEither.js'
 import {
   IdentityFlatten,
   IdentityFlatten1,
   IdentityFlatten2,
   IdentityFlatten2EC,
-} from '../Typeclass/IdentityFlatten'
-import { Inverse } from '../Typeclass/Inverse'
-import { Ord } from '../Typeclass/Ord'
-import { pipe } from '../function'
-import { Predicate } from '../index'
+} from '../Typeclass/IdentityFlatten.js'
+import { Inverse } from '../Typeclass/Inverse.js'
+import { Ord } from '../Typeclass/Ord.js'
+import { pipe } from '../function.js'
+import { Predicate } from '../index.js'
 
-import { Arbitrary } from './Arbitrary'
-import * as LA from './Associative'
-import * as LAB from './AssociativeBoth'
-import * as LAE from './AssociativeEither'
-import * as LAF from './AssociativeFlatten'
-import * as LC from './Commutative'
-import * as LCovariant from './Covariant'
-import * as LE from './Eq'
-import * as LFM from './FilterMap'
-import * as LFE from './ForEach'
-import * as LI from './Identity'
-import * as LIB from './IdentityBoth'
-import * as LIE from './IdentityEither'
-import * as LIF from './IdentityFlatten'
-import * as LIV from './Inverse'
-import * as LO from './Ord'
+import { Arbitrary } from './Arbitrary.js'
+import * as LA from './Associative.js'
+import * as LAB from './AssociativeBoth.js'
+import * as LAE from './AssociativeEither.js'
+import * as LAF from './AssociativeFlatten.js'
+import * as LC from './Commutative.js'
+import * as LCovariant from './Covariant.js'
+import * as LE from './Eq.js'
+import * as LFM from './FilterMap.js'
+import * as LFE from './ForEach.js'
+import * as LI from './Identity.js'
+import * as LIB from './IdentityBoth.js'
+import * as LIE from './IdentityEither.js'
+import * as LIF from './IdentityFlatten.js'
+import * as LIV from './Inverse.js'
+import * as LO from './Ord.js'
 
 export const testAllDataLaws = <A>(params: DataLawTestParams<A>) => {
   const { fc } = params

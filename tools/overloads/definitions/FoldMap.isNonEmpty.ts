@@ -1,5 +1,5 @@
-import { FoldMap } from './FoldMap'
-import { aTypeParam, boolean_, derived_, fn_, kind_, placeholder } from './common'
+import { FoldMap } from './FoldMap.js'
+import { aTypeParam, boolean_, derived_, fn_, kind_, placeholder } from './common.js'
 
 export const isNonEmpty = derived_(
   'isNonEmpty',

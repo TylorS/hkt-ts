@@ -1,4 +1,4 @@
-import { Trivariant } from './Trivariant'
+import { Trivariant } from './Trivariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -9,7 +9,7 @@ import {
   fn_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const map = derived_(
   'map',

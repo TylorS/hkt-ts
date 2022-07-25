@@ -1,14 +1,14 @@
 import EQ from 'fast-deep-equal/es6'
 
-import * as E from '../Either'
-import { HKT, Params } from '../HKT'
-import { Include } from '../common'
-import { constFalse, constTrue, pipe } from '../function'
+import * as E from '../Either.js'
+import { HKT, Params } from '../HKT.js'
+import { Include } from '../common.js'
+import { constFalse, constTrue, pipe } from '../function.js'
 
-import { Associative } from './Associative'
-import * as AB from './AssociativeBoth'
-import * as AE from './AssociativeEither'
-import { Contravariant1 } from './Contravariant'
+import { Associative } from './Associative.js'
+import * as AB from './AssociativeBoth.js'
+import * as AE from './AssociativeEither.js'
+import { Contravariant1 } from './Contravariant.js'
 
 export const fromEquals = <A>(equals: Eq<A>['equals']): Eq<A> => ({
   equals,

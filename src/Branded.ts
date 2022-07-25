@@ -4,19 +4,19 @@
  */
 import { M as B } from 'ts-toolbelt'
 
-import { Constrain, HKT2, Params, Variance } from './HKT'
-import type * as Associative from './Typeclass/Associative'
-import * as AB from './Typeclass/AssociativeBoth'
-import type { Bounded } from './Typeclass/Bounded'
-import type * as Commutative from './Typeclass/Commutative'
-import type { Concat } from './Typeclass/Concat'
-import * as C from './Typeclass/Covariant'
-import type { Eq } from './Typeclass/Eq'
-import type { Identity } from './Typeclass/Identity'
-import type { Inverse } from './Typeclass/Inverse'
-import type { Ord } from './Typeclass/Ord'
-import type * as T from './Typeclass/Top'
-import { unsafeCoerce } from './function'
+import { Constrain, HKT2, Params, Variance } from './HKT.js'
+import type * as Associative from './Typeclass/Associative.js'
+import * as AB from './Typeclass/AssociativeBoth.js'
+import type { Bounded } from './Typeclass/Bounded.js'
+import type * as Commutative from './Typeclass/Commutative.js'
+import type { Concat } from './Typeclass/Concat.js'
+import * as C from './Typeclass/Covariant.js'
+import type { Eq } from './Typeclass/Eq.js'
+import type { Identity } from './Typeclass/Identity.js'
+import type { Inverse } from './Typeclass/Inverse.js'
+import type { Ord } from './Typeclass/Ord.js'
+import type * as T from './Typeclass/Top.js'
+import { unsafeCoerce } from './function.js'
 
 export const BRAND = Symbol('@hkt-ts/Brand')
 export type BRAND = typeof BRAND

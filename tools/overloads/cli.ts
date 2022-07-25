@@ -1,14 +1,17 @@
-import { join } from 'path'
+import { createRequire } from 'node:module'
+import { join } from 'node:path'
 
 import { format } from 'prettier'
 import yargs from 'yargs'
 
-import { ParentNode } from './AST'
-import { generateOverloads } from './generateOverloads'
-import { printOverload } from './printOverload'
+import { ParentNode } from './AST.js'
+import { getDirname } from './common.js'
+import { generateOverloads } from './generateOverloads.js'
+import { printOverload } from './printOverload.js'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const prettierConfig = require('../../.prettierrc.js')
+const dirname = getDirname(import.meta.url)
+const require = createRequire(import.meta.url)
+const prettierConfig = require('../../.prettierrc.cjs')
 
 const program = yargs(process.argv, process.cwd())
   .option('definition', {
@@ -49,17 +52,17 @@ const HKT_IMPORTS = `import {
   Kind10,
   Params,
   DefaultOf,
-} from './HKT'`
+} from './HKT.js'`
 
 async function main() {
   const { definition, noImports, printOutput, skipFormat } = await program.argv
   const filePath = join(
-    __dirname,
+    dirname,
     'definitions',
     definition.endsWith('.ts') ? definition : definition + '.ts',
   )
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const mod = require(filePath)
+  const mod = await import(filePath)
   const modKeys = Object.keys(mod)
   const node = (modKeys.length === 1 ? mod[modKeys[0]] : mod['node']) as ParentNode
 

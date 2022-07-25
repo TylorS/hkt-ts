@@ -19,7 +19,7 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
+} from '../HKT.js'
 
 export interface NaturalTransformation_<F extends HKT, G extends HKT> {
   <A>(kind: Kind<F, A>): Kind<G, A>

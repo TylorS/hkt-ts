@@ -1,8 +1,8 @@
-import { KindParam, Labeled, Static } from '../AST'
+import { KindParam, Labeled, Static } from '../AST.js'
 
-import { FilterMap } from './FilterMap'
-import { FilterMapWithIndex } from './FilterMapWithIndex'
-import { curriedPlaceholder_, fn_, hkt } from './common'
+import { FilterMap } from './FilterMap.js'
+import { FilterMapWithIndex } from './FilterMapWithIndex.js'
+import { curriedPlaceholder_, fn_, hkt } from './common.js'
 
 const k = new Static(`K`)
 

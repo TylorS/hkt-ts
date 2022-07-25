@@ -11,7 +11,7 @@ import {
   Static,
   TypeParam,
   Typeclass,
-} from '../AST'
+} from '../AST.js'
 
 export const hkt = new HKTParam(Symbol('T'), 'T')
 export const placeholder = hkt.toPlaceholder()

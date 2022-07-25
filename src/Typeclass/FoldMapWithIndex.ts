@@ -19,10 +19,10 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import { pipe } from '../function'
+} from '../HKT.js'
+import { pipe } from '../function.js'
 
-import { Identity } from './Identity'
+import { Identity } from './Identity.js'
 
 /* #region FoldMapWithIndex */
 export interface FoldMapWithIndex<T extends HKT, K> {

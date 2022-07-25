@@ -19,11 +19,11 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import { Just, Maybe, Nothing } from '../Maybe'
-import { Predicate } from '../Predicate'
-import { Refinement } from '../Refinement'
-import { flow, identity } from '../function'
+} from '../HKT.js'
+import { Just, Maybe, Nothing } from '../Maybe.js'
+import { Predicate } from '../Predicate.js'
+import { Refinement } from '../Refinement.js'
+import { flow, identity } from '../function.js'
 
 import {
   Covariant,
@@ -48,7 +48,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 
 /* #region FilterMap */
 export interface FilterMap<T extends HKT> {

@@ -1,8 +1,8 @@
-import { KindParam, Labeled } from '../AST'
+import { KindParam, Labeled } from '../AST.js'
 
-import { PartitionMap } from './PartitionMap'
-import { Separate } from './Separate'
-import { derived_ } from './common'
+import { PartitionMap } from './PartitionMap.js'
+import { Separate } from './Separate.js'
+import { derived_ } from './common.js'
 
 export const separate = derived_(
   'separate',

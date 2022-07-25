@@ -1,5 +1,5 @@
-import { FoldMap } from './FoldMap'
-import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common'
+import { FoldMap } from './FoldMap.js'
+import { aTypeParam, bTypeParam, derived_, fnLabeled_, fn_, kind_, placeholder } from './common.js'
 
 export const reduce = derived_(
   'reduce',

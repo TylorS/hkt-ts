@@ -19,8 +19,8 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import { Maybe } from '../Maybe'
+} from '../HKT.js'
+import { Maybe } from '../Maybe.js'
 
 import {
   Covariant,
@@ -45,7 +45,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 
 /* #region Compact */
 export interface Compact<T extends HKT> {

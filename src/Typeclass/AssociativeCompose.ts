@@ -19,8 +19,8 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import { pipe } from '../function'
+} from '../HKT.js'
+import { pipe } from '../function.js'
 
 import {
   AssociativeFlatten,
@@ -45,7 +45,7 @@ import {
   AssociativeFlatten7,
   AssociativeFlatten8,
   AssociativeFlatten9,
-} from './AssociativeFlatten'
+} from './AssociativeFlatten.js'
 import {
   Covariant,
   Covariant1,
@@ -69,7 +69,7 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from './Covariant'
+} from './Covariant.js'
 
 /* #region AssociativeCompose */
 export interface AssociativeCompose<T extends HKT2> {

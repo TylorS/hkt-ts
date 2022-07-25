@@ -1,10 +1,10 @@
 import * as fc from 'fast-check'
 
-import * as L from './Law/index'
-import { testAllDataLaws } from './Law/internal-test-all-laws.test'
-import * as P from './Predicate'
-import { fromEquals } from './Typeclass/Eq'
-import { pipe } from './function'
+import * as L from './Law/index.js'
+import { testAllDataLaws } from './Law/internal-test-all-laws.test.js'
+import * as P from './Predicate.js'
+import { fromEquals } from './Typeclass/Eq.js'
+import { pipe } from './function.js'
 
 describe(__filename, () => {
   testAllDataLaws({

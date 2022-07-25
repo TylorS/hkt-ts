@@ -1,4 +1,4 @@
-import { Interface, Static } from '../AST'
+import { Interface, Static } from '../AST.js'
 
 import {
   aTypeParam,
@@ -9,7 +9,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const ReduceWithIndex = new Interface(
   'ReduceWithIndex',

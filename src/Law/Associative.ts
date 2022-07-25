@@ -1,8 +1,8 @@
-import { Associative } from '../Typeclass/Associative'
-import { DeepEquals, Eq } from '../Typeclass/Eq'
-import { pipe } from '../function'
+import { Associative } from '../Typeclass/Associative.js'
+import { DeepEquals, Eq } from '../Typeclass/Eq.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testAssociativity<A>(A: Associative<A>, Eq: Eq<A> = DeepEquals) {
   return (Arb: Arbitrary.Arbitrary<A>) =>

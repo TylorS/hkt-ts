@@ -1,6 +1,6 @@
-import { Dynamic, IntersectionNode, ObjectNode, Static } from '../../AST'
-import { AssociativeFlatten } from '../AssociativeFlatten'
-import { Covariant } from '../Covariant'
+import { Dynamic, IntersectionNode, ObjectNode, Static } from '../../AST.js'
+import { AssociativeFlatten } from '../AssociativeFlatten.js'
+import { Covariant } from '../Covariant.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -11,7 +11,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from '../common'
+} from '../common.js'
 
 export const testCovariantAssociativeFlatten = fn_(
   'testCovariantAssociativeFlatten',

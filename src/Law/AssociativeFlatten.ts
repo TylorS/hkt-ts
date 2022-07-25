@@ -19,14 +19,14 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import * as AssociativeFlatten from '../Typeclass/AssociativeFlatten'
-import * as Covariant from '../Typeclass/Covariant'
-import { DeepEquals, Eq, contramap } from '../Typeclass/Eq'
-import { flow, pipe } from '../function'
+} from '../HKT.js'
+import * as AssociativeFlatten from '../Typeclass/AssociativeFlatten.js'
+import * as Covariant from '../Typeclass/Covariant.js'
+import { DeepEquals, Eq, contramap } from '../Typeclass/Eq.js'
+import { flow, pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
-import { testCovariantAssociativeBoth } from './AssociativeBoth'
+import * as Arbitrary from './Arbitrary.js'
+import { testCovariantAssociativeBoth } from './AssociativeBoth.js'
 
 export function testCovariantAssociativeFlatten<
   T extends HKT10,

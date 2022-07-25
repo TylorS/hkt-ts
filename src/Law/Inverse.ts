@@ -1,8 +1,8 @@
-import { DeepEquals, Eq } from '../Typeclass/Eq'
-import { Inverse } from '../Typeclass/Inverse'
-import { pipe } from '../function'
+import { DeepEquals, Eq } from '../Typeclass/Eq.js'
+import { Inverse } from '../Typeclass/Inverse.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testInverse<A>(I: Inverse<A>, E: Eq<A> = DeepEquals) {
   return (Arb: Arbitrary.Arbitrary<A>) =>

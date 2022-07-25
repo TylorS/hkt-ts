@@ -1,4 +1,4 @@
-import { HKTParam, ParentNode, TypeParam } from './AST'
+import { HKTParam, ParentNode, TypeParam } from './AST.js'
 
 export function findHKTParams(node: ParentNode) {
   return node.typeParams.filter(isHKTParam)

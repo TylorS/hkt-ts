@@ -1,6 +1,6 @@
-import { Dynamic } from '../AST'
+import { Dynamic } from '../AST.js'
 
-import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common'
+import { aTypeParam, bTypeParam, fnLabeled_, fn_, interface_, kind_, placeholder } from './common.js'
 
 export const node = interface_('Contravariant', [
   fnLabeled_(

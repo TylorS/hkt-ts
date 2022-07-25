@@ -19,9 +19,9 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import type { Unary } from '../Unary'
-import { constant, flow } from '../function'
+} from '../HKT.js'
+import type { Unary } from '../Unary.js'
+import { constant, flow } from '../function.js'
 
 /* #region Typeclass */
 export interface Covariant<T extends HKT> {

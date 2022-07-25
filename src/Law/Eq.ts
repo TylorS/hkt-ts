@@ -1,7 +1,7 @@
-import { Eq } from '../Typeclass/Eq'
-import { pipe } from '../function'
+import { Eq } from '../Typeclass/Eq.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 
 export function testEq<A>(E: Eq<A>) {
   return (Arb: Arbitrary.Arbitrary<A>) => (fc: typeof import('fast-check')) => ({

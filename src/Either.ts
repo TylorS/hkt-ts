@@ -1,24 +1,24 @@
-import { HKT, HKT2, Kind, Params, Variance } from './HKT'
-import type { Maybe } from './Maybe'
-import type { Associative } from './Typeclass/Associative'
-import * as AB from './Typeclass/AssociativeBoth'
-import * as AE from './Typeclass/AssociativeEither'
-import * as F from './Typeclass/AssociativeFlatten'
-import type { Bicovariant2 } from './Typeclass/Bicovariant'
-import { Bottom2EC } from './Typeclass/Bottom'
-import * as C from './Typeclass/Covariant'
-import { Debug } from './Typeclass/Debug'
-import type { Eq } from './Typeclass/Eq'
-import * as FM from './Typeclass/FoldMap'
-import * as FE from './Typeclass/ForEach/index'
-import { Identity } from './Typeclass/Identity'
-import * as IB from './Typeclass/IdentityBoth'
-import { IdentityFlatten2 } from './Typeclass/IdentityFlatten'
-import type { Ord } from './Typeclass/Ord'
-import { Reduce2 } from './Typeclass/Reduce'
-import { ReduceRight2 } from './Typeclass/ReduceRight'
-import * as T from './Typeclass/Top'
-import { Lazy, flow, identity, pipe } from './function'
+import { HKT, HKT2, Kind, Params, Variance } from './HKT.js'
+import type { Maybe } from './Maybe.js'
+import type { Associative } from './Typeclass/Associative.js'
+import * as AB from './Typeclass/AssociativeBoth.js'
+import * as AE from './Typeclass/AssociativeEither.js'
+import * as F from './Typeclass/AssociativeFlatten.js'
+import type { Bicovariant2 } from './Typeclass/Bicovariant.js'
+import { Bottom2EC } from './Typeclass/Bottom.js'
+import * as C from './Typeclass/Covariant.js'
+import { Debug } from './Typeclass/Debug.js'
+import type { Eq } from './Typeclass/Eq.js'
+import * as FM from './Typeclass/FoldMap.js'
+import * as FE from './Typeclass/ForEach/index.js'
+import { Identity } from './Typeclass/Identity.js'
+import * as IB from './Typeclass/IdentityBoth.js'
+import { IdentityFlatten2 } from './Typeclass/IdentityFlatten.js'
+import type { Ord } from './Typeclass/Ord.js'
+import { Reduce2 } from './Typeclass/Reduce.js'
+import { ReduceRight2 } from './Typeclass/ReduceRight.js'
+import * as T from './Typeclass/Top.js'
+import { Lazy, flow, identity, pipe } from './function.js'
 
 /**
  * A common disriminated union to represent the outcome of 2 separate
@@ -306,8 +306,8 @@ export const IdentityFlatten: IdentityFlatten2<EitherHKT> = {
  * input of a Tuple of Eithers.
  * @example
  * ```typescript
- * import * as E from 'hkt-ts/Either'
- * import { pipe } from 'hkt-ts/function'
+ * import * as E from 'hkt-ts/Either.js'
+ * import { pipe } from 'hkt-ts/function.js'
  *
  * declare const eitherA: E.Either<'a', string>
  * declare const eitherB: E.Either<'b', number>
@@ -325,8 +325,8 @@ export const tuple = IB.tuple<EitherHKT>({ ...IdentityBoth, ...Covariant })
  * input of a Record of Eithers.
  * @example
  * ```typescript
- * import * as E from 'hkt-ts/Either'
- * import { pipe } from 'hkt-ts/function'
+ * import * as E from 'hkt-ts/Either.js'
+ * import { pipe } from 'hkt-ts/function.js'
  *
  * declare const eitherA: E.Either<'a', string>
  * declare const eitherB: E.Either<'b', number>

@@ -1,6 +1,6 @@
-import { Interface } from '../AST'
+import { Interface } from '../AST.js'
 
-import { aTypeParam } from './common'
+import { aTypeParam } from './common.js'
 
 export const node = new Interface(
   'Identity',

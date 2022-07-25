@@ -1,4 +1,4 @@
-import assert from 'assert'
+import assert from 'node:assert'
 
 import {
   HKT,
@@ -21,8 +21,8 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
-import { orElse } from '../Typeclass/AssociativeEither'
+} from '../HKT.js'
+import { orElse } from '../Typeclass/AssociativeEither.js'
 import {
   Covariant,
   Covariant1,
@@ -46,8 +46,8 @@ import {
   Covariant7,
   Covariant8,
   Covariant9,
-} from '../Typeclass/Covariant'
-import { Eq } from '../Typeclass/Eq'
+} from '../Typeclass/Covariant.js'
+import { Eq } from '../Typeclass/Eq.js'
 import {
   IdentityEither,
   IdentityEither1,
@@ -71,10 +71,10 @@ import {
   IdentityEither7,
   IdentityEither8,
   IdentityEither9,
-} from '../Typeclass/IdentityEither'
-import { pipe } from '../function'
+} from '../Typeclass/IdentityEither.js'
+import { pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 export function testCovariantIdentityEither<T extends HKT10, Z, Y, X, W, V, U, S, R, E, A, B>(
   IBC: Covariant10<T> & IdentityEither10<T>,
   EA: Eq<Kind10<T, Z, Y, X, W, V, U, S, R, E, A>>,

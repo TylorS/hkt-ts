@@ -1,12 +1,12 @@
-import { deepStrictEqual } from 'assert'
+import { deepStrictEqual } from 'node:assert'
 
-import * as Array from '../../Array'
-import * as Data from '../../Data'
-import * as Either from '../../Either'
-import { pipe } from '../../function'
-import * as N from '../../number'
+import * as Array from '../../Array.js'
+import * as Data from '../../Data.js'
+import * as Either from '../../Either.js'
+import { pipe } from '../../function.js'
+import * as N from '../../number.js'
 
-import * as ForEach from '.'
+import * as ForEach from './index.js'
 
 describe(__filename, () => {
   describe(ForEach.foldMap.name, () => {

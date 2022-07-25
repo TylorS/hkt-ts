@@ -1,6 +1,6 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { aTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common'
+import { aTypeParam, fnLabeled_, interface_, kind_, placeholder } from './common.js'
 
 export const node = interface_('Compact', [
   fnLabeled_(

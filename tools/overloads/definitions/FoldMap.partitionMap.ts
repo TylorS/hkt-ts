@@ -1,9 +1,9 @@
-import { Static, Tuple } from '../AST'
+import { Static, Tuple } from '../AST.js'
 
-import { Covariant } from './Covariant'
-import { FoldMap } from './FoldMap'
-import { IdentityEither } from './IdentityEither'
-import { Top } from './Top'
+import { Covariant } from './Covariant.js'
+import { FoldMap } from './FoldMap.js'
+import { IdentityEither } from './IdentityEither.js'
+import { Top } from './Top.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -13,7 +13,7 @@ import {
   fn_,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 export const partitionMap = derived_(
   'partitionMap',

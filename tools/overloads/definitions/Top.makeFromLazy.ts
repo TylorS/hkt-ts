@@ -1,8 +1,8 @@
-import { Static } from '../AST'
+import { Static } from '../AST.js'
 
-import { Covariant } from './Covariant'
-import { Top } from './Top'
-import { aTypeParam, derived_, fn_, kindWithDefaults_, placeholderWithDefaults } from './common'
+import { Covariant } from './Covariant.js'
+import { Top } from './Top.js'
+import { aTypeParam, derived_, fn_, kindWithDefaults_, placeholderWithDefaults } from './common.js'
 
 export const makeFromLazy = derived_(
   'makeFromLazy',

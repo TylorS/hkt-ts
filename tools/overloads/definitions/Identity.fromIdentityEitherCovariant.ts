@@ -1,8 +1,8 @@
-import { Dynamic } from '../AST'
+import { Dynamic } from '../AST.js'
 
-import { Covariant } from './Covariant'
-import { IdentityEither } from './IdentityEither'
-import { aTypeParam, derived_, fn_, kindWithDefaults_, placeholder } from './common'
+import { Covariant } from './Covariant.js'
+import { IdentityEither } from './IdentityEither.js'
+import { aTypeParam, derived_, fn_, kindWithDefaults_, placeholder } from './common.js'
 
 export const fromIdentityEitherCovariant = derived_(
   'fromIdentityEitherCovariant',

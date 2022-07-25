@@ -1,6 +1,6 @@
-import { Static, Tuple } from '../AST'
+import { Static, Tuple } from '../AST.js'
 
-import { PartitionMapWithIndex } from './PartitionMapWithIndex'
+import { PartitionMapWithIndex } from './PartitionMapWithIndex.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -11,7 +11,7 @@ import {
   hkt,
   kind_,
   placeholder,
-} from './common'
+} from './common.js'
 
 const kTypeParam = new Static('K')
 

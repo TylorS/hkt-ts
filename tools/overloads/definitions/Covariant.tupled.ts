@@ -1,7 +1,7 @@
-import { Tuple } from '../AST'
+import { Tuple } from '../AST.js'
 
-import { Covariant } from './Covariant'
-import { aTypeParam, derived_, fn_, kind_, placeholder } from './common'
+import { Covariant } from './Covariant.js'
+import { aTypeParam, derived_, fn_, kind_, placeholder } from './common.js'
 
 export const node = derived_(
   'tupled',

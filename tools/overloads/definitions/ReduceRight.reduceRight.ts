@@ -1,4 +1,4 @@
-import { ReduceRight } from './ReduceRight'
+import { ReduceRight } from './ReduceRight.js'
 import {
   aTypeParam,
   bTypeParam,
@@ -9,7 +9,7 @@ import {
   kindG_,
   placeholderF,
   placeholderG,
-} from './common'
+} from './common.js'
 
 export const reduceRight = composed_(
   'reduceRight',

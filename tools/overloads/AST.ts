@@ -1,4 +1,4 @@
-import type { Context } from './Context'
+import type { Context } from './Context.js'
 
 export type AST = FunctionParam | KindParam | ParentNode | TypeParam
 

@@ -1,5 +1,5 @@
-import { ObjectNode, Static } from '../../AST'
-import { curriedPlaceholder_, fn_, hkt } from '../common'
+import { ObjectNode, Static } from '../../AST.js'
+import { curriedPlaceholder_, fn_, hkt } from '../common.js'
 
 export const testAllHKTLaws = fn_(
   'testAllHKTLaws',

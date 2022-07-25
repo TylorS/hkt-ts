@@ -1,4 +1,4 @@
-import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../HKT'
+import { HKT, HKT10, HKT2, HKT3, HKT4, HKT5, HKT6, HKT7, HKT8, HKT9 } from '../HKT.js'
 
 import {
   AssociativeFlatten,
@@ -23,7 +23,7 @@ import {
   AssociativeFlatten7,
   AssociativeFlatten8,
   AssociativeFlatten9,
-} from './AssociativeFlatten'
+} from './AssociativeFlatten.js'
 import {
   Top,
   Top1,
@@ -47,7 +47,7 @@ import {
   Top7,
   Top8,
   Top9,
-} from './Top'
+} from './Top.js'
 export interface IdentityFlatten<T extends HKT> extends AssociativeFlatten<T>, Top<T> {}
 
 export interface IdentityFlatten1<T extends HKT> extends AssociativeFlatten1<T>, Top1<T> {}

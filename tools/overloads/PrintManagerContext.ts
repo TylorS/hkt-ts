@@ -1,4 +1,4 @@
-import { FunctionSignature, Interface, ParentNode, TypeAlias } from './AST'
+import { FunctionSignature, Interface, ParentNode, TypeAlias } from './AST.js'
 
 export type PrintContext = {
   parentNodes: ParentNode[]

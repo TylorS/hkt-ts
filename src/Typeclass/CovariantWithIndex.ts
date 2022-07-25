@@ -19,7 +19,7 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
+} from '../HKT.js'
 
 /* #region CovariantWithIndex */
 export interface CovariantWithIndex<T extends HKT, K> {

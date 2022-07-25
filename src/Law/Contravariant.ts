@@ -19,7 +19,7 @@ import {
   Kind7,
   Kind8,
   Kind9,
-} from '../HKT'
+} from '../HKT.js'
 import {
   Contravariant,
   Contravariant1,
@@ -43,11 +43,11 @@ import {
   Contravariant7,
   Contravariant8,
   Contravariant9,
-} from '../Typeclass/Contravariant'
-import { DeepEquals, Eq } from '../Typeclass/Eq'
-import { identity, pipe } from '../function'
+} from '../Typeclass/Contravariant.js'
+import { DeepEquals, Eq } from '../Typeclass/Eq.js'
+import { identity, pipe } from '../function.js'
 
-import * as Arbitrary from './Arbitrary'
+import * as Arbitrary from './Arbitrary.js'
 export function testContravariant<T extends HKT10>(): <A, B, C, Z, Y, X, W, V, U, S, R, E, D>(
   C: Contravariant10<T>,
   f: (a: A) => B,

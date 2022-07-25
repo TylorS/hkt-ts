@@ -1,7 +1,7 @@
-import type { HKT2, Params } from './HKT'
-import type { Covariant2 } from './Typeclass/Covariant'
-import type { Identity } from './Typeclass/Identity'
-import type { IdentityBoth2 } from './Typeclass/IdentityBoth'
+import type { HKT2, Params } from './HKT.js'
+import type { Covariant2 } from './Typeclass/Covariant.js'
+import type { Identity } from './Typeclass/Identity.js'
+import type { IdentityBoth2 } from './Typeclass/IdentityBoth.js'
 
 export type Include<A, B> = A extends B ? A : never
 
