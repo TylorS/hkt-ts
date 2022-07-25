@@ -30,10 +30,11 @@
     "build": "concurrently npm:build:esm npm:build:cjs && npm run build:package-exports",
     "generate-overload": "node --loader @esbuild-kit/esm-loader ./tools/overloads/cli.ts",
     "eslint": "NODE_OPTIONS=--max-old-space-size=4096 eslint --ext .ts,.js,.json,.yaml --fix --cache src",
-    "vitest": "vitest",
+    "vitest": "vitest run",
+    "vitest:watch": "vitest",
     "coverage": "vitest run --coverage",
     "typecheck": "tsc -p ./tsconfig.build.json --noEmit",
-    "test": "concurrently npm:eslint npm:mocha npm:typecheck",
+    "test": "concurrently npm:eslint npm:vitest npm:typecheck",
     "preversion": "npm test",
     "postversion": "npm run build && npm publish"
   },
