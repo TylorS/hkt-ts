@@ -1,4 +1,4 @@
-import EQ from 'fast-deep-equal/es6'
+import EQ from 'fast-deep-equal/es6/index.js'
 
 import * as E from '../Either.js'
 import { HKT, Params } from '../HKT.js'

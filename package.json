@@ -373,6 +373,16 @@
         "types": "./esm/Law/Ord.d.ts"
       }
     },
+    "./Law/internal-test-all-laws": {
+      "require": {
+        "default": "./cjs/Law/internal-test-all-laws.js",
+        "types": "./cjs/Law/internal-test-all-laws.d.ts"
+      },
+      "import": {
+        "default": "./esm/Law/internal-test-all-laws.js",
+        "types": "./esm/Law/internal-test-all-laws.d.ts"
+      }
+    },
     "./Map": {
       "require": {
         "default": "./cjs/Map.js",
