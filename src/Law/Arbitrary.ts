@@ -20,18 +20,8 @@ export interface Arbitrary<A> {
   readonly arbitrary: (fc: typeof import('fast-check')) => import('fast-check').Arbitrary<A>
 }
 
-export type Property<A> = SyncProperty<A> | AsyncProperty<A>
-
-export interface SyncProperty<A> {
-  readonly property: (
-    fc: typeof import('fast-check'),
-  ) => import('fast-check').IPropertyWithHooks<[A]>
-}
-
-export interface AsyncProperty<A> {
-  readonly property: (
-    fc: typeof import('fast-check'),
-  ) => import('fast-check').IAsyncPropertyWithHooks<[A]>
+export interface Property<A> {
+  readonly property: (fc: typeof import('fast-check')) => import('fast-check').IRawProperty<[A]>
 }
 
 export type OutputOf<T> = [T] extends [Arbitrary<infer R>] ? R : never
@@ -44,13 +34,13 @@ export const Arbitrary = <A>(
 
 export const toAsyncProperty =
   <A>(predicate: (a: A) => Promise<boolean>) =>
-  (a: Arbitrary<A>): AsyncProperty<A> => ({
+  (a: Arbitrary<A>): Property<A> => ({
     property: (fc) => fc.asyncProperty(a.arbitrary(fc), predicate),
   })
 
 export const toProperty =
   <A>(predicate: Predicate<A>) =>
-  (a: Arbitrary<A>): SyncProperty<A> => ({
+  (a: Arbitrary<A>): Property<A> => ({
     property: (fc) => fc.property(a.arbitrary(fc), predicate),
   })
 
