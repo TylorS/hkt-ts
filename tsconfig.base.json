@@ -5,7 +5,7 @@
     "downlevelIteration": true,
     "esModuleInterop": true,
     "importHelpers": true,
-    "module": "esnext",
+    "module": "ES2015",
     "moduleResolution": "NodeNext",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
