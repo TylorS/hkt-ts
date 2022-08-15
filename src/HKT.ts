@@ -28,9 +28,9 @@ export const A = Params.A
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Variance {
-  export type Covariant<A> = (_: never) => A
-  export type Contravariant<A> = (_: A) => never
-  export type Invariant<A> = (_: A) => A
+  export type Covariant<A> = (_: never, __covariant: never) => A
+  export type Contravariant<A> = (_: A, __contravriant: never) => never
+  export type Invariant<A> = (_: A, __invariant: A) => A
 }
 
 export type Variance<A> = Variance.Covariant<A> | Variance.Contravariant<A> | Variance.Invariant<A>
