@@ -540,7 +540,7 @@ export type DefaultForVariance<V> = [V] extends [Variance.Invariant<infer R>]
   : any
 
 export type InitialOf<H extends HKT, P extends Params> = P extends keyof H['defaults']
-  ? DefaultForVariance<NonNullable<H['defaults']>[P]>
+  ? InitialForVariance<NonNullable<H['defaults']>[P]>
   : unknown
 
 export type InitialForVariance<V> = [V] extends [Variance.Invariant<infer R>]
