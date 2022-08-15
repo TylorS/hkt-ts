@@ -1,5 +1,4 @@
 import {
-  DefaultOf,
   HKT,
   HKT10,
   HKT2,
@@ -10,6 +9,7 @@ import {
   HKT7,
   HKT8,
   HKT9,
+  InitialOf,
   Kind,
   Kind10,
   Kind2,
@@ -81,7 +81,7 @@ export interface Bottom1<T extends HKT> {
 }
 
 export interface Bottom2<T extends HKT2> {
-  readonly bottom: Kind2<T, DefaultOf<T, Params.E>, never>
+  readonly bottom: Kind2<T, InitialOf<T, Params.E>, never>
 }
 
 export interface Bottom2EC<T extends HKT2, E> {
@@ -89,11 +89,11 @@ export interface Bottom2EC<T extends HKT2, E> {
 }
 
 export interface Bottom3<T extends HKT3> {
-  readonly bottom: Kind3<T, DefaultOf<T, Params.R>, DefaultOf<T, Params.E>, never>
+  readonly bottom: Kind3<T, InitialOf<T, Params.R>, InitialOf<T, Params.E>, never>
 }
 
 export interface Bottom3RC<T extends HKT3, R> {
-  readonly bottom: Kind3<T, R, DefaultOf<T, Params.E>, never>
+  readonly bottom: Kind3<T, R, InitialOf<T, Params.E>, never>
 }
 
 export interface Bottom3REC<T extends HKT3, R, E> {
@@ -101,15 +101,15 @@ export interface Bottom3REC<T extends HKT3, R, E> {
 }
 
 export interface Bottom3EC<T extends HKT3, E> {
-  readonly bottom: Kind3<T, DefaultOf<T, Params.R>, E, never>
+  readonly bottom: Kind3<T, InitialOf<T, Params.R>, E, never>
 }
 
 export interface Bottom4<T extends HKT4> {
   readonly bottom: Kind4<
     T,
-    DefaultOf<T, Params.S>,
-    DefaultOf<T, Params.R>,
-    DefaultOf<T, Params.E>,
+    InitialOf<T, Params.S>,
+    InitialOf<T, Params.R>,
+    InitialOf<T, Params.E>,
     never
   >
 }
@@ -119,36 +119,36 @@ export interface Bottom4SREC<T extends HKT4, S, R, E> {
 }
 
 export interface Bottom4SC<T extends HKT4, S> {
-  readonly bottom: Kind4<T, S, DefaultOf<T, Params.R>, DefaultOf<T, Params.E>, never>
+  readonly bottom: Kind4<T, S, InitialOf<T, Params.R>, InitialOf<T, Params.E>, never>
 }
 
 export interface Bottom4SRC<T extends HKT4, S, R> {
-  readonly bottom: Kind4<T, S, R, DefaultOf<T, Params.E>, never>
+  readonly bottom: Kind4<T, S, R, InitialOf<T, Params.E>, never>
 }
 
 export interface Bottom4RC<T extends HKT4, R> {
-  readonly bottom: Kind4<T, DefaultOf<T, Params.S>, R, DefaultOf<T, Params.E>, never>
+  readonly bottom: Kind4<T, InitialOf<T, Params.S>, R, InitialOf<T, Params.E>, never>
 }
 
 export interface Bottom4SEC<T extends HKT4, S, E> {
-  readonly bottom: Kind4<T, S, DefaultOf<T, Params.R>, E, never>
+  readonly bottom: Kind4<T, S, InitialOf<T, Params.R>, E, never>
 }
 
 export interface Bottom4REC<T extends HKT4, R, E> {
-  readonly bottom: Kind4<T, DefaultOf<T, Params.S>, R, E, never>
+  readonly bottom: Kind4<T, InitialOf<T, Params.S>, R, E, never>
 }
 
 export interface Bottom4EC<T extends HKT4, E> {
-  readonly bottom: Kind4<T, DefaultOf<T, Params.S>, DefaultOf<T, Params.R>, E, never>
+  readonly bottom: Kind4<T, InitialOf<T, Params.S>, InitialOf<T, Params.R>, E, never>
 }
 
 export interface Bottom5<T extends HKT5> {
   readonly bottom: Kind5<
     T,
-    DefaultOf<T, Params.U>,
-    DefaultOf<T, Params.S>,
-    DefaultOf<T, Params.R>,
-    DefaultOf<T, Params.E>,
+    InitialOf<T, Params.U>,
+    InitialOf<T, Params.S>,
+    InitialOf<T, Params.R>,
+    InitialOf<T, Params.E>,
     never
   >
 }
@@ -156,11 +156,11 @@ export interface Bottom5<T extends HKT5> {
 export interface Bottom6<T extends HKT6> {
   readonly bottom: Kind6<
     T,
-    DefaultOf<T, Params.V>,
-    DefaultOf<T, Params.U>,
-    DefaultOf<T, Params.S>,
-    DefaultOf<T, Params.R>,
-    DefaultOf<T, Params.E>,
+    InitialOf<T, Params.V>,
+    InitialOf<T, Params.U>,
+    InitialOf<T, Params.S>,
+    InitialOf<T, Params.R>,
+    InitialOf<T, Params.E>,
     never
   >
 }
@@ -168,12 +168,12 @@ export interface Bottom6<T extends HKT6> {
 export interface Bottom7<T extends HKT7> {
   readonly bottom: Kind7<
     T,
-    DefaultOf<T, Params.W>,
-    DefaultOf<T, Params.V>,
-    DefaultOf<T, Params.U>,
-    DefaultOf<T, Params.S>,
-    DefaultOf<T, Params.R>,
-    DefaultOf<T, Params.E>,
+    InitialOf<T, Params.W>,
+    InitialOf<T, Params.V>,
+    InitialOf<T, Params.U>,
+    InitialOf<T, Params.S>,
+    InitialOf<T, Params.R>,
+    InitialOf<T, Params.E>,
     never
   >
 }
@@ -181,13 +181,13 @@ export interface Bottom7<T extends HKT7> {
 export interface Bottom8<T extends HKT8> {
   readonly bottom: Kind8<
     T,
-    DefaultOf<T, Params.X>,
-    DefaultOf<T, Params.W>,
-    DefaultOf<T, Params.V>,
-    DefaultOf<T, Params.U>,
-    DefaultOf<T, Params.S>,
-    DefaultOf<T, Params.R>,
-    DefaultOf<T, Params.E>,
+    InitialOf<T, Params.X>,
+    InitialOf<T, Params.W>,
+    InitialOf<T, Params.V>,
+    InitialOf<T, Params.U>,
+    InitialOf<T, Params.S>,
+    InitialOf<T, Params.R>,
+    InitialOf<T, Params.E>,
     never
   >
 }
@@ -195,14 +195,14 @@ export interface Bottom8<T extends HKT8> {
 export interface Bottom9<T extends HKT9> {
   readonly bottom: Kind9<
     T,
-    DefaultOf<T, Params.Y>,
-    DefaultOf<T, Params.X>,
-    DefaultOf<T, Params.W>,
-    DefaultOf<T, Params.V>,
-    DefaultOf<T, Params.U>,
-    DefaultOf<T, Params.S>,
-    DefaultOf<T, Params.R>,
-    DefaultOf<T, Params.E>,
+    InitialOf<T, Params.Y>,
+    InitialOf<T, Params.X>,
+    InitialOf<T, Params.W>,
+    InitialOf<T, Params.V>,
+    InitialOf<T, Params.U>,
+    InitialOf<T, Params.S>,
+    InitialOf<T, Params.R>,
+    InitialOf<T, Params.E>,
     never
   >
 }
@@ -210,15 +210,15 @@ export interface Bottom9<T extends HKT9> {
 export interface Bottom10<T extends HKT10> {
   readonly bottom: Kind10<
     T,
-    DefaultOf<T, Params.Z>,
-    DefaultOf<T, Params.Y>,
-    DefaultOf<T, Params.X>,
-    DefaultOf<T, Params.W>,
-    DefaultOf<T, Params.V>,
-    DefaultOf<T, Params.U>,
-    DefaultOf<T, Params.S>,
-    DefaultOf<T, Params.R>,
-    DefaultOf<T, Params.E>,
+    InitialOf<T, Params.Z>,
+    InitialOf<T, Params.Y>,
+    InitialOf<T, Params.X>,
+    InitialOf<T, Params.W>,
+    InitialOf<T, Params.V>,
+    InitialOf<T, Params.U>,
+    InitialOf<T, Params.S>,
+    InitialOf<T, Params.R>,
+    InitialOf<T, Params.E>,
     never
   >
 }
@@ -228,26 +228,26 @@ export function bottom<F extends HKT10, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -257,25 +257,25 @@ export function bottom<F extends HKT9, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -285,24 +285,24 @@ export function bottom<F extends HKT8, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -312,23 +312,23 @@ export function bottom<F extends HKT7, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -338,22 +338,22 @@ export function bottom<F extends HKT6, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -363,21 +363,21 @@ export function bottom<F extends HKT5, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -387,20 +387,20 @@ export function bottom<F extends HKT4, E1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -410,20 +410,20 @@ export function bottom<F extends HKT4, R1, E1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -433,20 +433,20 @@ export function bottom<F extends HKT4, S1, E1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -456,20 +456,20 @@ export function bottom<F extends HKT4, R1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -479,20 +479,20 @@ export function bottom<F extends HKT4, S1, R1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -502,20 +502,20 @@ export function bottom<F extends HKT4, S1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -525,20 +525,20 @@ export function bottom<F extends HKT4, S1, R1, E1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -548,20 +548,20 @@ export function bottom<F extends HKT4, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -571,19 +571,19 @@ export function bottom<F extends HKT3, E1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -593,19 +593,19 @@ export function bottom<F extends HKT3, R1, E1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -615,19 +615,19 @@ export function bottom<F extends HKT3, R1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -637,19 +637,19 @@ export function bottom<F extends HKT3, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -659,18 +659,18 @@ export function bottom<F extends HKT2, E1, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -680,18 +680,18 @@ export function bottom<F extends HKT2, G extends HKT10>(
   G: Bottom10<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -703,15 +703,15 @@ export function bottom<F extends HKT, G extends HKT10>(
   F,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -723,15 +723,15 @@ export function bottom<F extends HKT, G extends HKT10>(
   F,
   Kind10<
     G,
-    DefaultOf<G, Params.Z>,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Z>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -741,25 +741,25 @@ export function bottom<F extends HKT10, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -769,24 +769,24 @@ export function bottom<F extends HKT9, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -796,23 +796,23 @@ export function bottom<F extends HKT8, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -822,22 +822,22 @@ export function bottom<F extends HKT7, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -847,21 +847,21 @@ export function bottom<F extends HKT6, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -871,20 +871,20 @@ export function bottom<F extends HKT5, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -894,19 +894,19 @@ export function bottom<F extends HKT4, E1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -916,19 +916,19 @@ export function bottom<F extends HKT4, R1, E1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -938,19 +938,19 @@ export function bottom<F extends HKT4, S1, E1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -960,19 +960,19 @@ export function bottom<F extends HKT4, R1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -982,19 +982,19 @@ export function bottom<F extends HKT4, S1, R1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1004,19 +1004,19 @@ export function bottom<F extends HKT4, S1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1026,19 +1026,19 @@ export function bottom<F extends HKT4, S1, R1, E1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1048,19 +1048,19 @@ export function bottom<F extends HKT4, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1070,18 +1070,18 @@ export function bottom<F extends HKT3, E1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1091,18 +1091,18 @@ export function bottom<F extends HKT3, R1, E1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1112,18 +1112,18 @@ export function bottom<F extends HKT3, R1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1133,18 +1133,18 @@ export function bottom<F extends HKT3, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1154,17 +1154,17 @@ export function bottom<F extends HKT2, E1, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1174,17 +1174,17 @@ export function bottom<F extends HKT2, G extends HKT9>(
   G: Bottom9<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1196,14 +1196,14 @@ export function bottom<F extends HKT, G extends HKT9>(
   F,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1215,14 +1215,14 @@ export function bottom<F extends HKT, G extends HKT9>(
   F,
   Kind9<
     G,
-    DefaultOf<G, Params.Y>,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.Y>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1232,24 +1232,24 @@ export function bottom<F extends HKT10, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1259,23 +1259,23 @@ export function bottom<F extends HKT9, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1285,22 +1285,22 @@ export function bottom<F extends HKT8, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1310,21 +1310,21 @@ export function bottom<F extends HKT7, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1334,20 +1334,20 @@ export function bottom<F extends HKT6, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1357,19 +1357,19 @@ export function bottom<F extends HKT5, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1379,18 +1379,18 @@ export function bottom<F extends HKT4, E1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1400,18 +1400,18 @@ export function bottom<F extends HKT4, R1, E1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1421,18 +1421,18 @@ export function bottom<F extends HKT4, S1, E1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1442,18 +1442,18 @@ export function bottom<F extends HKT4, R1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1463,18 +1463,18 @@ export function bottom<F extends HKT4, S1, R1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1484,18 +1484,18 @@ export function bottom<F extends HKT4, S1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1505,18 +1505,18 @@ export function bottom<F extends HKT4, S1, R1, E1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1526,18 +1526,18 @@ export function bottom<F extends HKT4, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1547,17 +1547,17 @@ export function bottom<F extends HKT3, E1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1567,17 +1567,17 @@ export function bottom<F extends HKT3, R1, E1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1587,17 +1587,17 @@ export function bottom<F extends HKT3, R1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1607,17 +1607,17 @@ export function bottom<F extends HKT3, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1627,16 +1627,16 @@ export function bottom<F extends HKT2, E1, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1646,16 +1646,16 @@ export function bottom<F extends HKT2, G extends HKT8>(
   G: Bottom8<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1667,13 +1667,13 @@ export function bottom<F extends HKT, G extends HKT8>(
   F,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1685,13 +1685,13 @@ export function bottom<F extends HKT, G extends HKT8>(
   F,
   Kind8<
     G,
-    DefaultOf<G, Params.X>,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.X>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1701,23 +1701,23 @@ export function bottom<F extends HKT10, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1727,22 +1727,22 @@ export function bottom<F extends HKT9, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1752,21 +1752,21 @@ export function bottom<F extends HKT8, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1776,20 +1776,20 @@ export function bottom<F extends HKT7, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1799,19 +1799,19 @@ export function bottom<F extends HKT6, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1821,18 +1821,18 @@ export function bottom<F extends HKT5, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1842,17 +1842,17 @@ export function bottom<F extends HKT4, E1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1862,17 +1862,17 @@ export function bottom<F extends HKT4, R1, E1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1882,17 +1882,17 @@ export function bottom<F extends HKT4, S1, E1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1902,17 +1902,17 @@ export function bottom<F extends HKT4, R1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1922,17 +1922,17 @@ export function bottom<F extends HKT4, S1, R1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1942,17 +1942,17 @@ export function bottom<F extends HKT4, S1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1962,17 +1962,17 @@ export function bottom<F extends HKT4, S1, R1, E1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -1982,17 +1982,17 @@ export function bottom<F extends HKT4, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2002,16 +2002,16 @@ export function bottom<F extends HKT3, E1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2021,16 +2021,16 @@ export function bottom<F extends HKT3, R1, E1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2040,16 +2040,16 @@ export function bottom<F extends HKT3, R1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2059,16 +2059,16 @@ export function bottom<F extends HKT3, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2078,15 +2078,15 @@ export function bottom<F extends HKT2, E1, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2096,15 +2096,15 @@ export function bottom<F extends HKT2, G extends HKT7>(
   G: Bottom7<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2116,12 +2116,12 @@ export function bottom<F extends HKT, G extends HKT7>(
   F,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2133,12 +2133,12 @@ export function bottom<F extends HKT, G extends HKT7>(
   F,
   Kind7<
     G,
-    DefaultOf<G, Params.W>,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.W>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2148,22 +2148,22 @@ export function bottom<F extends HKT10, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2173,21 +2173,21 @@ export function bottom<F extends HKT9, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2197,20 +2197,20 @@ export function bottom<F extends HKT8, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2220,19 +2220,19 @@ export function bottom<F extends HKT7, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2242,18 +2242,18 @@ export function bottom<F extends HKT6, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2263,17 +2263,17 @@ export function bottom<F extends HKT5, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2283,16 +2283,16 @@ export function bottom<F extends HKT4, E1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2302,16 +2302,16 @@ export function bottom<F extends HKT4, R1, E1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2321,16 +2321,16 @@ export function bottom<F extends HKT4, S1, E1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2340,16 +2340,16 @@ export function bottom<F extends HKT4, R1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2359,16 +2359,16 @@ export function bottom<F extends HKT4, S1, R1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2378,16 +2378,16 @@ export function bottom<F extends HKT4, S1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2397,16 +2397,16 @@ export function bottom<F extends HKT4, S1, R1, E1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2416,16 +2416,16 @@ export function bottom<F extends HKT4, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2435,15 +2435,15 @@ export function bottom<F extends HKT3, E1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2453,15 +2453,15 @@ export function bottom<F extends HKT3, R1, E1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2471,15 +2471,15 @@ export function bottom<F extends HKT3, R1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2489,15 +2489,15 @@ export function bottom<F extends HKT3, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2507,14 +2507,14 @@ export function bottom<F extends HKT2, E1, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2524,14 +2524,14 @@ export function bottom<F extends HKT2, G extends HKT6>(
   G: Bottom6<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2543,11 +2543,11 @@ export function bottom<F extends HKT, G extends HKT6>(
   F,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2559,11 +2559,11 @@ export function bottom<F extends HKT, G extends HKT6>(
   F,
   Kind6<
     G,
-    DefaultOf<G, Params.V>,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.V>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2573,21 +2573,21 @@ export function bottom<F extends HKT10, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2597,20 +2597,20 @@ export function bottom<F extends HKT9, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2620,19 +2620,19 @@ export function bottom<F extends HKT8, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2642,18 +2642,18 @@ export function bottom<F extends HKT7, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2663,17 +2663,17 @@ export function bottom<F extends HKT6, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2683,16 +2683,16 @@ export function bottom<F extends HKT5, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2702,15 +2702,15 @@ export function bottom<F extends HKT4, E1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2720,15 +2720,15 @@ export function bottom<F extends HKT4, R1, E1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2738,15 +2738,15 @@ export function bottom<F extends HKT4, S1, E1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2756,15 +2756,15 @@ export function bottom<F extends HKT4, R1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2774,15 +2774,15 @@ export function bottom<F extends HKT4, S1, R1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2792,15 +2792,15 @@ export function bottom<F extends HKT4, S1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2810,15 +2810,15 @@ export function bottom<F extends HKT4, S1, R1, E1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2828,15 +2828,15 @@ export function bottom<F extends HKT4, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2846,14 +2846,14 @@ export function bottom<F extends HKT3, E1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2863,14 +2863,14 @@ export function bottom<F extends HKT3, R1, E1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2880,14 +2880,14 @@ export function bottom<F extends HKT3, R1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2897,14 +2897,14 @@ export function bottom<F extends HKT3, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2914,13 +2914,13 @@ export function bottom<F extends HKT2, E1, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2930,13 +2930,13 @@ export function bottom<F extends HKT2, G extends HKT5>(
   G: Bottom5<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.E>,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2948,10 +2948,10 @@ export function bottom<F extends HKT, G extends HKT5>(
   F,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2963,10 +2963,10 @@ export function bottom<F extends HKT, G extends HKT5>(
   F,
   Kind5<
     G,
-    DefaultOf<G, Params.U>,
-    DefaultOf<G, Params.S>,
-    DefaultOf<G, Params.R>,
-    DefaultOf<G, Params.E>,
+    InitialOf<G, Params.U>,
+    InitialOf<G, Params.S>,
+    InitialOf<G, Params.R>,
+    InitialOf<G, Params.E>,
     never
   >
 >
@@ -2976,16 +2976,16 @@ export function bottom<F extends HKT10, G extends HKT4, E2>(
   G: Bottom4EC<G, E2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT4, R2, E2>(
@@ -2993,16 +2993,16 @@ export function bottom<F extends HKT10, G extends HKT4, R2, E2>(
   G: Bottom4REC<G, R2, E2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT4, S2, E2>(
@@ -3010,16 +3010,16 @@ export function bottom<F extends HKT10, G extends HKT4, S2, E2>(
   G: Bottom4SEC<G, S2, E2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT4, R2>(
@@ -3027,16 +3027,16 @@ export function bottom<F extends HKT10, G extends HKT4, R2>(
   G: Bottom4RC<G, R2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT4, S2, R2>(
@@ -3044,16 +3044,16 @@ export function bottom<F extends HKT10, G extends HKT4, S2, R2>(
   G: Bottom4SRC<G, S2, R2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT4, S2>(
@@ -3061,16 +3061,16 @@ export function bottom<F extends HKT10, G extends HKT4, S2>(
   G: Bottom4SC<G, S2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT4, S2, R2, E2>(
@@ -3078,16 +3078,16 @@ export function bottom<F extends HKT10, G extends HKT4, S2, R2, E2>(
   G: Bottom4SREC<G, S2, R2, E2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT4>(
@@ -3095,16 +3095,16 @@ export function bottom<F extends HKT10, G extends HKT4>(
   G: Bottom4<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT4, E2>(
@@ -3112,15 +3112,15 @@ export function bottom<F extends HKT9, G extends HKT4, E2>(
   G: Bottom4EC<G, E2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT4, R2, E2>(
@@ -3128,15 +3128,15 @@ export function bottom<F extends HKT9, G extends HKT4, R2, E2>(
   G: Bottom4REC<G, R2, E2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT4, S2, E2>(
@@ -3144,15 +3144,15 @@ export function bottom<F extends HKT9, G extends HKT4, S2, E2>(
   G: Bottom4SEC<G, S2, E2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT4, R2>(
@@ -3160,15 +3160,15 @@ export function bottom<F extends HKT9, G extends HKT4, R2>(
   G: Bottom4RC<G, R2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT4, S2, R2>(
@@ -3176,15 +3176,15 @@ export function bottom<F extends HKT9, G extends HKT4, S2, R2>(
   G: Bottom4SRC<G, S2, R2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT4, S2>(
@@ -3192,15 +3192,15 @@ export function bottom<F extends HKT9, G extends HKT4, S2>(
   G: Bottom4SC<G, S2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT4, S2, R2, E2>(
@@ -3208,15 +3208,15 @@ export function bottom<F extends HKT9, G extends HKT4, S2, R2, E2>(
   G: Bottom4SREC<G, S2, R2, E2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT4>(
@@ -3224,15 +3224,15 @@ export function bottom<F extends HKT9, G extends HKT4>(
   G: Bottom4<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT4, E2>(
@@ -3240,14 +3240,14 @@ export function bottom<F extends HKT8, G extends HKT4, E2>(
   G: Bottom4EC<G, E2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT4, R2, E2>(
@@ -3255,14 +3255,14 @@ export function bottom<F extends HKT8, G extends HKT4, R2, E2>(
   G: Bottom4REC<G, R2, E2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT4, S2, E2>(
@@ -3270,14 +3270,14 @@ export function bottom<F extends HKT8, G extends HKT4, S2, E2>(
   G: Bottom4SEC<G, S2, E2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT4, R2>(
@@ -3285,14 +3285,14 @@ export function bottom<F extends HKT8, G extends HKT4, R2>(
   G: Bottom4RC<G, R2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT4, S2, R2>(
@@ -3300,14 +3300,14 @@ export function bottom<F extends HKT8, G extends HKT4, S2, R2>(
   G: Bottom4SRC<G, S2, R2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT4, S2>(
@@ -3315,14 +3315,14 @@ export function bottom<F extends HKT8, G extends HKT4, S2>(
   G: Bottom4SC<G, S2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT4, S2, R2, E2>(
@@ -3330,14 +3330,14 @@ export function bottom<F extends HKT8, G extends HKT4, S2, R2, E2>(
   G: Bottom4SREC<G, S2, R2, E2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT4>(
@@ -3345,14 +3345,14 @@ export function bottom<F extends HKT8, G extends HKT4>(
   G: Bottom4<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT4, E2>(
@@ -3360,13 +3360,13 @@ export function bottom<F extends HKT7, G extends HKT4, E2>(
   G: Bottom4EC<G, E2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT4, R2, E2>(
@@ -3374,13 +3374,13 @@ export function bottom<F extends HKT7, G extends HKT4, R2, E2>(
   G: Bottom4REC<G, R2, E2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT4, S2, E2>(
@@ -3388,13 +3388,13 @@ export function bottom<F extends HKT7, G extends HKT4, S2, E2>(
   G: Bottom4SEC<G, S2, E2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT4, R2>(
@@ -3402,13 +3402,13 @@ export function bottom<F extends HKT7, G extends HKT4, R2>(
   G: Bottom4RC<G, R2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT4, S2, R2>(
@@ -3416,13 +3416,13 @@ export function bottom<F extends HKT7, G extends HKT4, S2, R2>(
   G: Bottom4SRC<G, S2, R2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT4, S2>(
@@ -3430,13 +3430,13 @@ export function bottom<F extends HKT7, G extends HKT4, S2>(
   G: Bottom4SC<G, S2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT4, S2, R2, E2>(
@@ -3444,13 +3444,13 @@ export function bottom<F extends HKT7, G extends HKT4, S2, R2, E2>(
   G: Bottom4SREC<G, S2, R2, E2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT4>(
@@ -3458,13 +3458,13 @@ export function bottom<F extends HKT7, G extends HKT4>(
   G: Bottom4<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT4, E2>(
@@ -3472,12 +3472,12 @@ export function bottom<F extends HKT6, G extends HKT4, E2>(
   G: Bottom4EC<G, E2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT4, R2, E2>(
@@ -3485,12 +3485,12 @@ export function bottom<F extends HKT6, G extends HKT4, R2, E2>(
   G: Bottom4REC<G, R2, E2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT4, S2, E2>(
@@ -3498,12 +3498,12 @@ export function bottom<F extends HKT6, G extends HKT4, S2, E2>(
   G: Bottom4SEC<G, S2, E2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT4, R2>(
@@ -3511,12 +3511,12 @@ export function bottom<F extends HKT6, G extends HKT4, R2>(
   G: Bottom4RC<G, R2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT4, S2, R2>(
@@ -3524,12 +3524,12 @@ export function bottom<F extends HKT6, G extends HKT4, S2, R2>(
   G: Bottom4SRC<G, S2, R2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT4, S2>(
@@ -3537,12 +3537,12 @@ export function bottom<F extends HKT6, G extends HKT4, S2>(
   G: Bottom4SC<G, S2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT4, S2, R2, E2>(
@@ -3550,12 +3550,12 @@ export function bottom<F extends HKT6, G extends HKT4, S2, R2, E2>(
   G: Bottom4SREC<G, S2, R2, E2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT4>(
@@ -3563,12 +3563,12 @@ export function bottom<F extends HKT6, G extends HKT4>(
   G: Bottom4<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT4, E2>(
@@ -3576,11 +3576,11 @@ export function bottom<F extends HKT5, G extends HKT4, E2>(
   G: Bottom4EC<G, E2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT4, R2, E2>(
@@ -3588,11 +3588,11 @@ export function bottom<F extends HKT5, G extends HKT4, R2, E2>(
   G: Bottom4REC<G, R2, E2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT4, S2, E2>(
@@ -3600,11 +3600,11 @@ export function bottom<F extends HKT5, G extends HKT4, S2, E2>(
   G: Bottom4SEC<G, S2, E2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT4, R2>(
@@ -3612,11 +3612,11 @@ export function bottom<F extends HKT5, G extends HKT4, R2>(
   G: Bottom4RC<G, R2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT4, S2, R2>(
@@ -3624,11 +3624,11 @@ export function bottom<F extends HKT5, G extends HKT4, S2, R2>(
   G: Bottom4SRC<G, S2, R2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT4, S2>(
@@ -3636,11 +3636,11 @@ export function bottom<F extends HKT5, G extends HKT4, S2>(
   G: Bottom4SC<G, S2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT4, S2, R2, E2>(
@@ -3648,11 +3648,11 @@ export function bottom<F extends HKT5, G extends HKT4, S2, R2, E2>(
   G: Bottom4SREC<G, S2, R2, E2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT4>(
@@ -3660,11 +3660,11 @@ export function bottom<F extends HKT5, G extends HKT4>(
   G: Bottom4<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, E1, G extends HKT4, E2>(
@@ -3672,10 +3672,10 @@ export function bottom<F extends HKT4, E1, G extends HKT4, E2>(
   G: Bottom4EC<G, E2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, R1, E1, G extends HKT4, R2, E2>(
@@ -3683,10 +3683,10 @@ export function bottom<F extends HKT4, R1, E1, G extends HKT4, R2, E2>(
   G: Bottom4REC<G, R2, E2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, E1, G extends HKT4, S2, E2>(
@@ -3694,10 +3694,10 @@ export function bottom<F extends HKT4, S1, E1, G extends HKT4, S2, E2>(
   G: Bottom4SEC<G, S2, E2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, R1, G extends HKT4, R2>(
@@ -3705,10 +3705,10 @@ export function bottom<F extends HKT4, R1, G extends HKT4, R2>(
   G: Bottom4RC<G, R2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, R1, G extends HKT4, S2, R2>(
@@ -3716,10 +3716,10 @@ export function bottom<F extends HKT4, S1, R1, G extends HKT4, S2, R2>(
   G: Bottom4SRC<G, S2, R2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, G extends HKT4, S2>(
@@ -3727,10 +3727,10 @@ export function bottom<F extends HKT4, S1, G extends HKT4, S2>(
   G: Bottom4SC<G, S2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, R1, E1, G extends HKT4, S2, R2, E2>(
@@ -3738,10 +3738,10 @@ export function bottom<F extends HKT4, S1, R1, E1, G extends HKT4, S2, R2, E2>(
   G: Bottom4SREC<G, S2, R2, E2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, G extends HKT4>(
@@ -3749,10 +3749,10 @@ export function bottom<F extends HKT4, G extends HKT4>(
   G: Bottom4<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, G extends HKT4, E2>(
@@ -3760,9 +3760,9 @@ export function bottom<F extends HKT3, G extends HKT4, E2>(
   G: Bottom4EC<G, E2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, G extends HKT4, R2, E2>(
@@ -3770,9 +3770,9 @@ export function bottom<F extends HKT3, G extends HKT4, R2, E2>(
   G: Bottom4REC<G, R2, E2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, G extends HKT4, S2, E2>(
@@ -3780,9 +3780,9 @@ export function bottom<F extends HKT3, G extends HKT4, S2, E2>(
   G: Bottom4SEC<G, S2, E2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, G extends HKT4, R2>(
@@ -3790,9 +3790,9 @@ export function bottom<F extends HKT3, G extends HKT4, R2>(
   G: Bottom4RC<G, R2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, E1, G extends HKT4, S2, R2>(
@@ -3800,9 +3800,9 @@ export function bottom<F extends HKT3, E1, G extends HKT4, S2, R2>(
   G: Bottom4SRC<G, S2, R2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, R1, E1, G extends HKT4, S2>(
@@ -3810,9 +3810,9 @@ export function bottom<F extends HKT3, R1, E1, G extends HKT4, S2>(
   G: Bottom4SC<G, S2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, R1, G extends HKT4, S2, R2, E2>(
@@ -3820,9 +3820,9 @@ export function bottom<F extends HKT3, R1, G extends HKT4, S2, R2, E2>(
   G: Bottom4SREC<G, S2, R2, E2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, G extends HKT4>(
@@ -3830,9 +3830,9 @@ export function bottom<F extends HKT3, G extends HKT4>(
   G: Bottom4<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT2, G extends HKT4, E2>(
@@ -3840,8 +3840,8 @@ export function bottom<F extends HKT2, G extends HKT4, E2>(
   G: Bottom4EC<G, E2>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT2, G extends HKT4, R2, E2>(
@@ -3849,8 +3849,8 @@ export function bottom<F extends HKT2, G extends HKT4, R2, E2>(
   G: Bottom4REC<G, R2, E2>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT2, G extends HKT4, S2, E2>(
@@ -3858,8 +3858,8 @@ export function bottom<F extends HKT2, G extends HKT4, S2, E2>(
   G: Bottom4SEC<G, S2, E2>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT2, G extends HKT4, R2>(
@@ -3867,8 +3867,8 @@ export function bottom<F extends HKT2, G extends HKT4, R2>(
   G: Bottom4RC<G, R2>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT2, G extends HKT4, S2, R2>(
@@ -3876,8 +3876,8 @@ export function bottom<F extends HKT2, G extends HKT4, S2, R2>(
   G: Bottom4SRC<G, S2, R2>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT2, G extends HKT4, S2>(
@@ -3885,8 +3885,8 @@ export function bottom<F extends HKT2, G extends HKT4, S2>(
   G: Bottom4SC<G, S2>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT2, E1, G extends HKT4, S2, R2, E2>(
@@ -3894,8 +3894,8 @@ export function bottom<F extends HKT2, E1, G extends HKT4, S2, R2, E2>(
   G: Bottom4SREC<G, S2, R2, E2>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT2, G extends HKT4>(
@@ -3903,105 +3903,105 @@ export function bottom<F extends HKT2, G extends HKT4>(
   G: Bottom4<G>,
 ): Kind2<
   F,
-  DefaultOf<F, Params.E>,
-  Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.E>,
+  Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT, G extends HKT4, E2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom4EC<G, E2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, R2, E2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom4REC<G, R2, E2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, S2, E2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom4SEC<G, S2, E2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, R2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom4RC<G, R2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, S2, R2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom4SRC<G, S2, R2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, S2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom4SC<G, S2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, S2, R2, E2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom4SREC<G, S2, R2, E2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom4<G>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, E2>(
   F: Top<F> & Covariant<F>,
   G: Bottom4EC<G, E2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, R2, E2>(
   F: Top<F> & Covariant<F>,
   G: Bottom4REC<G, R2, E2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, S2, E2>(
   F: Top<F> & Covariant<F>,
   G: Bottom4SEC<G, S2, E2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, R2>(
   F: Top<F> & Covariant<F>,
   G: Bottom4RC<G, R2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, S2, R2>(
   F: Top<F> & Covariant<F>,
   G: Bottom4SRC<G, S2, R2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, S2>(
   F: Top<F> & Covariant<F>,
   G: Bottom4SC<G, S2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4, S2, R2, E2>(
   F: Top<F> & Covariant<F>,
   G: Bottom4SREC<G, S2, R2, E2>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT4>(
   F: Top<F> & Covariant<F>,
   G: Bottom4<G>,
-): Kind<F, Kind4<G, DefaultOf<G, Params.S>, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind4<G, InitialOf<G, Params.S>, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT10, G extends HKT3, E2>(
   F: Top10<F> & Covariant10<F>,
   G: Bottom3EC<G, E2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT3, R2, E2>(
@@ -4009,16 +4009,16 @@ export function bottom<F extends HKT10, G extends HKT3, R2, E2>(
   G: Bottom3REC<G, R2, E2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT3, R2>(
@@ -4026,16 +4026,16 @@ export function bottom<F extends HKT10, G extends HKT3, R2>(
   G: Bottom3RC<G, R2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT3>(
@@ -4043,16 +4043,16 @@ export function bottom<F extends HKT10, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT3, E2>(
@@ -4060,15 +4060,15 @@ export function bottom<F extends HKT9, G extends HKT3, E2>(
   G: Bottom3EC<G, E2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT3, R2, E2>(
@@ -4076,15 +4076,15 @@ export function bottom<F extends HKT9, G extends HKT3, R2, E2>(
   G: Bottom3REC<G, R2, E2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT3, R2>(
@@ -4092,15 +4092,15 @@ export function bottom<F extends HKT9, G extends HKT3, R2>(
   G: Bottom3RC<G, R2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT3>(
@@ -4108,15 +4108,15 @@ export function bottom<F extends HKT9, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT3, E2>(
@@ -4124,14 +4124,14 @@ export function bottom<F extends HKT8, G extends HKT3, E2>(
   G: Bottom3EC<G, E2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT3, R2, E2>(
@@ -4139,14 +4139,14 @@ export function bottom<F extends HKT8, G extends HKT3, R2, E2>(
   G: Bottom3REC<G, R2, E2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT3, R2>(
@@ -4154,14 +4154,14 @@ export function bottom<F extends HKT8, G extends HKT3, R2>(
   G: Bottom3RC<G, R2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT3>(
@@ -4169,14 +4169,14 @@ export function bottom<F extends HKT8, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT3, E2>(
@@ -4184,13 +4184,13 @@ export function bottom<F extends HKT7, G extends HKT3, E2>(
   G: Bottom3EC<G, E2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT3, R2, E2>(
@@ -4198,13 +4198,13 @@ export function bottom<F extends HKT7, G extends HKT3, R2, E2>(
   G: Bottom3REC<G, R2, E2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT3, R2>(
@@ -4212,13 +4212,13 @@ export function bottom<F extends HKT7, G extends HKT3, R2>(
   G: Bottom3RC<G, R2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT3>(
@@ -4226,13 +4226,13 @@ export function bottom<F extends HKT7, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT3, E2>(
@@ -4240,12 +4240,12 @@ export function bottom<F extends HKT6, G extends HKT3, E2>(
   G: Bottom3EC<G, E2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT3, R2, E2>(
@@ -4253,12 +4253,12 @@ export function bottom<F extends HKT6, G extends HKT3, R2, E2>(
   G: Bottom3REC<G, R2, E2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT3, R2>(
@@ -4266,12 +4266,12 @@ export function bottom<F extends HKT6, G extends HKT3, R2>(
   G: Bottom3RC<G, R2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT3>(
@@ -4279,12 +4279,12 @@ export function bottom<F extends HKT6, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT3, E2>(
@@ -4292,11 +4292,11 @@ export function bottom<F extends HKT5, G extends HKT3, E2>(
   G: Bottom3EC<G, E2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT3, R2, E2>(
@@ -4304,11 +4304,11 @@ export function bottom<F extends HKT5, G extends HKT3, R2, E2>(
   G: Bottom3REC<G, R2, E2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT3, R2>(
@@ -4316,11 +4316,11 @@ export function bottom<F extends HKT5, G extends HKT3, R2>(
   G: Bottom3RC<G, R2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT3>(
@@ -4328,11 +4328,11 @@ export function bottom<F extends HKT5, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, E1, G extends HKT3>(
@@ -4340,10 +4340,10 @@ export function bottom<F extends HKT4, E1, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, R1, E1, G extends HKT3>(
@@ -4351,10 +4351,10 @@ export function bottom<F extends HKT4, R1, E1, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, E1, G extends HKT3>(
@@ -4362,10 +4362,10 @@ export function bottom<F extends HKT4, S1, E1, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, R1, G extends HKT3>(
@@ -4373,10 +4373,10 @@ export function bottom<F extends HKT4, R1, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, R1, G extends HKT3, E2>(
@@ -4384,10 +4384,10 @@ export function bottom<F extends HKT4, S1, R1, G extends HKT3, E2>(
   G: Bottom3EC<G, E2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, G extends HKT3, R2, E2>(
@@ -4395,10 +4395,10 @@ export function bottom<F extends HKT4, S1, G extends HKT3, R2, E2>(
   G: Bottom3REC<G, R2, E2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, R1, E1, G extends HKT3, R2>(
@@ -4406,10 +4406,10 @@ export function bottom<F extends HKT4, S1, R1, E1, G extends HKT3, R2>(
   G: Bottom3RC<G, R2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, G extends HKT3>(
@@ -4417,10 +4417,10 @@ export function bottom<F extends HKT4, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, E1, G extends HKT3, E2>(
@@ -4428,9 +4428,9 @@ export function bottom<F extends HKT3, E1, G extends HKT3, E2>(
   G: Bottom3EC<G, E2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, R1, E1, G extends HKT3, R2, E2>(
@@ -4438,9 +4438,9 @@ export function bottom<F extends HKT3, R1, E1, G extends HKT3, R2, E2>(
   G: Bottom3REC<G, R2, E2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, R1, G extends HKT3, R2>(
@@ -4448,9 +4448,9 @@ export function bottom<F extends HKT3, R1, G extends HKT3, R2>(
   G: Bottom3RC<G, R2>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, G extends HKT3>(
@@ -4458,86 +4458,86 @@ export function bottom<F extends HKT3, G extends HKT3>(
   G: Bottom3<G>,
 ): Kind3<
   F,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT2, G extends HKT3, E2>(
   F: Top2<F> & Covariant2<F>,
   G: Bottom3EC<G, E2>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT2, G extends HKT3, R2, E2>(
   F: Top2<F> & Covariant2<F>,
   G: Bottom3REC<G, R2, E2>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT2, E1, G extends HKT3, R2>(
   F: Top2EC<F, E1> & Covariant2EC<F, E1>,
   G: Bottom3RC<G, R2>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT2, G extends HKT3>(
   F: Top2<F> & Covariant2<F>,
   G: Bottom3<G>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT3, E2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom3EC<G, E2>,
-): Kind<F, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT3, R2, E2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom3REC<G, R2, E2>,
-): Kind<F, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT3, R2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom3RC<G, R2>,
-): Kind<F, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT3>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom3<G>,
-): Kind<F, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT3, E2>(
   F: Top<F> & Covariant<F>,
   G: Bottom3EC<G, E2>,
-): Kind<F, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT3, R2, E2>(
   F: Top<F> & Covariant<F>,
   G: Bottom3REC<G, R2, E2>,
-): Kind<F, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT3, R2>(
   F: Top<F> & Covariant<F>,
   G: Bottom3RC<G, R2>,
-): Kind<F, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT3>(
   F: Top<F> & Covariant<F>,
   G: Bottom3<G>,
-): Kind<F, Kind3<G, DefaultOf<G, Params.R>, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind3<G, InitialOf<G, Params.R>, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT10, G extends HKT2, E2>(
   F: Top10<F> & Covariant10<F>,
   G: Bottom2EC<G, E2>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT10, G extends HKT2>(
@@ -4545,16 +4545,16 @@ export function bottom<F extends HKT10, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT2, E2>(
@@ -4562,15 +4562,15 @@ export function bottom<F extends HKT9, G extends HKT2, E2>(
   G: Bottom2EC<G, E2>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT9, G extends HKT2>(
@@ -4578,15 +4578,15 @@ export function bottom<F extends HKT9, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT2, E2>(
@@ -4594,14 +4594,14 @@ export function bottom<F extends HKT8, G extends HKT2, E2>(
   G: Bottom2EC<G, E2>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT8, G extends HKT2>(
@@ -4609,14 +4609,14 @@ export function bottom<F extends HKT8, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT2, E2>(
@@ -4624,13 +4624,13 @@ export function bottom<F extends HKT7, G extends HKT2, E2>(
   G: Bottom2EC<G, E2>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT7, G extends HKT2>(
@@ -4638,13 +4638,13 @@ export function bottom<F extends HKT7, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT2, E2>(
@@ -4652,12 +4652,12 @@ export function bottom<F extends HKT6, G extends HKT2, E2>(
   G: Bottom2EC<G, E2>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT6, G extends HKT2>(
@@ -4665,12 +4665,12 @@ export function bottom<F extends HKT6, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT2, E2>(
@@ -4678,11 +4678,11 @@ export function bottom<F extends HKT5, G extends HKT2, E2>(
   G: Bottom2EC<G, E2>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT5, G extends HKT2>(
@@ -4690,11 +4690,11 @@ export function bottom<F extends HKT5, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, E1, G extends HKT2>(
@@ -4702,10 +4702,10 @@ export function bottom<F extends HKT4, E1, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, R1, E1, G extends HKT2>(
@@ -4713,10 +4713,10 @@ export function bottom<F extends HKT4, R1, E1, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, E1, G extends HKT2>(
@@ -4724,10 +4724,10 @@ export function bottom<F extends HKT4, S1, E1, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, R1, G extends HKT2>(
@@ -4735,10 +4735,10 @@ export function bottom<F extends HKT4, R1, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, R1, G extends HKT2>(
@@ -4746,10 +4746,10 @@ export function bottom<F extends HKT4, S1, R1, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, G extends HKT2>(
@@ -4757,10 +4757,10 @@ export function bottom<F extends HKT4, S1, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, S1, R1, E1, G extends HKT2, E2>(
@@ -4768,10 +4768,10 @@ export function bottom<F extends HKT4, S1, R1, E1, G extends HKT2, E2>(
   G: Bottom2EC<G, E2>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT4, G extends HKT2>(
@@ -4779,76 +4779,76 @@ export function bottom<F extends HKT4, G extends HKT2>(
   G: Bottom2<G>,
 ): Kind4<
   F,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
-  Kind2<G, DefaultOf<G, Params.E>, never>
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
+  Kind2<G, InitialOf<G, Params.E>, never>
 >
 
 export function bottom<F extends HKT3, E1, G extends HKT2>(
   F: Top3EC<F, E1> & Covariant3EC<F, E1>,
   G: Bottom2<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT3, R1, E1, G extends HKT2>(
   F: Top3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
   G: Bottom2<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT3, R1, G extends HKT2, E2>(
   F: Top3RC<F, R1> & Covariant3RC<F, R1>,
   G: Bottom2EC<G, E2>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT3, G extends HKT2>(
   F: Top3<F> & Covariant3<F>,
   G: Bottom2<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT2, E1, G extends HKT2, E2>(
   F: Top2EC<F, E1> & Covariant2EC<F, E1>,
   G: Bottom2EC<G, E2>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT2, G extends HKT2>(
   F: Top2<F> & Covariant2<F>,
   G: Bottom2<G>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT2, E2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom2EC<G, E2>,
-): Kind<F, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT2>(
   F: Top1<F> & Covariant1<F>,
   G: Bottom2<G>,
-): Kind<F, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT2, E2>(
   F: Top<F> & Covariant<F>,
   G: Bottom2EC<G, E2>,
-): Kind<F, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT, G extends HKT2>(
   F: Top<F> & Covariant<F>,
   G: Bottom2<G>,
-): Kind<F, Kind2<G, DefaultOf<G, Params.E>, never>>
+): Kind<F, Kind2<G, InitialOf<G, Params.E>, never>>
 
 export function bottom<F extends HKT10, G extends HKT>(
   F: Top10<F> & Covariant10<F>,
   G: Bottom1<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -4857,14 +4857,14 @@ export function bottom<F extends HKT9, G extends HKT>(
   G: Bottom1<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -4873,13 +4873,13 @@ export function bottom<F extends HKT8, G extends HKT>(
   G: Bottom1<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -4888,12 +4888,12 @@ export function bottom<F extends HKT7, G extends HKT>(
   G: Bottom1<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -4902,11 +4902,11 @@ export function bottom<F extends HKT6, G extends HKT>(
   G: Bottom1<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -4915,82 +4915,82 @@ export function bottom<F extends HKT5, G extends HKT>(
   G: Bottom1<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
 export function bottom<F extends HKT4, E1, G extends HKT>(
   F: Top4EC<F, E1> & Covariant4EC<F, E1>,
   G: Bottom1<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, R1, E1, G extends HKT>(
   F: Top4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
   G: Bottom1<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, S1, E1, G extends HKT>(
   F: Top4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
   G: Bottom1<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, R1, G extends HKT>(
   F: Top4RC<F, R1> & Covariant4RC<F, R1>,
   G: Bottom1<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, S1, R1, G extends HKT>(
   F: Top4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
   G: Bottom1<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, S1, G extends HKT>(
   F: Top4SC<F, S1> & Covariant4SC<F, S1>,
   G: Bottom1<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, S1, R1, E1, G extends HKT>(
   F: Top4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
   G: Bottom1<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, G extends HKT>(
   F: Top4<F> & Covariant4<F>,
   G: Bottom1<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT3, E1, G extends HKT>(
   F: Top3EC<F, E1> & Covariant3EC<F, E1>,
   G: Bottom1<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT3, R1, E1, G extends HKT>(
   F: Top3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
   G: Bottom1<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT3, R1, G extends HKT>(
   F: Top3RC<F, R1> & Covariant3RC<F, R1>,
   G: Bottom1<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT3, G extends HKT>(
   F: Top3<F> & Covariant3<F>,
   G: Bottom1<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT2, E1, G extends HKT>(
   F: Top2EC<F, E1> & Covariant2EC<F, E1>,
   G: Bottom1<G>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT2, G extends HKT>(
   F: Top2<F> & Covariant2<F>,
   G: Bottom1<G>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT, G extends HKT>(
   F: Top1<F> & Covariant1<F>,
@@ -5007,15 +5007,15 @@ export function bottom<F extends HKT10, G extends HKT>(
   G: Bottom<G>,
 ): Kind10<
   F,
-  DefaultOf<F, Params.Z>,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Z>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -5024,14 +5024,14 @@ export function bottom<F extends HKT9, G extends HKT>(
   G: Bottom<G>,
 ): Kind9<
   F,
-  DefaultOf<F, Params.Y>,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.Y>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -5040,13 +5040,13 @@ export function bottom<F extends HKT8, G extends HKT>(
   G: Bottom<G>,
 ): Kind8<
   F,
-  DefaultOf<F, Params.X>,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.X>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -5055,12 +5055,12 @@ export function bottom<F extends HKT7, G extends HKT>(
   G: Bottom<G>,
 ): Kind7<
   F,
-  DefaultOf<F, Params.W>,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.W>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -5069,11 +5069,11 @@ export function bottom<F extends HKT6, G extends HKT>(
   G: Bottom<G>,
 ): Kind6<
   F,
-  DefaultOf<F, Params.V>,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.V>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
@@ -5082,82 +5082,82 @@ export function bottom<F extends HKT5, G extends HKT>(
   G: Bottom<G>,
 ): Kind5<
   F,
-  DefaultOf<F, Params.U>,
-  DefaultOf<F, Params.S>,
-  DefaultOf<F, Params.R>,
-  DefaultOf<F, Params.E>,
+  InitialOf<F, Params.U>,
+  InitialOf<F, Params.S>,
+  InitialOf<F, Params.R>,
+  InitialOf<F, Params.E>,
   Kind<G, never>
 >
 
 export function bottom<F extends HKT4, E1, G extends HKT>(
   F: Top4EC<F, E1> & Covariant4EC<F, E1>,
   G: Bottom<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, R1, E1, G extends HKT>(
   F: Top4REC<F, R1, E1> & Covariant4REC<F, R1, E1>,
   G: Bottom<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, S1, E1, G extends HKT>(
   F: Top4SEC<F, S1, E1> & Covariant4SEC<F, S1, E1>,
   G: Bottom<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, R1, G extends HKT>(
   F: Top4RC<F, R1> & Covariant4RC<F, R1>,
   G: Bottom<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, S1, R1, G extends HKT>(
   F: Top4SRC<F, S1, R1> & Covariant4SRC<F, S1, R1>,
   G: Bottom<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, S1, G extends HKT>(
   F: Top4SC<F, S1> & Covariant4SC<F, S1>,
   G: Bottom<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, S1, R1, E1, G extends HKT>(
   F: Top4SREC<F, S1, R1, E1> & Covariant4SREC<F, S1, R1, E1>,
   G: Bottom<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT4, G extends HKT>(
   F: Top4<F> & Covariant4<F>,
   G: Bottom<G>,
-): Kind4<F, DefaultOf<F, Params.S>, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind4<F, InitialOf<F, Params.S>, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT3, E1, G extends HKT>(
   F: Top3EC<F, E1> & Covariant3EC<F, E1>,
   G: Bottom<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT3, R1, E1, G extends HKT>(
   F: Top3REC<F, R1, E1> & Covariant3REC<F, R1, E1>,
   G: Bottom<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT3, R1, G extends HKT>(
   F: Top3RC<F, R1> & Covariant3RC<F, R1>,
   G: Bottom<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT3, G extends HKT>(
   F: Top3<F> & Covariant3<F>,
   G: Bottom<G>,
-): Kind3<F, DefaultOf<F, Params.R>, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind3<F, InitialOf<F, Params.R>, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT2, E1, G extends HKT>(
   F: Top2EC<F, E1> & Covariant2EC<F, E1>,
   G: Bottom<G>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT2, G extends HKT>(
   F: Top2<F> & Covariant2<F>,
   G: Bottom<G>,
-): Kind2<F, DefaultOf<F, Params.E>, Kind<G, never>>
+): Kind2<F, InitialOf<F, Params.E>, Kind<G, never>>
 
 export function bottom<F extends HKT, G extends HKT>(
   F: Top1<F> & Covariant1<F>,

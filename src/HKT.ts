@@ -28,9 +28,9 @@ export const A = Params.A
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Variance {
-  export type Covariant<A> = () => A
-  export type Contravariant<A> = (a: A) => never
-  export type Invariant<A> = (a: A) => A
+  export type Covariant<A> = (_: never) => A
+  export type Contravariant<A> = (_: A) => never
+  export type Invariant<A> = (_: A) => A
 }
 
 export type Variance<A> = Variance.Covariant<A> | Variance.Contravariant<A> | Variance.Invariant<A>
@@ -522,10 +522,28 @@ export type ParamOf<H extends HKT, T, P extends Params> = {
 }[P]
 
 export type DefaultOf<H extends HKT, P extends Params> = P extends keyof H['defaults']
-  ? DefaultForVariance<H['defaults'][P]>
+  ? DefaultForVariance<NonNullable<H['defaults']>[P]>
   : unknown
 
 export type DefaultForVariance<V> = [V] extends [Variance.Invariant<infer R>]
+  ? Equals<R, unknown> extends 1
+    ? any
+    : R
+  : [V] extends [Variance.Contravariant<infer R>]
+  ? Equals<R, unknown> extends 1
+    ? unknown
+    : R
+  : [V] extends [Variance.Covariant<infer R>]
+  ? Equals<R, unknown> extends 1
+    ? any
+    : R
+  : any
+
+export type InitialOf<H extends HKT, P extends Params> = P extends keyof H['defaults']
+  ? DefaultForVariance<NonNullable<H['defaults']>[P]>
+  : unknown
+
+export type InitialForVariance<V> = [V] extends [Variance.Invariant<infer R>]
   ? Equals<R, unknown> extends 1
     ? any
     : R
