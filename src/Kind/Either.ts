@@ -1,3 +1,25 @@
-import type * as ET from 'fp-ts/Either'
+import * as E from 'fp-ts/Either'
 
-export type Either<E, A> = ET.Either<E, A>
+import { TypeLambda } from '../HKT.js'
+import * as Variance from '../Typeclass/Variance/index.js'
+
+export type Either<E, A> = E.Either<E, A>
+
+export interface Eitherλ extends E.Eitherλ {}
+
+export interface Eitherλ2 extends TypeLambda {
+  readonly type: Either<this['Out2'], this['Out1']>
+}
+
+export const mapBoth = E.mapBoth
+export const bimap = E.mapBoth
+
+export const Bicovariant: Variance.Bicovariant<Eitherλ> = {
+  bimap: mapBoth,
+}
+
+export const map = E.map
+
+export const Covariant: Variance.Covariant<Eitherλ> = {
+  map,
+}

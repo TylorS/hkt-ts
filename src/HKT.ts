@@ -3,12 +3,8 @@ import * as HKT from 'fp-ts/HKT'
 /**
  * Extends fp-ts TypeLambda with additional Invariant, Contravariant, and
  * Covariant parameters.
- *
- * TODO: Fix when HKT.TypeLambda adds optionality to 'type'
  */
-export interface TypeLambda extends Omit<HKT.TypeLambda, 'type'> {
-  readonly type?: unknown
-
+export interface TypeLambda extends HKT.TypeLambda {
   // Invariant Parameters
   readonly InOut3?: unknown
   readonly InOut2?: unknown
@@ -68,6 +64,4 @@ export type Kind<
       readonly Out1: () => Out1
     }
 
-export interface TypeClass<T extends TypeLambda> {
-  readonly [HKT.URI]?: T
-}
+export interface TypeClass<T extends TypeLambda> extends HKT.TypeClass<T> {}

@@ -2,7 +2,7 @@ import { None, Option, Some } from './Option.js'
 
 /**
  * ImmutableMap is a small wrapper around ReadonlyMap that makes it a little
- * easier to deal wih immutable data, while still utilizing referential equality
+ * easier to deal wih immutable data, while still utilizing strict equality
  * for the key comparison.
  */
 export interface ImmutableMap<K, V> extends Iterable<readonly [K, V]> {
