@@ -4,7 +4,7 @@
 import { dirname } from 'node:path'
 
 import { Params } from '../../src/HKT.js'
-import { DeepEquals } from '../../src/Typeclass/Eq.js'
+import { DeepEquals } from '../../src/TypeClass/Eq.js'
 
 export const possibleLengths: ReadonlyArray<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 export type PossibleLength = typeof possibleLengths[number]

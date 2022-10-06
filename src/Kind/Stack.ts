@@ -14,10 +14,8 @@ export function Stack<A>(value: A, previous: Option<Stack<A>> = None): Stack<A> 
     *[Symbol.iterator]() {
       yield value
 
-      let prev = previous
-      while (isSome(prev)) {
-        prev.value.value
-        prev = prev.value.previous
+      while (isSome(previous)) {
+        yield* previous.value
       }
     },
   }

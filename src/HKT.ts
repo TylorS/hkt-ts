@@ -64,4 +64,282 @@ export type Kind<
       readonly Out1: () => Out1
     }
 
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace Kind {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+
+  export type Out1Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer _In2,
+      infer _In1,
+      infer _Out6,
+      infer _Out5,
+      infer _Out4,
+      infer _Out3,
+      infer _Out2,
+      infer Out1
+    >,
+  ]
+    ? Out1
+    : never
+
+  export type Out2Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer _In2,
+      infer _In1,
+      infer _Out6,
+      infer _Out5,
+      infer _Out4,
+      infer _Out3,
+      infer Out2,
+      infer _Out1
+    >,
+  ]
+    ? Out2
+    : never
+
+  export type Out3Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer _In2,
+      infer _In1,
+      infer _Out6,
+      infer _Out5,
+      infer _Out4,
+      infer Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? Out3
+    : never
+
+  export type Out4Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer _In2,
+      infer _In1,
+      infer _Out6,
+      infer _Out5,
+      infer Out4,
+      infer _Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? Out4
+    : never
+
+  export type Out5Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer _In2,
+      infer _In1,
+      infer _Out6,
+      infer Out5,
+      infer _Out4,
+      infer _Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? Out5
+    : never
+
+  export type Out6Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer _In2,
+      infer _In1,
+      infer Out6,
+      infer _Out5,
+      infer _Out4,
+      infer _Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? Out6
+    : never
+
+  export type In1Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer _In2,
+      infer In1,
+      infer _Out6,
+      infer _Out5,
+      infer _Out4,
+      infer _Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? In1
+    : never
+
+  export type In2Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer In2,
+      infer _In1,
+      infer _Out6,
+      infer _Out5,
+      infer _Out4,
+      infer _Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? In2
+    : never
+
+  export type In3Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer In3,
+      infer _In2,
+      infer _In1,
+      infer _Out6,
+      infer _Out5,
+      infer _Out4,
+      infer _Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? In3
+    : never
+
+  export type InOut1Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer _InOut2,
+      infer InOut1,
+      infer _In3,
+      infer _In2,
+      infer _In1,
+      infer _Out6,
+      infer _Out5,
+      infer _Out4,
+      infer _Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? InOut1
+    : never
+
+  export type InOut2Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer _InOut3,
+      infer InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer _In2,
+      infer _In1,
+      infer _Out6,
+      infer _Out5,
+      infer _Out4,
+      infer _Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? InOut2
+    : never
+
+  export type InOut3Of<T extends TypeLambda, U> = [U] extends [
+    Kind<
+      T,
+      infer InOut3,
+      infer _InOut2,
+      infer _InOut1,
+      infer _In3,
+      infer _In2,
+      infer _In1,
+      infer _Out6,
+      infer _Out5,
+      infer _Out4,
+      infer _Out3,
+      infer _Out2,
+      infer _Out1
+    >,
+  ]
+    ? InOut3
+    : never
+  /* eslint-enable @typescript-eslint/no-unused-vars */
+}
+
 export interface TypeClass<T extends TypeLambda> extends HKT.TypeClass<T> {}
+
+export type BottomOf<T extends TypeLambda> = Kind<
+  T,
+  unknown,
+  unknown,
+  unknown,
+  unknown,
+  unknown,
+  unknown,
+  never,
+  never,
+  never,
+  never,
+  never,
+  never
+>
+
+export type AnyOf<T extends TypeLambda> = Kind<
+  T,
+  any,
+  any,
+  any,
+  any,
+  any,
+  any,
+  any,
+  any,
+  any,
+  any,
+  any,
+  any
+>
