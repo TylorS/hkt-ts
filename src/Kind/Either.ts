@@ -22,11 +22,10 @@ export type Right<A> = E.Right<A>
 export const isLeft = E.isLeft
 export const isRight = E.isRight
 
-export const mapBoth = E.mapBoth
 export const bimap = E.mapBoth
 
 export const Bicovariant: Variance.Bicovariant<Eitherλ> = {
-  bimap: mapBoth,
+  bimap,
 }
 
 export const map = E.map

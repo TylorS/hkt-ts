@@ -312,22 +312,6 @@ export namespace Kind {
 
 export interface TypeClass<T extends TypeLambda> extends HKT.TypeClass<T> {}
 
-export type BottomOf<T extends TypeLambda> = Kind<
-  T,
-  unknown,
-  unknown,
-  unknown,
-  unknown,
-  unknown,
-  unknown,
-  never,
-  never,
-  never,
-  never,
-  never,
-  never
->
-
 export type AnyOf<T extends TypeLambda> = Kind<
   T,
   any,

@@ -1,3 +1,3 @@
-import type * as OrdT from 'fp-ts/Ord'
+import type * as O from 'fp-ts/Ord'
 
-export interface Ord<A> extends OrdT.Ord<A> {}
+export interface Ord<A> extends O.Ord<A> {}

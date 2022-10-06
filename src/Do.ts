@@ -90,6 +90,6 @@ const runGenerator = <T extends TypeLambda, Y extends AnyOf<T>, R>(
 
 export function* lift<T extends TypeLambda, U extends AnyOf<T>>(
   kind: U,
-): Generator<U, Kind.Out1Of<T, U>, any> {
+): Generator<U, Kind.Out1Of<T, U>, Kind.Out1Of<T, U>> {
   return yield kind
 }
