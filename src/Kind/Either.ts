@@ -1,6 +1,8 @@
 import * as E from 'fp-ts/Either'
 
+import { pipe } from '../Function.js'
 import { TypeLambda } from '../HKT.js'
+import * as AB from '../TypeClass/Kind/AssociativeBoth.js'
 import * as Variance from '../TypeClass/Variance/index.js'
 
 export type Either<E, A> = E.Either<E, A>
@@ -35,3 +37,16 @@ export const Covariant: Variance.Covariant<Eitherλ> = {
 }
 
 export const toUnion = E.toUnion
+
+export const both =
+  <E2, B>(second: Either<E2, B>) =>
+  <E, A>(first: Either<E, A>): Either<E | E2, readonly [A, B]> =>
+    pipe(
+      E.of((a: A) => (b: B) => [a, b] as const),
+      E.ap(first),
+      E.ap(second),
+    )
+
+export const AssociativeBoth: AB.AssociativeBoth<Eitherλ> = {
+  both,
+}
