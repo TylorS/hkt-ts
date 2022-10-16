@@ -1,4 +1,4 @@
-import { Params } from '../../src/HKT.js'
+import { Params } from '../../src/core/HKT.js'
 
 import {
   AST,
