@@ -1,6 +1,6 @@
 import { Result } from '@fp-ts/data/Result'
 
-import { Kind, TypeClass, TypeLambda } from '../HKT.js'
+import { Kind, TypeClass, TypeLambda } from '@/core/HKT.js'
 
 export interface AssociativeEither<T extends TypeLambda> extends TypeClass<T> {
   readonly either: <

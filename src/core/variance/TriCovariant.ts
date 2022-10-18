@@ -1,8 +1,7 @@
-import { Kind, TypeClass, TypeLambda } from '../HKT.js'
-
 import { BiCovariant } from './BiCovariant.js'
 import { Covariant } from './Covariant.js'
 
+import { Kind, TypeClass, TypeLambda } from '@/core/HKT.js'
 import { identity, pipe } from '@/data/Function.js'
 
 export interface TriCovariant<T extends TypeLambda> extends TypeClass<T> {

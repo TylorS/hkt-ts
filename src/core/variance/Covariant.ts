@@ -1,6 +1,6 @@
 import { pipe } from '@fp-ts/data/Function'
 
-import { Kind, TypeClass, TypeLambda } from '../HKT.js'
+import { Kind, TypeClass, TypeLambda } from '@/core/HKT.js'
 
 export interface Covariant<T extends TypeLambda> extends TypeClass<T> {
   readonly map: <A, B>(

@@ -1,4 +1,4 @@
-import { Kind, TypeClass, TypeLambda } from '../HKT.js'
+import { Kind, TypeClass, TypeLambda } from '@/core/HKT.js'
 
 export interface BiInvariant<T extends TypeLambda> extends TypeClass<T> {
   readonly biInvmap: <A, B, C, D>(

@@ -1,4 +1,4 @@
-import { Kind, TypeClass, TypeLambda } from '../HKT.js'
+import { Kind, TypeClass, TypeLambda } from '@/core/HKT.js'
 
 export interface Top<T extends TypeLambda> extends TypeClass<T> {
   readonly top: <InOut3, InOut2, InOut1>() => Kind<

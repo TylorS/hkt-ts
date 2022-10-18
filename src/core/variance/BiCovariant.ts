@@ -1,8 +1,8 @@
 import { identity, pipe } from '@fp-ts/data/Function'
 
-import { Kind, TypeClass, TypeLambda } from '../HKT.js'
-
 import { Covariant } from './Covariant.js'
+
+import { Kind, TypeClass, TypeLambda } from '@/core/HKT.js'
 
 export interface BiCovariant<T extends TypeLambda> extends TypeClass<T> {
   readonly bimap: <A, B, C, D>(
